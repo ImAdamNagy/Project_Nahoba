@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\UserController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/newtransaction', [TransactionController::class, 'store']);
     Route::put('/edit/{id}', [TransactionController::class, 'update']);
     Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
+});
+
+
+Route::post('/registration',[UserController::class,'store']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::delete('/user/delete/{id}',[UserController::class,'destroy']);
+    Route::put('/user/edit/{id}', [UserController::class, 'update']);
+    Route::get('/user/{id}', [UserController::class, 'show']);
 });
