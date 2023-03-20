@@ -1,4 +1,5 @@
 <template>
+<NavBar />
 <Sales />
 <div class="container-fluid itemsArea">
 <Filters />
@@ -7,18 +8,13 @@
 
 </template>
 
-<script>
+<script setup>
 import Sales from '../components/layouts/Sales.vue'
 import Filters from '../components/layouts/Filters.vue'
 import Items from '../components/layouts/Items.vue'
+import NavBar from '../components/layouts/NavBar.vue'
 
-export default{
-    components:{
-        Sales,
-        Filters,
-        Items
-    },
-}
+
 </script>
 <style scoped>
 .itemsArea{
