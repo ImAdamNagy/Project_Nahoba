@@ -10,6 +10,11 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@vee-validate/i18n": "4.8.3",
     "@vee-validate/rules": "4.8.3",
     "@vitejs/plugin-vue": "^4.0.0",

@@ -1,14 +1,13 @@
-<script>
+<script setup>
 </script>
 
 <template>
-<div class="container">
-    <div class="row py-5">
-        <div class="col-4 ms-auto rounded-start rounded-3">
-            <div class="bg-danger" id="formdiv">
+    <div class="row py-5 mx-auto">
+        <div class="col-sm-4 ms-sm-auto mx-xs-auto bg-danger rounded-sm-start">
+            <div id="formdiv">
                 <form action="">
                     <input type="email" name="email" id="email" placeholder="email" class="form-control">
-                    <div id="name">
+                    <div id="name" class="d-flex flex-sm-row flex-column">
                         <input type="text" name="firstname" id="firstname" placeholder="First Name" class="form-control me-2">
                         <input type="text" name="lastname" id="lastname" placeholder="Last Name" class="form-control ">
                     </div>
@@ -21,19 +20,14 @@
                 </form>
             </div>
         </div>
-        <div class="col-5 bg-warning me-auto rounded-end rounded-3">
+        <div class="col-sm-5 me-sm-auto bg-warning rounded-sm-end">
             kép
 
         </div>   
     </div>
-</div>
 </template>
 
 <style scoped>
-    #name{
-        display: flex;
-        flex-direction: row;
-    }
     input{
         margin-top: 7px;
     }

@@ -4,6 +4,8 @@ import Register from '../components/layouts/Register.vue'
 </script>
 
 <template>
-<Register />
+    <div class="container-fluid">
+        <Register />
+    </div>
 </template>
 
