@@ -23,6 +23,7 @@
 <script setup>
 import {reactive} from 'vue';
 import {http} from '../utils/http.mjs';
+import {router} from '../router/index.js';
 
 const newData = reactive({
     productName: '',
@@ -41,8 +42,8 @@ async function createProduct(){
     this.newproduct.product_price = this.newData.productPrice;
     this.newproduct.product_type = this.newData.productType;
 
-    const response = http.post('createproduct', newproduct);
-    console.log(this.newproduct);
+    const response = await http.post('createproduct', newproduct);
+    router.push({name: "MainPage"});
 }
 
 </script>
