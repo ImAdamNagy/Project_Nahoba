@@ -18,7 +18,7 @@
 <script>
 
 </script>
-<style>
+<style scoped>
 .row{
     text-align: center;
     width: 500px;

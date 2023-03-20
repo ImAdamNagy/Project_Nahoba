@@ -26,9 +26,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $newproduct = new Product();
+        $newproduct->seller_id = 1;
+        $newproduct->product_name = $request->validated()['product_name'];
+        $newproduct->product_price = $request->validated()['product_price'];
+        $newproduct->product_type = $request->validated()['product_type'];
+        $newproduct->save();
+        return new ProductResource($newproduct);
     }
 
     /**

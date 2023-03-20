@@ -4,9 +4,6 @@
         <div class="row">
 
     <form class="form" @submit.prevent="createProduct()">
-        <label for="sellerid" class="form-label">Seller Id</label>
-        <input type="text" name="s_id" id="sellerid" class="form-control" v-model="newData.sellerId">
-
         <label for="name" class="form-label">Product Name</label>
         <input type="text" name="p_name" id="name" class="form-control" v-model="newData.productName">
 
@@ -14,7 +11,7 @@
         <input type="text" name="price" id="price" class="form-control" v-model="newData.productPrice">
 
         <label for="type" class="form-label">Product Type</label>
-        <input type="text" name="type" id="type" class="form-control" v-model="newData.productPrice">
+        <input type="text" name="type" id="type" class="form-control" v-model="newData.productType">
 
         <button class="btn-warning btn form-control" type="submit">Create</button>
     </form>
@@ -25,26 +22,27 @@
 </template>
 <script setup>
 import {reactive} from 'vue';
+import {http} from '../utils/http.mjs';
 
 const newData = reactive({
-    sellerId: '',
     productName: '',
     productPrice: '',
     productType: ''
 });
 
 const newproduct = reactive({
-    seller_id: '',
     product_name: '',
     product_price: '',
-    product_tpye: ''
+    product_type: ''
 });
 
 async function createProduct(){
-    this.newproduct.seller_id = this.newData.sellerId;
     this.newproduct.product_name = this.newData.productName;
     this.newproduct.product_price = this.newData.productPrice;
-    this.newproduct.product_tpye = this.newData.productType;
+    this.newproduct.product_type = this.newData.productType;
+
+    const response = http.post('createproduct', newproduct);
+    console.log(this.newproduct);
 }
 
 </script>

@@ -23,8 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/show/{id}', [ProductController::class, 'show']);
+Route::post('/createproduct', [ProductController::class, 'store']);
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/createproduct', [ProductController::class, 'store']);
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
     Route::put('/update/{id}', [ProductController::class, 'update']);
 });
