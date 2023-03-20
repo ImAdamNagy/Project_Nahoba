@@ -13,7 +13,6 @@ export const router = createRouter({
       component: MainPageView,
     },
     {
-      path: '/createproduct',
       path: '/register',
       name: 'RegisterPage',
       component: RegisterPageView,
