@@ -32,7 +32,9 @@ class ProductController extends Controller
         $newproduct->seller_id = 1;
         $newproduct->product_name = $request->validated()['product_name'];
         $newproduct->product_price = $request->validated()['product_price'];
-        $newproduct->product_type = $request->validated()['product_type'];
+        $newproduct->type_id = $request->validated()['type_id'];
+        $newproduct->product_img = $request->validated()['product_img'];
+        $newproduct->product_description = $request->validated()['product_description'];
         $newproduct->save();
         return new ProductResource($newproduct);
     }
@@ -56,9 +58,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $data = Product::findOrFail($id);
+        $data->product_name = $request->validated()['product_name'];
+        $data->product_price = $request->validated()['product_price'];
+        $data->type_id = $request->validated()['type_id'];
+        $data->product_img = $request->validated()['product_img'];
+        $data->product_description = $request->validated()['product_description'];
+        $data->save();
+        return new ProductResource($data);
     }
 
     /**

@@ -9,4 +9,9 @@ class Type extends Model
 {
     public $timestamps = false;
     public $table = "types";
+
+    public function TProducts()
+    {
+        return $this->hasMany(Product::class,"type_id","id");
+    }
 }

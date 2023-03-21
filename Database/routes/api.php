@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\UserController; 
+use App\Http\Controllers\TypeController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,6 @@ use App\Http\Controllers\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/show/{id}', [ProductController::class, 'show']);
@@ -37,7 +34,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
 });
 
+Route::get('/types', [TypeController::class, 'index']);
+Route::get('/type/{id}', [TypeController::class, 'show']);
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/newtype', [TypeController::class, 'store']);
+    Route::put('/edit/{id}', [TypeController::class, 'update']);
+    Route::delete('/type/{id}', [TypeController::class, 'destroy']);
+});
+
+Route::post('/login', [UserController::class, 'authenticate']);
+Route::get('/logout', [UserController::class, 'logout']);
 Route::post('/registration',[UserController::class,'store']);
 
 Route::middleware('auth:sanctum')->group(function () {

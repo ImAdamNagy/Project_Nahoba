@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Transaction;
-use App\Http\Resources\TransactionResource;
-use App\Http\Requests\TransactionRequest;
+use App\Models\Type;
+use App\Http\Resources\TypeResource;
+use App\Http\Requests\TypeRequest;
 
-class TransactionController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $data = Transaction::all()
-        return TransactionResource::collection($data);
+        $data = Type::all();
+        return TypeResource::collection($data);
     }
 
     /**
@@ -26,9 +26,12 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TransactionRequest $request)
+    public function store(TypeRequest $request)
     {
-        //
+        $newtype = new Type();
+        $newtype->type = $request->validated()['type'];
+        $newtype->save();
+        return new TypeResource($newtype);
     }
 
     /**
@@ -39,8 +42,8 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $data = Transaction::findOrFail($id);
-        return new Transaction($data);
+        $data = Type::findOrFail($id);
+        return new Type($data);
     }
 
     /**
@@ -50,9 +53,12 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TransactionRequest $request, $id)
+    public function update(TypeRequest $request, $id)
     {
-        //
+        $data = Type::findOrFail($id);
+        $data->type = $request->validated()['type'];
+        $data->save();
+        return new TypeResource($data);
     }
 
     /**
@@ -63,6 +69,6 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        $data = Transaction::findOrFail($id)->delete();
+        $data = Type::findOrFail($id)->delete();
     }
 }

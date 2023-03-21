@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('seller_id');
-            $table->foreignId('product_id');
-            $table->foreignId('customer_id');
+            $table->foreignId('seller_id')->constarined("users","id");
+            $table->foreignId('product_id')->constarined("products","id");
+            $table->foreignId('customer_id')->constarined("users","id");
         });
     }
 
