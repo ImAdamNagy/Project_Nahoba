@@ -53,11 +53,11 @@ class UserController extends Controller
         $newuser = new User();
         $newuser->username = $request->validated()['username'];
         $newuser->password = Hash::make($request->validated()['password']);
-        $data->firstname = $request->validated()['firstname'];
-        $data->lastname = $request->validated()['lastname'];
-        $data->tel = $request->validated()['tel'];
-        $data->email = $request->validated()['email'];
-        $data->address = $request->validated()['address'];
+        $newuser->firstname = $request->validated()['firstname'];
+        $newuser->lastname = $request->validated()['lastname'];
+        $newuser->tel = $request->validated()['tel'];
+        $newuser->email = $request->validated()['email'];
+        $newuser->address = $request->validated()['address'];
         $newuser->save();
         return new UserResource($newuser);
     }
