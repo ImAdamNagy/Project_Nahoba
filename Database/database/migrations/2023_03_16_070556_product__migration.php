@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->integer('product_price');
             $table->foreignId('types_id')->constrained("types","id");
-            $table->string('product_img',4);
+            $table->string('product_img');
             $table->string('product_description',150);
         });
     }

@@ -20,5 +20,6 @@ import NavBar from '../components/layouts/NavBar.vue'
 .itemsArea{
     background: linear-gradient(180deg, rgb(8, 6, 20) 0%, rgb(150, 27, 27) 100%);
     text-align: center;
+    height: 100%;
 }
 </style>
