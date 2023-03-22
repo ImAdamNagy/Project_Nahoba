@@ -22,7 +22,9 @@ class UserSeeder extends Seeder
                 "lastname" => "Kovács",
                 "email" => "admin@admin.com",
                 "tel" => "06304558183",
-                "address" => "mucsaröcsöge",
+                "postalcode" => "2241",
+                "city" => "mucsaröcsöge",
+                "address" => "csík utca 4.",
                 "username" => "admin",
                 "password" => Hash::make('admin123')
             ]
