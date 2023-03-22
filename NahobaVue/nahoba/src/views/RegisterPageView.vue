@@ -3,7 +3,7 @@ import Register from '../components/layouts/Register.vue'
 
 export default{
     components:{
-        Signup
+        Register
     },
     methods:{
         async registerUser(newUser){
