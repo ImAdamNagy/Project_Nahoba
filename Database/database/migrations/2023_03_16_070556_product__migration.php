@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('seller_id')->constrained("users","id");
-            $table->string('product_name',45);
+            $table->foreignId('seller_id')->constrained("users","id");
+            $table->string('product_name');
             $table->integer('product_price');
-            $table->foreignId('type_id')->constrained("types","id");
+            $table->foreignId('types_id')->constrained("types","id");
             $table->string('product_img',4);
             $table->string('product_description',150);
         });

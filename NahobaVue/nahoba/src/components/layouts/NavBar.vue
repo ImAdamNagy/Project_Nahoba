@@ -50,7 +50,7 @@
     margin: 10px;
 }
 nav{
-    background-image: linear-gradient( rgb(156, 15, 15) 90%,black);
+    background-color: rgba(129, 11, 11, 0.945);
     color: white;
     font-size: 20px;
 }
