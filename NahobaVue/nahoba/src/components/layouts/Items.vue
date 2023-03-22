@@ -7,7 +7,7 @@
           <div class="card-body text">
             <h5 class="card-title">{{item.product_name}}</h5>
             <p class="card-text">
-              {{item.product_price}}
+              {{item.product_price}} Ft
             </p>
           </div>
         </div>

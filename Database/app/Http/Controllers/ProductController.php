@@ -32,7 +32,7 @@ class ProductController extends Controller
         $newproduct->seller_id = 1;
         $newproduct->product_name = $request->validated()['product_name'];
         $newproduct->product_price = $request->validated()['product_price'];
-        $newproduct->type_id = $request->validated()['type_id'];
+        $newproduct->types_id = $request->validated()['types_id'];
         $newproduct->product_img = $request->validated()['product_img'];
         $newproduct->product_description = $request->validated()['product_description'];
         $newproduct->save();

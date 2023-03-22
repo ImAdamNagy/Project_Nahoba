@@ -25,7 +25,7 @@ class SignInUserRequest extends FormRequest
     {
         return [
             'username' => ['required', 'min:4', 'max:15'],
-            'password' => ['required', 'min:5', 'max:20', 'alpha_num','confirmed'],
+            'password' => ['required', 'min:5', 'alpha_num','confirmed'],
             'firstname' =>['required','min:1','max:15'],
             'lastname' =>['required','min:1','max:15'],
             'tel' =>['required','min:11','max:11'],
