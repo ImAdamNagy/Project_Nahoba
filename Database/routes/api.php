@@ -19,7 +19,7 @@ use App\Http\Controllers\TypeController;
 */
 
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/show/{id}', [ProductController::class, 'show']);
+Route::get('/product/{id}', [ProductController::class, 'show']);
 Route::post('/createproduct', [ProductController::class, 'store']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
@@ -46,9 +46,9 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::get('/logout', [UserController::class, 'logout']);
 Route::post('/registration',[UserController::class,'store']);
+Route::get('/user/{id}', [UserController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/user/delete/{id}',[UserController::class,'destroy']);
     Route::put('/user/edit/{id}', [UserController::class, 'update']);
-    Route::get('/user/{id}', [UserController::class, 'show']);
 });

@@ -1,15 +1,12 @@
-<template>
-<div class="container">
-<Login />
-</div>
-</template>
 <script setup>
-import Login from "../components/layouts/Login.vue"
 
+import Login from '../components/layouts/Login.vue'
 </script>
+
+<template>
+    <div class="container-fluid">
+        <Login />
+    </div>
+</template>
 <style scoped>
-.container{
-    margin: auto;
-    width: 500px;
-}
 </style>
