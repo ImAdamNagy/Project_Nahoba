@@ -8,4 +8,6 @@ import Register from '../components/layouts/Register.vue'
         <Register />
     </div>
 </template>
+<style scoped>
+</style>
 
