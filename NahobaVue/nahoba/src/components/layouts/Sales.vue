@@ -11,7 +11,7 @@
 </template>
 <style scoped>
 header{
-    background-image: url("../img/sales.jpg");
+    background-image: url("../img/header.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     border-bottom: 2px solid white;

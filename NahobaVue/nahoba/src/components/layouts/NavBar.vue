@@ -1,7 +1,8 @@
 <template>
-<nav class="navbar navbar-expand-lg">
+  <header>
+          <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand nav-title" href="#">Nahoba Parts</a>
+      <Router-link class="navbar-brand nav-title" to="/">Nahoba Parts</Router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -18,11 +19,11 @@
           
         </ul>
         <div class="nav-item space">
-          <a class="nav-link" href="#">Likes</a>
+          <Router-link class="nav-link" to="">Likes</Router-link>
         </div>
         <div class="nav-item space">
           <div class="nav-item ">
-            <a class="nav-link" href="#">Cart</a>
+            <Router-link class="nav-link" to="">Cart</Router-link>
           </div>
         </div>
         <div class="nav-item space">
@@ -31,8 +32,12 @@
               aria-expanded="false">
               My profile
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" id="drop">
+              <li><a class="dropdown-item" href="#">Settings</a></li>
               <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">My products</a></li>
+              <li><a class="dropdown-item" href="#">Messages</a></li>
+              <div class="dropdown-divider"></div>
               <li><a class="dropdown-item" href="#">Sign out</a></li>
             </ul>
           </div>
@@ -40,9 +45,18 @@
       </div>
     </div>
   </nav>
+  </header>
+
 </template>
 
 <style scoped>
+@media screen and (max-width: 991px) {
+  .navbar-collapse{
+  background-image: url("../img/sales1.jpg");
+  background-repeat: no;
+}
+}
+
 .end{
     margin-right: 100px;
 }
@@ -50,7 +64,7 @@
     margin: 10px;
 }
 nav{
-    background-color: rgba(129, 11, 11, 0.945);
+    background-color: rgba(129, 11, 11, 80%);
     color: white;
     font-size: 20px;
 }
@@ -64,5 +78,8 @@ nav{
 .functions{
     margin: 10px;
     color: white;
+}
+#drop{
+  text-align: center;
 }
 </style>
