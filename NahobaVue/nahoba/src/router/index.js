@@ -31,7 +31,12 @@ export const router = createRouter({
     {
       path: '/details',
       name: 'ProductDetails',
-      component: ShowProductView,
+      component: ShowProductView
+    },
+    {
+      path: '/user',
+      name: 'UserProfile',
+      component: UserProfilePageView,
     },
   ]
 });
