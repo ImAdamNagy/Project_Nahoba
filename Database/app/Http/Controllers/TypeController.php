@@ -28,8 +28,7 @@ class TypeController extends Controller
      */
     public function store(TypeRequest $request)
     {
-        $newtype = new Type();
-        $newtype->type = $request->validated()['type'];
+        $newtype = new Type($request->validated());
         $newtype->save();
         return new TypeResource($newtype);
     }
@@ -53,12 +52,11 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeRequest $request, $id)
+    public function update(TypeRequest $request, Type $type)
     {
-        $data = Type::findOrFail($id);
-        $data->type = $request->validated()['type'];
-        $data->save();
-        return new TypeResource($data);
+        $type->update($request->validated());
+        $type->save();
+        return new TypeResource($type);
     }
 
     /**

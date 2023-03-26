@@ -16,7 +16,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $data = Transaction::all()
+        $data = Transaction::all();
         return TransactionResource::collection($data);
     }
 

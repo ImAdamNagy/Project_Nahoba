@@ -1,5 +1,6 @@
 <script >
 import Register from '../components/layouts/Register.vue'
+import {http} from '../utils/http.mjs'
 
 export default{
     components:{
@@ -7,7 +8,7 @@ export default{
     },
     methods:{
         async registerUser(newUser){
-            const response = await http.post('newuser',newUser);
+            const response = await http.post('register',newUser);
             this.$router.push({name: 'login'});
         }
     }

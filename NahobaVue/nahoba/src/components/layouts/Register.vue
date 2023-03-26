@@ -1,4 +1,5 @@
 <script>
+
 export default{
 data(){
     return{
@@ -16,11 +17,6 @@ data(){
         }
     }
 },
-methods:{
-   redirect(){
-    this.$router.push({name: 'login'});
-   }     
-},
 emits:[
         "registerUser"
 ]
@@ -36,23 +32,23 @@ emits:[
         <div class="col-sm-4 me-sm-auto mx-xs-auto" id="formcol">
             <div id="formdiv">
                 <form @submit.prevent="$emit('registerUser', newUser)">
-                    <input type="email" name="email" id="email" placeholder="email" class="form-control">
+                    <input type="email" name="email" id="email" placeholder="email" class="form-control" v-model="newUser.email">
                     <div id="name" class="d-flex flex-sm-row flex-column">
-                        <input type="text" name="firstname" id="firstname" placeholder="First Name" class="form-control me-2">
-                        <input type="text" name="lastname" id="lastname" placeholder="Last Name" class="form-control ">
+                        <input type="text" name="firstname" id="firstname" placeholder="First Name" class="form-control me-2" v-model="newUser.firstname">
+                        <input type="text" name="lastname" id="lastname" placeholder="Last Name" class="form-control " v-model="newUser.lastname">
                     </div>
-                    <input type="tel" name="tel" id="tel" placeholder="tel" class="form-control">
+                    <input type="tel" name="tel" id="tel" placeholder="tel" class="form-control" v-model="newUser.tel">
                     <div id="name" class="d-flex flex-sm-row flex-column">
-                        <input type="number" name="postalcode" id="postalcode" placeholder="Postal code" class="form-control me-2">
-                        <input type="text" name="city" id="city" placeholder="City" class="form-control ">
+                        <input type="number" name="postalcode" id="postalcode" placeholder="Postal code" class="form-control me-2" v-model="newUser.postalcode">
+                        <input type="text" name="city" id="city" placeholder="City" class="form-control " v-model="newUser.city">
                     </div>
-                    <input type="text" name="address" id="address" placeholder="address" class="form-control">
-                    <input type="text" name="username" id="username" placeholder="username" class="form-control">
-                    <input type="password" name="password" id="password" placeholder="password" class="form-control">
-                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="confirm password" class="form-control">
+                    <input type="text" name="address" id="address" placeholder="address" class="form-control" v-model="newUser.address">
+                    <input type="text" name="username" id="username" placeholder="username" class="form-control" v-model="newUser.username">
+                    <input type="password" name="password" id="password" placeholder="password" class="form-control" v-model="newUser.password">
+                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="confirm password" class="form-control" v-model="newUser.password_confirmation">
                     <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <input type="submit" value="Register" class="btn btn-secondary my-md-3 my-2 rounded-pill">
-                        <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/login">Login</Router-link>
+                        <button class="btn btn-secondary my-md-3 my-2 rounded-pill" type="submit">Register</button>
+                        <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/login">Go to Login</Router-link>
                     </div>
                 </form>
             </div>

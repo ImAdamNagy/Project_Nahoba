@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Http\Requests\SignInUserRequest;
+use App\Http\Requests\SignUpUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +17,7 @@ class UserController extends Controller
         $data = $request->validated();
         if(Auth::attempt($data)){
             if($request->wantsJson()){
-                return response()->json(["data"=>new UserResource(Auth::user())],200);
+                return response()->json(["data"=> new UserResource(Auth::user())],200);
             }
         }
         else{
@@ -38,8 +38,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
-        return UserResource::collection($data);
+        $users = User::all();
+        return UserResource::collection($users);
     }
 
     /**
@@ -48,22 +48,16 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(SignUpUserRequest $request)
     {
-        $newuser = new User();
-        $newuser->username = $request->validated()['username'];
+        $newuser = new User($request->validated());
         $newuser->password = Hash::make($request->validated()['password']);
-        $newuser->firstname = $request->validated()['firstname'];
-        $newuser->lastname = $request->validated()['lastname'];
-        $newuser->tel = $request->validated()['tel'];
-        $newuser->email = $request->validated()['email'];
-        $newuser->address = $request->validated()['address'];
         $newuser->save();
         return new UserResource($newuser);
     }
 
     /**
-     * Display the specified resource.
+ * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -81,18 +75,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SignInUserRequest $request, $id)
+    public function update(SignUpUserRequest $request, User $user)
     {
-        $data = User::findOrFail($id);
-        $data->username = $request->validated()['username'];
-        $data->password = Hash::make($request->validated()['password']);
-        $data->firstname = $request->validated()['firstname'];
-        $data->lastname = $request->validated()['lastname'];
-        $data->tel = $request->validated()['tel'];
-        $data->email = $request->validated()['email'];
-        $data->address = $request->validated()['address'];
-        $data->save();
-        return new UserResource($data);
+        $user->update($request->validated());
+        $user->password = Hash::make($request->validated()['password']);
+        $user->save();
+        return new UserResource($user);
     }
 
     /**
@@ -103,6 +91,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $data = User::findOrFail($id)->delete();
+        $user = User::findOrFail($id)->delete();
     }
 }

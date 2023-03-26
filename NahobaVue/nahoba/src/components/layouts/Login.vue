@@ -18,7 +18,6 @@ async function login(){
     if(response.status !== 200){
         error.value = response.statusText
     }else{
-        console.log(response.data);
         localStorage.setItem('token',response.data.data.token);
         localStorage.setItem('userid',response.data.data.userid);
         router.push({name:'MainPage'});
@@ -28,10 +27,10 @@ async function login(){
 
 <template>
     <div class="row py-5 mx-auto">
-        <div class="col-sm-3 ms-sm-auto bg-warning" id="left">
+        <div class="col-md-3 ms-md-auto bg-warning" id="left">
             <h1>Welcome Back!</h1>
         </div> 
-        <div class="col-sm-2 me-sm-auto mx-xs-auto text-center" id="right">
+        <div class="col-md-2 me-md-auto mx-xs-auto text-center" id="right">
             <div id="formdiv">
                 <h1 id="title">Login</h1>
                 <form @submit.prevent="login">
@@ -39,8 +38,10 @@ async function login(){
                     <input type="text" name="username" id="username" placeholder="username" class="form-control" v-model="userData.username">
                     <label for="password" class="form-label text-center">Password:</label>
                     <input type="password" name="password" id="password" placeholder="password" class="form-control" v-model="userData.password">
-                    <button class="btn btn-secondary my-3 float-end  rounded-pill" type="submit">Login</button>
-                    <Router-link class="btn btn-secondary my-3 float-start rounded-pill" to="/register">Sign up</Router-link> 
+                    <div class="d-flex flex-column flex-xl-row justify-content-between">
+                        <input type="submit" value="Login" class="btn btn-secondary my-md-3 my-2 rounded-pill">
+                        <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/register">Go to Register</Router-link>
+                    </div>
                 </form>
             </div>
         </div>  
@@ -52,7 +53,7 @@ async function login(){
         position: relative;
         top: 35%;
     }
-    @media screen and (max-width: 576px) {
+    @media screen and (max-width: 768px) {
         .row{
         top: 3%;
     }

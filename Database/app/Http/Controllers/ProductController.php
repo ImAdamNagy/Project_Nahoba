@@ -16,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::all();
-        return ProductResource::collection($data);
+        $products = Product::all();
+        return ProductResource::collection($products);
     }
 
     /**
@@ -28,13 +28,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $newproduct = new Product();
-        $newproduct->seller_id = 1;
-        $newproduct->product_name = $request->validated()['product_name'];
-        $newproduct->product_price = $request->validated()['product_price'];
-        $newproduct->types_id = $request->validated()['types_id'];
-        $newproduct->product_img = $request->validated()['product_img'];
-        $newproduct->product_description = $request->validated()['product_description'];
+        $newproduct = new Product($request->validated());
+        $newproduct->seller_id = Auth::id();
         $newproduct->save();
         return new ProductResource($newproduct);
     }
@@ -58,16 +53,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        $data = Product::findOrFail($id);
-        $data->product_name = $request->validated()['product_name'];
-        $data->product_price = $request->validated()['product_price'];
-        $data->type_id = $request->validated()['type_id'];
-        $data->product_img = $request->validated()['product_img'];
-        $data->product_description = $request->validated()['product_description'];
-        $data->save();
-        return new ProductResource($data);
+        $product->update($request->validated());
+        $product->save();
+        return new ProductResource($product);
     }
 
     /**
@@ -78,6 +68,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $data = Product::findOrFail($id)->delete();
+        $product = Product::findOrFail($id)->delete();
     }
 }

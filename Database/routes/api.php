@@ -45,10 +45,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::get('/logout', [UserController::class, 'logout']);
-Route::post('/registration',[UserController::class,'store']);
+Route::post('/register',[UserController::class,'store']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/user/delete/{id}',[UserController::class,'destroy']);
-    Route::put('/user/edit/{id}', [UserController::class, 'update']);
+    Route::put('/user/edit/{user}', [UserController::class, 'update']);
 });
