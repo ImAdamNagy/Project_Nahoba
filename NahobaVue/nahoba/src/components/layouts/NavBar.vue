@@ -1,8 +1,8 @@
 <template>
   <header>
-          <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <Router-link class="navbar-brand nav-title" to="/">Nahoba Parts</Router-link>
+      <Router-link class="navbar-brand nav-title navbar-light" to="/">Nahoba Parts</Router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -18,14 +18,6 @@
             </div>
           
         </ul>
-        <div class="nav-item space">
-          <Router-link class="nav-link" to="">Likes</Router-link>
-        </div>
-        <div class="nav-item space">
-          <div class="nav-item ">
-            <Router-link class="nav-link" to="">Cart</Router-link>
-          </div>
-        </div>
         <div class="nav-item space">
           <div class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle end" href="#" role="button" data-bs-toggle="dropdown"
@@ -50,13 +42,9 @@
 </template>
 
 <style scoped>
-@media screen and (max-width: 991px) {
-  .navbar-collapse{
-  background-image: url("../img/sales1.jpg");
-  background-repeat: no;
+.nav-title{
+color:white;
 }
-}
-
 .end{
     margin-right: 100px;
 }
@@ -68,12 +56,11 @@ nav{
     color: white;
     font-size: 20px;
 }
+.nav-title{
+color:white;
+}
 .form{
     margin: 10px;
-}
-.nav-title{
-    border: 2px solid white;
-    border-radius: 10px;
 }
 .functions{
     margin: 10px;
@@ -82,4 +69,5 @@ nav{
 #drop{
   text-align: center;
 }
+
 </style>

@@ -1,6 +1,5 @@
 <template>
-<NavBar />
-<Sales />
+<Header />
 <div class="container-fluid itemsArea">
 <Filters />
 <Items @details="details" :id="id"/>
@@ -9,10 +8,9 @@
 </template>
 
 <script setup>
-import Sales from '../components/layouts/Sales.vue'
 import Filters from '../components/layouts/Filters.vue'
 import Items from '../components/layouts/Items.vue'
-import NavBar from '../components/layouts/NavBar.vue'
+import Header from '../components/layouts/Header.vue'
 
 </script>
 <style scoped>
