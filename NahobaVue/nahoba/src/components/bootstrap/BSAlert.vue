@@ -3,7 +3,7 @@
     <slot />
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" v-if="closable">
       <span aria-hidden="true">&times;</span></button
-    >s
+    >
   </div>
 </template>
 

@@ -19,9 +19,6 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('email')->unique();
             $table->string('tel');
-            $table->integer('postalcode');
-            $table->string('city');
-            $table->string('address');
             $table->string('username');
             $table->string('password');
             $table->rememberToken();

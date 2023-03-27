@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\SignUpResource;
 use App\Models\User;
 use App\Http\Requests\SignUpUserRequest;
 use App\Http\Requests\LoginUserRequest;
@@ -53,7 +54,7 @@ class UserController extends Controller
         $newuser = new User($request->validated());
         $newuser->password = Hash::make($request->validated()['password']);
         $newuser->save();
-        return new UserResource($newuser);
+        return new SignUpResource($newuser);
     }
 
     /**

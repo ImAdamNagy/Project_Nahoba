@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class SignUpResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,10 @@ class UserResource extends JsonResource
         return [
             'userid' => $this->id,
             'username' => $this->username,
-            'token' => $this->createToken('auth_token')->plainTextToken,
             'email' => $this->email,
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'tel' => $this->tel
-        ];
+        ]
     }
 }
