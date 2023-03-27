@@ -8,5 +8,3 @@ import Login from '../components/layouts/Login.vue'
         <Login />
     </div>
 </template>
-<style scoped>
-</style>

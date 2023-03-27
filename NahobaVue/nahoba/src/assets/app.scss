@@ -1,10 +1,11 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
-
-#app {
+#app{
   height: 100vh;
-  display: flex;
+  display:flex;
   flex-direction: column;
 }
 body{
   background: linear-gradient(180deg, rgb(117, 33, 20) 0%, rgb(223, 18, 18) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -9,31 +9,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-            <div class="row">
-                <form class="d-flex form col-lg-12 col-md-6 col-sm-5" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                  </form>
-            </div>
-          
+        <li class="nav-item">
+          <Router-link class="nav-link active text-light" to="/">Mechanics</Router-link>
+        </li>
         </ul>
-        <div class="nav-item space">
-          <div class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle end" href="#" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              My profile
-            </a>
-            <ul class="dropdown-menu" id="drop">
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><a class="dropdown-item" href="#">My products</a></li>
-              <li><a class="dropdown-item" href="#">Messages</a></li>
-              <div class="dropdown-divider"></div>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-          </div>
-        </div>
+        <slot />
       </div>
     </div>
   </nav>
@@ -42,9 +22,6 @@
 </template>
 
 <style scoped>
-.nav-title{
-color:white;
-}
 .end{
     margin-right: 100px;
 }
@@ -69,5 +46,6 @@ color:white;
 #drop{
   text-align: center;
 }
+
 
 </style>

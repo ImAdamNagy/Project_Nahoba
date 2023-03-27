@@ -1,13 +1,10 @@
 <script>
 </script>
 <template>
-    <header>
-        
-    </header>
     <div class="row mx-auto my-5 rounded-3 py-4 px-3">
         <div class="col-sm-3 ">
             <img src="../img/pfp.webp" alt="pfp" class="img rounded-3">
-            <button class="btn btn-secondary rounded-pill mt-3 w-100">Üzeenet</button>
+            <button class="btn btn-secondary rounded-pill mt-3 w-100">Üzenet</button>
         </div>
         <div class="col-9 ">
             <h1>Elek</h1>
@@ -17,13 +14,6 @@
     </div>
 </template>
 <style scoped>
-header{
-    background-image: url("../img/sales.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-bottom: 2px solid white;
-    height: 100px;
-}
 img{
     max-width: 100%;
 }
