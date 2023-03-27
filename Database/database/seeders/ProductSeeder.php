@@ -23,7 +23,8 @@ class ProductSeeder extends Seeder
                 "types_id" => "3",
                 "product_img" => "wrench.jpg",
                 "product_description" => "It is a long established fact that a reader 
-                will be distracted"
+                will be distracted",
+                "product_location" => "Budapest 18."
             ],
             [
                 "seller_id" => "1",
@@ -32,7 +33,8 @@ class ProductSeeder extends Seeder
                 "types_id" => "1",
                 "product_img" => "engine.jpg",
                 "product_description" => "It is a long established fact that a reader 
-                will be distracted"
+                will be distracted",
+                "product_location" => "Budapest 10."
             ],
             [
                 "seller_id" => "1",
@@ -41,7 +43,8 @@ class ProductSeeder extends Seeder
                 "types_id" => "3",
                 "product_img" => "cata.jpg",
                 "product_description" => "It is a long established fact that a reader 
-                will be distracted"
+                will be distracted",
+                "product_location" => "Budapest 20."
             ]
         ]);
     }

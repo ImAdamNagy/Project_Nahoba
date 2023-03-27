@@ -21,6 +21,9 @@
                     <label for="desc" class="form-label">Description</label>
                     <textarea class="form-control" id="desc" rows="5" v-model="newData.desc"></textarea>
 
+                    <label for="loc" class="form-label">Location</label>
+                    <textarea class="form-control" id="loc" rows="5" v-model="newData.loc"></textarea>
+
                     <br>
                     <label for="img" class="form-label">Upload image</label>
                     <br>
@@ -57,7 +60,8 @@ const newData = reactive({
     productPrice: '',
     productType: '',
     img: '',
-    desc: ''
+    desc: '',
+    loc: ''
 });
 
 const newproduct = reactive({
@@ -65,7 +69,8 @@ const newproduct = reactive({
     product_price: '',
     types_id: '',
     product_img: '',
-    product_description: ''
+    product_description: '',
+    product_location: ''
 });
 
 async function createProduct(){
@@ -74,6 +79,7 @@ async function createProduct(){
     this.newproduct.types_id = this.newData.productType;
     this.newproduct.product_img = this.newData.img;
     this.newproduct.product_description = this.newData.desc;
+    this.newproduct.product_location = this.newData.loc;
 
     console.log(this.newproduct);
     const response = await http.post('createproduct', newproduct);

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('types_id')->constrained("types","id");
             $table->string('product_img');
             $table->string('product_description',150);
+            $table->string('product_location', 100);
         });
     }
 

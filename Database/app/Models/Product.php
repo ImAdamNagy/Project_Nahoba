@@ -11,6 +11,7 @@ class Product extends Model
 {
     public $timestamps = false;
     protected $table = "products";
+    protected $fillable = ["product_name", "product_price", "types_id", "product_img", "product_description", "product_location"];
 
     public function User()
     {
