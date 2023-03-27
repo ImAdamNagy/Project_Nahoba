@@ -8,3 +8,40 @@
 body{
   background: linear-gradient(180deg, rgb(117, 33, 20) 0%, rgb(223, 18, 18) 100%);
 }
+.grid-container{
+  display: grid;
+  grid-template-rows: repeat(2, 1fr) repeat(2, 0.3fr);
+  grid-template-columns:  repeat(4, 1fr);
+  grid-template-areas: 
+  "img img title title"
+  "img img desc desc"
+  "loc loc desc desc"
+  "msg msg msg msg"
+  ;
+  align-content: center;
+  background-color: white;
+  border-radius: 20px 0px 20px 0px;
+}
+.image{
+  grid-area: img;
+  height: 2fr;
+  width: 2fr;
+  margin: 5%;
+}
+.grid-title{
+  grid-area: title;
+  text-align: center;
+  margin-top: 5%;
+}
+.desc{
+  grid-area: desc;
+  margin: 2%;
+}
+.msg{
+  grid-area: msg;
+}
+.loc{
+  grid-area: loc;
+  text-align: center;
+  font-weight: bold;
+}
