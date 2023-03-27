@@ -30,7 +30,7 @@ class SignUpUserRequest extends FormRequest
             'lastname' =>['required','min:1','max:15'],
             'tel' =>['required','min:11','max:11'],
             'email' =>['required','email'],
-            'postalcode' =>['required','numeric','min:1','max:8'],
+            'postalcode' =>['required','numeric','min:1','max:9999'],
             'city' =>['required','min:2','max:30'],
             'address' =>['required','min:2','max:40']
         ];
