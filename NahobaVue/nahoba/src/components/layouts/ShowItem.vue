@@ -21,29 +21,30 @@ export default{
 
 </script>
 <template>
-
-<div class="row content">
-    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-2 img">
-        <img :src="`../img/${this.data.product_img}`" class="img-fluid"/>
-    </div>
-    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-2 name">
-        <h1>{{this.data.product_name}}</h1>
-        <div class="col-lg-6">
-            {{this.data.product_description}}
+    <div class="grid-container">
+        <img :src="`/img/${this.data.product_img}`" alt="" class="image img-fluid">
+        <h1 class="grid-title">{{ this.data.product_name }}</h1>
+        <div class="desc">
+            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
+            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
+            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
+            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
+        </div>
+        <div class="loc">
+            Budapest 18.
+        </div>
+        <div class="msg">
+            <div class="btn btn-warning">Send message</div>
         </div>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-4 msg btn btn-warning">
-        Send message
-    </div>
-</div>
-
 </template>
 <style scoped>
 .msg{
     padding: 3px;
     text-align: center;
-    width: 30%;
     margin: auto;
+    height: 50%;
+
 }
 .img{
     text-align: center;

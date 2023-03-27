@@ -3,7 +3,7 @@
 
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in this.allProducts">
         <div class="card">
-          <img :src="`../img/${item.product_img}`" alt="">
+          <img :src="`/img/${item.product_img}`" alt="">
           <div class="card-body text">
             <h5 class="card-title">{{item.product_name}}</h5>
             <p class="card-text">
