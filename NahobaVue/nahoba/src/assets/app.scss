@@ -1,37 +1,65 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
-
+#app{
+  height: 100vh;
+}
 body{
-  background: linear-gradient(180deg, rgb(117, 33, 20) 0%, rgb(223, 18, 18) 100%);
+  background: linear-gradient(180deg, rgb(117, 33, 20) 0%, rgb(56, 1, 1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
 }
 .grid-container{
   display: grid;
-  grid-template-rows: repeat(2, 1fr) repeat(2, 0.3fr);
+  grid-template-rows: repeat(6, 0.2fr);
   grid-template-columns:  repeat(4, 1fr);
   grid-template-areas: 
   "img img title title"
+  "img img price price"
+  "img img seller seller"
+  "img img location location"
   "img img desc desc"
-  "loc loc desc desc"
   "msg msg msg msg";
   align-content: center;
   background-color: white;
   border-radius: 20px 0px 20px 0px;
   grid-row-gap: 5px;
-  grid-column-gap: 5px;
-  padding: 20px;
+  grid-column-gap: 30px;
+  padding: 30px;
+  box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
 }
 @media screen and (max-width: 1000px){
   .grid-container{
     display: grid;
-    grid-template-rows:  0.2fr repeat(3, 1fr);
+    grid-template-rows: 0.2fr 1fr repeat(4, 0.2fr);
     grid-template-columns:  repeat(2, 1fr);
     grid-template-areas: 
     "title title"
     "img img"
-    "loc desc"
+    "price desc"
+    "seller desc"
+    "location desc"
     "msg msg";
+    align-content: center;
+    background-color: white;
+    border-radius: 20px 0px 20px 0px;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+    padding:20px;
+  }
+}
+@media screen and (max-width: 500px){
+  .grid-container{
+    display: grid;
+    grid-template-rows: 0.2fr 1fr repeat(4, 0.2fr);
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "title"
+    "img"
+    "price"
+    "seller"
+    "location"
+    "desc"
+    "msg";
     align-content: center;
     background-color: white;
     border-radius: 20px 0px 20px 0px;
@@ -42,8 +70,6 @@ body{
 }
 .image{
   grid-area: img;
-  height: 2fr;
-  width: 2fr;
   border-radius: 20px 0px 20px 0px;
 }
 .grid-title{
@@ -56,8 +82,13 @@ body{
 .msg{
   grid-area: msg;
 }
-.loc{
-  grid-area: loc;
-  text-align: center;
-  font-weight: bold;
+.price{
+  grid-area: price;
 }
+.location{
+  grid-area: location;
+}
+.seller{
+  grid-area: seller;
+}
+

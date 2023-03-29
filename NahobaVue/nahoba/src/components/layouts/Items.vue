@@ -1,16 +1,11 @@
 <template>
-<div class="row">
-
+<div class="row mx-2">
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in this.allProducts">
-        <div class="card">
-          <img :src="`/img/${item.product_img}`" alt="">
-          <div class="card-body text">
-            <h5 class="card-title">{{item.product_name}}</h5>
-            <p class="card-text">
-              {{item.product_price}} Ft
-              <a class="btn btn-warning" @click="details(item.id)">More</a>
-            </p>
-          </div>
+        <div class="product h-100">
+          <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
+            <h5 class="title">{{item.product_name}}</h5>
+            <p class="price">{{item.product_price}} Ft</p>
+            <a class="btn btn-warning" @click="details(item.id)">More</a>
         </div>
       </div>
     </div>
@@ -43,17 +38,33 @@ export default{
 </script>
 
 <style scoped>
-.card{
+.product{
+    display: grid;
+    grid-template-rows: 1fr repeat(3, 0.2fr);
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "img"
+    "title"
+    "price"
+    "btn";
     background-color: white;
-    border: 2px solid white;
+    padding: 10px;
     font-weight: bold;
-    margin: 5px;
-    margin-bottom: 10px;
-}
-.text{
-    border-top: 2px solid white;
+    border-radius: 20px 0px 20px 0px;
+    box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
 }
 img{
-  height: 150px;
+  grid-area: img;
+  border-radius: 20px 0px 20px 0px;
 }
+.price{
+  grid-area: price;
+}
+.title{
+  grid-area: title;
+}
+.btn{
+  grid-area: btn;
+}
+
 </style>

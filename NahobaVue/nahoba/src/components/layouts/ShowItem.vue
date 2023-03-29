@@ -1,37 +1,26 @@
 <script>
-import {http} from '../../utils/http.mjs'
-
 export default{
-    data(){
-        return{
-            data: {},
-        }
-    },
-    methods:{
-        async getItem(){
-            const response = await http.get("product/" + localStorage.getItem("id"));
-            this.data = response.data.data;
-            console.log(this.data);
-        }
-    },
-    mounted(){
-        this.getItem();
+    props:{
+        data: Object,
+        seller: Object
     }
 }
-
 </script>
 <template>
     <div class="grid-container">
         <img :src="`/img/${this.data.product_img}`" alt="" class="image img-fluid">
-        <h1 class="grid-title">{{ this.data.product_name }}</h1>
-        <div class="desc">
-            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
-            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
-            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
-            ajfsdpv difv aivnaurnvdurivn druvnunv vadunvaeundvuaendvfjiedv nreufangveirfbgripudbvna ursbgaujfidbg
+        <h1 class="grid-title">{{ data.product_name }}</h1>
+        <div class="price">
+            <p><b>Price:</b> {{ data.product_price}}</p>
         </div>
-        <div class="loc">
-            Budapest 18.
+        <div class="seller">
+            <p><b>Seller name:</b> {{ seller.firstname }} {{ seller.lastname }}</p>
+        </div>
+        <div class="location">
+            <p><b>Location:</b> {{ data.product_location }}</p>
+        </div>
+        <div class="desc">
+            <p><b>Description:</b> {{ data.product_description}}</p>
         </div>
         <div class="msg">
             <div class="btn btn-warning">Send message</div>
@@ -44,24 +33,5 @@ export default{
     text-align: center;
     margin: auto;
     height: 50%;
-
-}
-.img{
-    text-align: center;
-    padding: 3px;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-.name{
-    padding: 3px;
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
-.content{
-    margin: auto;
-    background-color: rgb(63, 173, 159);
-    border: 3px solid white;
-    border-radius: 10px;
-    padding: 10px;
 }
 </style>
