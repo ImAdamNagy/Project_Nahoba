@@ -15,7 +15,7 @@ defineRule('required',(value)=>{
         return 'A mező kitöltése kötelező!';
     }
     return true;
-})
+});
 
 const app = createApp(App)
 

@@ -5,14 +5,10 @@
     <ShowItem />
 </div>
 
-
 </template>
-
 <script setup>
 import ShowItem from '../components/layouts/ShowItem.vue'
 import NavBar from '../components/layouts/NavBar.vue'
-
-
 </script>
 <style scoped>
 .container{
