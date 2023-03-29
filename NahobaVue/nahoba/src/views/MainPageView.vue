@@ -1,6 +1,6 @@
 <template>
 <NavBar>
-    <div class="nav-item space" v-if="isLogin">
+    <div class="nav-item space" v-if="useAuth().loggedIn">
         <div class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle end" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -16,7 +16,7 @@
             </ul>
         </div>
     </div>
-    <div class="nav-item space mx-3" v-if="!islogin">
+    <div class="nav-item space mx-3" v-else>
         <li class="nav-item">
           <Router-link class="nav-link active text-light" to="/login">Login</Router-link>
         </li>
@@ -30,24 +30,11 @@
 </template>
 
 <script setup>
+import {useAuth} from '@/store/AuthStore.js'
 import Filters from '../components/layouts/Filters.vue'
 import Items from '../components/layouts/Items.vue'
 import Header from '../components/layouts/Header.vue'
 import NavBar from '../components/layouts/NavBar.vue';
-import { reactive } from 'vue';
-Login();
-const isLogin = reactive(false);
-
-function Login(){
-    if(localStorage.token != null)
-    {
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
 </script>
 <style scoped>
 

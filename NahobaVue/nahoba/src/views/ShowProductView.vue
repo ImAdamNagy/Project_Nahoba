@@ -5,7 +5,6 @@
     <ShowItem :data="data" :seller="seller" />
 </div>
 
-
 </template>
 
 <script>
@@ -40,8 +39,6 @@ export default{
         this.getItem();
     }
 }
-    
-
 </script>
 <style scoped>
 .container{
