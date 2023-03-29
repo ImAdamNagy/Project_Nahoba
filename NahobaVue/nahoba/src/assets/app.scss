@@ -14,26 +14,44 @@ body{
   "img img title title"
   "img img desc desc"
   "loc loc desc desc"
-  "msg msg msg msg"
-  ;
+  "msg msg msg msg";
   align-content: center;
   background-color: white;
   border-radius: 20px 0px 20px 0px;
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  padding: 20px;
+}
+@media screen and (max-width: 1000px){
+  .grid-container{
+    display: grid;
+    grid-template-rows:  0.2fr repeat(3, 1fr);
+    grid-template-columns:  repeat(2, 1fr);
+    grid-template-areas: 
+    "title title"
+    "img img"
+    "loc desc"
+    "msg msg";
+    align-content: center;
+    background-color: white;
+    border-radius: 20px 0px 20px 0px;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+    padding: 20px;
+  }
 }
 .image{
   grid-area: img;
   height: 2fr;
   width: 2fr;
-  margin: 5%;
+  border-radius: 20px 0px 20px 0px;
 }
 .grid-title{
   grid-area: title;
   text-align: center;
-  margin-top: 5%;
 }
 .desc{
   grid-area: desc;
-  margin: 2%;
 }
 .msg{
   grid-area: msg;

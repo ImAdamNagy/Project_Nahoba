@@ -52,9 +52,6 @@ export default{
     margin-top: 2%;
     margin-bottom: 2%;
 }
-img{
-    border-radius: 10px;
-}
 .name{
     padding: 3px;
     margin-top: 3%;
