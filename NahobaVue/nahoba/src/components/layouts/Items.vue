@@ -24,7 +24,6 @@ export default{
       async products(){
         const response = await http.get('products');
         this.allProducts = response.data.data;
-        console.log(this.allProducts);
       },
       details(id){
         router.push({name: "ProductDetails"});
