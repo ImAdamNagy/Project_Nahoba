@@ -23,7 +23,7 @@ export const useAuth = defineStore('auth-store',{
     },
     getters:{
         loggedIn(){
-            return this.token !== ''
+            return this.token !== '';
         }
     }
 })

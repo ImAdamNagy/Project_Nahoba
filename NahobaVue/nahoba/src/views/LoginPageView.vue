@@ -8,7 +8,6 @@ const router = useRouter();
 
 const error = ref(null);
 
-
 async function login(userData){
     try {
         await useAuth().login(userData);

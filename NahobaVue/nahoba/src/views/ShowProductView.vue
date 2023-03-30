@@ -1,6 +1,6 @@
 <template>
 <NavBar>
-    <div class="nav-item space" v-if="useAuth().loggedIn">
+    <div class="nav-item space">
         <div class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle end" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -16,7 +16,7 @@
             </ul>
         </div>
     </div>
-    <div class="nav-item space mx-3" v-else>
+    <div class="nav-item space mx-3">
         <li class="nav-item">
           <Router-link class="nav-link active text-light" to="/login">Login</Router-link>
         </li>
@@ -26,7 +26,6 @@
 <div class="container">
     <ShowItem :data="data" :seller="seller" />
 </div>
-
 </template>
 
 <script>

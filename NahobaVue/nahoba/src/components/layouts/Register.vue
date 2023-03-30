@@ -9,8 +9,8 @@ const schema = yup.object(
         lastname: yup.string().min(1).required(),
         tel: yup.number().min(11).max(11).required(),
         username: yup.string().min(4).max(15).required(),
-        password: yup.string().min(5).alpha_num().required(),
-        password_confirmation: yup.string().confirmed().required()
+        password: yup.string().min(5).matches().required(),
+        password_confirmation: yup.string().oneOf([yup.ref("password")]).required()
     }
 )
 
@@ -25,12 +25,12 @@ const schema = yup.object(
         <div class="col-sm-4 me-sm-auto mx-xs-auto" id="formcol">
             <div id="formdiv">
                 <VForm @submit="onsubmit" class="form-group" :validation-schema="schema">
-                    <Field type="email" name="email" id="email" placeholder="email" class="form-control" rules="required" />
+                    <Field type="email" name="email" id="email" placeholder="email" class="form-control"/>
                     <ErrorMessage name="email" as="div" class="alert alert-danger m-1" />
                     <div id="name" class="d-flex flex-sm-row flex-column">
                         <Field type="text" name="firstname" id="firstname" placeholder="First Name" class="form-control me-2" />
                         <ErrorMessage name="firstname" as="div" class="alert alert-danger m-1" />
-                        <Field type="text" name="lastname" id="lastname" placeholder="Last Name" class="form-control "  />
+                        <Field type="text" name="lastname" id="lastname" placeholder="Last Name" class="form-control"  />
                         <ErrorMessage name="lastname" as="div" class="alert alert-danger m-1" />
                     </div>
                     <Field type="tel" name="tel" id="tel" placeholder="tel" class="form-control"  />
