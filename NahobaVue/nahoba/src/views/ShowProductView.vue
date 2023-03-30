@@ -22,47 +22,36 @@
         </li>
     </div>
 </NavBar>
-<Header><h1>{{ data.product_name }} </h1></Header>
+<Header><h1>{{ datas.data.product_name }} </h1></Header>
 <div class="container">
-    <ShowItem :data="data" :seller="seller" />
+    <ShowItem :data="datas.data" :seller="datas.seller" />
 </div>
 </template>
 
-<script>
+<script setup>
 import {useAuth} from '@/store/AuthStore.js'
 import ShowItem from '../components/layouts/ShowItem.vue'
 import NavBar from '../components/layouts/NavBar.vue'
 import {http} from '../utils/http.mjs'
 import Header from '../components/layouts/Header.vue'
+import { reactive } from 'vue'
 
-export default{
-    data(){
-        return{
-            data: {},
-            seller: {}
-        }
-    },
-    components:{
-        NavBar,
-        Header,
-        ShowItem
-    },
-    methods:{
-        async getItem(){
-                const response = await http.get("product/" + localStorage.getItem("id"));
-                this.data = response.data.data;
-                this.getSeller();
-            },
-        async getSeller(){
-            const response = await http.get("user/" + this.data.seller_id);
-            this.seller = response.data.data;
-            console.log(this.seller);
-        }
-    },
-    mounted(){
-        this.getItem();
-    }
+const datas = reactive({
+        data: {},
+        seller: {}
+})
+            
+async function getSeller(){
+    const response = await http.get("user/" + datas.data.seller_id);
+    datas.seller = response.data.data;
 }
+async function getItem(){
+        const response = await http.get("product/" + localStorage.getItem("id"));
+        datas.data = response.data.data;
+        getSeller();
+}
+getItem();
+
 </script>
 <style scoped>
 .container{
@@ -75,5 +64,8 @@ h1{
     margin-left: 5%;
     font-size: 300%;
     align-self: center;
+}
+li{
+    list-style: none;
 }
 </style>
