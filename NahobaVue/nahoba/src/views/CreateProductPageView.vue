@@ -23,7 +23,7 @@
     </div>
 </NavBar>
 <div class="container-fluid">
-    <CreateItem :data="types.data" />
+    <CreateItem :data="types.data" @createProduct='createProduct'/>
 </div>
 
 </template>
@@ -33,6 +33,7 @@ import {reactive} from 'vue';
 import {http} from '../utils/http.mjs';
 import {useAuth} from '@/store/AuthStore.js'
 import CreateItem from '../components/layouts/CreateItem.vue'
+import {router} from '@/router/index.js';
 
 const types = reactive({
     data: {}
@@ -43,6 +44,14 @@ async function allTypes(){
         types.data = response.data.data;
 }
 allTypes();
+
+async function createProduct(newproduct){
+    newproduct.product_img = newproduct.image.name;
+    const response = await http.post('createproduct', newproduct);
+    console.log(newproduct);
+    router.push({name: "MainPage"});
+    
+}
 
 </script>
 <style scoped>
