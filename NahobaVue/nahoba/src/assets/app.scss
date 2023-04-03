@@ -1,12 +1,11 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 #app{
-  height: 100vh;
+  height: 100%;
 }
 body{
   background: linear-gradient(180deg, rgb(117, 33, 20) 0%, rgb(56, 1, 1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
 }
 .grid-container{
   display: grid;

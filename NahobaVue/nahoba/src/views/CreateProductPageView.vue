@@ -1,48 +1,39 @@
 <template>
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-            
-                <form class="form" @submit.prevent="createProduct()">
-                    <label for="name" class="form-label">Product Name</label>
-                    <input type="text" name="p_name" id="name" class="form-control" v-model="newData.productName">
-                
-                    <label for="price" class="form-label">Product Price</label>
-                    <input type="text" name="price" id="price" class="form-control" v-model="newData.productPrice">
-
-                    <label for="type" class="form-label">Product Type</label>
-                    <select name="type" class="form-select" id="type" v-model="newData.productType">
-                        <option  v-for="item in types.data" :value="item.id">
-                        {{ item.type }}
-                        </option>
-                    </select>
-
-                    <label for="desc" class="form-label">Description</label>
-                    <textarea class="form-control" id="desc" rows="5" v-model="newData.desc"></textarea>
-
-                    <label for="loc" class="form-label">Location</label>
-                    <textarea class="form-control" id="loc" rows="5" v-model="newData.loc"></textarea>
-
-                    <br>
-                    <label for="img" class="form-label">Upload image</label>
-                    <br>
-                    <input type="file"  ref="file" style="display: none"/>
-                    <input type="text" name="" id="img" v-model="newData.img">
-                    <button @click="$refs.file.click()">Choose an image..</button>
-
-                    <button class="btn-warning btn form-control" type="submit">Create</button>
-                </form>
-            </div>
+    <NavBar>
+    <div class="nav-item space" v-if="useAuth().loggedIn">
+        <div class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle end" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              My profile
+            </a>
+            <ul class="dropdown-menu" id="drop">
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
+              <li><a class="dropdown-item" href="#">My products</a></li>
+              <li><a class="dropdown-item" href="#">Messages</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
         </div>
     </div>
-    
+    <div class="nav-item space mx-3" v-else>
+        <li class="nav-item">
+          <Router-link class="nav-link active text-light" to="/login">Login</Router-link>
+        </li>
+    </div>
+</NavBar>
+<div class="container-fluid">
+    <CreateItem :data="types.data" @createProduct='createProduct'/>
+</div>
 
 </template>
 <script setup>
+import NavBar from '@/components/layouts/NavBar.vue';
 import {reactive} from 'vue';
 import {http} from '../utils/http.mjs';
-import {router} from '../router/index.js';
+import {useAuth} from '@/store/AuthStore.js'
+import CreateItem from '../components/layouts/CreateItem.vue'
+import {router} from '@/router/index.js';
 
 const types = reactive({
     data: {}
@@ -51,39 +42,15 @@ const types = reactive({
 async function allTypes(){
         const response = await http.get('types');
         types.data = response.data.data;
-        console.log(types.data);
 }
 allTypes();
 
-const newData = reactive({
-    productName: '',
-    productPrice: '',
-    productType: '',
-    img: '',
-    desc: '',
-    loc: ''
-});
-
-const newproduct = reactive({
-    product_name: '',
-    product_price: '',
-    types_id: '',
-    product_img: '',
-    product_description: '',
-    product_location: ''
-});
-
-async function createProduct(){
-    this.newproduct.product_name = this.newData.productName;
-    this.newproduct.product_price = this.newData.productPrice;
-    this.newproduct.types_id = this.newData.productType;
-    this.newproduct.product_img = this.newData.img;
-    this.newproduct.product_description = this.newData.desc;
-    this.newproduct.product_location = this.newData.loc;
-
-    console.log(this.newproduct);
+async function createProduct(newproduct){
+    newproduct.product_img = newproduct.image.name;
     const response = await http.post('createproduct', newproduct);
+    console.log(newproduct);
     router.push({name: "MainPage"});
+    
 }
 
 </script>
@@ -100,5 +67,8 @@ form{
 button{
     margin-top: 10px;
     margin-bottom: 10px;
+}
+li{
+    list-style: none;
 }
 </style>
