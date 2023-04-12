@@ -20,6 +20,15 @@ class ProductController extends Controller
         $products = Product::all();
         return ProductResource::collection($products);
     }
+    public function Image(){
+        return view('layouts.FileUpload');
+    }
+    public function fileUpload(Request $request){
+        $image = $request->file('image');
+        $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $input['imagename']);
+    }
 
     /**
      * Store a newly created resource in storage.
