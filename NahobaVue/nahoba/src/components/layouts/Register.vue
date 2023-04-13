@@ -9,7 +9,7 @@ const schema = yup.object(
         lastname: yup.string().min(1).required(),
         tel: yup.number().min(11).max(11).required(),
         username: yup.string().min(4).max(15).required(),
-        password: yup.string().min(5).matches().required(),
+        password: yup.string().min(5).matches("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/", "Password must contain at least 5 characters, one uppercase, one lowercase, one number and one special case character!").required(),
         password_confirmation: yup.string().oneOf([yup.ref("password")]).required()
     }
 )

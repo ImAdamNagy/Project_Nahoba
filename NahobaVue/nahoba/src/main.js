@@ -9,6 +9,14 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/assets/app.scss'
 
+import {defineRule} from 'vee-validate';
+defineRule('required',(value)=>{
+    if(!value || value === ''){
+        return 'A mező kitöltése kötelező!';
+    }
+    return true;
+})
+
 const app = createApp(App)
 
 app.component('Alert', BSAlert)
