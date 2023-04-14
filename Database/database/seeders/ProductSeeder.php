@@ -45,6 +45,46 @@ class ProductSeeder extends Seeder
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
                 "product_location" => "Budapest 20."
+            ],
+            [
+                "seller_id" => "1",
+                "product_name" => "Catalyst",
+                "product_price" => "3000",
+                "types_id" => "3",
+                "product_img" => "cata.jpg",
+                "product_description" => "It is a long established fact that a reader 
+                will be distracted",
+                "product_location" => "Budapest 20."
+            ],
+            [
+                "seller_id" => "1",
+                "product_name" => "Catalyst",
+                "product_price" => "3000",
+                "types_id" => "3",
+                "product_img" => "cata.jpg",
+                "product_description" => "It is a long established fact that a reader 
+                will be distracted",
+                "product_location" => "Budapest 20."
+            ],
+            [
+                "seller_id" => "1",
+                "product_name" => "Catalyst",
+                "product_price" => "3000",
+                "types_id" => "3",
+                "product_img" => "cata.jpg",
+                "product_description" => "It is a long established fact that a reader 
+                will be distracted",
+                "product_location" => "Budapest 20."
+            ],
+            [
+                "seller_id" => "1",
+                "product_name" => "Catalyst",
+                "product_price" => "3000",
+                "types_id" => "3",
+                "product_img" => "cata.jpg",
+                "product_description" => "It is a long established fact that a reader 
+                will be distracted",
+                "product_location" => "Budapest 20."
             ]
         ]);
     }

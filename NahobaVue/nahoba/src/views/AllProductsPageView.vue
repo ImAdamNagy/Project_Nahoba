@@ -11,7 +11,7 @@
 import Filters from '../components/Filters.vue'
 import Items from '../components/Items.vue'
 import Header from '../components/Header.vue'
-import NavBar from '../components/NavBar.vue';
+import NavBar from '../components/NavBar.vue'
 </script>
 <style scoped>
 
