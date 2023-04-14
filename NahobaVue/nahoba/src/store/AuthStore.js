@@ -1,5 +1,7 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
+import { router } from '@/router/index.js';
+
 
 export const useAuth = defineStore('auth-store',{
     state(){
@@ -19,7 +21,13 @@ export const useAuth = defineStore('auth-store',{
             } catch (error) {
                 throw error;
             }
-        }
+        },
+        async logout(){
+            const response = await http.get('logout');
+            localStorage.clear();
+            this.token = '';
+            router.push({name:'MainPage'});
+          }
     },
     getters:{
         loggedIn(){
