@@ -1,5 +1,5 @@
 <script >
-import Register from '../components/layouts/Register.vue'
+import Register from '../components/Register.vue'
 import {http} from '../utils/http.mjs'
 
 export default{

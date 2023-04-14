@@ -16,7 +16,7 @@
 
           <div class="nav-item space" v-if="useAuth().loggedIn">
             <div class="nav-item dropdown ">
-              <a class="nav-link dropdown-toggle end" href="#" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle space mx-3" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 My profile
               </a>

@@ -1,7 +1,7 @@
 <script setup>
-import UserProfile from '../components/layouts/UserProfile.vue'
-import NavBar from '../components/layouts/NavBar.vue';
-import Header from '../components/layouts/Header.vue';
+import UserProfile from '../components/UserProfile.vue'
+import NavBar from '../components/NavBar.vue';
+import Header from '../components/Header.vue';
 </script>
 
 <template>

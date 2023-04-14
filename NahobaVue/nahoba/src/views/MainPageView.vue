@@ -8,10 +8,10 @@
 </template>
 
 <script setup>
-import Filters from '../components/layouts/Filters.vue'
-import Items from '../components/layouts/Items.vue'
-import Header from '../components/layouts/Header.vue'
-import NavBar from '../components/layouts/NavBar.vue';
+import Filters from '../components/Filters.vue'
+import Items from '../components/Items.vue'
+import Header from '../components/Header.vue'
+import NavBar from '../components/NavBar.vue';
 </script>
 <style scoped>
 

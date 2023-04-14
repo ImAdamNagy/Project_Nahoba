@@ -11,8 +11,8 @@
   </div>
 </template>
 <script>
-import {http} from '../../utils/http.mjs';
-import {router} from '../../router/index.js'
+import {http} from '../utils/http.mjs';
+import {router} from '../router/index.js'
 
 export default{
     data(){

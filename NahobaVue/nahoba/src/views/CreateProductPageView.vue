@@ -28,11 +28,11 @@
 
 </template>
 <script setup>
-import NavBar from '@/components/layouts/NavBar.vue';
+import NavBar from '@/components/NavBar.vue';
 import {reactive} from 'vue';
 import {http} from '../utils/http.mjs';
 import {useAuth} from '@/store/AuthStore.js'
-import CreateItem from '../components/layouts/CreateItem.vue'
+import CreateItem from '../components/CreateItem.vue'
 import {router} from '@/router/index.js';
 
 const types = reactive({
@@ -67,8 +67,5 @@ form{
 button{
     margin-top: 10px;
     margin-bottom: 10px;
-}
-li{
-    list-style: none;
 }
 </style>
