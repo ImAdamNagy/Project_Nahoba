@@ -12,7 +12,7 @@
               <li><a class="dropdown-item" href="#">My products</a></li>
               <li><a class="dropdown-item" href="#">Messages</a></li>
               <div class="dropdown-divider"></div>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
+              <li><Router-link class="dropdown-item" to="/logout">Sign out</Router-link></li>
             </ul>
         </div>
     </div>
@@ -35,6 +35,7 @@ import Filters from '../components/layouts/Filters.vue'
 import Items from '../components/layouts/Items.vue'
 import Header from '../components/layouts/Header.vue'
 import NavBar from '../components/layouts/NavBar.vue';
+import { RouterLink } from 'vue-router';
 </script>
 <style scoped>
 
