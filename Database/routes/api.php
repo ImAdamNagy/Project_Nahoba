@@ -21,6 +21,11 @@ use App\Http\Controllers\TypeController;
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'show']);
 Route::post('/createproduct', [ProductController::class, 'store']);
+
+
+Route::get('/ownproducts/{id}', [ProductController::class, 'ownproducts']);
+
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
     Route::put('/update/{id}', [ProductController::class, 'update']);

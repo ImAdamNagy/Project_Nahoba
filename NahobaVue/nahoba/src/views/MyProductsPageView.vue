@@ -1,5 +1,5 @@
 <template>
-<NavBar>
+    <NavBar>
     <div class="nav-item space" v-if="useAuth().loggedIn">
         <div class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle end" href="#" role="button" data-bs-toggle="dropdown"
@@ -12,7 +12,7 @@
               <li><Router-link class="dropdown-item" to="/myproducts">My products</Router-link></li>
               <li><a class="dropdown-item" href="#">Messages</a></li>
               <div class="dropdown-divider"></div>
-              <li><Router-link class="dropdown-item" to="/logout">Sign out</Router-link></li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
             </ul>
         </div>
     </div>
@@ -22,30 +22,28 @@
         </li>
     </div>
 </NavBar>
-<Header><h1>All Products</h1></Header>
-<div class="container-fluid itemsArea">
-<Filters />
-<Items @details="details" :id="id"/>
+<div class="container-fluid">
+<MyProducts :data="own.data"/>
 </div>
+
 </template>
-
 <script setup>
-import {useAuth} from '@/store/AuthStore.js'
-import Filters from '../components/layouts/Filters.vue'
-import Items from '../components/layouts/Items.vue'
-import Header from '../components/layouts/Header.vue'
 import NavBar from '../components/layouts/NavBar.vue';
-import { RouterLink } from 'vue-router';
-</script>
-<style scoped>
+import {useAuth} from '@/store/AuthStore.js'
+import MyProducts from "@/components/layouts/MyProducts.vue";
+import {http} from '@/utils/http.mjs';
+import {reactive} from 'vue';
 
-h1{
-    color:white;
-    margin-left: 5%;
-    font-size: 300%;
-    align-self: center;
+const own = reactive({
+    data: {}
+});
+
+async function getOwnProducts(){
+    const response = await http.get('/ownproducts/' + localStorage.getItem("userid"));
+    own.data = response.data.data;
+    console.log(own.data);
 }
-li{
-  list-style: none;
-}
-</style>
+getOwnProducts();
+
+
+</script>

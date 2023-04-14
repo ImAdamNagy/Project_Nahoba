@@ -56,6 +56,10 @@ class ProductController extends Controller
         return new ProductResource($data);
     }
 
+    public function ownproducts($id){
+        $data = Product::where('seller_id', $id)->get();
+        return ProductResource::collection($data);
+    }
     /**
      * Update the specified resource in storage.
      *

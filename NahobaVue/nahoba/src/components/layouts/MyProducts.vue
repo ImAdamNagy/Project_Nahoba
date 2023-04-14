@@ -1,6 +1,6 @@
 <template>
 <div class="row">
-      <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in this.allProducts">
+      <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in props.data">
         <div class="product h-100">
           <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
             <h5 class="title">{{item.product_name}}</h5>
@@ -10,32 +10,13 @@
       </div>
   </div>
 </template>
-<script>
-import {http} from '../../utils/http.mjs';
-import {router} from '../../router/index.js'
+<script setup>
+import { defineProps } from "vue";
 
-export default{
-    data(){
-        return{
-           allProducts: {}
-        }
-    },
-    methods:{
-      async products(){
-        const response = await http.get('products');
-        this.allProducts = response.data.data;
-      },
-      details(id){
-        router.push({name: "ProductDetails"});
-        localStorage.setItem("id", id);
-      }
-    },
-    mounted(){
-      this.products();
-    }
-  }
+const props = defineProps({
+    data: Object
+});
 </script>
-
 <style scoped>
 .product{
     display: flex;
