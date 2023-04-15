@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Type extends Model
+class Role extends Model
 {
     public $timestamps = false;
-    public $table = "types";
+    protected $table = "roles";
 
-    public function TProducts()
+    public function Users()
     {
-        return $this->hasMany(Product::class,"types_id","id");
+        return $this->hasMany(User::class,"role_id","id");
     }
 }

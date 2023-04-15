@@ -18,7 +18,9 @@ const own = reactive({
 });
 
 async function getOwnProducts(){
-    const response = await http.get('/ownproducts/' + localStorage.getItem("userid"));
+    const response = await http.get('/ownproducts/' + localStorage.getItem("userid"),{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+        });
     own.data = response.data.data;
     console.log(own.data);
 }

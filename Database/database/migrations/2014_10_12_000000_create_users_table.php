@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('role_id')->constrained("roles","id");
             $table->timestamp('last_used_at')->nullable();
         });
     }

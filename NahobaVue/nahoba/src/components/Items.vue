@@ -22,7 +22,7 @@ export default{
     },
     methods:{
       async products(){
-        const response = await http.get('products');
+        const response = await http.get('products/enable');
         this.allProducts = response.data.data;
       },
       details(id){

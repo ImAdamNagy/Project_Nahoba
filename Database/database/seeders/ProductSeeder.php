@@ -24,7 +24,8 @@ class ProductSeeder extends Seeder
                 "product_img" => "wrench.jpg",
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
-                "product_location" => "Budapest 18."
+                "product_location" => "Budapest 18.",
+                "product_enable" => true
             ],
             [
                 "seller_id" => "1",
@@ -34,7 +35,8 @@ class ProductSeeder extends Seeder
                 "product_img" => "engine.jpg",
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
-                "product_location" => "Budapest 10."
+                "product_location" => "Budapest 10.",
+                "product_enable" => true
             ],
             [
                 "seller_id" => "1",
@@ -44,7 +46,8 @@ class ProductSeeder extends Seeder
                 "product_img" => "cata.jpg",
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
-                "product_location" => "Budapest 20."
+                "product_location" => "Budapest 20.",
+                "product_enable" => true
             ],
             [
                 "seller_id" => "1",
@@ -54,7 +57,8 @@ class ProductSeeder extends Seeder
                 "product_img" => "cata.jpg",
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
-                "product_location" => "Budapest 20."
+                "product_location" => "Budapest 20.",
+                "product_enable" => true
             ],
             [
                 "seller_id" => "1",
@@ -64,7 +68,8 @@ class ProductSeeder extends Seeder
                 "product_img" => "cata.jpg",
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
-                "product_location" => "Budapest 20."
+                "product_location" => "Budapest 20.",
+                "product_enable" => true
             ],
             [
                 "seller_id" => "1",
@@ -74,7 +79,8 @@ class ProductSeeder extends Seeder
                 "product_img" => "cata.jpg",
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
-                "product_location" => "Budapest 20."
+                "product_location" => "Budapest 20.",
+                "product_enable" => true
             ],
             [
                 "seller_id" => "1",
@@ -84,7 +90,8 @@ class ProductSeeder extends Seeder
                 "product_img" => "cata.jpg",
                 "product_description" => "It is a long established fact that a reader 
                 will be distracted",
-                "product_location" => "Budapest 20."
+                "product_location" => "Budapest 20.",
+                "product_enable" => false
             ]
         ]);
     }

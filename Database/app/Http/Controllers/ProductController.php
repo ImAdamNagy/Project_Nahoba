@@ -20,7 +20,16 @@ class ProductController extends Controller
         $products = Product::all();
         return ProductResource::collection($products);
     }
-    
+    public function enable()
+    {
+        $products = Product::where("product_enable",'=', true)->get();
+        return ProductResource::collection($products);
+    }
+    public function disable()
+    {
+        $products = Product::where("product_enable",'=', false)->get();
+        return ProductResource::collection($products);
+    }
 
     public function Image(){
         return view('layouts.FileUpload');

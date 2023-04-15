@@ -13,7 +13,7 @@ class TypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user() === null;
     }
 
     /**

@@ -23,11 +23,18 @@ export const useAuth = defineStore('auth-store',{
             }
         },
         async logout(){
-            const response = await http.get('logout');
+            const response = await http.get('logout',{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+        });
             localStorage.clear();
             this.token = '';
             router.push({name:'MainPage'});
-          }
+        },
+        async getRole(id){
+            return (await http.get("user/" + id,{
+                headers: { Authorization: `Bearer ${this.token}`}
+        })).data.data.role.role_name;
+        }
     },
     getters:{
         loggedIn(){

@@ -11,7 +11,18 @@ const error = ref(null);
 async function login(userData){
     try {
         await useAuth().login(userData);
-        router.push({name:"MainPage"});
+        let name;
+        switch(useAuth().getRole(localStorage.userid)){
+            case 'admin': name = 'MainPage';
+            break;
+            case 'seller': name = 'MainPage';
+            break;
+            case 'mechanic': name = 'MainPage';
+            break;
+            default: name = 'MainPage';
+            break;
+        }
+        router.push({name:name});
     } catch (e) {
         if(e.response.status == 401)
         {

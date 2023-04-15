@@ -20,12 +20,14 @@ use App\Http\Controllers\TypeController;
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::get('/products/enable', [ProductController::class, 'enable']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/ownproducts/{id}', [ProductController::class, 'ownproducts']);
     Route::post('/createproduct', [ProductController::class, 'store']);
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
     Route::put('/update/{id}', [ProductController::class, 'update']);
+    Route::get('/products/disable', [ProductController::class, 'disable']);
 });
 
 Route::get('/types', [TypeController::class, 'index']);

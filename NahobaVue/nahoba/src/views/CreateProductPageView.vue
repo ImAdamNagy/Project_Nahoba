@@ -47,7 +47,9 @@ allTypes();
 
 async function createProduct(newproduct){
     newproduct.product_img = newproduct.image.name;
-    const response = await http.post('createproduct', newproduct);
+    const response = await http.post('createproduct', newproduct,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+        });
     console.log(newproduct);
     router.push({name: "MainPage"});
     
