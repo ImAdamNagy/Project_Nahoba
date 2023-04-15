@@ -20,23 +20,12 @@ use App\Http\Controllers\TypeController;
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'show']);
-Route::post('/createproduct', [ProductController::class, 'store']);
-
-
-Route::get('/ownproducts/{id}', [ProductController::class, 'ownproducts']);
-
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/ownproducts/{id}', [ProductController::class, 'ownproducts']);
+    Route::post('/createproduct', [ProductController::class, 'store']);
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
     Route::put('/update/{id}', [ProductController::class, 'update']);
-});
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/transactions', [TransactionController::class, 'index']);
-    Route::get('/transaction/{id}', [TransactionController::class, 'show']);
-    Route::post('/newtransaction', [TransactionController::class, 'store']);
-    Route::put('/edit/{id}', [TransactionController::class, 'update']);
-    Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
 });
 
 Route::get('/types', [TypeController::class, 'index']);

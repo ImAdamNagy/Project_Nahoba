@@ -20,6 +20,8 @@ class ProductController extends Controller
         $products = Product::all();
         return ProductResource::collection($products);
     }
+    
+
     public function Image(){
         return view('layouts.FileUpload');
     }
@@ -39,7 +41,8 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $newproduct = new Product($request->validated());
-        $newproduct->seller_id = 1;
+        $newproduct->product_enable = false;
+        $newproduct->seller_id = Auth::id();
         $newproduct->save();
         return new ProductResource($newproduct);
     }

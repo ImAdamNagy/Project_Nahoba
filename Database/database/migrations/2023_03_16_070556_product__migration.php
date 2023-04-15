@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('product_img');
             $table->string('product_description',150);
             $table->string('product_location', 100);
+            $table->boolval('product_enable');
         });
     }
 
