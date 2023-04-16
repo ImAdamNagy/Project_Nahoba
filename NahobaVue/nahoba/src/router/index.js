@@ -6,6 +6,7 @@ import LoginPageView from "../views/LoginPageView.vue"
 import ShowProductView from '../views/ShowProductView.vue'
 import UserProfilePageView from '../views/UserProfilePageView.vue'
 import MyProductsPageView from '@/views/MyProductsPageView.vue'
+import AdminMainPageView from '../views/AdminMainPageView.vue'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ export const router = createRouter({
       path: '/myproducts',
       name: 'myProducts',
       component: MyProductsPageView,
+    },
+    {
+      path: '/adminmainpage',
+      name: 'AdminMainPage',
+      component: AdminMainPageView,
     }
   ]
 });

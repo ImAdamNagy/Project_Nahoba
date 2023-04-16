@@ -25,8 +25,6 @@ async function getOwnProducts(){
     console.log(own.data);
 }
 getOwnProducts();
-
-
 </script>
 <style scoped>
 h1{
