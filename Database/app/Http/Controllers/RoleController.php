@@ -16,13 +16,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return ProductResource::collection($products);
+        
     }
     public function indexwithoutadmin()
     {
-        $products = Product::where("role_name","!=","admin");
-        return ProductResource::collection($products);
+        $roles = Role::where("role_name","!=","admin")->get();
+        return RoleResource::collection($roles);
     }
 
     /**

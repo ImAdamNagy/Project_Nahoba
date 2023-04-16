@@ -6,6 +6,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\TypeController; 
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::post('/login', [UserController::class, 'authenticate']);
 Route::get('/logout', [UserController::class, 'logout']);
 Route::post('/register',[UserController::class,'store']);
 Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/roles', [RoleController::class, 'indexwithoutadmin']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/user/delete/{id}',[UserController::class,'destroy']);
