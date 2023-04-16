@@ -7,17 +7,14 @@
 <div class="row mx-auto">
         <div class="col-xl-5 text-center" id="second">
             <div id="formdiv">
-        <VForm @submit="(newproduct) => $emit('createProduct', newproduct)">
+        <VForm @submit="(newproduct) => $emit('createProduct', newproduct)" :validation-schema="schema">
                 <label for="product_name" class="form-label">Product Name</label>
-                <Field type="text" name="product_name" id="product_name" placeholder="Enter product name" class="form-control"/>
+                <Field type="text" name="product_name" id="product_name" placeholder="Enter product name" class="form-control" rule="required"/>
                 <ErrorMessage name="product_name" as="div" class="alert alert-danger m-1" />
-
-                <label for="types_id" class="form-label">Product Type</label>
-                <Field type="text" name="types_id" id="types_id" placeholder="Enter product type" class="form-control"/>
 
                 <label for="type">Product type</label>
                 
-                <Field name="type" id="type" class="form-control" as="select">
+                <Field name="types_id" id="type" class="form-control" as="select">
                     <option value="" disabled selected hidden>Choose your products type</option>
                     <option  v-for="item in props.data" :value="item.id">
                         {{ item.type }}
@@ -25,7 +22,7 @@
                 </Field>
 
                 <label for="product_price" class="form-label">Product Price</label>
-                <Field type="text" name="product_price" id="product_price" placeholder="Enter product type" class="form-control"/>
+                <Field type="number" name="product_price" id="product_price" placeholder="Enter product type" class="form-control"/>
                 <ErrorMessage name="product_price" as="div" class="alert alert-danger m-1" />
 
                 <label for="product_description" class="form-label">Description</label>
@@ -52,6 +49,17 @@
 <script setup>
 import {Form as VForm, Field, ErrorMessage} from "vee-validate";
 import { defineProps } from "vue";
+import * as yup from 'yup';
+
+const schema = yup.object(
+    {
+        product_name: yup.string('The given name is not a text!').min(5, 'The given name must be at elast 5 characters long!').required('The products name is required!'),
+        types_id: yup.number().required('You must select your products type!'),
+        product_price: yup.number().required('You must give your product a price!'),
+        product_description: yup.string('Your description must not be a numebr!').max(150, 'Your items description`s length must not be greater than 150 characters!').required('You must write a hsort description of your product!'),
+        product_location: yup.string('Your location format is not correct! Try this format: `city, district`').min(8, ).max(120, 'Your location must not be greater than 120 characters!').required('You must give a location from where you are advertising your product!'),
+        product_img: yup.string().min(4).required('You must select at least one image for your product!')
+    })
 
 const props = defineProps({
     data: Object

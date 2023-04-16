@@ -42,6 +42,7 @@ const types = reactive({
 async function allTypes(){
         const response = await http.get('types');
         types.data = response.data.data;
+        console.log(types.data);
 }
 allTypes();
 
@@ -52,7 +53,6 @@ async function createProduct(newproduct){
         });
     console.log(newproduct);
     router.push({name: "MainPage"});
-    
 }
 
 </script>
