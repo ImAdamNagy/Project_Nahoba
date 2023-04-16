@@ -23,9 +23,7 @@ export const useAuth = defineStore('auth-store',{
             }
         },
         async logout(){
-            const response = await http.get('logout',{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-        });
+            const response = await http.get('logout');
             localStorage.clear();
             this.token = '';
             router.push({name:'MainPage'});

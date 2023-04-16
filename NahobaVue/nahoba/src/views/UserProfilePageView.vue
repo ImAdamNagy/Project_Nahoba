@@ -16,5 +16,6 @@ h1{
     color:white;
     margin-left: 5%;
     font-size: 300%;
+    align-self: center;
 }
 </style>

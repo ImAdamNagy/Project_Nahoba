@@ -12,14 +12,12 @@ async function login(userData){
     try {
         await useAuth().login(userData);
         let name;
-        switch(useAuth().getRole(localStorage.userid)){
-            case 'admin': name = 'MainPage';
+        switch(await useAuth().getRole(localStorage.userid)){
+            case "admin": name = 'AdminMainPage';
             break;
-            case 'seller': name = 'MainPage';
+            case "seller": name = 'MainPage';
             break;
-            case 'mechanic': name = 'MainPage';
-            break;
-            default: name = 'MainPage';
+            case "mechanic": name = 'MainPage';
             break;
         }
         router.push({name:name});
@@ -31,7 +29,6 @@ async function login(userData){
     }
 }
 </script>
-
 <template>
     <div class="container-fluid">
         <div class="row py-5 mx-auto">
