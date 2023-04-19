@@ -56,7 +56,7 @@ const schema = yup.object(
         product_name: yup.string('The given name is not a text!').min(5, 'The given name must be at elast 5 characters long!').required('The products name is required!'),
         types_id: yup.number().required('You must select your products type!'),
         product_price: yup.number().required('You must give your product a price!'),
-        product_description: yup.string('Your description must not be a numebr!').max(150, 'Your items description`s length must not be greater than 150 characters!').required('You must write a hsort description of your product!'),
+        product_description: yup.string('Your description must not be a number!').max(150, 'Your items description`s length must not be greater than 150 characters!').required('You must write a hsort description of your product!'),
         product_location: yup.string('Your location format is not correct! Try this format: `city, district`').min(8, ).max(120, 'Your location must not be greater than 120 characters!').required('You must give a location from where you are advertising your product!'),
         product_img: yup.string().min(4).required('You must select at least one image for your product!')
     })
