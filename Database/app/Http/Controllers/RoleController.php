@@ -32,7 +32,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -43,7 +43,8 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Role::findorfail($id);
+        return new RoleResource($data);
     }
 
     /**
