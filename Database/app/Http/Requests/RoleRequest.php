@@ -13,7 +13,7 @@ class RoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user() === null;
+        return Auth::user() == null;
     }
 
     /**

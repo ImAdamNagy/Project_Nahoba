@@ -30,7 +30,7 @@ class SignUpUserRequest extends FormRequest
             'lastname' =>['required','min:1','max:15'],
             'tel' =>['required','min:11','max:11'],
             'email' =>['required','email'],
-            'role_id' =>['required']
+            'role_id' =>['required',"exists:roles,id"]
         ];
     }
 }
