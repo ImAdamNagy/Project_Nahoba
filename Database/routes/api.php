@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/createproduct', [ProductController::class, 'store']);
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
     Route::put('/update/{id}', [ProductController::class, 'update']);
+    Route::patch('/enable/{product}', [ProductController::class, 'updateEnable']);
     Route::get('/products/disable', [ProductController::class, 'disable']);
 });
 
