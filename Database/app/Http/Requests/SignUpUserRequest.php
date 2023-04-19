@@ -13,7 +13,7 @@ class SignUpUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return return Auth::user() === null;
+        return true;
     }
 
     /**
@@ -29,7 +29,8 @@ class SignUpUserRequest extends FormRequest
             'firstname' =>['required','min:1','max:15'],
             'lastname' =>['required','min:1','max:15'],
             'tel' =>['required','min:11','max:11'],
-            'email' =>['required','email']
+            'email' =>['required','email'],
+            'role_id' =>['required']
         ];
     }
 }
