@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\EnableRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Connection;
 
@@ -82,6 +83,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Product $product, UpdateProductRequest $request)
+    {
+        $product->update($request->validated());
+        $product->save();
+        return new ProductResource($product);
+    }
+    public function updateEnable(EnableRequest $request, Product $product)
     {
         $product->update($request->validated());
         $product->save();
