@@ -26,7 +26,6 @@
               <ul class="dropdown-menu" id="drop">
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
-                <li><Router-link class="dropdown-item" to="/myproducts">My products</Router-link></li>
                 <li><a class="dropdown-item" href="#">Messages</a></li>
                 <div class="dropdown-divider"></div>
                 <li><button class="dropdown-item" @click="useAuth().logout">Sign out</button></li>
