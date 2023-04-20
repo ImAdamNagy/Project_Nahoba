@@ -10,7 +10,7 @@
       </div>
   </div>
   <div class="row" v-else>
-    Nincs termék
+    <p class="text-white">Nincs termék</p>
   </div>
 </template>
 <script>
