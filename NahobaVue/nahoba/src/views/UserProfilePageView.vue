@@ -21,18 +21,13 @@ async function getOwnProducts(){
 }
 getOwnProducts();
 
-async function allTypes(){
-        const response = await http.get('types');
-        types.data = response.data.data;
-}
-allTypes();
 </script>
 
 <template>
     <NavBar />
     <Header><h1>Your Profile</h1></Header>
     <div class="container-fluid">
-            <UserProfile :data="own.data" :types="types.data"/>
+            <UserProfile :data="own.data"/>
     </div>
 </template>
 <style scoped>
