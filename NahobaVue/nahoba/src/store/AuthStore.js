@@ -3,7 +3,8 @@ import {http} from '../utils/http.mjs'
 import { router } from '@/router/index.js';
 
 
-export const useAuth = defineStore('auth-store',{
+export const useAuth = defineStore('auth-store',
+{
     state(){
         return{
             token: localStorage.getItem('token') ?? '',
@@ -28,7 +29,7 @@ export const useAuth = defineStore('auth-store',{
             this.token = '';
             router.push({name:'MainPage'});
         },
-        async getRole(id){S
+        async getRole(id){
             return (await http.get("/user/" + id,{
                 headers: { Authorization: `Bearer ${this.token}`}
         })).data.data.role.role_name;

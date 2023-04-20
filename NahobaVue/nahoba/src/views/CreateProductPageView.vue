@@ -29,7 +29,7 @@
 </template>
 <script setup>
 import NavBar from '@/components/NavBar.vue';
-import {reactive} from 'vue';
+import {reactive, onMounted} from 'vue';
 import {http} from '../utils/http.mjs';
 import {useAuth} from '@/store/AuthStore.js'
 import CreateItem from '../components/CreateItem.vue'
@@ -44,7 +44,7 @@ async function allTypes(){
         types.data = response.data.data;
         console.log(types.data);
 }
-allTypes();
+onMounted(allTypes());
 
 async function createProduct(newproduct){
     newproduct.product_img = newproduct.image.name;

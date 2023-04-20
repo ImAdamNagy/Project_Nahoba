@@ -1,38 +1,26 @@
 <template>
-<div class="row">
-      <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in this.allProducts">
+<div class="row" v-if="allProducts.length > 0">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-1" v-for="item in this.allProducts">
         <div class="product h-100">
           <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
             <h5 class="title">{{item.product_name}}</h5>
             <p class="price">{{item.product_price}} Ft</p>
-            <a class="btn btn-warning" @click="details(item.id)">More</a>
+            <a class="btn btn-warning" @click="$emit('details' ,item.id)">More</a>
         </div>
       </div>
   </div>
+  <div class="row" v-else>
+    Nincs termék
+  </div>
 </template>
 <script>
-import {http} from '../utils/http.mjs';
-import {router} from '../router/index.js'
-
 export default{
-    data(){
-        return{
-           allProducts: {}
-        }
+    props: {
+            allProducts: Array
     },
-    methods:{
-      async products(){
-        const response = await http.get('products/enable');
-        this.allProducts = response.data.data;
-      },
-      details(id){
-        router.push({name: "ProductDetails"});
-        localStorage.setItem("id", id);
-      }
-    },
-    mounted(){
-      this.products();
-    }
+    emits:[
+      "details"
+  ]
   }
 </script>
 
@@ -47,13 +35,8 @@ export default{
     border-radius: 20px 0px 20px 0px;
     box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
 }
-.col{
-  margin-top: 10px;
-}
 img{
   width: 100%;
   border-radius: 20px 0px 20px 0px;
 }
-
-
 </style>

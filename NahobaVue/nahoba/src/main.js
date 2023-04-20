@@ -9,13 +9,12 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/assets/app.scss'
 
-import {defineRule} from 'vee-validate';
-defineRule('required',(value)=>{
-    if(!value || value === ''){
-        return 'A mező kitöltése kötelező!';
-    }
-    return true;
-})
+
+import AllRules from '@vee-validate/rules'
+import { defineRule } from 'vee-validate';
+Object.keys(AllRules).forEach(rule => defineRule(rule,AllRules[rule]))
+
+
 
 const app = createApp(App)
 

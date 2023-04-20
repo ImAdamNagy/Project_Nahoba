@@ -1,5 +1,5 @@
 <template>
-<form class="gridfilter">
+<VForm class="gridfilter" @submit="values=>$emit('filter',values)">
     <div class="search">
         <input class="form-control" placeholder="Search" type="text">
     </div>
@@ -7,10 +7,10 @@
         <button class="form-control">Search</button>
     </div>
     <div class="type">
-        <select class="form-select">
-        <option selected>Select a company...</option>
-        <option value="1">One</option>
-        </select>
+        <Field class="form-select" id="typesFilter" name="typesFilter" as="select">
+        <option selected>Select item type...</option>
+        <option  v-for="item in useType().types" :key="item.id" :value="item.id">{{ item.type }}</option>
+        </Field>
     </div>
     <div class="price">
         <select class="form-select">
@@ -24,9 +24,17 @@
         <option value="1">One</option>
         </select>
     </div>
-    
-</form>
+</VForm>
 </template>
+<script setup>
+import { useType } from '../store/TypeStore';
+import {Form as VForm, Field, ErrorMessage} from "vee-validate";
+import { onMounted } from 'vue';
+
+onMounted(useType().allTypes);
+const emit = defineEmits(['filter']);
+
+</script>
 <style scoped>
 .gridfilter{
     margin:10px;
