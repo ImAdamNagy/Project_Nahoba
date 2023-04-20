@@ -25,22 +25,19 @@ Route::get('/products/enable', [ProductController::class, 'enable']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/ownproducts/{id}', [ProductController::class, 'ownproducts']);
-    Route::post('/createproduct', [ProductController::class, 'store']);
-    Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
-
-    Route::patch('/update/{product}', [ProductController::class, 'update']);
-    Route::put('/update/{id}', [ProductController::class, 'update']);
+    Route::post('/product', [ProductController::class, 'store']);
+    Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+    Route::patch('/product/{product}', [ProductController::class, 'update']);
     Route::patch('/enable/{product}', [ProductController::class, 'updateEnable']);
     Route::get('/products/disable', [ProductController::class, 'disable']);
 });
-
 
 Route::get('/types', [TypeController::class, 'index']);
 Route::get('/type/{id}', [TypeController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/newtype', [TypeController::class, 'store']);
-    Route::put('/edit/{id}', [TypeController::class, 'update']);
+    Route::post('/type', [TypeController::class, 'store']);
+    Route::put('/type/{id}', [TypeController::class, 'update']);
     Route::delete('/type/{id}', [TypeController::class, 'destroy']);
 });
 
@@ -52,6 +49,6 @@ Route::get('/roles', [RoleController::class, 'indexwithoutadmin']);
 Route::get('/role/{id}', [RoleController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::delete('/user/delete/{id}',[UserController::class,'destroy']);
-    Route::put('/user/edit/{user}', [UserController::class, 'update']);
+    Route::delete('/user/{id}',[UserController::class,'destroy']);
+    Route::put('/user/{user}', [UserController::class, 'update']);
 });

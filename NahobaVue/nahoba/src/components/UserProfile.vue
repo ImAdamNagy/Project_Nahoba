@@ -31,7 +31,7 @@ async function update(updatedproduct){
     updatedproduct.seller_id = localStorage.getItem("userid");
     updatedproduct.product_enable = false;
     console.log(updatedproduct);
-    const response = await http.patch('/update/' + itemData.helper, updatedproduct,{
+    const response = await http.patch('/product/' + itemData.helper, updatedproduct,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
     alert("Item successfully updated!")

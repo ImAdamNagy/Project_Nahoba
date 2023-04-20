@@ -65,7 +65,6 @@ export default {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.disabledProducts = response.data.data;
-            console.log(this.disabledProducts)
         },
         async BeEnable(id){
             this.obj = {
@@ -75,6 +74,7 @@ export default {
             const response = await http.patch("/enable/" + id, this.obj, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
+            this.$router.push({name: 'AdminMainPage'});
         }
     },
     mounted() {

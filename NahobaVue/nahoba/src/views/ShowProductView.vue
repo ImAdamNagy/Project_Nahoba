@@ -20,12 +20,13 @@ const datas = reactive({
 })
             
 async function getSeller(){
-    const response = await http.get("user/" + datas.data.seller_id);
+    const response = await http.get("/user/" + datas.data.seller.userid);
     datas.seller = response.data.data;
 }
 async function getItem(){
-        const response = await http.get("product/" + localStorage.getItem("id"));
+        const response = await http.get("/product/" + localStorage.getItem("id"));
         datas.data = response.data.data;
+        console.log(datas.data)
         getSeller();
 }
 getItem();
