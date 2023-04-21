@@ -4,7 +4,7 @@ import {http} from '../utils/http.mjs'
 export const useType = defineStore('type-store',{
     state(){
         return{
-            types: {}
+            types: []
         }
     },
     actions:{

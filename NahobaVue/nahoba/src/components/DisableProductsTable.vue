@@ -9,11 +9,10 @@
             <th>Image</th>
             <th>Description</th>
             <th>Location</th>
-            <th>Enable</th>
             <th>Action</th>
         </thead>
         <tbody>
-            <tr v-for="item in disabledProducts">
+            <tr v-for="item in useProduct().disabledProducts">
                 <td>{{ item.id }}</td>
                 <td>{{ item.seller.firstname }} {{ item.seller.lastname }}</td>
                 <td>{{ item.product_name }}</td>
@@ -26,8 +25,7 @@
                 </td>
                 <td>{{ item.product_description }}</td>
                 <td>{{ item.product_location }}</td>
-                <td>{{ item.product_enable }}</td>
-                <td><button class="btn btn-danger " @click="BeEnable(item.id)">Enable</button></td>
+                <td><button class="btn btn-danger " @click="useProduct().BeEnable(item.id)">Enable</button></td>
                 <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -49,38 +47,12 @@
         </tbody>
     </table>
 </template>
-<script>
-import { http } from '../utils/http.mjs';
+<script setup>
+import {useProduct} from '@/store/ProductStore.js'
+import {onMounted} from 'vue';
 
-export default {
-    data() {
-        return {
-            disabledProducts: {},
-            obj: {}
-        }
-    },
-    methods: {
-        async GetDisabledProducts() {
-            const response = await http.get("/products/disable", {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
-            this.disabledProducts = response.data.data;
-        },
-        async BeEnable(id){
-            this.obj = {
-                product_enable: true
-            }
-            console.log(this.obj)
-            const response = await http.patch("/enable/" + id, this.obj, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
-            this.$router.push({name: 'AdminMainPage'});
-        }
-    },
-    mounted() {
-        this.GetDisabledProducts();
-    }
-}
+onMounted(useProduct().GetDisabledProducts);
+
 </script>
 <style scoped>
 .table {

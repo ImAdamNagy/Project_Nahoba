@@ -3,8 +3,7 @@ import UserProfile from '../components/UserProfile.vue'
 import NavBar from '../components/NavBar.vue';
 import Header from '../components/Header.vue';
 import {http} from '@/utils/http.mjs';
-import {reactive} from 'vue';
-import { useRouter } from 'vue-router';
+import {reactive, onMounted} from 'vue';
 
 const own = reactive({
     data: {},
@@ -14,12 +13,12 @@ const types = reactive({
     data: {}
 });
 async function getOwnProducts(){
-    const response = await http.get('/ownproducts/' + localStorage.getItem("userid"),{
+    const response = await http.get('/products/userproducts/' + localStorage.getItem("userid"),{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
     own.data = response.data.data;
 }
-getOwnProducts();
+onMounted(getOwnProducts);
 
 </script>
 

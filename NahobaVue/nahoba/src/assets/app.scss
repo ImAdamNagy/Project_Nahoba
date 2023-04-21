@@ -1,6 +1,12 @@
 #app{
   height: 100%;
 }
+body, html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100%; 
+}
 body{
   background: linear-gradient(180deg, rgb(117, 33, 20) 0%, rgb(56, 1, 1) 100%);
   background-repeat: no-repeat;

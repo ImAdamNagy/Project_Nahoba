@@ -1,7 +1,9 @@
 <template>
     <AdminNavBar />
-    <Header><h1>Admin Mainpage</h1></Header>
-    <DisableProductsTable />
+        <Header><h1>Admin Mainpage</h1></Header>
+    <div class="container">
+        <DisableProductsTable />
+    </div>
 </template>
 <script setup>
 import Header from '../components/Header.vue';

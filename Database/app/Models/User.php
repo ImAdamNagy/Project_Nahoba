@@ -48,4 +48,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class,"role_id","id");
     }
+    public function ChatFrom()
+    {
+        return $this->hasMany(Chat::class,"from","id");
+    }
+    public function ChatTo()
+    {
+        return $this->hasMany(Chat::class,"to","id");
+    }
+
 }

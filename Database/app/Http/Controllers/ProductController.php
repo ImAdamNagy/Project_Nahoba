@@ -25,12 +25,12 @@ class ProductController extends Controller
     }
     public function enable()
     {
-        $products = Product::where("product_enable",'=', true)->get();
+        $products = Product::where("product_enable", true)->get();
         return ProductResource::collection($products);
     }
     public function disable()
     {
-        $products = Product::where("product_enable",'=', false)->get();
+        $products = Product::where("product_enable", false)->get();
         return ProductResource::collection($products);
     }
 
@@ -65,13 +65,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $data = Product::findOrFail($id);
-        return new ProductResource($data);
+        return new ProductResource($product);
     }
 
-    public function ownproducts($id){
+    public function userproducts($id){
         $data = Product::where('seller_id', $id)->get();
         return ProductResource::collection($data);
     }
@@ -101,8 +100,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product = Product::findOrFail($id)->delete();
+        $product->delete();
     }
 }

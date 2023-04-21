@@ -7,12 +7,11 @@
 </template>
 
 <script setup>
-import {useAuth} from '@/store/AuthStore.js'
 import ShowItem from '../components/ShowItem.vue'
 import NavBar from '../components/NavBar.vue'
 import {http} from '../utils/http.mjs'
 import Header from '../components/Header.vue'
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 
 const datas = reactive({
         data: {},
@@ -24,12 +23,12 @@ async function getSeller(){
     datas.seller = response.data.data;
 }
 async function getItem(){
-        const response = await http.get("/product/" + localStorage.getItem("id"));
+        const response = await http.get("/products/" + localStorage.getItem("productId"));
         datas.data = response.data.data;
         console.log(datas.data)
         getSeller();
 }
-getItem();
+onMounted(getItem);
 
 </script>
 <style scoped>

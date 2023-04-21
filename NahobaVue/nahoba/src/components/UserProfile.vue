@@ -43,7 +43,7 @@ async function update(updatedproduct){
     updatedproduct.seller_id = localStorage.getItem("userid");
     updatedproduct.types_id = itemData.typesHelper;
     updatedproduct.product_enable = false;
-    const response = await http.patch('/product/' + itemData.helper, updatedproduct,{
+    const response = await http.patch('/products/' + itemData.helper, updatedproduct,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
     alert("Your changes has been sent to the admin for validation. You may close this window.")

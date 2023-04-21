@@ -16,7 +16,7 @@
                 
                 <Field name="types_id" id="type" class="form-control" as="select">
                     <option value="" disabled selected hidden>Choose your products type</option>
-                    <option  v-for="item in props.data" :value="item.id">
+                    <option  v-for="item in useType().types" :value="item.id">
                         {{ item.type }}
                     </option>
                 </Field>
@@ -41,15 +41,14 @@
             </VForm>
             </div>
         </div>
-</div>
-
-            
+</div>  
 </template>
 
 <script setup>
 import {Form as VForm, Field, ErrorMessage} from "vee-validate";
-import { defineProps } from "vue";
+import { onMounted } from "vue";
 import * as yup from 'yup';
+import {useType} from '@/store/TypeStore.js'
 
 const schema = yup.object(
     {
@@ -60,11 +59,9 @@ const schema = yup.object(
         product_img: yup.string().min(4).required('You must select at least one image for your product!')
     })
 
-const props = defineProps({
-    data: Object
-});
 const emits =  defineEmits(["createProduct"]);
 
+onMounted(useType().allTypes);
 
 </script>
 <style scoped>

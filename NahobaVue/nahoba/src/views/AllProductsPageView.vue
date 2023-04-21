@@ -36,25 +36,52 @@ export default {
                 return this.allProducts;
             }
             const filterByType = (product) => {
-                if (this.filters.typesFilter == (null || '' || undefined || 0)) {
+                if (this.filters.typesFilter == undefined)  {
+                    return true;
+                }
+                if (this.filters.typesFilter == '') {
+                    return true;
+                }
+                if (this.filters.typesFilter == null) {
+                    return true;
+                }
+                if (this.filters.typesFilter == 0) {
                     return true;
                 }
                 return product.type.id == this.filters.typesFilter;
             }
             const filterByMinPrice = (product) => {
-                if (this.filters.priceMinFilter == (null || '' || undefined)) {
+                if (this.filters.priceMinFilter == undefined) {
+                    return true;
+                }
+                if (this.filters.priceMinFilter == '') {
+                    return true;
+                }
+                if (this.filters.priceMinFilter == null) {
                     return true;
                 }
                 return product.product_price >= parseInt(this.filters.priceMinFilter);
             }
             const filterByMaxPrice = (product) => {
-                if (this.filters.priceMaxFilter == (null || '' || undefined)) {
+                if (this.filters.priceMaxFilter == '') {
+                    return true;
+                }
+                if (this.filters.priceMaxFilter ==  undefined) {
+                    return true;
+                }
+                if (this.filters.priceMaxFilter == null) {
                     return true;
                 }
                 return product.product_price <= parseInt(this.filters.priceMaxFilter);
             }
             const filterByName = (product) => {
-                if (this.filters.search == (null || '' || undefined)) {
+                if (this.filters.search == null) {
+                    return true;
+                }
+                if (this.filters.search == undefined) {
+                    return true;
+                }
+                if (this.filters.search == '') {
                     return true;
                 }
                 return product.product_name.toLowerCase().includes(this.filters.search.toLowerCase());
@@ -64,10 +91,11 @@ export default {
     },
     methods: {
         async products() {
-            const response = await http.get('products/enable');
+            const response = await http.get('/products/enable');
             this.allProducts = response.data.data;
         },
         details(id) {
+            localStorage.setItem("productId",id);
             router.push({ name: "ProductDetails" });
         }
     },
@@ -77,7 +105,7 @@ export default {
 }
 </script>
 <style scoped>
-h1 {
+h1{
     color: white;
     margin-left: 5%;
     font-size: 300%;
