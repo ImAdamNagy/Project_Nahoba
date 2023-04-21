@@ -14,9 +14,9 @@ const schema = yup.object(
         email: yup.string().email().required(),
         firstname: yup.string().min(1).required(),
         lastname: yup.string().min(1).required(),
-        tel: yup.number().required().test("lenght", "not valid", value => value.toString().length >= 6 && value.toString().length <= 18),
+        tel: yup.number().required().test("length", "not valid", value => value.toString().length >= 6 && value.toString().length <= 18),
         username: yup.string().min(4).max(15).required(),
-    })
+    });
 
 const own = reactive({
     data: {},
@@ -24,16 +24,15 @@ const own = reactive({
 });
 
 async function getUserDetails() {
-    const response = await http.get('/user/' + localStorage.getItem("userid"));
+    const response = await http.get('/users/' + localStorage.getItem("userid"));
     own.data = response.data.data;
-    console.log(own.data);
     own.isLoading = false;
 }
 getUserDetails();
 
 async function update(updatedUser) {
     updatedUser.id = localStorage.getItem("userid");
-    const response = await http.patch('/user/' + localStorage.getItem("userid"), updatedUser, {
+    const response = await http.patch('/users/' + localStorage.getItem("userid"), updatedUser, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
     alert("Changes saved");
@@ -115,6 +114,9 @@ async function update(updatedUser) {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-12" v-else>
+                <h3 class="msg">Just a moment, your settings is loading</h3>
             </div>
         </div>
     </div>

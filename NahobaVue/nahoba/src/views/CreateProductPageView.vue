@@ -16,7 +16,6 @@ async function createProduct(newproduct){
     const response = await http.post('/products', newproduct,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
-    console.log(newproduct);
     router.push({name: "MainPage"});
 }
 

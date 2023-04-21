@@ -64,10 +64,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $data = User::findOrFail($id);
-        return new UserResource($data);
+        return new UserResource($user);
     }
 
     /**
@@ -80,7 +79,6 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $user->update($request->validated());
-        //$user->password = Hash::make($request->validated()['password']);
         $user->save();
         return new UserResource($user);
     }
@@ -91,8 +89,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id)->delete();
+        $user->delete();
     }
 }

@@ -52,40 +52,30 @@ import { useAuth } from '@/store/AuthStore';
 async function newproductAlert(){
     alert("In order to upload your own product you need to sign in")
 }
-
 </script>
 
 <style scoped>
-
 .end {
   margin-right: 100px;
 }
-
 li{
   list-style: none;
 }
-
-
-
 nav {
   background-color: rgba(129, 11, 11, 80%);
   color: white;
   font-size: 20px;
 }
-
 .nav-title {
   color: white;
 }
-
 .form {
   margin: 10px;
 }
-
 .functions {
   margin: 10px;
   color: white;
 }
-
 #drop {
   text-align: center;
 }</style>

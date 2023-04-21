@@ -6,6 +6,7 @@ export const useProduct = defineStore('product-store',{
         return{
             EnableProducts: [],
             disabledProducts: [],
+            OwnProducts: [],
             obj: {}
         }
     },
@@ -20,7 +21,6 @@ export const useProduct = defineStore('product-store',{
             this.obj = {
                 product_enable: true
             }
-            console.log(this.obj)
             const response = await http.patch("products/enable/" + id, this.obj, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
@@ -31,5 +31,11 @@ export const useProduct = defineStore('product-store',{
             const response = await http.get('/products/enable');
             this.EnableProducts = response.data.data;
         },
+        async getOwnProducts(){
+            const response = await http.get('/products/userproducts/' + localStorage.getItem("userid"),{
+                        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                });
+            this.OwnProducts = response.data.data;
+        }
     }
 })

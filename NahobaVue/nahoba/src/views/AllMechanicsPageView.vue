@@ -12,8 +12,6 @@ import Filters from '../components/Filters.vue'
 import MechanicsOnly from '@/components/MechanicsOnly.vue'
 import Header from '../components/Header.vue'
 import NavBar from '../components/NavBar.vue'
-import { http } from '../utils/http.mjs';
-import { router } from '../router/index.js'
 
 export default {
     components: {

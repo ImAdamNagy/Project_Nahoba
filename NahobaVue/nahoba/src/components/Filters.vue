@@ -23,7 +23,7 @@
 </template>
 <script setup>
 import { useType } from '../store/TypeStore';
-import {Form as VForm, Field, ErrorMessage} from "vee-validate";
+import {Form as VForm, Field} from "vee-validate";
 import { onMounted } from 'vue';
 
 onMounted(useType().allTypes);

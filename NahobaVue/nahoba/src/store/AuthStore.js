@@ -30,7 +30,7 @@ export const useAuth = defineStore('auth-store',
             router.push({name:'MainPage'});
         },
         async getRole(id){
-            return (await http.get("/user/" + id,{
+            return (await http.get("/users/" + id,{
                 headers: { Authorization: `Bearer ${this.token}`}
         })).data.data.role.role_name;
         }

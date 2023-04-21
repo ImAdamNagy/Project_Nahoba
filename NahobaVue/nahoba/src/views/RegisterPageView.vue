@@ -23,7 +23,6 @@ const schema = yup.object(
     }
 )
         async function registerUser(newUser){
-            console.log(newUser);
             const response = await http.post('register', newUser);
             router.push({name: 'LoginPage'});
         }

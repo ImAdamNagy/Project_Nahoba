@@ -17,10 +17,10 @@ import { router } from '../router/index.js'
 
 export default {
     components: {
+        NavBar,
         Filters,
         ProductsOnly,
-        Header,
-        NavBar
+        Header
     },
     data() {
         return {

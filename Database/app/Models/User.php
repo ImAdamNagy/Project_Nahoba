@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Product;
+use App\Models\Mechanic;
 
 class User extends Authenticatable
 {
@@ -56,5 +57,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Chat::class,"to","id");
     }
-
+    public function Mechanic(){
+        return $this->belongsTo(Mechanic::class,"user_id","id");
+    }
 }

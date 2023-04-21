@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypeController; 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MechanicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,24 +21,26 @@ use App\Http\Controllers\ChatController;
 |
 */
 
-
-
-Route::middleware('auth:sanctum')->group(function () {
-    
+Route::prefix("users")->group(function (){
+    Route::get('/{user}', [UserController::class, 'show'])->whereNumber("user");
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::delete('/{user}',[UserController::class,'destroy'])->whereNumber("user");
+        Route::patch('/{user}', [UserController::class, 'update'])->whereNumber("user");
+    });
 });
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/logout', [UserController::class, 'logout']);
+});
 
 Route::post('/login', [UserController::class, 'authenticate']);
-Route::get('/logout', [UserController::class, 'logout']);
 Route::post('/register',[UserController::class,'store']);
-Route::get('/user/{id}', [UserController::class, 'show']);
+
+
 Route::get('/roles', [RoleController::class, 'indexwithoutadmin']);
 Route::get('/role/{id}', [RoleController::class, 'show']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::delete('/user/{id}',[UserController::class,'destroy']);
-    Route::patch('/user/{user}', [UserController::class, 'update']);
-});
+
 
 
 Route::prefix("products")->group(function (){
@@ -62,6 +65,16 @@ Route::prefix("types")->group(function (){
         Route::post('/', [TypeController::class, 'store']);
         Route::put('/{type}', [TypeController::class, 'update'])->whereNumber("type");
         Route::delete('/{type}', [TypeController::class, 'destroy'])->whereNumber("type");
+    });
+});
+
+Route::prefix("mechanics")->group(function (){
+    Route::get('/', [MechanicController::class, 'index']);
+    Route::get('/{id}', [MechanicController::class, 'show'])->whereNumber("id");
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/', [MechanicController::class, 'store']);
+        Route::put('/{mechanic}', [MechanicController::class, 'update'])->whereNumber("mechanic");
+        Route::delete('/{id}', [MechanicController::class, 'destroy'])->whereNumber("id");
     });
 });
 
