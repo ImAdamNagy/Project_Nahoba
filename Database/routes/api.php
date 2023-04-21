@@ -36,7 +36,7 @@ Route::get('/role/{id}', [RoleController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/user/{id}',[UserController::class,'destroy']);
-    Route::put('/user/{user}', [UserController::class, 'update']);
+    Route::patch('/user/{user}', [UserController::class, 'update']);
 });
 
 
@@ -72,4 +72,6 @@ Route::middleware(['auth:sanctum'])->prefix('chats')->group(function () {
     Route::delete('/', [ChatController::class, 'destroy']);
 });
 
+
+    
 
