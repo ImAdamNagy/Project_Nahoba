@@ -6,6 +6,8 @@ import LoginPageView from "../views/LoginPageView.vue"
 import ShowProductView from '../views/ShowProductView.vue'
 import UserProfilePageView from '../views/UserProfilePageView.vue'
 import AdminMainPageView from '../views/AdminMainPageView.vue'
+import MainPageView from '../views/MainPageView.vue'
+import AllMechanicsPageView from '@/views/AllMechanicsPageView.vue'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +15,17 @@ export const router = createRouter({
     {
       path: '/',
       name: 'MainPage',
+      component: MainPageView,
+    },
+    {
+      path: '/productsonly',
+      name: 'ProductsPage',
       component: AllProductsPageView,
+    },
+    {
+      path: '/mechanicsonly',
+      name: 'MechanicsPage',
+      component: AllMechanicsPageView,
     },
     {
       path: '/register',

@@ -1,17 +1,17 @@
 <template>
     <NavBar />
     <Header>
-        <h1>All Products</h1>
+        <h1>Products</h1>
     </Header>
     <div class="container-fluid">
         <Filters @filter="values => filters = values" />
-        <Items @details="details" :allProducts="FilteredProducts" />
+        <ProductsOnly @details="details" :allProducts="FilteredProducts" />
     </div>
 </template>
 
 <script >
 import Filters from '../components/Filters.vue'
-import Items from '../components/Items.vue'
+import ProductsOnly from '../components/ProductsOnly.vue'
 import Header from '../components/Header.vue'
 import NavBar from '../components/NavBar.vue'
 import { http } from '../utils/http.mjs';
@@ -20,7 +20,7 @@ import { router } from '../router/index.js'
 export default {
     components: {
         Filters,
-        Items,
+        ProductsOnly,
         Header,
         NavBar
     },

@@ -10,10 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/">Products</Router-link>
+              <Router-link class="nav-link active text-light" to="/productsonly">Products</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/">Mechanics</Router-link>
+              <Router-link class="nav-link active text-light" to="/mechanicsonly">Mechanics</Router-link>
+            </li>
+            <li class="nav-item" v-if="useAuth().loggedIn">
+              <Router-link class="nav-link active text-light" to="/newproduct" >Upload product</Router-link>
+            </li>
+            <li class="nav-item" v-else>
+              <Router-link class="nav-link active text-light" to="/register" @click="newproductAlert">Upload product</Router-link>
             </li>
           </ul>
 
@@ -45,6 +51,11 @@
 
 <script setup>
 import { useAuth } from '@/store/AuthStore';
+
+async function newproductAlert(){
+    alert("In order to upload your own product you need to sign in")
+}
+
 </script>
 
 <style scoped>
