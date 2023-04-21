@@ -29,14 +29,17 @@
                 <Field type="text" name="product_description" id="product_description" placeholder="Write a short description" class="form-control"/>
                 <ErrorMessage name="product_description" as="div" class="alert alert-danger m-1" />
 
-                <label for="loc" class="form-label">Location</label>
+                <label for="product_location" class="form-label">Location</label>
                 <Field type="text" name="product_location" id="product_location" placeholder="Enter product location" class="form-control"/>
                 <ErrorMessage name="product_location" as="div" class="alert alert-danger m-1" />
 
-                <label for="img" class="form-label">Upload image</label>
-                <br>
-                <Field type="file" name="image" ref="file"/>
+                <label for="product_img" class="form-label">Location</label>
+                <Field type="text" name="product_img" id="product_img" placeholder="Enter product image" class="form-control"/>
+                <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />
 
+                <!--<label for="img" class="form-label">Upload image</label>
+                <br>
+                <Field type="file" name="image" id="image" ref="file"/>-->
                 <button class="btn-warning btn form-control mt-3" type="submit">Create</button>
             </VForm>
             </div>
@@ -59,7 +62,7 @@ const schema = yup.object(
         product_img: yup.string().min(4).required('You must select at least one image for your product!')
     })
 
-const emits =  defineEmits(["createProduct"]);
+const emits = defineEmits(["createProduct"]);
 
 onMounted(useType().allTypes);
 

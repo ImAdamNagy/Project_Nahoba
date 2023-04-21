@@ -22,7 +22,6 @@
               <Router-link class="nav-link active text-light" to="/register" @click="newproductAlert">Upload product</Router-link>
             </li>
           </ul>
-
           <div class="nav-item space" v-if="useAuth().loggedIn">
             <div class="nav-item dropdown space">
               <a class="nav-link dropdown-toggle space" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> My profile </a>

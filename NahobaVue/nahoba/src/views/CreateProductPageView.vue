@@ -9,10 +9,13 @@
 import NavBar from '@/components/NavBar.vue';
 import {http} from '../utils/http.mjs';
 import CreateItem from '../components/CreateItem.vue'
-import {router} from '@/router/index.js';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 async function createProduct(newproduct){
-    newproduct.product_img = newproduct.image.name;
+    /*newproduct.product_img = newproduct.image.name;*/
+    
     const response = await http.post('/products', newproduct,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });

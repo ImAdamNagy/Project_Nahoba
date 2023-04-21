@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AllProductsPageView from "../views/AllProductsPageView.vue"
+import ProductsPageView from "../views/ProductsPageView.vue"
 import RegisterPageView from "../views/RegisterPageView.vue"
 import CreateProductPageView from "../views/CreateProductPageView.vue"
 import LoginPageView from "../views/LoginPageView.vue"
@@ -21,7 +21,7 @@ export const router = createRouter({
     {
       path: '/productsonly',
       name: 'ProductsPage',
-      component: AllProductsPageView,
+      component: ProductsPageView,
     },
     {
       path: '/mechanicsonly',

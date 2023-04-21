@@ -14,7 +14,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->role()->role_name() == "admin";
+        return true;
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductRequest extends FormRequest
         return [
             'product_name' => ['required','min:5'],
             'product_price' => ['required','numeric'],
-            'types_id' => ['required',"exists:types,id"],
+            'types_id' => ['required'],
             'product_img' => ['required','min:4'],
             'product_description' => ['required','max:150'],
             'product_location' => ['required','max:120'],
