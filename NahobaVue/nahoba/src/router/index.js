@@ -5,7 +5,6 @@ import CreateProductPageView from "../views/CreateProductPageView.vue"
 import LoginPageView from "../views/LoginPageView.vue"
 import ShowProductView from '../views/ShowProductView.vue'
 import UserProfilePageView from '../views/UserProfilePageView.vue'
-import MyProductsPageView from '@/views/MyProductsPageView.vue'
 import AdminMainPageView from '../views/AdminMainPageView.vue'
 import ProfileSettingsPageView from '../views/ProfileSettingsPageView.vue'
 
@@ -41,11 +40,6 @@ export const router = createRouter({
       path: '/user',
       name: 'UserProfile',
       component: UserProfilePageView,
-    },
-    {
-      path: '/myproducts',
-      name: 'myProducts',
-      component: MyProductsPageView,
     },
     {
       path: '/adminmainpage',

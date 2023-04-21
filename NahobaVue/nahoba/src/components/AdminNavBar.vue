@@ -2,7 +2,7 @@
     <header>
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <Router-link class="navbar-brand nav-title navbar-light" to="/"><strong>Nahoba Parts</strong></Router-link>
+          <Router-link class="navbar-brand nav-title navbar-light" to="/adminmainpage"><strong>Admin Mainpage</strong></Router-link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,6 @@
                 <ul class="dropdown-menu" id="drop">
                   <li><a class="dropdown-item" href="#">Settings</a></li>
                   <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
-                  <li><Router-link class="dropdown-item" to="/myproducts">My products</Router-link></li>
                   <li><a class="dropdown-item" href="#">Messages</a></li>
                   <div class="dropdown-divider"></div>
                   <li><button class="dropdown-item" @click="useAuth().logout">Sign out</button></li>

@@ -13,7 +13,7 @@ class SignUpUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user() == null;
     }
 
     /**
@@ -25,12 +25,19 @@ class SignUpUserRequest extends FormRequest
     {
         return [
             'username' => ['required', 'min:4', 'max:15'],
+<<<<<<< HEAD
             'password' => ['required', 'min:5', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/','confirmed'],
             'firstname' =>['required','min:1','max:15'],
             'lastname' =>['required','min:1','max:15'],
             'tel' =>['required'],
+=======
+            'password' => ['required', 'min:5', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/' ,'confirmed'],
+            'firstname' =>['required','min:1','max:15'],
+            'lastname' =>['required','min:1','max:15'],
+            'tel' =>['required','min:6','max:18'],
+>>>>>>> 41a87933e2b009a81dacd2027e6c92d2b202a510
             'email' =>['required','email'],
-            'role_id' =>['required']
+            'role_id' =>['required',"exists:roles,id"]
         ];
     }
 }

@@ -1,4 +1,3 @@
-@import '../node_modules/bootstrap/scss/bootstrap';
 #app{
   height: 100%;
 }
@@ -90,4 +89,4 @@ body{
 .seller{
   grid-area: seller;
 }
-
+@import '../node_modules/bootstrap/scss/bootstrap';

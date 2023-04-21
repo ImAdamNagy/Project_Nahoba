@@ -15,10 +15,11 @@ const schema = yup.object(
         email: yup.string().email().required(),
         firstname: yup.string().min(1).required(),
         lastname: yup.string().min(1).required(),
-        tel: yup.string().matches("/^\d{5,15}$/", "Phone number must be between 5 to 15 characters").required(),
+        tel: yup.number().required().test("lenght","not valid",value=>value.toString().length >= 6 && value.toString().length <= 18),
         username: yup.string().min(4).max(15).required(),
-        password: yup.string().min(5).matches("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/", "Password must contain at least 5 characters, one uppercase, one lowercase, one number and one special case character!").required(),
-        password_confirmation: yup.string().oneOf([yup.ref("password")]).required()
+        password: yup.string().min(5).matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/, "Password must contain at least 5 characters, one uppercase, one lowercase, one number and one special case character!").required(),
+        password_confirmation: yup.string().oneOf([yup.ref("password")]).required(),
+        role_id: yup.number().required()
     }
 )
         async function registerUser(newUser){
@@ -65,7 +66,7 @@ const schema = yup.object(
                         {{ item.role_name }}
                     </option>
                     </Field>
-
+                    <ErrorMessage name="role_id" as="alert" class="alert alert-danger m-1" />
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <button class="btn btn-secondary my-md-3 my-2 rounded-pill" type="submit">Register</button>
                         <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/login">Go to Login</Router-link>
@@ -114,6 +115,5 @@ const schema = yup.object(
         color: white;
         text-align: center;
     }
-
 </style>
 

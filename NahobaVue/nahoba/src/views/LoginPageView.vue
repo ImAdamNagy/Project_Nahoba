@@ -40,7 +40,7 @@ async function login(userData){
                 <h1 id="title">Login</h1>
                 <VForm @submit="login">
                     <label for="username" class="form-label text-center">Username:</label>
-                    <Field type="text" name="username" id="username" placeholder="username" class="form-control" rules="required"/>
+                    <Field type="text" name="username" id="username" placeholder="username" class="form-control" rules="required|min:4"/>
                     <ErrorMessage name="username" as="div" class="alert alert-danger m-1" />
                     <label for="password" class="form-label text-center">Password:</label>
                     <Field type="password" name="password" id="password" placeholder="password" class="form-control" rules="required"/>
