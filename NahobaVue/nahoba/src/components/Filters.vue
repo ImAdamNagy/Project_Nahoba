@@ -31,36 +31,7 @@ const emit = defineEmits(['filter']);
 
 </script>
 <style scoped>
-
-.gridfilter{
-    margin:10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr ;
-  grid-template-rows: 1fr 1fr ;
-  grid-template-areas: "search button . ."
-  "type pricemin pricemax .";
-  column-gap: 20px;
-    row-gap: 5px;
-}
-
-.button{
-    grid-area: button;
-    width: 50%;
-}
 .btn:hover{
     background-image: radial-gradient(180deg, grey 0%, white 80%);
 }
-.search{
-    grid-area: search;
-}
-.pricemax{
-    grid-area: pricemax;
-}
-.pricemin{
-    grid-area: pricemin;
-}
-.type{
-    grid-area: type;
-}
-
 </style>

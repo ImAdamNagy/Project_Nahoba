@@ -1,7 +1,8 @@
 <template>
-    <div class="col-3 mechanics mt-3">
+    <div class="col-lg-4 col-md-3 col-sm-12 mechanics mt-3">
       <div class="row">
-
+        <h2 class="grouptitle">Mechanics</h2>
+        
         <div class="col-12 mt-3" v-for="item in this.allProducts">
             <div class="product h-100">
               <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
@@ -25,10 +26,7 @@
     </script>
     
     <style scoped>
-   
-    .mechanics{
-      border-right: 1px solid white;
-    }
+    
     .product{
         display: flex;
         flex-direction: column;
@@ -43,4 +41,5 @@
       width: 100%;
       border-radius: 20px 0px 20px 0px;
     }
+    
     </style>

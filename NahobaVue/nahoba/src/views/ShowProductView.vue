@@ -1,6 +1,6 @@
 <template>
 <NavBar />
-<Header><h1>{{ datas.data.product_name }} </h1></Header>
+<Header><h1 class="headertitle">{{ datas.data.product_name }} </h1></Header>
 <div class="container">
     <ShowItem :data="datas.data" :seller="datas.seller" />
 </div>
@@ -36,11 +36,5 @@ onMounted(getItem);
     width: 100%;
     height: 100%;
     margin-top: 5%;
-}
-h1{
-    color:white;
-    margin-left: 5%;
-    font-size: 300%;
-    align-self: center;
 }
 </style>

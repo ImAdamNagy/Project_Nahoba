@@ -25,10 +25,7 @@
 
           <div class="nav-item space" v-if="useAuth().loggedIn">
             <div class="nav-item dropdown space">
-              <a class="nav-link dropdown-toggle space" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                My profile
-              </a>
+              <a class="nav-link dropdown-toggle space" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> My profile </a>
               <ul class="dropdown-menu" id="drop">
                 <li><Router-link class="dropdown-item" to="/settings">Settings</Router-link></li>
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
@@ -38,7 +35,7 @@
               </ul>
             </div>
           </div>
-          <div class="nav-item " v-else>
+          <div class="nav-item" v-else>
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/login">Login</Router-link>
             </li>
@@ -68,9 +65,7 @@ li{
   list-style: none;
 }
 
-.space {
-  margin: 10px;
-}
+
 
 nav {
   background-color: rgba(129, 11, 11, 80%);

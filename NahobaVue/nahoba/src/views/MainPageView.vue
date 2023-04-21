@@ -1,8 +1,6 @@
 <template>
     <NavBar />
-    <Header>
-        <h1>Welcome to Nahoba Parts</h1>
-    </Header>
+    <Header><h1 class="headertitle">Welcome to Nahoba Parts</h1></Header>
     <div class="container">
         <div class="row" v-if="allProducts.length > 0">
 
@@ -55,12 +53,6 @@ export default {
 }
 </script>
 <style scoped>
-h1 {
-    color: white;
-    margin-left: 5%;
-    font-size: 300%;
-    align-self: center;
-}
 #msg{
         text-align: center;
         color: white;

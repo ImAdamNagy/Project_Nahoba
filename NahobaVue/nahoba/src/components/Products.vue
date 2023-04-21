@@ -1,7 +1,8 @@
 <template>
-    <div class="col-9  mt-3">
+    <div class="col-lg-8 col-md-9 col-sm-12 mt-3">
       <div class="row">
-
+        <h2 class="grouptitle">Products</h2>
+       
           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in this.allProducts">
             <div class="product h-100">
               <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
@@ -14,7 +15,7 @@
         </div>
     </div>
     </template>
-    <script>
+<script>
     export default{
         props: {
                 allProducts: Array

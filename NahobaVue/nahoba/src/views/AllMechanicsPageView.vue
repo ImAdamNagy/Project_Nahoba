@@ -1,8 +1,6 @@
 <template>
     <NavBar />
-    <Header>
-        <h1>Mechanics</h1>
-    </Header>
+    <Header><h1 class="headertitle">Mechanics</h1></Header>
     <div class="container-fluid">
         <Filters @filter="values => filters = values" />
         <MechanicsOnly  />
@@ -26,11 +24,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-h1 {
-    color: white;
-    margin-left: 5%;
-    font-size: 300%;
-    align-self: center;
-}
-</style>

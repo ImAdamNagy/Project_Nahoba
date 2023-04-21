@@ -66,13 +66,14 @@ async function update(updatedproduct) {
             <div class="product h-100">
                 <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
                 <div class="row data">
-                    <div class="col-8">
+                    <div class="col-12 ">
                         <h5 class="title">{{ item.product_name }}</h5>
                         <p class="price">{{ item.product_price }} Ft</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 ">
                         <a class="btn btn-warning" data-bs-toggle="modal"
                             :data-bs-target="'#updateModal' + item.id">Update</a>
+
                         <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -215,4 +216,5 @@ img {
 img {
     width: 100%;
     border-radius: 20px 0px 20px 0px;
-}</style>
+}
+</style>

@@ -43,9 +43,7 @@ async function update(updatedUser) {
 
 <template>
     <NavBar />
-    <Header>
-        <h1>Settings</h1>
-    </Header>
+    <Header><h1 class="headertitle">Settings</h1></Header>
     <div class="container">
         <div class="row">
             <div class="col" v-if="!own.isLoading">
@@ -81,7 +79,7 @@ async function update(updatedUser) {
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">halo</h1>
+                                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">Edit your profile</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -90,23 +88,23 @@ async function update(updatedUser) {
                                     :validation-schema="schema">
                                     <div class="modal-body">
                                         <Field type="email" name="email" id="email" :value="`${own.data.email}`"
-                                            class="form-control my-1" />
+                                        placeholder="Email:" class="form-control my-1" />
                                         <ErrorMessage name="email" as="div" class="alert alert-danger m-1" />
                                         <div id="name" class="d-flex flex-sm-row flex-column my-1">
                                             <Field type="text" name="firstname" id="firstname"
-                                                :value="`${own.data.firstname}`" class="form-control me-2" />
+                                                :value="`${own.data.firstname}`" class="form-control me-2" placeholder="Fistname:"/>
                                             <ErrorMessage name="firstname" as="div" class="alert alert-danger m-1" />
                                             <Field type="text" name="lastname" id="lastname" :value="`${own.data.lastname}`"
-                                                class="form-control" />
+                                                class="form-control" placeholder="Lastname:"/>
                                             <ErrorMessage name="lastname" as="div" class="alert alert-danger m-1" />
                                         </div>
 
                                         <Field type="tel" name="tel" id="tel" :value="`${own.data.tel}`"
-                                            class="form-control my-1" />
+                                            class="form-control my-1" placeholder="Tel:"/>
                                         <ErrorMessage name="tel" as="div" class="alert alert-danger m-1" />
 
                                         <Field type="text" name="username" id="username" :value="`${own.data.username}`"
-                                            class="form-control my-1" />
+                                            class="form-control my-1" placeholder="Username:"/>
                                         <ErrorMessage name="username" as="div" class="alert alert-danger m-1" />
                                     </div>
                                     <div class="modal-footer">
@@ -121,12 +119,3 @@ async function update(updatedUser) {
         </div>
     </div>
 </template>
-
-<style scoped>
-h1 {
-    color: white;
-    margin-left: 5%;
-    font-size: 300%;
-    align-self: center;
-}
-</style>

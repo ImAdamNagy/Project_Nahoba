@@ -1,8 +1,6 @@
 <template>
     <NavBar />
-    <Header>
-        <h1>All Products</h1>
-    </Header>
+    <Header><h1 class="headertitle">All Products</h1></Header>
     <div class="container">
         <Filters @filter="values => filters = values" />
         <ProductsOnly @details="details" :allProducts="FilteredProducts" />
@@ -104,11 +102,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-h1{
-    color: white;
-    margin-left: 5%;
-    font-size: 300%;
-    align-self: center;
-}
-</style>
