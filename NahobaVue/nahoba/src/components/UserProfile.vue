@@ -1,11 +1,8 @@
 <script setup>
-import { http } from '@/utils/http.mjs'
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import * as yup from 'yup';
 
-const router = useRouter();
+
 
 const schema = yup.object(
     {
@@ -16,63 +13,36 @@ const schema = yup.object(
         product_img: yup.string().min(4).required('You must select at least one image for your product!')
     });
 const props = defineProps({
-    data: Object
-});
-const userData = reactive({
-    data: {}
-});
-const itemData = reactive({
-    helper: "",
-    typesHelper: {}
+    productdata: Object,
+    user: Object
 });
 
-async function user() {
-    const response = await http.get('/user/' + localStorage.getItem("userid"))
-    userData.data = response.data.data;
-    console.log
-}
-user();
-async function setIdAndTypesId(sellerId, types) {
-    itemData.helper = sellerId;
-    itemData.typesHelper = types.id;
-    console.log(props.data);
-    console.log(itemData.typesHelper);
-}
-
-async function update(updatedproduct) {
-    updatedproduct.seller_id = localStorage.getItem("userid");
-    updatedproduct.types_id = itemData.typesHelper;
-    updatedproduct.product_enable = false;
-    const response = await http.patch('/products/' + itemData.helper, updatedproduct, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    });
-    alert("Your changes has been sent to the admin for validation. You may close this window.")
-    router.push({ name: "UserProfile" });
-}
+const emits = defineEmits(["update", "getCurrentItemIdAndTypeId"]);
 
 </script>
 <template>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-if="props.data.length > 0">
+    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-if="props.productdata.length > 0">
         <div class="col-12">
             <h1>
-                {{ userData.data.firstname }} {{ userData.data.lastname }}
+                {{ props.user.firstname }} {{ props.user.lastname }}
             </h1>
-            <p><b>Email address:</b> {{ userData.data.email }}</p>
-            <p><b>Phone number:</b> {{ userData.data.tel }}</p>
-            <p><b>Username:</b> {{ userData.data.username }}</p>
+            <p><b>Email address:</b> {{ props.user.email }}</p>
+            <p><b>Phone number:</b> {{ props.user.tel }}</p>
+            <p><b>Username:</b> {{ props.user.username }}</p>
         </div>
         <div class="title_lines">Your products</div>
-        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in props.data">
+        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in props.productdata">
             <div class="product h-100">
                 <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
                 <div class="row data">
-                    <div class="col-8">
+                    <div class="col-12 ">
                         <h5 class="title">{{ item.product_name }}</h5>
                         <p class="price">{{ item.product_price }} Ft</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 ">
                         <a class="btn btn-warning" data-bs-toggle="modal"
                             :data-bs-target="'#updateModal' + item.id">Update</a>
+
                         <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -82,7 +52,7 @@ async function update(updatedproduct) {
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <VForm @submit="update" :validation-schema="schema">
+                                        <VForm @submit="(updatedproduct) => $emit('update', updatedproduct)" :validation-schema="schema">
                                             <div class="mb-3">
                                                 <label for="product_name" class="form-label">Product name</label>
                                                 <Field type="text" name="product_name" id="product_name"
@@ -122,7 +92,7 @@ async function update(updatedproduct) {
                                                 <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />
                                             </div>
                                             <button type="submit" class="btn btn-primary"
-                                                @click="setIdAndTypesId(item.id, item.type)">Update</button>
+                                                @click="$emit('getCurrentItemIdAndTypeId', item.id, item.type.id)" data-dismiss="modal">Update</button>
                                         </VForm>
                                     </div>
                                     <div class="modal-footer">
@@ -139,7 +109,7 @@ async function update(updatedproduct) {
     </div>
     <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
         <div class="col-12">
-            <p id="msg">Just a moment, we are loading your profile</p>
+            <h3 id="msg">Just a moment, we are loading your profile</h3>
         </div>
     </div>
 </template>
@@ -215,4 +185,5 @@ img {
 img {
     width: 100%;
     border-radius: 20px 0px 20px 0px;
-}</style>
+}
+</style>
