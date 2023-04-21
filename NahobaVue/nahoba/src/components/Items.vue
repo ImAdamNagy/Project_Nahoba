@@ -10,7 +10,7 @@
       </div>
   </div>
   <div class="row" v-else>
-    <p class="text-white">Nincs termék</p>
+    <p class="text-white">Im sorry, we could not find any products matching your filters.</p>
   </div>
 </template>
 <script>

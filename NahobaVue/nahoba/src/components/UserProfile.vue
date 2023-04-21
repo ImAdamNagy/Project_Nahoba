@@ -52,7 +52,7 @@ async function update(updatedproduct){
 
 </script>
 <template>
-    <div class="row mx-auto py-4 rounded rounded-5 px-3">
+    <div class="row mx-auto py-4 rounded rounded-5 px-3" v-if="props.data.length > 0">
         <div class="col-12">
             <h1>
                 {{userData.data.firstname}} {{userData.data.lastname}}
@@ -122,6 +122,11 @@ async function update(updatedproduct){
         </div>
     </div>
   </div>
+  <div class="row mx-auto py-4 rounded rounded-5 px-3" v-else>
+    <div class="col-12">
+            <p id="msg">Just a moment, we are loading your profile</p>
+        </div>
+  </div>
 </template>
 <style scoped>
 .title_lines {
@@ -132,6 +137,9 @@ async function update(updatedproduct){
     text-align: center;
     color: black;
     font-family: arial;
+}
+#msg{
+    text-align: center;
 }
 .title_lines:before, .title_lines:after {
     position: absolute;
