@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth; 
 
-class SignUpUserRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class SignUpUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user() == null;
+        return Auth::user()!==null;
     }
 
     /**
@@ -24,13 +25,11 @@ class SignUpUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'min:4', 'max:15'],
-            'password' => ['required', 'min:5', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/' ,'confirmed'],
+            'username' => ['required', 'min:4', 'max:15'],'firstname' =>['required','min:1','max:15'],
             'firstname' =>['required','min:1','max:15'],
             'lastname' =>['required','min:1','max:15'],
             'tel' =>['required','min:6','max:18'],
             'email' =>['required','email'],
-            'role_id' =>['required',"exists:roles,id"]
         ];
     }
 }
