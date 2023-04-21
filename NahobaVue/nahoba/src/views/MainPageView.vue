@@ -3,7 +3,7 @@
     <Header>
         <h1>Welcome to Nahoba Parts</h1>
     </Header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row" v-if="allProducts.length > 0">
 
             <Mechanics  @details="details" :allProducts="allProducts"/>

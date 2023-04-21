@@ -46,10 +46,9 @@ async function update(updatedUser) {
     <Header>
         <h1>Settings</h1>
     </Header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col">
-
+            <div class="col" v-if="!own.isLoading">
                 <div class="bg-white m-3 p-5 py-3 rounded rounded-3">
                     <h3>User information</h3>
                     <table>
@@ -87,7 +86,7 @@ async function update(updatedUser) {
                                         aria-label="Close"></button>
                                 </div>
 
-                                <VForm class="form-group" v-if="!own.isLoading" @submit="update"
+                                <VForm class="form-group" @submit="update"
                                     :validation-schema="schema">
                                     <div class="modal-body">
                                         <Field type="email" name="email" id="email" :value="`${own.data.email}`"

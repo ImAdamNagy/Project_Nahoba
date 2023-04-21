@@ -4,6 +4,7 @@ import {http} from '../utils/http.mjs';
 export const useProduct = defineStore('product-store',{
     state(){
         return{
+            EnableProducts: [],
             disabledProducts: [],
             obj: {}
         }
@@ -25,6 +26,10 @@ export const useProduct = defineStore('product-store',{
             });
             const index = this.disabledProducts.findIndex(item=>item.id === id);
             this.disabledProducts.splice(index,1);
-        }
+        },
+        async getProducts() {
+            const response = await http.get('/products/enable');
+            this.EnableProducts = response.data.data;
+        },
     }
 })

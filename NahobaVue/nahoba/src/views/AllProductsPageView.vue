@@ -1,9 +1,9 @@
 <template>
     <NavBar />
     <Header>
-        <h1>Products</h1>
+        <h1>All Products</h1>
     </Header>
-    <div class="container-fluid">
+    <div class="container">
         <Filters @filter="values => filters = values" />
         <ProductsOnly @details="details" :allProducts="FilteredProducts" />
     </div>

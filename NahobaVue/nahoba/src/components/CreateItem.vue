@@ -22,7 +22,7 @@
                 </Field>
 
                 <label for="product_price" class="form-label">Product Price</label>
-                <Field type="number" name="product_price" id="product_price" placeholder="Enter product type" class="form-control"/>
+                <Field type="number" name="product_price" id="product_price" placeholder="Enter product price" class="form-control"/>
                 <ErrorMessage name="product_price" as="div" class="alert alert-danger m-1" />
 
                 <label for="product_description" class="form-label">Description</label>

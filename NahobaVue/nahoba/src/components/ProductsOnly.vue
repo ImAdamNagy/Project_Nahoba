@@ -1,6 +1,6 @@
 <template>
 <div class="row" v-if="allProducts.length > 0">
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-1" v-for="item in this.allProducts">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-3 " v-for="item in this.allProducts">
             <div class="product h-100">
               <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
                 <h5 class="title">{{item.product_name}}</h5>
@@ -11,7 +11,7 @@
 </div>
 <div class="row mx-auto py-4 rounded rounded-5 px-3" v-else>
     <div class="col-12">
-            <h3 id="msg">Just a moment, we are loading the avaliabe products</h3>
+            <h3 id="msg">Nothing Found</h3>
         </div>
   </div>
 

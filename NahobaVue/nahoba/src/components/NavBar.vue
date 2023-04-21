@@ -24,8 +24,8 @@
           </ul>
 
           <div class="nav-item space" v-if="useAuth().loggedIn">
-            <div class="nav-item dropdown ">
-              <a class="nav-link dropdown-toggle space mx-3" href="#" role="button" data-bs-toggle="dropdown"
+            <div class="nav-item dropdown space">
+              <a class="nav-link dropdown-toggle space" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 My profile
               </a>
@@ -38,7 +38,7 @@
               </ul>
             </div>
           </div>
-          <div class="nav-item space mx-3" v-else>
+          <div class="nav-item " v-else>
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/login">Login</Router-link>
             </li>
