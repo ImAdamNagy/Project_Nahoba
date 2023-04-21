@@ -30,6 +30,7 @@ const itemData = reactive({
 async function user(){
     const response = await http.get('/user/' + localStorage.getItem("userid"))
         userData.data = response.data.data;
+        console.log
 }
 user();
 async function setIdAndTypesId(sellerId, types){

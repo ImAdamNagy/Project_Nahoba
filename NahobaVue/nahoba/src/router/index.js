@@ -8,6 +8,7 @@ import UserProfilePageView from '../views/UserProfilePageView.vue'
 import AdminMainPageView from '../views/AdminMainPageView.vue'
 import MainPageView from '../views/MainPageView.vue'
 import AllMechanicsPageView from '@/views/AllMechanicsPageView.vue'
+import ProfileSettingsPageView from '../views/ProfileSettingsPageView.vue'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,6 +57,11 @@ export const router = createRouter({
       path: '/adminmainpage',
       name: 'AdminMainPage',
       component: AdminMainPageView,
+    },
+    {
+      path: '/settings',
+      name: 'ProfileSettingsPage',
+      component: ProfileSettingsPageView,
     }
   ]
 });

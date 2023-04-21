@@ -30,7 +30,7 @@
                 My profile
               </a>
               <ul class="dropdown-menu" id="drop">
-                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><Router-link class="dropdown-item" to="/settings">Settings</Router-link></li>
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
                 <li><a class="dropdown-item" href="#">Messages</a></li>
                 <div class="dropdown-divider"></div>

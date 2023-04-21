@@ -8,6 +8,7 @@ use App\Http\Resources\SignUpResource;
 use App\Models\User;
 use App\Http\Requests\SignUpUserRequest;
 use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,10 +77,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SignUpUserRequest $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         $user->update($request->validated());
-        $user->password = Hash::make($request->validated()['password']);
+        //$user->password = Hash::make($request->validated()['password']);
         $user->save();
         return new UserResource($user);
     }
