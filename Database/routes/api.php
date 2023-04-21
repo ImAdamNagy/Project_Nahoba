@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypeController; 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MechanicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,16 @@ Route::prefix("types")->group(function (){
         Route::post('/', [TypeController::class, 'store']);
         Route::put('/{type}', [TypeController::class, 'update'])->whereNumber("type");
         Route::delete('/{type}', [TypeController::class, 'destroy'])->whereNumber("type");
+    });
+});
+
+Route::prefix("mechanics")->group(function (){
+    Route::get('/', [MechanicController::class, 'index']);
+    Route::get('/{id}', [MechanicController::class, 'show'])->whereNumber("id");
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/', [MechanicController::class, 'store']);
+        Route::put('/{mechanic}', [MechanicController::class, 'update'])->whereNumber("mechanic");
+        Route::delete('/{id}', [MechanicController::class, 'destroy'])->whereNumber("id");
     });
 });
 

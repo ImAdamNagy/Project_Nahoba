@@ -16,7 +16,7 @@ const schema = yup.object(
         lastname: yup.string().min(1).required(),
         tel: yup.number().required().test("lenght", "not valid", value => value.toString().length >= 6 && value.toString().length <= 18),
         username: yup.string().min(4).max(15).required(),
-    })
+    });
 
 const own = reactive({
     data: {},
