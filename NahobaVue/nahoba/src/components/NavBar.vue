@@ -24,7 +24,7 @@
                 My profile
               </a>
               <ul class="dropdown-menu" id="drop">
-                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" to="/settings">Settings</a></li>
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
                 <li><Router-link class="dropdown-item" to="/myproducts">My products</Router-link></li>
                 <li><a class="dropdown-item" href="#">Messages</a></li>

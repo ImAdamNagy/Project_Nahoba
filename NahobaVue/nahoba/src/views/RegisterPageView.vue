@@ -15,9 +15,9 @@ const schema = yup.object(
         email: yup.string().email().required(),
         firstname: yup.string().min(1).required(),
         lastname: yup.string().min(1).required(),
-        tel: yup.number().required(),
+        tel: yup.string().matches("/^\d{5,15}$/", "Phone number must be between 5 to 15 characters").required(),
         username: yup.string().min(4).max(15).required(),
-        password: yup.string().min(5)/*.matches("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/", "Password must contain at least 5 characters, one uppercase, one lowercase, one number and one special case character!")*/.required(),
+        password: yup.string().min(5).matches("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/", "Password must contain at least 5 characters, one uppercase, one lowercase, one number and one special case character!").required(),
         password_confirmation: yup.string().oneOf([yup.ref("password")]).required()
     }
 )
