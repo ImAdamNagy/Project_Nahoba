@@ -9,6 +9,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MechanicController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\MechanicController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 
 Route::prefix("users")->group(function (){
     Route::get('/{user}', [UserController::class, 'show'])->whereNumber("user");

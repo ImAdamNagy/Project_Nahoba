@@ -33,14 +33,15 @@
                 <Field type="text" name="product_location" id="product_location" placeholder="Enter product location" class="form-control"/>
                 <ErrorMessage name="product_location" as="div" class="alert alert-danger m-1" />
 
-                <label for="product_img" class="form-label">Location</label>
+                <!--<label for="product_img" class="form-label">Image</label>
                 <Field type="text" name="product_img" id="product_img" placeholder="Enter product image" class="form-control"/>
-                <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />
+                <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />-->
 
-                <!--<label for="img" class="form-label">Upload image</label>
+                <label for="product_img" class="form-label">Upload image</label>
                 <br>
-                <Field type="file" name="image" id="image" ref="file"/>-->
-                <button class="btn-warning btn form-control mt-3" type="submit">Create</button>
+                <Field type="file" name="product_img" id="product_img" @change="$emit('onChange', $event)" />
+
+                <input class="btn-warning btn form-control mt-3" type="submit" value="Create" />
             </VForm>
             </div>
         </div>
@@ -59,10 +60,10 @@ const schema = yup.object(
         product_price: yup.number().required('You must give your product a price!'),
         product_description: yup.string('Your description must not be a number!').max(150, 'Your items description`s length must not be greater than 150 characters!').required('You must write a hsort description of your product!'),
         product_location: yup.string('Your location format is not correct! Try this format: `city, district`').min(8, ).max(120, 'Your location must not be greater than 120 characters!').required('You must give a location from where you are advertising your product!'),
-        product_img: yup.string().min(4).required('You must select at least one image for your product!')
+        product_img: yup.string().max(1536).required('You must select at least one image for your product!')
     })
 
-const emits = defineEmits(["createProduct"]);
+const emits = defineEmits(["createProduct", "onChange", "submit"]);
 
 onMounted(useType().allTypes);
 

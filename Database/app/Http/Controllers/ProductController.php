@@ -34,16 +34,6 @@ class ProductController extends Controller
         return ProductResource::collection($products);
     }
 
-    public function Image(){
-        return view('layouts.FileUpload');
-    }
-    public function fileUpload(Request $request){
-        $image = $request->file('image');
-        $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
-        $destinationPath = public_path('/images');
-        $image->move($destinationPath, $input['imagename']);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,10 +42,16 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $file = $request->file('img');
+        $file_name = $file->getClientOriginalName();
+        $file->move(public_path('images'), $file_name);
+
         $newproduct = new Product($request->validated());
         $newproduct->product_enable = false;
         $newproduct->seller_id = Auth::id();
+        $newproduct->product_img = $file_name;
         $newproduct->save();
+
         return new ProductResource($newproduct);
     }
 
