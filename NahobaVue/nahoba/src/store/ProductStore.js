@@ -1,5 +1,8 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs';
+import { useRoute } from 'vue-router'
+
+
 
 export const useProduct = defineStore('product-store',{
     state(){
@@ -7,7 +10,14 @@ export const useProduct = defineStore('product-store',{
             EnableProducts: [],
             disabledProducts: [],
             OwnProducts: [],
-            obj: {}
+            obj: {},
+            filters: {
+                search: null,
+                typesFilter: 0,
+                priceMinFilter: null,
+                priceMaxFilter: null
+            },
+            Product: []
         }
     },
     actions:{
@@ -36,6 +46,52 @@ export const useProduct = defineStore('product-store',{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
             this.OwnProducts = response.data.data;
+        },
+        filterByType(product){
+            if (this.filters.typesFilter == 0) {
+                return true;
+            }
+            return product.type.id == this.filters.typesFilter;
+        },
+        filterByMinPrice(product){
+            if (this.filters.priceMinFilter == null) {
+                return true;
+            }
+            if (this.filters.priceMinFilter == "") {
+                return true;
+            }
+            return product.product_price >= parseInt(this.filters.priceMinFilter);
+        },
+        filterByMaxPrice(product) {
+            if (this.filters.priceMaxFilter == null) {
+                return true;
+            }
+            if (this.filters.priceMaxFilter == "") {
+                return true;
+            }
+            return product.product_price <= parseInt(this.filters.priceMaxFilter);
+        },
+        filterByName(product){
+            if (this.filters.search == null) {
+                return true;
+            }
+            if (this.filters.search == "") {
+                return true;
+            }
+            return product.product_name.toLowerCase().includes(this.filters.search.toLowerCase());
+        },
+        async getProduct(){
+            const response = await http.get("/products/" + useRoute().params.id);
+            this.Product = response.data.data;
+            console.log(this.Product);
+        }
+    },
+    getters:{
+        FilteredProducts() {
+            if (this.filters.search === null && this.filters.typesFilter === null && this.filters.priceMinFilter === null && this.filters.priceMaxFilter === null) {
+                return this.EnableProducts;
+            }
+            return this.EnableProducts.filter(this.filterByType).filter(this.filterByMinPrice).filter(this.filterByMaxPrice).filter(this.filterByName);
         }
     }
 })

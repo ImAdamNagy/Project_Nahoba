@@ -116,7 +116,7 @@ async function update(updatedUser) {
                 </div>
             </div>
             <div class="col-12" v-else>
-                <h3 class="msg">Just a moment, your settings is loading</h3>
+                <h3 class="loadingmsg">Just a moment, your settings is loading</h3>
             </div>
         </div>
     </div>

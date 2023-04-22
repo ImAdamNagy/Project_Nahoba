@@ -1,5 +1,5 @@
 <template>
-            <VForm class="gridfilter" @submit="values=>$emit('filter',values)">
+            <VForm class="gridfilter" @submit="Filter">
                 <div class="search">
                     <Field class="form-control" id="search" placeholder="Search:" name="search" type="text" />
                 </div>
@@ -23,11 +23,20 @@
 </template>
 <script setup>
 import { useType } from '../store/TypeStore';
+import { useProduct } from '../store/ProductStore';
 import {Form as VForm, Field} from "vee-validate";
 import { onMounted } from 'vue';
 
 onMounted(useType().allTypes);
-const emit = defineEmits(['filter']);
+function Filter(filters){
+    
+    useProduct().filters.search = filters.search ?? null;
+    useProduct().filters.typesFilter = filters.typesFilter;
+    useProduct().filters.priceMinFilter = filters.priceMinFilter ?? null;
+    useProduct().filters.priceMaxFilter = filters.priceMaxFilter ?? null;
+    console.log(filters);
+    console.log(useProduct().filters);
+}
 
 </script>
 <style scoped>

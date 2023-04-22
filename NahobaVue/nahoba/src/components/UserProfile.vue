@@ -109,7 +109,7 @@ const emits = defineEmits(["update", "getCurrentItemIdAndTypeId"]);
     </div>
     <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
         <div class="col-12">
-            <h3 id="msg">Just a moment, we are loading your profile</h3>
+            <h3 id="loadingmsg">Just a moment, we are loading your profile</h3>
         </div>
     </div>
 </template>

@@ -33,10 +33,10 @@ async function login(userData){
 <template>
     <div class="container-fluid">
         <div class="row py-5 mx-auto">
-        <div class="col-xl-3 ms-md-auto bg-warning" id="left">
+        <div class="col-xl-4 ms-md-auto bg-warning" id="left">
             <h1>Welcome Back!</h1>
         </div> 
-        <div class="col-xl-2 me-md-auto mx-xs-auto text-center" id="right">
+        <div class="col-xl-3 me-md-auto mx-xs-auto text-center" id="right">
             <div id="formdiv">
                 <h1 id="title">Login</h1>
                 <VForm @submit="login">
@@ -60,15 +60,6 @@ async function login(userData){
     </div>
 </template>
 <style scoped>
- .row{
-        position: relative;
-        top: 35%;
-    }
-    @media screen and (max-width: 1000px) {
-        .row{
-        top: 3%;
-    }
-}
     input{
         margin-top: 7px;
     }

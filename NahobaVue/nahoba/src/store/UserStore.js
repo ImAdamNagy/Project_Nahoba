@@ -4,14 +4,14 @@ import {http} from '../utils/http.mjs'
 export const useUser = defineStore('user-store',{
     state(){
         return{
-            mechanicers: []
+            seller: []
         }
     },
     actions:{
-        async getMechanicers(){
-            const response = await http.get('users');
-            this.mechanicers = response.data.data;
-        }
+        async getSeller(){
+            const response = await http.get("/users/" + datas.data.seller.userid);
+            this.seller = response.data.data;
+        },
     }
 })
 

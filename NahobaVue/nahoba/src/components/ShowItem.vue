@@ -1,26 +1,26 @@
-<script>
-export default{
-    props:{
-        data: Object,
-        seller: Object
-    }
-}
+<script setup>
+import { onMounted } from 'vue'
+import {useProduct} from '@/store/ProductStore.js'
+
+onMounted(useProduct().getProduct);
+
 </script>
 <template>
     <div class="grid-container">
-        <img :src="`/img/${this.data.product_img}`" alt="" class="image img-fluid">
-        <h1 class="grid-title">{{ data.product_name }}</h1>
+        <img :src="`/img/${useProduct().Product.product_img}`" alt="" class="image img-fluid">
+        <h1 class="grid-title">{{ useProduct().Product.product_name }}</h1>
         <div class="price">
-            <p><b>Price:</b> {{ data.product_price}}</p>
+            <p><b>Price: </b>{{ useProduct().Product.product_price}}</p>
         </div>
         <div class="seller">
-            <p><b>Seller name:</b> {{ seller.firstname }} {{ seller.lastname }}</p>
+            <p><b>Seller name: </b>{{ useProduct().Product.seller?.firstname}} {{ useProduct().Product.seller?.lastname}}</p>
+            <router-link to="/"><b>Seller Products</b></router-link>
         </div>
         <div class="location">
-            <p><b>Location:</b> {{ data.product_location }}</p>
+            <p><b>Location: </b>{{ useProduct().Product.product_location }}</p>
         </div>
         <div class="desc">
-            <p><b>Description:</b> {{ data.product_description}}</p>
+            <p><b>Description: </b>{{ useProduct().Product.product_description}}</p>
         </div>
         <div class="msg">
             <div class="btn btn-warning">Send message</div>

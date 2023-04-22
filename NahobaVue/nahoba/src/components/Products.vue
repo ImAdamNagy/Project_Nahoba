@@ -1,9 +1,8 @@
 <template>
     <div class="col-lg-8 col-md-9 col-sm-12 mt-3">
-      <div class="row">
+      <div class="row"  v-if="useProduct().EnableProducts.length > 0">
         <h2 class="grouptitle">Products</h2>
-       
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in this.allProducts">
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in useProduct().EnableProducts">
             <div class="product h-100">
               <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
                 <h5 class="title">{{item.product_name}}</h5>
@@ -11,26 +10,20 @@
                 <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>
             </div>
           </div>
-
+        </div>
+        <div class="row" v-else>
+                <h3 class="loadingmsg">Just a moment, the products are loading</h3>
         </div>
     </div>
     </template>
-<script>
-    export default{
-        props: {
-                allProducts: Array
-        },
-        emits:[
-          "details"
-      ]
-      }
-    </script>
+<script setup>
+import { useProduct } from '../store/ProductStore';
+import { onMounted } from 'vue';
+
+onMounted(useProduct().getProducts);
+</script>
     
     <style scoped>
-    #msg{
-        text-align: center;
-        color: white;
-    }
     .product{
         display: flex;
         flex-direction: column;
