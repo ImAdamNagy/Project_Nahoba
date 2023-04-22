@@ -9,7 +9,6 @@ import AdminMainPageView from '../views/AdminMainPageView.vue'
 import MainPageView from '../views/MainPageView.vue'
 import AllMechanicsPageView from '@/views/AllMechanicsPageView.vue'
 import ProfileSettingsPageView from '../views/ProfileSettingsPageView.vue'
-import ImageUploadPageView from '@/views/ImageUploadPageView.vue';
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,11 +17,6 @@ export const router = createRouter({
       path: '/',
       name: 'MainPage',
       component: MainPageView,
-    },
-    {
-      path: '/file',
-      name: 'ImageUpload',
-      component: ImageUploadPageView,
     },
     {
       path: '/productsonly',
