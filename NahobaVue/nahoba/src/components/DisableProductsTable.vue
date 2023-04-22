@@ -35,7 +35,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
+                                <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

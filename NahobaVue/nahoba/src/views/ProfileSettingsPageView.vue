@@ -3,11 +3,10 @@ import NavBar from '../components/NavBar.vue';
 import Header from '../components/Header.vue';
 import { http } from '../utils/http.mjs'
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
-import { reactive } from 'vue';
+import { onMounted } from 'vue';
 import * as yup from 'yup';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
+import {useUser} from '@/store/UserStore.js'
+import {useProduct} from '@/store/ProductStore.js'
 
 const schema = yup.object(
     {
@@ -18,26 +17,7 @@ const schema = yup.object(
         username: yup.string().min(4).max(15).required(),
     });
 
-const own = reactive({
-    data: {},
-    isLoading: true
-});
-
-async function getUserDetails() {
-    const response = await http.get('/users/' + localStorage.getItem("userid"));
-    own.data = response.data.data;
-    own.isLoading = false;
-}
-getUserDetails();
-
-async function update(updatedUser) {
-    updatedUser.id = localStorage.getItem("userid");
-    const response = await http.patch('/users/' + localStorage.getItem("userid"), updatedUser, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    });
-    alert("Changes saved");
-    router.reload({ name: "ProfileSettingsPage" });
-}
+onMounted(useUser().getUserDetails)
 </script>
 
 <template>
@@ -45,26 +25,26 @@ async function update(updatedUser) {
     <Header><h1 class="headertitle">Settings</h1></Header>
     <div class="container">
         <div class="row">
-            <div class="col" v-if="!own.isLoading">
+            <div class="col" v-if="!useUser().isLoading">
                 <div class="bg-white m-3 p-5 py-3 rounded rounded-3">
                     <h3>User information</h3>
                     <table>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;">Username:</td>
-                                <td>{{ own.data.username }}</td>
+                                <td>{{ useUser().data.username }}</td>
                             </tr>
                             <tr>
                                 <td>Name:</td>
-                                <td>{{ own.data.firstname }} {{ own.data.lastname }}</td>
+                                <td>{{ useUser().data.firstname }} {{ useUser().data.lastname }}</td>
                             </tr>
                             <tr>
                                 <td>Email:</td>
-                                <td>{{ own.data.email }}</td>
+                                <td>{{ useUser().data.email }}</td>
                             </tr>
                             <tr>
                                 <td>Tel:</td>
-                                <td>{{ own.data.tel }}</td>
+                                <td>{{ useUser().data.tel }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -83,26 +63,26 @@ async function update(updatedUser) {
                                         aria-label="Close"></button>
                                 </div>
 
-                                <VForm class="form-group" @submit="update"
+                                <VForm class="form-group" @submit="useProduct().update"
                                     :validation-schema="schema">
                                     <div class="modal-body">
-                                        <Field type="email" name="email" id="email" :value="`${own.data.email}`"
+                                        <Field type="email" name="email" id="email" :value="`${useUser().data.email}`"
                                         placeholder="Email:" class="form-control my-1" />
                                         <ErrorMessage name="email" as="div" class="alert alert-danger m-1" />
                                         <div id="name" class="d-flex flex-sm-row flex-column my-1">
                                             <Field type="text" name="firstname" id="firstname"
-                                                :value="`${own.data.firstname}`" class="form-control me-2" placeholder="Fistname:"/>
+                                                :value="`${useUser().data.firstname}`" class="form-control me-2" placeholder="Fistname:"/>
                                             <ErrorMessage name="firstname" as="div" class="alert alert-danger m-1" />
-                                            <Field type="text" name="lastname" id="lastname" :value="`${own.data.lastname}`"
+                                            <Field type="text" name="lastname" id="lastname" :value="`${useUser().data.lastname}`"
                                                 class="form-control" placeholder="Lastname:"/>
                                             <ErrorMessage name="lastname" as="div" class="alert alert-danger m-1" />
                                         </div>
 
-                                        <Field type="tel" name="tel" id="tel" :value="`${own.data.tel}`"
+                                        <Field type="tel" name="tel" id="tel" :value="`${useUser().data.tel}`"
                                             class="form-control my-1" placeholder="Tel:"/>
                                         <ErrorMessage name="tel" as="div" class="alert alert-danger m-1" />
 
-                                        <Field type="text" name="username" id="username" :value="`${own.data.username}`"
+                                        <Field type="text" name="username" id="username" :value="`${useUser().data.username}`"
                                             class="form-control my-1" placeholder="Username:"/>
                                         <ErrorMessage name="username" as="div" class="alert alert-danger m-1" />
                                     </div>

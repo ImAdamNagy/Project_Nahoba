@@ -9,6 +9,7 @@ import AdminMainPageView from '../views/AdminMainPageView.vue'
 import MainPageView from '../views/MainPageView.vue'
 import AllMechanicsPageView from '@/views/AllMechanicsPageView.vue'
 import ProfileSettingsPageView from '../views/ProfileSettingsPageView.vue'
+import OtherUserProductsView from '../views/OtherUserProductsView.vue'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +63,11 @@ export const router = createRouter({
       path: '/settings',
       name: 'ProfileSettingsPage',
       component: ProfileSettingsPageView,
+    },
+    {
+      path: '/otherUserProducts/:id',
+      name: 'OtherUserProducts',
+      component: OtherUserProductsView,
     }
   ]
 });

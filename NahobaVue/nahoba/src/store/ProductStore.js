@@ -2,8 +2,6 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
 
-
-
 export const useProduct = defineStore('product-store',{
     state(){
         return{
@@ -17,7 +15,8 @@ export const useProduct = defineStore('product-store',{
                 priceMinFilter: null,
                 priceMaxFilter: null
             },
-            Product: []
+            Product: [],
+            UserProducts: []
         }
     },
     actions:{
@@ -84,7 +83,20 @@ export const useProduct = defineStore('product-store',{
             const response = await http.get("/products/" + useRoute().params.id);
             this.Product = response.data.data;
             console.log(this.Product);
-        }
+        },
+        async update(updatedUser) {
+            updatedUser.id = localStorage.getItem("userid");
+            const response = await http.patch('/users/' + localStorage.getItem("userid"), updatedUser, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
+            alert("Changes saved");
+        },
+        async getUserProducts(){
+            const response = await http.get('/products/userproducts/' + useRoute().params.id,{
+                        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                });
+            this.UserProducts = response.data.data;
+        },
     },
     getters:{
         FilteredProducts() {

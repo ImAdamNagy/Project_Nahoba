@@ -1,17 +1,25 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
+import { useRoute } from 'vue-router'
 
 export const useUser = defineStore('user-store',{
     state(){
         return{
-            seller: []
+            data: [],
+            isLoading: true,
+            OtherUserDetails: []
         }
     },
     actions:{
-        async getSeller(){
-            const response = await http.get("/users/" + datas.data.seller.userid);
-            this.seller = response.data.data;
+        async getUserDetails() {
+            const response = await http.get('/users/' + localStorage.getItem("userid"));
+            this.data = response.data.data;
+            this.isLoading = false;
         },
+        async getOtherUser() {
+            const response = await http.get('/users/' + useRoute().params.id);
+            this.OtherUserDetails = response.data.data;
+        }
     }
 })
 

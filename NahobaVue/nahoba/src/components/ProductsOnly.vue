@@ -2,7 +2,7 @@
 <div class="row" v-if="useProduct().EnableProducts.length > 0">
           <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-3 " v-for="item in useProduct().FilteredProducts">
             <div class="product h-100">
-              <img :src="`/img/${item.product_img}`" alt="" class="img-fluid">
+              <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
                 <h5 class="title">{{item.product_name}}</h5>
                 <p class="price">{{item.product_price}} Ft</p>
                 <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>

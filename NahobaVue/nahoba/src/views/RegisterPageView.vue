@@ -45,9 +45,9 @@ const schema = yup.object(
                     <Field type="email" name="email" id="email" placeholder="email" class="form-control"/>
                     <ErrorMessage name="email" as="div" class="alert alert-danger m-1" />
                     <div id="name" class="d-flex flex-sm-row flex-column">
-                        <Field type="text" name="firstname" id="firstname" placeholder="First Name" class="form-control me-2" />
+                        <Field type="text" name="firstname" id="firstname" placeholder="firstname" class="form-control me-2" />
                         <ErrorMessage name="firstname" as="div" class="alert alert-danger m-1" />
-                        <Field type="text" name="lastname" id="lastname" placeholder="Last Name" class="form-control"  />
+                        <Field type="text" name="lastname" id="lastname" placeholder="lastname" class="form-control"  />
                         <ErrorMessage name="lastname" as="div" class="alert alert-danger m-1" />
                     </div>
                     <Field type="tel" name="tel" id="tel" placeholder="tel" class="form-control"  />
