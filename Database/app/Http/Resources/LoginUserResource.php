@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
 
-class UserResource extends JsonResource
+class LoginUserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,11 +18,7 @@ class UserResource extends JsonResource
     {
         return [
             'userid' => $this->id,
-            'username' => $this->username,
-            'email' => $this->email,
-            'firstname' => $this->firstname,
-            'lastname' => $this->lastname,
-            'tel' => $this->tel,
+            'token' => $this->createToken('auth_token')->plainTextToken,
             'role' => new RoleResource($this->Role)
         ];
     }

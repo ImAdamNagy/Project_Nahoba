@@ -17,7 +17,7 @@ const schema = yup.object(
         lastname: yup.string().min(1).required(),
         tel: yup.number().required().test("lenght","not valid",value=>value.toString().length >= 6 && value.toString().length <= 18),
         username: yup.string().min(4).max(15).required(),
-        password: yup.string().min(5).matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\\\/]).{5,}$/, "Password must contain at least 5 characters, one uppercase, one lowercase, one number and one special case character!").required(),
+        password: yup.string().min(5).matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/, "Password must contain at least 5 characters, one uppercase, one lowercase, one number and one special case character!").required(),
         password_confirmation: yup.string().oneOf([yup.ref("password")]).required(),
         role_id: yup.number().required()
     }
@@ -27,7 +27,7 @@ const schema = yup.object(
             router.push({name: 'LoginPage'});
         }
         async function getRoles(){
-            const response = await http.get("roles");
+            const response = await http.get("/roles");
             roles.data = response.data.data;
         }
         getRoles();
@@ -35,11 +35,11 @@ const schema = yup.object(
 
 <template>
     <div class="row py-5 mx-auto">
-        <div class="col-sm-5 ms-sm-auto bg-warning" id="piccol">
+        <div class="col-lg-5 ms-sm-auto bg-warning" id="piccol">
             <h1>Register now!</h1>
             <p>Start your journey at nahoba parts</p>
         </div> 
-        <div class="col-sm-4 me-sm-auto mx-xs-auto" id="formcol">
+        <div class="col-lg-4 me-sm-auto mx-xs-auto" id="formcol">
             <div id="formdiv">
                 <VForm @submit="registerUser" class="form-group" :validation-schema="schema">
                     <Field type="email" name="email" id="email" placeholder="email" class="form-control"/>
@@ -81,15 +81,6 @@ const schema = yup.object(
     </div>
 </template>
 <style scoped>
-    .row{
-        position: relative;
-        top: 35%;
-    }
-    @media screen and (max-width: 575px) {
-        .row{
-        top: 3%;
-    }
-    }
     input{
         margin-top: 7px;
     }
@@ -108,11 +99,13 @@ const schema = yup.object(
         background-size: cover;
         padding-top: 15%;
         border-start-start-radius: 30px;
-
     }
     h1,p{
         color: white;
         text-align: center;
+    }
+    .row{
+        width: 80%;
     }
 </style>
 

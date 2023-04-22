@@ -1,33 +1,20 @@
 <template>
 <NavBar />
-<Header><h1 class="headertitle">{{ datas.data.product_name }} </h1></Header>
+<Header><h1 class="headertitle">{{ useProduct().Product.product_name }} </h1></Header>
 <div class="container">
-    <ShowItem :data="datas.data" :seller="datas.seller" />
+    <ShowItem  />
 </div>
 </template>
 
 <script setup>
 import ShowItem from '../components/ShowItem.vue'
 import NavBar from '../components/NavBar.vue'
-import {http} from '../utils/http.mjs'
 import Header from '../components/Header.vue'
-import { reactive, onMounted } from 'vue'
+import { onMounted } from 'vue'
 
-const datas = reactive({
-        data: {},
-        seller: {}
-})
-            
-async function getSeller(){
-    const response = await http.get("/users/" + datas.data.seller.userid);
-    datas.seller = response.data.data;
-}
-async function getItem(){
-        const response = await http.get("/products/" + localStorage.getItem("productId"));
-        datas.data = response.data.data;
-        getSeller();
-}
-onMounted(getItem);
+import {useProduct} from '@/store/ProductStore.js'
+
+onMounted(useProduct().getProduct);
 
 </script>
 <style scoped>

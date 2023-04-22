@@ -41,10 +41,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        $data = Role::findorfail($id);
-        return new RoleResource($data);
+        return new RoleResource($role);
     }
 
     /**

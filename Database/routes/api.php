@@ -31,18 +31,19 @@ Route::prefix("users")->group(function (){
     });
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/logout', [UserController::class, 'logout']);
-});
 
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::post('/register',[UserController::class,'store']);
 
 
-Route::get('/roles', [RoleController::class, 'indexwithoutadmin']);
-Route::get('/role/{id}', [RoleController::class, 'show']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/logout', [UserController::class, 'logout']);
+});
 
-
+Route::prefix("roles")->group(function (){
+    Route::get('/', [RoleController::class, 'indexwithoutadmin']);
+    Route::get('/{role}', [RoleController::class, 'show'])->whereNumber("role");
+});
 
 
 Route::prefix("products")->group(function (){

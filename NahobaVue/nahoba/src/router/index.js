@@ -50,7 +50,7 @@ export const router = createRouter({
       component: LoginPageView,
     },
     {
-      path: '/details',
+      path: '/details/:id',
       name: 'ProductDetails',
       component: ShowProductView
     },

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\LoginUserResource;
 use App\Http\Resources\SignUpResource;
 use App\Models\User;
 use App\Http\Requests\SignUpUserRequest;
@@ -19,7 +20,7 @@ class UserController extends Controller
         $data = $request->validated();
         if(Auth::attempt($data)){
             if($request->wantsJson()){
-                return response()->json(["data"=> new UserResource(Auth::user())],200);
+                return response()->json(["data"=> new LoginUserResource(Auth::user())],200);
             }
         }
         else{
@@ -28,9 +29,9 @@ class UserController extends Controller
             }
         }
     }
-    public function logout(Request $request)
+    public function logout()
     {
-        Auth::logout();
+        Auth::user()->tokens()->delete();
     }
 
     /**
