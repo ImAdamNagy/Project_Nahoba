@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
+import { router } from '@/router/index.js';
 
 export const useProduct = defineStore('product-store',{
     state(){
@@ -20,6 +21,29 @@ export const useProduct = defineStore('product-store',{
         }
     },
     actions:{
+        async createProduct(newproduct){
+            console.log(newproduct);
+            const formdata = new FormData();
+            for(const item in newproduct)
+            {
+                formdata.append(item, newproduct[item]);
+            }
+            formdata.append('img', newproduct.product_img);
+            const response = await http.post('/products', formdata,{
+                        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                });
+            alert("Upload was successfull");
+            router.push({name: "MainPage"});
+        },
+        async updateProduct(updatedproduct) {
+            console.log(updatedproduct);
+            updatedproduct.product_enable = 0;
+            const response = await http.patch('/products/' + updatedproduct.id, updatedproduct, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
+            alert("Your changes has been sent to the admin for validation. You may close this window.")
+            router.push({ name: "UserProfile" });
+        },
         async GetDisabledProducts() {
             const response = await http.get("/products/disable", {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }

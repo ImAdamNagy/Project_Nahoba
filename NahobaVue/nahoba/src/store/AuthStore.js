@@ -29,6 +29,7 @@ export const useAuth = defineStore('auth-store',
         });
             localStorage.clear();
             this.token = '';
+            alert("Logout was succesfull");
             router.push({name:'MainPage'});
         },
         async getRole(id){

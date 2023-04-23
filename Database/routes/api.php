@@ -50,8 +50,8 @@ Route::prefix("products")->group(function (){
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/{product}', [ProductController::class, 'show'])->whereNumber("product");
     Route::get('/enable', [ProductController::class, 'enable']);
+    Route::get('/userproducts/{id}', [ProductController::class, 'userproducts'])->whereNumber("id");
     Route::middleware('auth:sanctum')->group(function () {
-        Route::get('/userproducts/{id}', [ProductController::class, 'userproducts'])->whereNumber("id");
         Route::post('/', [ProductController::class, 'store']);
         Route::delete('/{product}', [ProductController::class, 'destroy'])->whereNumber("product");
         Route::patch('/{product}', [ProductController::class, 'update'])->whereNumber("product");
