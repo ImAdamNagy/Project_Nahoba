@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\MechaniResource;
 use App\Models\Mechanic;
 use App\Http\Requests\MechanicRequest;
+use Illuminate\Support\Facades\Auth;
 class MechanicController extends Controller
 {
 
@@ -29,6 +30,7 @@ class MechanicController extends Controller
     public function store(MechanicRequest $request)
     {
         $newmechanic = new Mechanic($request->validated());
+        $newmechanic->user_id=Auth::id();
         $newmechanic->save();
         return new MechanicResource($newmechanic);
     }

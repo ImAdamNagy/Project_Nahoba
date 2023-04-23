@@ -10,7 +10,7 @@ import MainPageView from '../views/MainPageView.vue'
 import AllMechanicsPageView from '@/views/AllMechanicsPageView.vue'
 import ProfileSettingsPageView from '../views/ProfileSettingsPageView.vue'
 import OtherUserProductsView from '../views/OtherUserProductsView.vue'
-
+import MechanicFormPageView from '../views/MechanicFormPageView.vue'
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -68,6 +68,11 @@ export const router = createRouter({
       path: '/otherUserProducts/:id',
       name: 'OtherUserProducts',
       component: OtherUserProductsView,
+    },
+    {
+      path: '/mechanicregister',
+      name: 'MechanicFormPage',
+      component: MechanicFormPageView,
     }
   ]
 });

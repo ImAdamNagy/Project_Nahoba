@@ -30,6 +30,9 @@ const schema = yup.object(
             const response = await http.get("/roles");
             roles.data = response.data.data;
         }
+        async function onChange(event){
+            this.animal_type = event.target.value;
+        }
         getRoles();
 </script>
 
@@ -59,11 +62,12 @@ const schema = yup.object(
                     <Field type="password" name="password_confirmation" id="password_confirmation" placeholder="confirm password" class="form-control"/>
                     <ErrorMessage name="password_confirmation" as="alert" class="alert alert-danger m-1" />
 
-                    <Field name="role_id" id="role" class="form-control" as="select">
+                    <Field name="role_id" id="role" class="form-control" as="select" @change="onChange($event)">
                     <option value="" disabled selected hidden>Select your role</option>
                     <option  v-for="item in roles.data" :value="item.id">
                         {{ item.role_name }}
                     </option>
+
                     </Field>
                     <ErrorMessage name="role_id" as="alert" class="alert alert-danger m-1" />
                     <div class="d-flex flex-column flex-md-row justify-content-between">
