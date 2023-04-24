@@ -1,6 +1,7 @@
 <script setup>
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import {useProduct} from '@/store/ProductStore.js'
+import {useUser} from '@/store/UserStore.js'
 import { onMounted } from "vue";
 import * as yup from 'yup';
 
@@ -12,26 +13,22 @@ const schema = yup.object(
         product_location: yup.string('Your location format is not correct! Try this format: `city, district`').min(8,).max(120, 'Your location must not be greater than 120 characters!').required('You must give a location from where you are advertising your product!'),
         product_img: yup.string().min(4).required('You must select at least one image for your product!')
     });
-const props = defineProps({
-    user: Object
-});
 
 onMounted(useProduct().getOwnProducts);
-const emits = defineEmits(["update", "getCurrentItemIdAndTypeId"]);
+onMounted(useUser().getUserDetails);
 
 </script>
 <template>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-if="useProduct().OwnProducts.length > 0">
+    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3">
         <div class="col-12">
             <h1>
-                {{ props.user.firstname }} {{ props.user.lastname }}
+                {{ useUser().data.firstname }} {{ useUser().data.lastname }}
             </h1>
-            <p><b>Email address:</b> {{ props.user.email }}</p>
-            <p><b>Phone number:</b> {{ props.user.tel }}</p>
-            <p><b>Username:</b> {{ props.user.username }}</p>
-        </div>
-        <div class="title_lines">Your products</div>
-        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts">
+            <p><b>Email address:</b> {{ useUser().data.email }}</p>
+            <p><b>Phone number:</b> {{ useUser().data.tel }}</p>
+            <p><b>Username:</b> {{ useUser().data.username }}</p>
+            <div class="title_lines">Your products</div>
+        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-if="useProduct().OwnProducts.length > 0" v-for="item in useProduct().OwnProducts">
             <div class="product h-100">
                 <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
                 <div class="row data">
@@ -52,7 +49,8 @@ const emits = defineEmits(["update", "getCurrentItemIdAndTypeId"]);
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <VForm @submit="(updatedproduct) => $emit('update', updatedproduct)" :validation-schema="schema">
+                                        <VForm @submit="useProduct().updateProduct" :validation-schema="schema">
+                                            <Field type="hidden" id="id" name="id" :value="`${item.id}`" />
                                             <div class="mb-3">
                                                 <label for="product_name" class="form-label">Product name</label>
                                                 <Field type="text" name="product_name" id="product_name"
@@ -92,7 +90,7 @@ const emits = defineEmits(["update", "getCurrentItemIdAndTypeId"]);
                                                 <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />
                                             </div>
                                             <button type="submit" class="btn btn-primary"
-                                                @click="$emit('getCurrentItemIdAndTypeId', item.id, item.type.id)" data-dismiss="modal">Update</button>
+                                                data-dismiss="modal">Update</button>
                                         </VForm>
                                     </div>
                                     <div class="modal-footer">
@@ -106,10 +104,16 @@ const emits = defineEmits(["update", "getCurrentItemIdAndTypeId"]);
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
-        <div class="col-12">
-            <h3 id="loadingmsg">Just a moment, we are loading your profile</h3>
+        <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else-if="useProduct().OwnProducts.length == 0">
+            <div class="col-12">
+                <h3 id="loadingmsg">You don't have any products yet</h3>
+            </div>
+        </div>
+        <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
+            <div class="col-12">
+                <h3 id="loadingmsg">You products are loading</h3>
+            </div>
+        </div>
         </div>
     </div>
 </template>

@@ -30,9 +30,6 @@ const schema = yup.object(
             const response = await http.get("/roles");
             roles.data = response.data.data;
         }
-        async function onChange(event){
-            this.animal_type = event.target.value;
-        }
         getRoles();
 </script>
 
@@ -62,7 +59,7 @@ const schema = yup.object(
                     <Field type="password" name="password_confirmation" id="password_confirmation" placeholder="confirm password" class="form-control"/>
                     <ErrorMessage name="password_confirmation" as="alert" class="alert alert-danger m-1" />
 
-                    <Field name="role_id" id="role" class="form-control" as="select" @change="onChange($event)">
+                    <Field name="role_id" id="role" class="form-control" as="select">
                     <option value="" disabled selected hidden>Select your role</option>
                     <option  v-for="item in roles.data" :value="item.id">
                         {{ item.role_name }}
@@ -73,6 +70,7 @@ const schema = yup.object(
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <button class="btn btn-secondary my-md-3 my-2 rounded-pill" type="submit">Register</button>
                         <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/login">Go to Login</Router-link>
+                        <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/">Back to mainpage</Router-link>
                     </div>
                 </VForm>
             </div>
@@ -98,7 +96,7 @@ const schema = yup.object(
     }
     #piccol{
         box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
-        background-image: url(../img/porsche.jpg);
+        background-image: url(http://localhost:8881/images/porsche.jpg);
         background-position: center;
         background-size: cover;
         padding-top: 15%;

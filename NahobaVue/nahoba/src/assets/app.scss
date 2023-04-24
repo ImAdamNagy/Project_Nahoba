@@ -1,6 +1,9 @@
 #app {
   height: 100%;
 }
+.scroll{
+  height: 30em;
+}
 body,
 html {
   padding: 0;
@@ -25,7 +28,7 @@ html {
   margin: 10px;
 }
 #header {
-  background-image: url(/img/porsche.jpg);
+  background-image: url(http://localhost:8881/images/porsche.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

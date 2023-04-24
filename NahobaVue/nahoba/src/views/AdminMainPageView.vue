@@ -1,5 +1,4 @@
 <template>
-    <AdminNavBar />
         <Header><h1 class="headertitle">Admin Mainpage</h1></Header>
     <div class="container">
         <DisableProductsTable />
@@ -7,6 +6,5 @@
 </template>
 <script setup>
 import Header from '../components/Header.vue';
-import AdminNavBar from '../components/AdminNavBar.vue';
 import DisableProductsTable from '../components/DisableProductsTable.vue';
 </script>

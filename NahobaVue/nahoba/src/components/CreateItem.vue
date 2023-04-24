@@ -7,7 +7,7 @@
 <div class="row mx-auto">
         <div class="col-xl-5 text-center" id="second">
             <div id="formdiv">
-        <VForm @submit="(newproduct) => $emit('createProduct', newproduct)" :validation-schema="schema">
+        <VForm @submit="useProduct().createProduct" :validation-schema="schema">
                 <label for="product_name" class="form-label">Product Name</label>
                 <Field type="text" name="product_name" id="product_name" placeholder="Enter product name" class="form-control" rule="required"/>
                 <ErrorMessage name="product_name" as="div" class="alert alert-danger m-1" />
@@ -32,11 +32,7 @@
                 <label for="product_location" class="form-label">Location</label>
                 <Field type="text" name="product_location" id="product_location" placeholder="Enter product location" class="form-control"/>
                 <ErrorMessage name="product_location" as="div" class="alert alert-danger m-1" />
-
-                <!--<label for="product_img" class="form-label">Image</label>
-                <Field type="text" name="product_img" id="product_img" placeholder="Enter product image" class="form-control"/>
-                <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />-->
-
+                
                 <label for="product_img" class="form-label">Upload image</label>
                 <br>
                 <Field type="file" name="product_img" id="product_img" @change="$emit('onChange', $event)" />
@@ -53,6 +49,9 @@ import {Form as VForm, Field, ErrorMessage} from "vee-validate";
 import { onMounted } from "vue";
 import * as yup from 'yup';
 import {useType} from '@/store/TypeStore.js'
+import {useProduct} from '@/store/ProductStore.js'
+
+
 
 const schema = yup.object(
     {
@@ -63,7 +62,7 @@ const schema = yup.object(
         product_img: yup.string().max(1536).required('You must select at least one image for your product!')
     })
 
-const emits = defineEmits(["createProduct", "onChange", "submit"]);
+const emits = defineEmits(["onChange"]);
 
 onMounted(useType().allTypes);
 
@@ -92,7 +91,7 @@ onMounted(useType().allTypes);
     }
     #first{
         box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
-        background-image: url(../img/porsche.jpg);
+        background-image: url(http://localhost:8881/images/porsche.jpg);
         background-position: center;
         background-size: cover;
         padding-top: 15%;
