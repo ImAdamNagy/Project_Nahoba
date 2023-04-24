@@ -69,6 +69,7 @@ const schema = yup.object(
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <button class="btn btn-secondary my-md-3 my-2 rounded-pill" type="submit">Register</button>
                         <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/login">Go to Login</Router-link>
+                        <Router-link class="btn btn-secondary my-md-3 my-1 rounded-pill" to="/">Back to mainpage</Router-link>
                     </div>
                 </VForm>
             </div>

@@ -1,7 +1,9 @@
 <template>
-  <div class="col-lg-4 col-md-3 col-sm-12 mechanics mt-3">
-    <div class="row"  v-if="useProduct().EnableProducts.length > 0">
-      <h2 class="grouptitle">Products</h2>
+
+  <div class="col-lg-4 col-md-3 col-sm-12 mechanics mt-3 ">
+    <div class="row">
+      
+      <h2 class="grouptitle">Mechanics</h2>
         <div class="col-12 mt-3" v-for="item in useProduct().EnableProducts">
           <div class="product h-100">
             <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
@@ -10,20 +12,17 @@
               <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>
           </div>
         </div>
-      </div>
-      <div class="row" v-else>
-              <h3 class="loadingmsg">Just a moment, the products are loading</h3>
-      </div>
+       </div>
   </div>
-  </template>
+</template>
 <script setup>
-import { useProduct } from '../store/ProductStore';
+import { useProduct } from '../store/ProductStore.js';
 import { onMounted } from 'vue';
 
 onMounted(useProduct().getProducts);
 </script>
   
-  <style scoped>
+<style scoped>
   .product{
       display: flex;
       flex-direction: column;
