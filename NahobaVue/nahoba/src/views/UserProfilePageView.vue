@@ -7,7 +7,7 @@ import Header from '../components/Header.vue';
 <template>
     <NavBar />
     <Header><h1 class="headertitle">Your Profile</h1></Header>
-    <div class="container-fluid">
+    <div class="container">
             <UserProfile  />
     </div>
 </template>
