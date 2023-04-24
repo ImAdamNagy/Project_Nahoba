@@ -29,11 +29,12 @@ export const useAuth = defineStore('auth-store',
         });
             localStorage.clear();
             this.token = '';
+            this.userid = '';
             alert("Logout was succesfull");
             router.push({name:'MainPage'});
         },
-        async getRole(id){
-            return (await http.get("/users/" + id,{
+        async getRole(){
+            return (await http.get("/users/" + this.userid,{
                 headers: { Authorization: `Bearer ${this.token}`}
         })).data.data.role.role_name;
         }

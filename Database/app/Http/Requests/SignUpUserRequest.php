@@ -34,4 +34,4 @@ class SignUpUserRequest extends FormRequest
         ];
     }
 }
-/*(?=.*?[?!@$%^&*-\\\/])*/
+

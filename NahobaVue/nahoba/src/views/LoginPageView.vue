@@ -13,7 +13,7 @@ async function login(userData){
     try {
         await useAuth().login(userData);
         let name;
-        switch(await useAuth().getRole(localStorage.userid)){
+        switch(await useAuth().getRole()){
             case "admin": name = 'AdminMainPage';
             break;
             case "seller": name = 'MainPage';
