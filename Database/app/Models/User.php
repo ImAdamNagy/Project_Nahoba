@@ -58,6 +58,6 @@ class User extends Authenticatable
         return $this->hasMany(Chat::class,"to","id");
     }
     public function Mechanic(){
-        return $this->belongsTo(Mechanic::class,"user_id","id");
+        return $this->hasOne(Mechanic::class,"user_id","id");
     }
 }

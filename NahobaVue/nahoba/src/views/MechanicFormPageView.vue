@@ -1,9 +1,9 @@
 <script setup>
-import MechaincRegister from '../components/MechaincRegister.vue';
+import MechanicRegister from '../components/MechanicRegister.vue';
 </script>
 <template>
     <div class="container-fluid">
-        <MechaincRegister />
+        <MechanicRegister />
     </div>
 </template>
 <style scoped>

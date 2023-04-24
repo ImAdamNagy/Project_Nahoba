@@ -14,6 +14,6 @@ class Mechanic extends Model
     protected $fillable=["introduction","country","postal_code","city","address","profile_pic","user_id","profession"];
 
     public function User(){
-        return $this->hasOne(User::class,"user_id","id");
+        return $this->belongsTo(User::class,"user_id","id");
     }
 }

@@ -29,9 +29,8 @@ class MechanicRequest extends FormRequest
             'postal_code'=> ["required","numeric"],
             'city'=> ["required","min:3","max:100"],
             'address'=> ["required","min:3","max:150"],
-            'profile_pic'=> ["required","min:3","max:30"],
-            'profession'=> ["required","min:3","max:30"],
-            'user_id'=>["required"]
+            'profile_pic'=> ["required","max:1536"],
+            'profession'=> ["required","min:3","max:30"]
         ];
     }
 }

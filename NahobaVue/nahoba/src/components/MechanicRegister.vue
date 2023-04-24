@@ -6,6 +6,9 @@ import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
 
 const router = useRouter();
+const file = reactive({
+    image: null
+});
 
 const schema = yup.object(
     {
@@ -14,7 +17,7 @@ const schema = yup.object(
         postal_code: yup.number().required(),
         city: yup.string().min(3).max(100).required(),
         address: yup.string().min(3).max(150).required(),
-        profile_pic: yup.string().min(3).max(30).required(),
+        profile_pic: yup.string().max(1536).required(),
         profession: yup.string().min(3).max(30).required(),
     });
 
@@ -30,18 +33,13 @@ async function addMechanic(newMec){
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
     alert("Upload was successfull");
-    router.push({name: "MainPage"});
+    router.push({name: "MainPage"}); 
 }
-
-const file = reactive({
-    image: null
-});
 
 async function onChange(item){
             console.log("selected file", item);
             file.image = item.target.files[0];
 }
-addMechanic();
 
 </script>
 <template>
@@ -79,7 +77,7 @@ addMechanic();
 
                     <label for="profile_pic" class="form-label">Upload image</label>
                     <br>
-                    <Field type="file" name="profile_pic" id="profile_pic" @change="onChange($item)" />
+                    <Field type="file" name="profile_pic" id="profile_pic" @change="onChange($event)" />
                     <ErrorMessage name="profile_pic" as="div" class="alert alert-danger m-1" />
                     <input class="btn-warning btn form-control mt-3" type="submit" value="Register" />
                 </VForm>
