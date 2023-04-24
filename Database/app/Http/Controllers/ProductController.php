@@ -83,6 +83,7 @@ class ProductController extends Controller
         $product->save();
         return new ProductResource($product);
     }
+    
     public function updateEnable(EnableRequest $request, Product $product)
     {
         $product->update($request->validated());

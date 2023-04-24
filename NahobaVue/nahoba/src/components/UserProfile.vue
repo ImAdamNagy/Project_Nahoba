@@ -1,10 +1,10 @@
+
 <script setup>
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import {useProduct} from '@/store/ProductStore.js'
 import {useUser} from '@/store/UserStore.js'
 import { onMounted } from "vue";
 import * as yup from 'yup';
-
 const schema = yup.object(
     {
         product_name: yup.string('The given name is not a text!').min(5, 'The given name must be at elast 5 characters long!').required('The products name is required!'),
@@ -13,13 +13,11 @@ const schema = yup.object(
         product_location: yup.string('Your location format is not correct! Try this format: `city, district`').min(8,).max(120, 'Your location must not be greater than 120 characters!').required('You must give a location from where you are advertising your product!'),
         product_img: yup.string().min(4).required('You must select at least one image for your product!')
     });
-
 onMounted(useProduct().getOwnProducts);
 onMounted(useUser().getUserDetails);
-
 </script>
 <template>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3">
+    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-if="!useProduct().UserProductsisLoading && !useUser().UserDataisLoading">
         <div class="col-12">
             <h1>
                 {{ useUser().data.firstname }} {{ useUser().data.lastname }}
@@ -27,8 +25,9 @@ onMounted(useUser().getUserDetails);
             <p><b>Email address:</b> {{ useUser().data.email }}</p>
             <p><b>Phone number:</b> {{ useUser().data.tel }}</p>
             <p><b>Username:</b> {{ useUser().data.username }}</p>
-            <div class="title_lines">Your products</div>
-        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-if="useProduct().OwnProducts.length > 0" v-for="item in useProduct().OwnProducts">
+        </div>
+        <div class="title_lines">Your products</div>
+        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" v-if="useProduct().OwnProducts.length > 0">
             <div class="product h-100">
                 <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
                 <div class="row data">
@@ -48,8 +47,8 @@ onMounted(useUser().getUserDetails);
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
+                                    <VForm @submit="useProduct().updateProduct" :validation-schema="schema">
                                     <div class="modal-body">
-                                        <VForm @submit="useProduct().updateProduct" :validation-schema="schema">
                                             <Field type="hidden" id="id" name="id" :value="`${item.id}`" />
                                             <div class="mb-3">
                                                 <label for="product_name" class="form-label">Product name</label>
@@ -89,14 +88,15 @@ onMounted(useUser().getUserDetails);
                                                     :value="`${item.product_img}`" />
                                                 <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />
                                             </div>
-                                            <button type="submit" class="btn btn-primary"
-                                                data-dismiss="modal">Update</button>
-                                        </VForm>
+                                            
+                                        
                                     </div>
                                     <div class="modal-footer">
+                                        <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Update</button>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
                                     </div>
+                                </VForm>
                                 </div>
                             </div>
                         </div>
@@ -104,16 +104,15 @@ onMounted(useUser().getUserDetails);
                 </div>
             </div>
         </div>
-        <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else-if="useProduct().OwnProducts.length == 0">
-            <div class="col-12">
-                <h3 id="loadingmsg">You don't have any products yet</h3>
-            </div>
-        </div>
         <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
-            <div class="col-12">
-                <h3 id="loadingmsg">You products are loading</h3>
-            </div>
+                <div class="col-12">
+                    <h3 id="loadingmsg">You don't have any products yet</h3>
+                </div>
         </div>
+    </div>
+    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
+        <div class="col-12">
+            <h3 id="loadingmsg">Just a moment, we are loading your profile</h3>
         </div>
     </div>
 </template>
@@ -127,11 +126,9 @@ onMounted(useUser().getUserDetails);
     color: black;
     font-family: arial;
 }
-
 #msg {
     text-align: center;
 }
-
 .title_lines:before,
 .title_lines:after {
     position: absolute;
@@ -143,34 +140,27 @@ onMounted(useUser().getUserDetails);
     background-color: red;
     margin-left: 2%;
 }
-
 .title_lines:before {
     margin-left: -50%;
     text-align: right;
 }
-
 img {
     max-width: 100%;
 }
-
 .row {
     background-color: #ffffff;
 }
-
 @media screen and (min-width: 992px) {
     .row {
         max-width: 75%;
     }
 }
-
 .data {
     background-color: white;
 }
-
 .line {
     border: 5px solid black;
 }
-
 .product {
     display: flex;
     flex-direction: column;
@@ -181,11 +171,9 @@ img {
     border-radius: 20px 0px 20px 0px;
     border: 2px red solid;
 }
-
 .col {
     margin-top: 10px;
 }
-
 img {
     width: 100%;
     border-radius: 20px 0px 20px 0px;

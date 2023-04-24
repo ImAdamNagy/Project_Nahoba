@@ -4,6 +4,8 @@ import {Form as VForm, Field, ErrorMessage} from "vee-validate";
 import { reactive } from 'vue';
 import * as yup from 'yup';
 import { useRouter } from 'vue-router';
+import { onMounted } from 'vue';
+import { useRole } from '../store/RoleStore.js';
 
 const router = useRouter();
 const roles = reactive({
@@ -22,15 +24,12 @@ const schema = yup.object(
         role_id: yup.number().required()
     }
 )
-        async function registerUser(newUser){
-            const response = await http.post('register', newUser);
-            router.push({name: 'LoginPage'});
-        }
-        async function getRoles(){
-            const response = await http.get("/roles");
-            roles.data = response.data.data;
-        }
-        getRoles();
+async function registerUser(newUser){
+    const response = await http.post('register', newUser);
+    router.push({name: 'LoginPage'});
+}
+onMounted(useRole().getRoles)
+
 </script>
 
 <template>
@@ -61,7 +60,7 @@ const schema = yup.object(
 
                     <Field name="role_id" id="role" class="form-control" as="select">
                     <option value="" disabled selected hidden>Select your role</option>
-                    <option  v-for="item in roles.data" :value="item.id">
+                    <option  v-for="item in useRole().roles" :value="item.id">
                         {{ item.role_name }}
                     </option>
 

@@ -66,7 +66,6 @@ Route::prefix("types")->group(function (){
     Route::get('/{type}', [TypeController::class, 'show'])->whereNumber("type");
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [TypeController::class, 'store']);
-        Route::put('/{type}', [TypeController::class, 'update'])->whereNumber("type");
         Route::delete('/{type}', [TypeController::class, 'destroy'])->whereNumber("type");
     });
 });

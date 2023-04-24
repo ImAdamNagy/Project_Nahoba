@@ -45,20 +45,6 @@ class TypeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(TypeRequest $request, Type $type)
-    {
-        $type->update($request->validated());
-        $type->save();
-        return new TypeResource($type);
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

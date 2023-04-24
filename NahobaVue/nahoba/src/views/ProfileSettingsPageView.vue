@@ -6,7 +6,6 @@ import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import { onMounted } from 'vue';
 import * as yup from 'yup';
 import {useUser} from '@/store/UserStore.js'
-import {useProduct} from '@/store/ProductStore.js'
 
 const schema = yup.object(
     {
@@ -25,8 +24,8 @@ onMounted(useUser().getUserDetails)
     <Header><h1 class="headertitle">Settings</h1></Header>
     <div class="container">
         <div class="row">
-            <div class="col" v-if="!useUser().isLoading">
-                <div class="bg-white m-3 p-5 py-3 rounded rounded-3">
+            <div class="col" v-if="!useUser().UserDataisLoading">
+                <div class="bg-white mt-3 p-5 py-3 rounded rounded-3">
                     <h3>User information</h3>
                     <table>
                         <tbody>
@@ -59,11 +58,11 @@ onMounted(useUser().getUserDetails)
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">Edit your profile</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    <button type="button" class="btn-close"  data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
 
-                                <VForm class="form-group" @submit="useProduct().update"
+                                <VForm class="form-group" @submit="useUser().update" 
                                     :validation-schema="schema">
                                     <div class="modal-body">
                                         <Field type="email" name="email" id="email" :value="`${useUser().data.email}`"
@@ -87,7 +86,7 @@ onMounted(useUser().getUserDetails)
                                         <ErrorMessage name="username" as="div" class="alert alert-danger m-1" />
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button data-bs-dismiss="modal" type="submit" class="btn btn-primary" >Save changes</button>
                                     </div>
                                 </VForm>
                             </div>
@@ -95,7 +94,7 @@ onMounted(useUser().getUserDetails)
                     </div>
                 </div>
             </div>
-            <div class="col-12" v-else>
+            <div class="col-12 mt-3" v-else>
                 <h3 class="loadingmsg">Just a moment, your settings is loading</h3>
             </div>
         </div>

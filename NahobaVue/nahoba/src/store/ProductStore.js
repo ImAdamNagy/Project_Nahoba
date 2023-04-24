@@ -17,7 +17,8 @@ export const useProduct = defineStore('product-store',{
                 priceMaxFilter: null
             },
             Product: [],
-            UserProducts: []
+            UserProducts: [],
+            UserProductsisLoading: true
         }
     },
     actions:{
@@ -36,13 +37,12 @@ export const useProduct = defineStore('product-store',{
             router.push({name: "MainPage"});
         },
         async updateProduct(updatedproduct) {
-            console.log(updatedproduct);
             updatedproduct.product_enable = 0;
+            this.UserProductsisLoading = true;
             const response = await http.patch('/products/' + updatedproduct.id, updatedproduct, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
-            alert("Your changes has been sent to the admin for validation. You may close this window.")
-            router.push({ name: "UserProfile" });
+            this.getOwnProducts();
         },
         async GetDisabledProducts() {
             const response = await http.get("/products/disable", {
@@ -69,6 +69,7 @@ export const useProduct = defineStore('product-store',{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
             this.OwnProducts = response.data.data;
+            this.UserProductsisLoading = false;
         },
         filterByType(product){
             if (this.filters.typesFilter == 0) {
@@ -107,13 +108,6 @@ export const useProduct = defineStore('product-store',{
             const response = await http.get("/products/" + useRoute().params.id);
             this.Product = response.data.data;
             console.log(this.Product);
-        },
-        async update(updatedUser) {
-            updatedUser.id = localStorage.getItem("userid");
-            const response = await http.patch('/users/' + localStorage.getItem("userid"), updatedUser, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
-            alert("Changes saved");
         },
         async getUserProducts(){
             const response = await http.get('/products/userproducts/' + useRoute().params.id,{
