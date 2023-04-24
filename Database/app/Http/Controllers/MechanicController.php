@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\MechaniResource;
+use App\Http\Resources\MechanicResource;
 use App\Models\Mechanic;
 use App\Http\Requests\MechanicRequest;
+use Illuminate\Support\Facades\Auth;
 class MechanicController extends Controller
 {
 
@@ -28,7 +29,12 @@ class MechanicController extends Controller
      */
     public function store(MechanicRequest $request)
     {
+        $file = $request->file('img');
+        $file_name = $file->getClientOriginalName();
+        $file->move(public_path('images'), $file_name);
+
         $newmechanic = new Mechanic($request->validated());
+        $newmechanic->user_id=Auth::id();
         $newmechanic->save();
         return new MechanicResource($newmechanic);
     }

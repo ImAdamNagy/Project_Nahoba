@@ -64,6 +64,7 @@ const schema = yup.object(
                     <option  v-for="item in roles.data" :value="item.id">
                         {{ item.role_name }}
                     </option>
+
                     </Field>
                     <ErrorMessage name="role_id" as="alert" class="alert alert-danger m-1" />
                     <div class="d-flex flex-column flex-md-row justify-content-between">

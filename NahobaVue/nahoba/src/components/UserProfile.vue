@@ -19,7 +19,7 @@ onMounted(useUser().getUserDetails);
 
 </script>
 <template>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-if="useProduct().OwnProducts.length > 0">
+    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3">
         <div class="col-12">
             <h1>
                 {{ useUser().data.firstname }} {{ useUser().data.lastname }}
@@ -27,9 +27,8 @@ onMounted(useUser().getUserDetails);
             <p><b>Email address:</b> {{ useUser().data.email }}</p>
             <p><b>Phone number:</b> {{ useUser().data.tel }}</p>
             <p><b>Username:</b> {{ useUser().data.username }}</p>
-        </div>
-        <div class="title_lines">Your products</div>
-        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts">
+            <div class="title_lines">Your products</div>
+        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-if="useProduct().OwnProducts.length > 0" v-for="item in useProduct().OwnProducts">
             <div class="product h-100">
                 <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
                 <div class="row data">
@@ -105,10 +104,16 @@ onMounted(useUser().getUserDetails);
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
-        <div class="col-12">
-            <h3 id="loadingmsg">Just a moment, we are loading your profile</h3>
+        <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else-if="useProduct().OwnProducts.length == 0">
+            <div class="col-12">
+                <h3 id="loadingmsg">You don't have any products yet</h3>
+            </div>
+        </div>
+        <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
+            <div class="col-12">
+                <h3 id="loadingmsg">You products are loading</h3>
+            </div>
+        </div>
         </div>
     </div>
 </template>

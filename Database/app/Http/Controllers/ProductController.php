@@ -67,7 +67,7 @@ class ProductController extends Controller
     }
 
     public function userproducts($id){
-        $data = Product::where('seller_id', $id)->get();
+        $data = Product::where('seller_id', $id)->where("product_enable", true)->get();
         return ProductResource::collection($data);
     }
     /**
