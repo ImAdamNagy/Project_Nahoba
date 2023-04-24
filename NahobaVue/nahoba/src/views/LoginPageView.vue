@@ -4,7 +4,6 @@ import {useAuth} from '@/store/AuthStore.js'
 import {useRouter} from "vue-router";
 import {Form as VForm, Field, ErrorMessage} from "vee-validate";
 
-
 const router = useRouter();
 
 const error = ref(null);
@@ -14,11 +13,15 @@ async function login(userData){
         await useAuth().login(userData);
         let name;
         switch(await useAuth().getRole()){
-            case "admin": name = 'AdminMainPage';
+            case "admin": 
+            name = 'AdminMainPage'
+            useAuth().isAdmin = true;
             break;
-            case "seller": name = 'MainPage';
+            case "seller": name = 'MainPage'
+            useAuth().isAdmin = false;
             break;
-            case "mechanic": name = 'MainPage';
+            case "mechanic": name = 'MainPage'
+            useAuth().isAdmin = false;
             break;
         }
         router.push({name:name});

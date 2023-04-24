@@ -8,7 +8,8 @@ export const useAuth = defineStore('auth-store',
     state(){
         return{
             token: localStorage.getItem('token') ?? '',
-            userid: localStorage.getItem('userid') ?? ''
+            userid: localStorage.getItem('userid') ?? '',
+            isAdmin: false
         }
     },
     actions:{
@@ -30,6 +31,7 @@ export const useAuth = defineStore('auth-store',
             localStorage.clear();
             this.token = '';
             this.userid = '';
+            this.isAdmin = false;
             alert("Logout was succesfull");
             router.push({name:'MainPage'});
         },
