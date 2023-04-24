@@ -7,8 +7,8 @@ onMounted(useProduct().getProduct);
 
 </script>
 <template>
-    <div class="grid-container">
-        <img :src="`http://localhost:8881/images/${useProduct().Product.product_img}`" alt="" class="image img-fluid">
+    <div class="grid-container" v-if="useProduct().getProduct.length > 0">
+        <img :src="`http://localhost:8881/images/${useProduct().Product.product_img}`" alt="" class="image img-fluid" >
         <h1 class="grid-title">{{ useProduct().Product.product_name }}</h1>
         <div class="price">
             <p><b>Price: </b>{{ useProduct().Product.product_price}}</p>
@@ -27,6 +27,9 @@ onMounted(useProduct().getProduct);
             <div class="btn btn-warning">Send message</div>
         </div>
     </div>
+    <div class="row" v-else>
+                <h3 class="loadingmsg">Just a moment, the mainpage is loading</h3>
+        </div>
 </template>
 <style scoped>
 .msg{

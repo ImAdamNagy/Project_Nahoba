@@ -2,33 +2,28 @@
     <NavBar />
     <Header><h1 class="headertitle">Welcome to Nahoba Parts</h1></Header>
     <div class="container">
-        <div class="row">
+        <div class="row" v-if="useProduct().EnableProducts.length > 0">
             <Mechanics  @details="details" />
             <Products @details="details" />
         </div>
-        <div class="row mx-auto py-4 rounded rounded-5 px-3">
-      </div>
+        <div class="row" v-else>
+                <h3 class="loadingmsg">Just a moment, the mainpage is loading</h3>
+        </div>
     </div>
 </template>
 
-<script >
+<script setup>
 import Header from '../components/Header.vue'
 import NavBar from '../components/NavBar.vue'
 import Products from '@/components/Products.vue'
 import Mechanics from '@/components/Mechanics.vue'
 import { router } from '../router/index.js'
+import { useProduct } from '../store/ProductStore.js';
+import { onMounted } from 'vue';
 
-export default {
-    components: {
-        Header,
-        NavBar,
-        Products,
-        Mechanics
-    },
-    methods: {
-        details(id) {
-            router.push({ name: "ProductDetails",params:{id}});
-        }
-    }
+function details(id) {
+    router.push({ name: "ProductDetails",params:{id}});
 }
+
+onMounted(useProduct().getProducts);
 </script>
