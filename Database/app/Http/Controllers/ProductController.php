@@ -101,4 +101,12 @@ class ProductController extends Controller
     {
         $product->delete();
     }
+    public function deleteUsersProducts($userid){
+       $data = Product::where('seller_id', $userid)->get();
+
+       for ($i=0; $i < count($data); $i++) { 
+            $data[$i]->delete();
+       }
+       
+    }
 }

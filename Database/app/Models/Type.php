@@ -9,6 +9,7 @@ class Type extends Model
 {
     public $timestamps = false;
     public $table = "types";
+    protected $fillable = ["type"];
 
     public function TProducts()
     {

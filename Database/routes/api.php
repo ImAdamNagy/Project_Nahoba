@@ -26,6 +26,7 @@ use App\Http\Controllers\FileController;
 Route::prefix("users")->group(function (){
     Route::get('/{user}', [UserController::class, 'show'])->whereNumber("user");
     Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
         Route::delete('/{user}',[UserController::class,'destroy'])->whereNumber("user");
         Route::patch('/{user}', [UserController::class, 'update'])->whereNumber("user");
     });
@@ -44,8 +45,6 @@ Route::prefix("roles")->group(function (){
     Route::get('/', [RoleController::class, 'indexwithoutadmin']);
     Route::get('/{role}', [RoleController::class, 'show'])->whereNumber("role");
 });
-
-
 Route::prefix("products")->group(function (){
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/{product}', [ProductController::class, 'show'])->whereNumber("product");
@@ -54,6 +53,7 @@ Route::prefix("products")->group(function (){
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [ProductController::class, 'store']);
         Route::delete('/{product}', [ProductController::class, 'destroy'])->whereNumber("product");
+        Route::delete('/deleteAll/{userid}', [ProductController::class, 'deleteUsersProducts'])->whereNumber("userid");
         Route::patch('/{product}', [ProductController::class, 'update'])->whereNumber("product");
         Route::patch('/enable/{product}', [ProductController::class, 'updateEnable'])->whereNumber("product");
         Route::get('/disable', [ProductController::class, 'disable']);

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TypeRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class TypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user() == null;
+        return Auth::user() !== null;
     }
 
     /**
