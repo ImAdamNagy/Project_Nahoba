@@ -14,14 +14,11 @@ async function login(userData){
         let name;
         switch(await useAuth().getRole()){
             case "admin": 
-            name = 'AdminMainPage'
-            useAuth().isAdmin = true;
+            name = 'AdminMainPage';
             break;
-            case "seller": name = 'MainPage'
-            useAuth().isAdmin = false;
+            case "seller": name = 'MainPage';
             break;
-            case "mechanic": name = 'MainPage'
-            useAuth().isAdmin = false;
+            case "mechanic": name = 'MainPage';
             break;
         }
         router.push({name:name});

@@ -20,7 +20,8 @@ export const useProduct = defineStore('product-store',{
             Product: [],
             UserProducts: [],
             UserProductsisLoading: true,
-            disabledProductsIsLoading: true
+            disabledProductsIsLoading: true,
+            isEnable: false
         }
     },
     actions:{
@@ -45,6 +46,7 @@ export const useProduct = defineStore('product-store',{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.getOwnProducts();
+            this.isEnable = true;
         },
         async GetDisabledProducts() {
             const response = await http.get("/products/disable", {
