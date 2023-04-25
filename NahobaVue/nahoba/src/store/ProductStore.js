@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
+import { useAuth } from './AuthStore.js';
 import { router } from '@/router/index.js';
 
 export const useProduct = defineStore('product-store',{
@@ -18,7 +19,8 @@ export const useProduct = defineStore('product-store',{
             },
             Product: [],
             UserProducts: [],
-            UserProductsisLoading: true
+            UserProductsisLoading: true,
+            disabledProductsIsLoading: true
         }
     },
     actions:{
@@ -63,6 +65,7 @@ export const useProduct = defineStore('product-store',{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.disabledProducts = response.data.data;
+            this.disabledProductsIsLoading = false;
         },
         async BeEnable(id){
             this.obj = {
@@ -79,7 +82,7 @@ export const useProduct = defineStore('product-store',{
             this.EnableProducts = response.data.data;
         },
         async getOwnProducts(){
-            const response = await http.get('/products/userproducts/' + localStorage.getItem("userid"),{
+            const response = await http.get('/products/userproducts/' + useAuth().userid,{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
             this.OwnProducts = response.data.data;

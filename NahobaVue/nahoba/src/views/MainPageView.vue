@@ -6,7 +6,7 @@
             <Mechanics  @details="details" />
             <Products @details="details" />
         </div>
-        <div class="row" v-else>
+        <div class="row mt-5" v-else>
                 <h3 class="loadingmsg">Just a moment, the mainpage is loading</h3>
         </div>
     </div>
