@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-responsive table-striped">
+    <table class="table table-responsive table-striped" v-if="!useProduct().disabledProductsIsLoading">
         <thead>
             <th>Id</th>
             <th>seller</th>
@@ -46,6 +46,9 @@
             </tr>
         </tbody>
     </table>
+    <div class="loadingmsg mt-3" v-else>
+      Just a moment, Admin mainpage is loading.....
+    </div>
 </template>
 <script setup>
 import {useProduct} from '@/store/ProductStore.js'

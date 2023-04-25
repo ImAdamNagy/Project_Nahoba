@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
 import { useRoute } from 'vue-router'
+import { useAuth } from './AuthStore.js';
 
 
 
@@ -14,7 +15,7 @@ export const useUser = defineStore('user-store',{
     },
     actions:{
         async getUserDetails() {
-            const response = await http.get('/users/' + localStorage.getItem("userid"));
+            const response = await http.get('/users/' + useAuth().userid);
             this.data = response.data.data;
             this.UserDataisLoading = false;
         },
@@ -23,9 +24,9 @@ export const useUser = defineStore('user-store',{
             this.OtherUserDetails = response.data.data;
         },
         async update(updatedUser) {
-            updatedUser.id = localStorage.getItem("userid");
+            updatedUser.id = useAuth().userid;
             this.UserDataisLoading = true;
-            const response = await http.patch('/users/' + localStorage.getItem("userid"), updatedUser, {
+            const response = await http.patch('/users/' + useAuth().userid, updatedUser, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.getUserDetails();
