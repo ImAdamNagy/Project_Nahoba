@@ -18,7 +18,7 @@
 import { useProduct } from '../store/ProductStore.js';
 import { onMounted } from 'vue';
 
-onMounted(useProduct().getProducts);
+onMounted(useProduct().getEnabledProducts);
 </script>
     
     <style scoped>

@@ -11,6 +11,8 @@ import AllMechanicsPageView from '@/views/AllMechanicsPageView.vue'
 import ProfileSettingsPageView from '../views/ProfileSettingsPageView.vue'
 import OtherUserProductsView from '../views/OtherUserProductsView.vue'
 import MechanicFormPageView from '../views/MechanicFormPageView.vue'
+import AdminEnabledProducts from '../views/AdminEnabledProducts.vue'
+import AdminAllUsersView from '../views/AdminAllUsersView.vue'
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -58,6 +60,16 @@ export const router = createRouter({
       path: '/adminmainpage',
       name: 'AdminMainPage',
       component: AdminMainPageView,
+    },
+    {
+      path: '/enabledproducts',
+      name: 'EnableProductsView',
+      component: AdminEnabledProducts,
+    },
+    {
+      path: '/allusers',
+      name: 'AllUsers',
+      component: AdminAllUsersView,
     },
     {
       path: '/settings',

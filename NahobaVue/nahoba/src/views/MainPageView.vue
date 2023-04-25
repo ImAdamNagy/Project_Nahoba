@@ -25,5 +25,5 @@ function details(id) {
     router.push({ name: "ProductDetails",params:{id}});
 }
 
-onMounted(useProduct().getProducts);
+onMounted(useProduct().getEnabledProducts);
 </script>

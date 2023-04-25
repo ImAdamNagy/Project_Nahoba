@@ -39,6 +39,20 @@ export const useProduct = defineStore('product-store',{
             alert("Upload was successfull");
             router.push({name: "MainPage"});
         },
+        async deleteProduct(sellerId){
+            const response = await http.delete("/products/" + sellerId,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+        });
+        const index = this.EnableProducts.findIndex(item=>item.id === sellerId);
+        this.EnableProducts.splice(index,1);
+        },
+
+        async deleteUsersProducts(userid){
+            const response = await http.delete("/products/deleteAll/" + userid,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+        });
+        },
+
         async updateProduct(updatedproduct) {
             updatedproduct.product_enable = 0;
             this.UserProductsisLoading = true;
@@ -65,7 +79,7 @@ export const useProduct = defineStore('product-store',{
             const index = this.disabledProducts.findIndex(item=>item.id === id);
             this.disabledProducts.splice(index,1);
         },
-        async getProducts() {
+        async getEnabledProducts() {
             const response = await http.get('/products/enable');
             this.EnableProducts = response.data.data;
         },
