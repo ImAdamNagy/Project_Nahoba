@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    
     protected $table = "products";
+    protected $fillable = ["from", "to"];
 }

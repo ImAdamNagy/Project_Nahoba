@@ -11,13 +11,12 @@
               </div>
               <div class="modal-body">
                 <VForm @submit="useType().createType">
-                  <label for="type" class="form-label">New type</label>
                   <Field type="text" name="type" id="type" placeholder="Enter the new type" class="form-control"
                     rule="required" />
                   <ErrorMessage name="type" as="div" class="alert alert-danger m-1" />
 
                   <input class="btn-warning btn form-control mt-3" data-bs-dismiss="modal" type="submit"
-                    value="Save changes" />
+                    value="Add" />
                 </VForm>
               </div>
               <div class="modal-footer">

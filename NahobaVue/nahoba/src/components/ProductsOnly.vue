@@ -11,7 +11,7 @@
 </div>
 <div class="row mx-auto py-4 rounded rounded-5 px-3" v-else>
     <div class="col-12">
-            <h3 class="loadingmsg">Nothing Found</h3>
+            <p class="loadingmsg">The products are loading</p>
     </div>
 </div>
 

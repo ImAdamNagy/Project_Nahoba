@@ -9,6 +9,7 @@ class Chat extends Model
 {
     public $timestamps = false;
     protected $table = "chats";
+    protected $fillable = ["from", "to"];
 
     public function From()
     {

@@ -18,6 +18,7 @@ export const useProduct = defineStore('product-store',{
                 priceMaxFilter: null
             },
             Product: [],
+            productIsLoading: true,
             UserProducts: [],
             userProductsIsLoading: true,
             disabledProductsIsLoading: true,
@@ -82,6 +83,7 @@ export const useProduct = defineStore('product-store',{
         async getEnabledProducts() {
             const response = await http.get('/products/enable');
             this.EnableProducts = response.data.data;
+            console.log(this.EnableProducts)
             this.enableProductsIsLoading = false;
         },
         async getOwnProducts(){
@@ -127,6 +129,7 @@ export const useProduct = defineStore('product-store',{
         async getProduct(){
             const response = await http.get("/products/" + useRoute().params.id);
             this.Product = response.data.data;
+            this.productIsLoading = false;
         },
         async getUserProducts(){
             const response = await http.get('/products/userproducts/' + useRoute().params.id,{
