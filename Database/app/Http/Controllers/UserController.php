@@ -41,7 +41,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where("id","!=",Auth::id())->get();
         return UserResource::collection($users);
     }
 

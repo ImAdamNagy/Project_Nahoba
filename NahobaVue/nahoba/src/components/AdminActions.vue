@@ -1,7 +1,7 @@
 <template>
   <div class="row mt-3">
     <div class="actionbtn col-lg-3 col-md-4 col-sm-12 col-xs-12">
-      <div class="btn  action-button" data-bs-toggle="modal" data-bs-target="#typeAdd">Add Type</div>
+      <div class="btn action-button" data-bs-toggle="modal" data-bs-target="#typeAdd">Add Type</div>
         <div class="modal fade" id="typeAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">

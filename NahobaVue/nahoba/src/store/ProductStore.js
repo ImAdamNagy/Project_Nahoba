@@ -40,12 +40,17 @@ export const useProduct = defineStore('product-store',{
         },
         async deleteProduct(sellerId){
             this.enableProductsIsLoading = true;
+            this.disabledProductsIsLoading = true;
+            this.userProductsIsLoading = true;
             const response = await http.delete("/products/" + sellerId,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
         const index = this.EnableProducts.findIndex(item=>item.id === sellerId);
         this.EnableProducts.splice(index,1);
+        //splice még két tömbre
         this.enableProductsIsLoading = false;
+        this.disabledProductsIsLoading = false;
+        this.userProductsIsLoading = false;
         },
         async deleteUsersProducts(userid){
             const response = await http.delete("/products/deleteAll/" + userid,{

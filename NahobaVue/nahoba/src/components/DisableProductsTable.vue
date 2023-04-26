@@ -10,7 +10,8 @@
                     <th>Image</th>
                     <th>Description</th>
                     <th>Location</th>
-                    <th>Action</th>
+                    <th>Be enable</th>
+                    <th>Delete</th>
                 </thead>
                 <tbody>
                     <tr v-for="item in useProduct().disabledProducts">
@@ -26,7 +27,8 @@
                         </td>
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
-                        <td><button class="btn btn-danger " @click="useProduct().BeEnable(item.id)">Enable</button></td>
+                        <td><button class="btn btn-success " @click="useProduct().BeEnable(item.id)">Enable</button></td>
+                        <td><button class="btn btn-danger " @click="useProduct().deleteProduct(item.id)">Delete</button></td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -41,8 +43,7 @@
                                             class="img-fluid">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>

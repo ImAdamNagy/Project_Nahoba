@@ -37,9 +37,8 @@ onMounted(useUser().getUserDetails);
                             <p class="price">{{ item.product_price }} Ft</p>
                         </div>
                         <div class="col-12 ">
-                            <a class="btn btn-warning" data-bs-toggle="modal"
-                                :data-bs-target="'#updateModal' + item.id">Update</a>
-
+                            <a class="btn btn-warning" data-bs-toggle="modal" :data-bs-target="'#updateModal' + item.id">Update</a>
+                            <button class="btn btn-danger " @click="useProduct().deleteProduct(item.id)">Delete</button>
                             <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -92,8 +91,7 @@ onMounted(useUser().getUserDetails);
                                                     <ErrorMessage name="product_img" as="div"
                                                         class="alert alert-danger m-1" />
                                                 </div>
-                                                <button data-bs-dismiss="modal" type="submit"
-                                                    class="btn btn-primary">Update</button>
+                                                <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Update</button>
 
                                             </div>
                                             <div class="modal-footer">
