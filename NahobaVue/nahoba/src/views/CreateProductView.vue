@@ -1,9 +1,8 @@
 <template>
     <NavBar />
-<div class="container-fluid">
-    <CreateItem  @onChange="onChange" />
-</div>
-
+    <div class="container-fluid">
+        <CreateItem @onChange="onChange" />
+    </div>
 </template>
 <script setup>
 import NavBar from '@/components/NavBar.vue';
@@ -15,23 +14,24 @@ const file = reactive({
     image: null
 });
 
-async function onChange(item){
-            console.log("selected file", item);
-            file.image = item.target.files[0];
+async function onChange(item) {
+    file.image = item.target.files[0];
 }
 
 </script>
 <style scoped>
-.container{
+.container {
     width: 700px;
 }
-form{
+
+form {
     text-align: center;
     border: solid black 2px;
     border-radius: 5px;
     margin-top: 20px;
 }
-button{
+
+button {
     margin-top: 10px;
     margin-bottom: 10px;
 }

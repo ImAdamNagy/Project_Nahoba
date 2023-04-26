@@ -9,7 +9,7 @@ export const useAuth = defineStore('auth-store',
         return{
             token: localStorage.getItem('token') ?? '',
             userid: localStorage.getItem('userid') ?? '',
-            isAdmin: false
+            
         }
     },
     actions:{

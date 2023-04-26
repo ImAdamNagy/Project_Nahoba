@@ -9,30 +9,31 @@ export const useUser = defineStore('user-store',{
     state(){
         return{
             data: [],
-            UserDataisLoading: true,
+            userDataIsLoading: true,
             OtherUserDetails: [],
-            allUsers: []
+            Users: [],
+            usersIsLoading: true
         }
     },
     actions:{
         async getUserDetails() {
             const response = await http.get('/users/' + useAuth().userid);
             this.data = response.data.data;
-            this.UserDataisLoading = false;
+            this.userDataIsLoading = false;
         },
-        async getAllUsers() {
+        async getUsers() {
             const response = await http.get('/users', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
-            this.allUsers = response.data.data;
-            console.log(this.allUsers)
+            this.Users = response.data.data;
+            this.usersIsLoading = false;
         },
         async deleteUser(userid){
             const response = await http.delete("/users/" + userid,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
-        const index = this.allUsers.findIndex(item=>item.id === userid);
-        this.allUsers.splice(index,1);
+        const index = this.Users.findIndex(item=>item.id === userid);
+        this.Users.splice(index,1);
         },
         async getOtherUser() {
             const response = await http.get('/users/' + useRoute().params.id);
@@ -40,7 +41,7 @@ export const useUser = defineStore('user-store',{
         },
         async update(updatedUser) {
             updatedUser.id = useAuth().userid;
-            this.UserDataisLoading = true;
+            this.userDataIsLoading = true;
             const response = await http.patch('/users/' + useAuth().userid, updatedUser, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });

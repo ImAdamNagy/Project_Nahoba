@@ -1,5 +1,5 @@
 <template>
-    <div v-if="useProduct().disabledProductsIsLoading == false && useProduct().disabledProducts.length > 0">
+    <div v-if="useProduct().enableProductsIsLoading == false && useProduct().EnableProducts.length > 0">
         <div class="scrolltable p-3">
             <table class="table table-responsive table-striped">
                 <thead>
@@ -13,7 +13,7 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="item in useProduct().disabledProducts">
+                    <tr v-for="item in useProduct().EnableProducts">
                         <td>{{ item.seller.firstname }} {{ item.seller.lastname }}</td>
                         <td>{{ item.product_name }}</td>
                         <td>{{ item.product_price }}</td>
@@ -26,7 +26,9 @@
                         </td>
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
-                        <td><button class="btn btn-danger " @click="useProduct().BeEnable(item.id)">Enable</button></td>
+                        <td>
+                            <div class="btn btn-danger" @click="useProduct().deleteProduct(item.id)">Delete product</div>
+                        </td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -53,21 +55,20 @@
         </div>
     </div>
     <div class="loadingmsg mt-3"
-        v-else-if="useProduct().disabledProductsIsLoading == false && useProduct().disabledProducts.length == 0">
-        <p>There are no products waiting for validation right now!</p>
+        v-else-if="useProduct().enableProductsIsLoading == false && useProduct().EnableProducts.length == 0">
+        <p>There are no available products on the website</p>
     </div>
-    <div class="loadingmsg mt-3" v-else-if="useProduct().disabledProductsIsLoading == true">
-        <p>Just a moment, disabled products table is loading.....</p>
+    <div class="loadingmsg mt-3" v-else-if="useProduct().enableProductsIsLoading == true">
+        <p>Just a moment, available products table is loading.....</p>
     </div>
 </template>
 <script setup>
 import { useProduct } from '@/store/ProductStore.js'
 import { onMounted } from 'vue';
 
-onMounted(useProduct().GetDisabledProducts);
+onMounted(useProduct().getEnabledProducts);
 
 </script>
 <style scoped>thead {
     border-bottom: 3px solid red;
 }</style>
-  

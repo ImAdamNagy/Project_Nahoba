@@ -5,7 +5,6 @@ import { useProduct } from '@/store/ProductStore.js'
 import { useUser } from '@/store/UserStore.js'
 import { onMounted } from "vue";
 import * as yup from 'yup';
-import { useAuth } from "../store/AuthStore";
 const schema = yup.object(
     {
         product_name: yup.string('The given name is not a text!').min(5, 'The given name must be at elast 5 characters long!').required('The products name is required!'),
@@ -18,108 +17,106 @@ onMounted(useProduct().getOwnProducts);
 onMounted(useUser().getUserDetails);
 </script>
 <template>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3"
-        v-if="!useProduct().UserProductsisLoading && !useUser().UserDataisLoading">
-        <div class="col-12">
-            <h1>
-                {{ useUser().data.firstname }} {{ useUser().data.lastname }}
-            </h1>
-            <p><b>Email address:</b> {{ useUser().data.email }}</p>
-            <p><b>Phone number:</b> {{ useUser().data.tel }}</p>
-            <p><b>Username:</b> {{ useUser().data.username }}</p>
-        </div>
-        <div class="title_lines">Your products</div>
-        <Alert alertType="success" closable="true" >
-            <h2>sikeresen updateltük</h2>
-        </Alert>
-        <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts"
-            v-if="useProduct().OwnProducts.length > 0">
-            <div class="product h-100">
-                <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
-                <div class="row data">
-                    <div class="col-12 ">
-                        <h5 class="title">{{ item.product_name }}</h5>
-                        <p class="price">{{ item.product_price }} Ft</p>
-                    </div>
-                    <div class="col-12 ">
-                        <a class="btn btn-warning" data-bs-toggle="modal"
-                            :data-bs-target="'#updateModal' + item.id">Update</a>
+    <div v-if="useProduct().userProductsIsLoading == false && useUser().userDataIsLoading == false">
+        <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3">
+            <div class="col-12">
+                <h1>
+                    {{ useUser().data.firstname }} {{ useUser().data.lastname }}
+                </h1>
+                <p><b>Email address:</b> {{ useUser().data.email }}</p>
+                <p><b>Phone number:</b> {{ useUser().data.tel }}</p>
+                <p><b>Username:</b> {{ useUser().data.username }}</p>
+            </div>
+            <div class="title_lines">Your products</div>
+            <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" v-if="useProduct().OwnProducts.length > 0">
+                <div class="product h-100">
+                    <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
+                    <div class="row data">
+                        <div class="col-12 ">
+                            <h5 class="title">{{ item.product_name }}</h5>
+                            <p class="price">{{ item.product_price }} Ft</p>
+                        </div>
+                        <div class="col-12 ">
+                            <a class="btn btn-warning" data-bs-toggle="modal"
+                                :data-bs-target="'#updateModal' + item.id">Update</a>
 
-                        <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update your product</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                            <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Update your product</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <VForm @submit="useProduct().updateProduct" :validation-schema="schema">
+                                            <div class="modal-body">
+                                                <Field type="hidden" id="id" name="id" :value="`${item.id}`" />
+                                                <div class="mb-3">
+                                                    <label for="product_name" class="form-label">Product name</label>
+                                                    <Field type="text" name="product_name" id="product_name"
+                                                        class="form-control" :value="`${item.product_name}`" />
+                                                    <ErrorMessage name="product_name" as="div"
+                                                        class="alert alert-danger m-1" />
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="product_price" class="form-label">Product price</label>
+                                                    <Field type="number" name="product_price" id="product_price"
+                                                        class="form-control" :value="`${item.product_price}`" />
+                                                    <ErrorMessage name="product_price" as="div"
+                                                        class="alert alert-danger m-1" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="product_description" class="form-label">Product
+                                                        descripton</label>
+                                                    <Field type="text" as="textarea" name="product_description"
+                                                        id="product_description" class="form-control"
+                                                        :value="`${item.product_description}`" />
+                                                    <ErrorMessage name="product_description" as="div"
+                                                        class="alert alert-danger m-1" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="product_location" class="form-label">Product
+                                                        location</label>
+                                                    <Field type="text" as="textarea" name="product_location"
+                                                        id="product_location" class="form-control"
+                                                        :value="`${item.product_location}`" />
+                                                    <ErrorMessage name="product_location" as="div"
+                                                        class="alert alert-danger m-1" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="product_img" class="form-label">Upload image</label>
+                                                    <br>
+                                                    <Field type="text" id="product_img" name="product_img" ref="file"
+                                                        :value="`${item.product_img}`" />
+                                                    <ErrorMessage name="product_img" as="div"
+                                                        class="alert alert-danger m-1" />
+                                                </div>
+                                                <button data-bs-dismiss="modal" type="submit"
+                                                    class="btn btn-primary">Update</button>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </VForm>
                                     </div>
-                                    <VForm @submit="useProduct().updateProduct" :validation-schema="schema">
-                                        <div class="modal-body">
-                                            <Field type="hidden" id="id" name="id" :value="`${item.id}`" />
-                                            <div class="mb-3">
-                                                <label for="product_name" class="form-label">Product name</label>
-                                                <Field type="text" name="product_name" id="product_name"
-                                                    class="form-control" :value="`${item.product_name}`" />
-                                                <ErrorMessage name="product_name" as="div" class="alert alert-danger m-1" />
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="product_price" class="form-label">Product price</label>
-                                                <Field type="number" name="product_price" id="product_price"
-                                                    class="form-control" :value="`${item.product_price}`" />
-                                                <ErrorMessage name="product_price" as="div"
-                                                    class="alert alert-danger m-1" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="product_description" class="form-label">Product
-                                                    descripton</label>
-                                                <Field type="text" as="textarea" name="product_description"
-                                                    id="product_description" class="form-control"
-                                                    :value="`${item.product_description}`" />
-                                                <ErrorMessage name="product_description" as="div"
-                                                    class="alert alert-danger m-1" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="product_location" class="form-label">Product location</label>
-                                                <Field type="text" as="textarea" name="product_location"
-                                                    id="product_location" class="form-control"
-                                                    :value="`${item.product_location}`" />
-                                                <ErrorMessage name="product_location" as="div"
-                                                    class="alert alert-danger m-1" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="product_img" class="form-label">Upload image</label>
-                                                <br>
-                                                <Field type="text" id="product_img" name="product_img" ref="file"
-                                                    :value="`${item.product_img}`" />
-                                                <ErrorMessage name="product_img" as="div" class="alert alert-danger m-1" />
-                                            </div>
-                                            <button data-bs-dismiss="modal" type="submit"
-                                                class="btn btn-primary">Update</button>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </VForm>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
-            <div class="col-12">
-                <h3 id="loadingmsg">You don't have any products yet</h3>
+            <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
+                <div class="col-12">
+                    <p>You don't have any products yet</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
-        <div class="col-12">
-            <h3 id="loadingmsg">Just a moment, we are loading your profile</h3>
-        </div>
+    <div class="loadingmsg mt-3 col-12" v-else>
+        <p>Just a moment, we are loading your profile!</p>
     </div>
 </template>
 <style scoped>

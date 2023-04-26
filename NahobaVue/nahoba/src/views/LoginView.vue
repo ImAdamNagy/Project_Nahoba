@@ -14,7 +14,7 @@ async function login(userData){
         let name;
         switch(await useAuth().getRole()){
             case "admin": 
-            name = 'AdminMainPage';
+            name = 'AdminMain';
             break;
             case "seller": name = 'MainPage';
             break;

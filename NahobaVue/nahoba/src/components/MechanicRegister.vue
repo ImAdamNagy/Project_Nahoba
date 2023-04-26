@@ -22,7 +22,6 @@ const schema = yup.object(
     });
 
 async function addMechanic(newMec){
-    console.log(newMec);
     const formdata = new FormData();
     for(const item in newMec)
     {
@@ -37,7 +36,6 @@ async function addMechanic(newMec){
 }
 
 async function onChange(item){
-            console.log("selected file", item);
             file.image = item.target.files[0];
 }
 

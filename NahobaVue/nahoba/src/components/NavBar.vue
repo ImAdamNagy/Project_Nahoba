@@ -8,7 +8,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/productsonly">Products</Router-link>
             </li>
@@ -19,14 +19,12 @@
               <Router-link class="nav-link active text-light" to="/newproduct">Upload product</Router-link>
             </li>
             <li class="nav-item" v-else>
-              <Router-link class="nav-link active text-light" to="/register" @click="newproductAlert">Upload
-                product</Router-link>
+              <Router-link class="nav-link active text-light" to="/register" >Upload product</Router-link>
             </li>
           </ul>
           <div class="nav-item space" v-if="useAuth().loggedIn">
             <div class="nav-item dropdown space">
-              <a class="nav-link dropdown-toggle space" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"> My profile </a>
+              <a class="nav-link dropdown-toggle space" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> My profile </a>
               <ul class="dropdown-menu" id="drop">
                 <li><Router-link class="dropdown-item" to="/settings">Settings</Router-link></li>
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
@@ -36,10 +34,15 @@
               </ul>
             </div>
           </div>
-          <div class="nav-item" v-else>
+          <div v-else>
+            <ul class="navbar-nav ">
+            <li class="nav-item">
+              <Router-link class="nav-link active text-light" to="/register">Register</Router-link>
+            </li>
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/login">Login</Router-link>
             </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -79,9 +82,6 @@
 <script setup>
 import { useAuth } from '@/store/AuthStore';
 
-async function newproductAlert() {
-  alert("In order to upload your own product you need to sign in")
-}
 </script>
 
 <style scoped>

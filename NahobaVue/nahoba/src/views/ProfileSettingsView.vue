@@ -23,35 +23,31 @@ onMounted(useUser().getUserDetails)
     <NavBar />
     <Header><h1 class="headertitle">Settings</h1></Header>
     <div class="container">
-        <div class="row">
-            <div class="col" v-if="!useUser().UserDataisLoading">
-                <div class="bg-white mt-3 p-5 py-3 rounded rounded-3">
-                    <h3>User information</h3>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td style="width: 50%;">Username:</td>
-                                <td>{{ useUser().data.username }}</td>
-                            </tr>
-                            <tr>
-                                <td>Name:</td>
-                                <td>{{ useUser().data.firstname }} {{ useUser().data.lastname }}</td>
-                            </tr>
-                            <tr>
-                                <td>Email:</td>
-                                <td>{{ useUser().data.email }}</td>
-                            </tr>
-                            <tr>
-                                <td>Tel:</td>
-                                <td>{{ useUser().data.tel }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button type="button" class="btn btn-primary mt-1" data-bs-toggle="modal"
+        <div class="row settingrow">
+            <div class="col" v-if="useUser().userDataIsLoading == false">
+                <div class="settinggrid bg-white mt-3 px-3 py-4 rounded rounded-3">
+                    <h2 class="settingtitle">User information</h2>
+                    <div class="settingusername">
+                        <p><b>Username: </b>{{useUser().data.username }}</p>
+                    </div>
+                    <div class="settingname">
+                        <p><b>Name: </b>{{useUser().data.firstname }} {{ useUser().data.lastname }}</p>
+                    </div>
+                    <div class="settingemail">
+                        <p><b>Email: </b>{{ useUser().data.email }}</p>
+                    </div>
+                    <div class="settingtel">
+                        <p><b>Phone number: </b>{{ useUser().data.tel }}</p>
+                    </div>
+                    <div class="settingchange">
+                        <button type="button" class="stgbutton btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
                         Change data
                     </button>
-
+                    </div>
+                    <div class="settingdelete">
+                        <button class="stgbutton btn btn-danger">Account delete </button>
+                    </div>
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -94,9 +90,36 @@ onMounted(useUser().getUserDetails)
                     </div>
                 </div>
             </div>
-            <div class="col-12 mt-3" v-else>
-                <h3 class="loadingmsg">Just a moment, your settings is loading</h3>
+            <div class="loadingmsg col-12 mt-3" v-else>
+                <p>Just a moment, your settings is loading....</p>
             </div>
         </div>
     </div>
 </template>
+<style scoped>
+
+.settingtitle {
+    position: relative;
+    font-size: 30px;
+    z-index: 1;
+    overflow: hidden;
+    text-align: center;
+    color: black;
+    font-family: arial;
+}
+.settingtitle:before,.settingtitle:after {
+    position: absolute;
+    top: 52%;
+    overflow: hidden;
+    width: 48%;
+    height: 2px;
+    content: '\a0';
+    background-color: red;
+    margin-left: 2%;
+}
+
+.settingtitle:before {
+    margin-left: -50%;
+    text-align: right;
+}
+</style>

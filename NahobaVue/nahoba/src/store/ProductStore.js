@@ -19,14 +19,13 @@ export const useProduct = defineStore('product-store',{
             },
             Product: [],
             UserProducts: [],
-            UserProductsisLoading: true,
+            userProductsIsLoading: true,
             disabledProductsIsLoading: true,
-            isEnable: false
+            enableProductsIsLoading: true
         }
     },
     actions:{
         async createProduct(newproduct){
-            console.log(newproduct);
             const formdata = new FormData();
             for(const item in newproduct)
             {
@@ -40,27 +39,26 @@ export const useProduct = defineStore('product-store',{
             router.push({name: "MainPage"});
         },
         async deleteProduct(sellerId){
+            this.enableProductsIsLoading = true;
             const response = await http.delete("/products/" + sellerId,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
         const index = this.EnableProducts.findIndex(item=>item.id === sellerId);
         this.EnableProducts.splice(index,1);
+        this.enableProductsIsLoading = false;
         },
-
         async deleteUsersProducts(userid){
             const response = await http.delete("/products/deleteAll/" + userid,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
         },
-
         async updateProduct(updatedproduct) {
             updatedproduct.product_enable = 0;
-            this.UserProductsisLoading = true;
+            this.userProductsIsLoading = true;
             const response = await http.patch('/products/' + updatedproduct.id, updatedproduct, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.getOwnProducts();
-            this.isEnable = true;
         },
         async GetDisabledProducts() {
             const response = await http.get("/products/disable", {
@@ -70,6 +68,7 @@ export const useProduct = defineStore('product-store',{
             this.disabledProductsIsLoading = false;
         },
         async BeEnable(id){
+            this.disabledProductsIsLoading = true;
             this.obj = {
                 product_enable: true
             }
@@ -78,17 +77,19 @@ export const useProduct = defineStore('product-store',{
             });
             const index = this.disabledProducts.findIndex(item=>item.id === id);
             this.disabledProducts.splice(index,1);
+            this.disabledProductsIsLoading = false;
         },
         async getEnabledProducts() {
             const response = await http.get('/products/enable');
             this.EnableProducts = response.data.data;
+            this.enableProductsIsLoading = false;
         },
         async getOwnProducts(){
             const response = await http.get('/products/userproducts/' + useAuth().userid,{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
             this.OwnProducts = response.data.data;
-            this.UserProductsisLoading = false;
+            this.userProductsIsLoading = false;
         },
         filterByType(product){
             if (this.filters.typesFilter == 0) {
@@ -126,7 +127,6 @@ export const useProduct = defineStore('product-store',{
         async getProduct(){
             const response = await http.get("/products/" + useRoute().params.id);
             this.Product = response.data.data;
-            console.log(this.Product);
         },
         async getUserProducts(){
             const response = await http.get('/products/userproducts/' + useRoute().params.id,{
