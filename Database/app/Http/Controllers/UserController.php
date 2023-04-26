@@ -29,9 +29,14 @@ class UserController extends Controller
             }
         }
     }
+
     public function logout()
     {
         Auth::user()->tokens()->delete();
+    }
+
+    public function getCurrentUserDetails(){
+        return new UserResource(Auth::user());
     }
 
     /**

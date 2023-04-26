@@ -2,7 +2,7 @@
     <div class="col-lg-8 col-md-9 col-sm-12 mt-3">
       <div class="row" >
         <h2 class="grouptitle">Products</h2>
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in useProduct().EnableProducts">
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in useProduct().enableProducts">
             <div class="product h-100">
               <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
                 <h5 class="title">{{item.product_name}}</h5>

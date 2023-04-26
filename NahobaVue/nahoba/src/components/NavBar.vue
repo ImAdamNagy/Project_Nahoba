@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg" v-if="!useAuth().isAdmin">
+    <nav class="navbar navbar-expand-lg" v-if="useAuth().isAdmin == false">
       <div class="container-fluid">
         <Router-link class="navbar-brand nav-title navbar-light" to="/"><strong>Nahoba Parts</strong></Router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div v-else>
-            <ul class="navbar-nav ">
+            <ul class="navbar-nav">
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/register">Register</Router-link>
             </li>

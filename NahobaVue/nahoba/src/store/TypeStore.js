@@ -16,11 +16,6 @@ export const useType = defineStore('type-store',{
             const response = await http.post("/types/", typeData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
-        },
-        async deleteType(typeData){
-            const response = await http.delete("/types/" + typeData.type,{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-        });
         }
     }
 })

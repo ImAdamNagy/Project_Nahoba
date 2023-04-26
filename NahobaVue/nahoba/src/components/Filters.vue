@@ -6,9 +6,15 @@
         <div class="button">
             <button class="btn btn-light form-control">Search</button>
         </div>
+        <div class="cartype">
+            <Field name="carTypesFilter" id="carTypesFilter"  class="form-select" :value="0" as="select">
+                    <option :value="0">All cartype</option>
+                    <option  v-for="item in useCarType().cartypes" :key="item.id" :value="item.id"> {{ item.name }} {{ item.vintage }}</option>
+                </Field>
+        </div>
         <div class="type">
             <Field class="form-select" id="typesFilter" name="typesFilter" :value="0" as="select">
-                <option :value="0">All Type</option>
+                <option :value="0">All type</option>
                 <option v-for="item in useType().types" :key="item.id" :value="item.id">{{ item.type }}</option>
             </Field>
         </div>
@@ -27,12 +33,15 @@ import { useType } from '../store/TypeStore';
 import { useProduct } from '../store/ProductStore';
 import { Form as VForm, Field } from "vee-validate";
 import { onMounted } from 'vue';
+import {useCarType} from '@/store/CarTypeStore.js'
 
 onMounted(useType().allTypes);
-function Filter(filters) {
+onMounted(useCarType().allCarTypes);
 
+function Filter(filters) {
     useProduct().filters.search = filters.search ?? null;
     useProduct().filters.typesFilter = filters.typesFilter;
+    useProduct().filters.carTypesFilter = filters.carTypesFilter;
     useProduct().filters.priceMinFilter = filters.priceMinFilter ?? null;
     useProduct().filters.priceMaxFilter = filters.priceMaxFilter ?? null;
 }

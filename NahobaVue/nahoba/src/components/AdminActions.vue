@@ -11,12 +11,9 @@
               </div>
               <div class="modal-body">
                 <VForm @submit="useType().createType">
-                  <Field type="text" name="type" id="type" placeholder="Enter the new type" class="form-control"
-                    rule="required" />
+                  <Field type="text" name="type" id="type" placeholder="Enter the new type" class="form-control" rules="required" />
                   <ErrorMessage name="type" as="div" class="alert alert-danger m-1" />
-
-                  <input class="btn-warning btn form-control mt-3" data-bs-dismiss="modal" type="submit"
-                    value="Add" />
+                  <input class="btn-warning btn form-control mt-3" data-bs-dismiss="modal" type="submit" value="Add" />
                 </VForm>
               </div>
               <div class="modal-footer">
@@ -25,7 +22,32 @@
             </div>
           </div>
         </div>
-    </div>
+      </div>
+      <div class="actionbtn col-lg-3 col-md-4 col-sm-12 col-xs-12">
+      <div class="btn action-button" data-bs-toggle="modal" data-bs-target="#carTypeAdd">Add car type</div>
+        <div class="modal fade" id="carTypeAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new type</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <VForm @submit="useCarType().deleteCarType">
+                  <Field type="text" name="name" id="name" placeholder="Enter the new car type" class="form-control" rules="required" />
+                  <ErrorMessage name="name" as="div" class="alert alert-danger m-1" />
+                  <Field type="number" name="vintage" id="vintage" placeholder="Enter the car types vintage" class="form-control" rules="required|numeric|between:1886,2023" />
+                  <ErrorMessage name="vintage" as="div" class="alert alert-danger m-1" />
+                  <input class="btn-warning btn form-control mt-3" data-bs-dismiss="modal" type="submit" value="Add" />
+                </VForm>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger from-control" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="actionbtn col-lg-3 col-md-4 col-sm-12 col-xs-12">
       <Router-link to="/enabledproducts" class="btn action-button">Available products</Router-link>
     </div>
@@ -39,7 +61,8 @@
 </template>
 <script setup>
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
-import { useType } from '@/store/TypeStore.js'
+import { useType } from '@/store/TypeStore.js';
+import { useCarType } from '@/store/CarTypeStore.js';
 import { onMounted } from "vue";
 
 onMounted(useType().allTypes);

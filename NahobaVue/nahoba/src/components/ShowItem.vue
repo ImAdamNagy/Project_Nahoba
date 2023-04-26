@@ -1,46 +1,47 @@
 <script setup>
 import { onMounted } from 'vue'
-import {useProduct} from '@/store/ProductStore.js'
-import {useChat} from '@/store/ChatStore.js'
-import { reactive } from 'vue';
+import { useProduct } from '@/store/ProductStore.js'
+import { useChat } from '@/store/ChatStore.js'
 
 onMounted(useProduct().getProduct);
 
 </script>
 <template>
     <div class="grid-container" v-if="useProduct().productIsLoading == false">
-        <img :src="`http://localhost:8881/images/${useProduct().Product.product_img}`" alt="" class="image img-fluid" >
+        <img :src="`http://localhost:8881/images/${useProduct().Product.product_img}`" alt="" class="image img-fluid">
         <h1 class="grid-title">{{ useProduct().Product.product_name }}</h1>
         <div class="price">
-            <p><b>Price: </b>{{ useProduct().Product.product_price}}</p>
+            <p><b>Price: </b>{{ useProduct().Product.product_price }}</p>
         </div>
         <div class="cartype">
-            <p><b>Car type: </b>{{ useProduct().Product.car_type.name}}</p>
-            <p><b>Vintage: </b>{{ useProduct().Product.car_type.vintage}}</p>
+            <p><b>Car type: </b>{{ useProduct().Product.car_type.name }}</p>
+            <p><b>Vintage: </b>{{ useProduct().Product.car_type.vintage }}</p>
         </div>
         <div class="seller">
-            <p><b>Seller name: </b>{{ useProduct().Product.seller?.firstname}} {{ useProduct().Product.seller?.lastname}}</p>
-            <Router-link :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>Seller Products</b></Router-link>
+            <p><b>Seller name: </b>{{ useProduct().Product.seller?.firstname }} {{ useProduct().Product.seller?.lastname }}
+            </p>
+            <Router-link :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>Seller
+                    Products</b></Router-link>
         </div>
         <div class="location">
             <p><b>Location: </b>{{ useProduct().Product.product_location }}</p>
         </div>
         <div class="desc">
-            <p><b>Description: </b>{{ useProduct().Product.product_description}}</p>
+            <p><b>Description: </b>{{ useProduct().Product.product_description }}</p>
         </div>
         <div class="msg">
-            <div class="btn btn-warning" @click="useChat().createNewChat(useProduct().Product.seller?.userid)">Send message</div>
+            <div class="btn btn-warning" @click="useChat().createNewChat(useProduct().Product.seller?.userid)">Send message
+            </div>
         </div>
     </div>
     <div class="row" v-else>
-                <p class="loadingmsg">Just a moment, the selected item is loading</p>
-        </div>
+        <p class="loadingmsg">Just a moment, the selected item is loading.....</p>
+    </div>
 </template>
 <style scoped>
-.msg{
+.msg {
     padding: 3px;
     text-align: center;
     margin: auto;
     height: 50%;
-}
-</style>
+}</style>

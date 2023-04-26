@@ -28,16 +28,15 @@ use App\Http\Controllers\FileController;
 Route::prefix("users")->group(function (){
     Route::get('/{user}', [UserController::class, 'show'])->whereNumber("user");
     Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/current', [UserController::class, 'getCurrentUserDetails']);
         Route::get('/', [UserController::class, 'index']);
         Route::delete('/{user}',[UserController::class,'destroy'])->whereNumber("user");
         Route::patch('/{user}', [UserController::class, 'update'])->whereNumber("user");
     });
 });
 
-
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::post('/register',[UserController::class,'store']);
-
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [UserController::class, 'logout']);
@@ -47,6 +46,7 @@ Route::prefix("roles")->group(function (){
     Route::get('/', [RoleController::class, 'indexwithoutadmin']);
     Route::get('/{role}', [RoleController::class, 'show'])->whereNumber("role");
 });
+
 Route::prefix("products")->group(function (){
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/{product}', [ProductController::class, 'show'])->whereNumber("product");
@@ -61,7 +61,6 @@ Route::prefix("products")->group(function (){
         Route::get('/disable', [ProductController::class, 'disable']);
     });
 });
-
 
 Route::prefix("types")->group(function (){
     Route::get('/', [TypeController::class, 'index']);

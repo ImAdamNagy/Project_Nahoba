@@ -6,6 +6,7 @@
                     <th>seller</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Car type</th>
                     <th>Type</th>
                     <th>Image</th>
                     <th>Description</th>
@@ -17,6 +18,7 @@
                     <tr v-for="item in useProduct().disabledProducts">
                         <td>{{ item.seller.firstname }} {{ item.seller.lastname }}</td>
                         <td>{{ item.product_name }}</td>
+                        <td>{{ item.car_type.name }} {{ item.car_type.vintage }}</td>
                         <td>{{ item.product_price }}</td>
                         <td>{{ item.type.type }}</td>
                         <td>
@@ -28,7 +30,7 @@
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
                         <td><button class="btn btn-success " @click="useProduct().BeEnable(item.id)">Enable</button></td>
-                        <td><button class="btn btn-danger " @click="useProduct().deleteProduct(item.id)">Delete</button></td>
+                        <td><button class="btn btn-danger " @click="deleteDisabledProduct(item.id)">Delete</button></td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -67,6 +69,13 @@ import { onMounted } from 'vue';
 
 onMounted(useProduct().GetDisabledProducts);
 
+async function deleteDisabledProduct(id){
+    useProduct().disabledProductsIsLoading = true;
+    await useProduct().deleteProduct(id);
+    const index = useProduct().disabledProducts.findIndex(item=>item.id === id);
+    useProduct().disabledProducts.splice(index,1);
+    useProduct().disabledProductsIsLoading = false;
+}
 </script>
 <style scoped>thead {
     border-bottom: 3px solid red;

@@ -105,7 +105,6 @@ onMounted(useUser().getUserDetails)
     overflow: hidden;
     text-align: center;
     color: black;
-    font-family: arial;
 }
 .settingtitle:before,.settingtitle:after {
     position: absolute;

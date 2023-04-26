@@ -7,13 +7,14 @@ import { router } from '@/router/index.js';
 export const useProduct = defineStore('product-store',{
     state(){
         return{
-            EnableProducts: [],
+            enableProducts: [],
             disabledProducts: [],
             OwnProducts: [],
             obj: {},
             filters: {
                 search: null,
                 typesFilter: 0,
+                carTypesFilter: 0,
                 priceMinFilter: null,
                 priceMaxFilter: null
             },
@@ -40,18 +41,9 @@ export const useProduct = defineStore('product-store',{
             router.push({name: "MainPage"});
         },
         async deleteProduct(sellerId){
-            this.enableProductsIsLoading = true;
-            this.disabledProductsIsLoading = true;
-            this.userProductsIsLoading = true;
             const response = await http.delete("/products/" + sellerId,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
-        const index = this.EnableProducts.findIndex(item=>item.id === sellerId);
-        this.EnableProducts.splice(index,1);
-        //splice még két tömbre
-        this.enableProductsIsLoading = false;
-        this.disabledProductsIsLoading = false;
-        this.userProductsIsLoading = false;
         },
         async deleteUsersProducts(userid){
             const response = await http.delete("/products/deleteAll/" + userid,{
@@ -87,8 +79,7 @@ export const useProduct = defineStore('product-store',{
         },
         async getEnabledProducts() {
             const response = await http.get('/products/enable');
-            this.EnableProducts = response.data.data;
-            console.log(this.EnableProducts)
+            this.enableProducts = response.data.data;
             this.enableProductsIsLoading = false;
         },
         async getOwnProducts(){
@@ -103,6 +94,12 @@ export const useProduct = defineStore('product-store',{
                 return true;
             }
             return product.type.id == this.filters.typesFilter;
+        },
+        filterByCarType(product){
+            if (this.filters.carTypesFilter == 0) {
+                return true;
+            }
+            return product.car_type.id == this.filters.carTypesFilter;
         },
         filterByMinPrice(product){
             if (this.filters.priceMinFilter == null) {
@@ -145,10 +142,10 @@ export const useProduct = defineStore('product-store',{
     },
     getters:{
         FilteredProducts() {
-            if (this.filters.search === null && this.filters.typesFilter === null && this.filters.priceMinFilter === null && this.filters.priceMaxFilter === null) {
-                return this.EnableProducts;
+            if (this.filters.search === null && this.filters.typesFilter === null && this.filters.carTypesFilter === null && this.filters.priceMinFilter === null && this.filters.priceMaxFilter === null) {
+                return this.enableProducts;
             }
-            return this.EnableProducts.filter(this.filterByType).filter(this.filterByMinPrice).filter(this.filterByMaxPrice).filter(this.filterByName);
+            return this.enableProducts.filter(this.filterByType).filter(this.filterByMinPrice).filter(this.filterByMaxPrice).filter(this.filterByName).filter(this.filterByCarType);
         }
     }
 })

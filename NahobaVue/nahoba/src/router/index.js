@@ -11,7 +11,7 @@ import MechanicsView from '@/views/MechanicsView.vue'
 import ProfileSettingsView from '@/views/ProfileSettingsView.vue'
 import OtherUserProductsView from '@/views/OtherUserProductsView.vue'
 import MechanicFormView from '@/views/MechanicFormView.vue'
-import AdminEnabledProducts from '@/views/AdminEnabledProducts.vue'
+import AdminEnabledProductsView from '@/views/AdminEnabledProductsView.vue'
 import AdminUsersView from '@/views/AdminUsersView.vue'
 import MessagesView from '@/views/MessagesView.vue'
 export const router = createRouter({
@@ -70,7 +70,7 @@ export const router = createRouter({
     {
       path: '/enabledproducts',
       name: 'EnableProductsView',
-      component: AdminEnabledProducts,
+      component: AdminEnabledProductsView,
     },
     {
       path: '/users',

@@ -26,7 +26,7 @@ class LoginUserRequest extends FormRequest
     {
         return [
             'username' => ['required', 'min:4', 'max:15'],
-            'password' => ['required', 'min:5', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/']
+            'password' => ['required', 'min:5']
         ];
     }
 }

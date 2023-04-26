@@ -1,10 +1,11 @@
 <template>
-    <div v-if="useProduct().enableProductsIsLoading == false && useProduct().EnableProducts.length > 0">
+    <div v-if="useProduct().enableProductsIsLoading == false && useProduct().enableProducts.length > 0">
         <div class="scrolltable p-3">
             <table class="table table-responsive table-striped">
                 <thead>
                     <th>seller</th>
                     <th>Name</th>
+                    <th>Car type</th>
                     <th>Price</th>
                     <th>Type</th>
                     <th>Image</th>
@@ -13,8 +14,10 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="item in useProduct().EnableProducts">
+                    <tr v-for="item in useProduct().enableProducts">
                         <td>{{ item.seller.firstname }} {{ item.seller.lastname }}</td>
+                        <td>{{ item.product_name }}</td>
+                        <td>{{ item.car_type.name }} {{ item.car_type.vintage }}</td>
                         <td>{{ item.product_name }}</td>
                         <td>{{ item.product_price }}</td>
                         <td>{{ item.type.type }}</td>
@@ -27,7 +30,7 @@
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
                         <td>
-                            <div class="btn btn-danger" @click="useProduct().deleteProduct(item.id)">Delete product</div>
+                            <div class="btn btn-danger" @click="deleteEnableProduct(item.id)">Delete product</div>
                         </td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,7 +58,7 @@
         </div>
     </div>
     <div class="loadingmsg mt-3"
-        v-else-if="useProduct().enableProductsIsLoading == false && useProduct().EnableProducts.length == 0">
+        v-else-if="useProduct().enableProductsIsLoading == false && useProduct().enableProducts.length == 0">
         <p>There are no available products on the website</p>
     </div>
     <div class="loadingmsg mt-3" v-else-if="useProduct().enableProductsIsLoading == true">
@@ -68,6 +71,13 @@ import { onMounted } from 'vue';
 
 onMounted(useProduct().getEnabledProducts);
 
+async function deleteEnableProduct(id){
+    useProduct().enableProductsIsLoading = true;
+    await useProduct().deleteProduct(id);
+    const index = useProduct().enableProducts.findIndex(item=>item.id === id);
+    useProduct().enableProducts.splice(index,1);
+    useProduct().enableProductsIsLoading = false;
+}
 </script>
 <style scoped>thead {
     border-bottom: 3px solid red;

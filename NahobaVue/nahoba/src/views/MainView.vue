@@ -2,7 +2,7 @@
     <NavBar />
     <Header><h1 class="headertitle">Welcome to Nahoba Parts</h1></Header>
     <div class="container">
-        <div class="row" v-if="useProduct().EnableProducts.length > 0">
+        <div class="row" v-if="useProduct().enableProducts.length > 0">
             <Mechanics  @details="details" />
             <Products @details="details" />
         </div>

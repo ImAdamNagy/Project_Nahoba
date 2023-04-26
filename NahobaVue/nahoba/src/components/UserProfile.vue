@@ -15,6 +15,14 @@ const schema = yup.object(
     });
 onMounted(useProduct().getOwnProducts);
 onMounted(useUser().getUserDetails);
+
+async function deleteUserProduct(id){
+    useProduct().userProductsIsLoading = true;
+    await useProduct().deleteProduct(id);
+    const index = useProduct().OwnProducts.findIndex(item=>item.id === id);
+    useProduct().OwnProducts.splice(index,1);
+    useProduct().userProductsIsLoading = false;
+}
 </script>
 <template>
     <div v-if="useProduct().userProductsIsLoading == false && useUser().userDataIsLoading == false">
@@ -38,7 +46,7 @@ onMounted(useUser().getUserDetails);
                         </div>
                         <div class="col-12 ">
                             <a class="btn btn-warning" data-bs-toggle="modal" :data-bs-target="'#updateModal' + item.id">Update</a>
-                            <button class="btn btn-danger " @click="useProduct().deleteProduct(item.id)">Delete</button>
+                            <button class="btn btn-danger " @click="deleteUserProduct(item.id)">Delete</button>
                             <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -125,7 +133,6 @@ onMounted(useUser().getUserDetails);
     overflow: hidden;
     text-align: center;
     color: black;
-    font-family: arial;
 }
 
 #msg {

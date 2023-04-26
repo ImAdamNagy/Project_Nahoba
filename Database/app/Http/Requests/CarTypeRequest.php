@@ -13,7 +13,7 @@ class CarTypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user() !== null;
+        return Auth::user()->role->role_name == "admin";
     }
 
     /**
@@ -24,7 +24,8 @@ class CarTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name" => ['required'],
+            "vintage" => ['required','numeric','min:1886','max:2023']
         ];
     }
 }

@@ -11,10 +11,10 @@ const error = ref(null);
 async function login(userData){
     try {
         await useAuth().login(userData);
+        await useAuth().getCurrentUserDetails();
         let name;
-        switch(await useAuth().getRole()){
-            case "admin": 
-            name = 'AdminMain';
+        switch(useAuth().currentUserDetails.role.role_name){
+            case "admin": name = 'AdminMain';
             break;
             case "seller": name = 'MainPage';
             break;
@@ -23,6 +23,7 @@ async function login(userData){
         }
         router.push({name:name});
     } catch (e) {
+        console.log(e);
         if(e.response.status == 401)
         {
             error.value = "Wrong username or password!"
