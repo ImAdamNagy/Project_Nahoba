@@ -4,8 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\MessageController; 
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\TypeController; 
+use App\Http\Controllers\CarTypeController; 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MechanicController;
@@ -70,6 +72,15 @@ Route::prefix("types")->group(function (){
     });
 });
 
+Route::prefix("cartypes")->group(function (){
+    Route::get('/', [CarTypeController::class, 'index']);
+    Route::get('/{cartype}', [CarTypeController::class, 'show'])->whereNumber("cartype");
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/', [CarTypeController::class, 'store']);
+        Route::delete('/{cartype}', [CarTypeController::class, 'destroy'])->whereNumber("cartype");
+    });
+});
+
 Route::prefix("mechanics")->group(function (){
     Route::get('/', [MechanicController::class, 'index']);
     Route::get('/{id}', [MechanicController::class, 'show'])->whereNumber("id");
@@ -85,6 +96,13 @@ Route::middleware(['auth:sanctum'])->prefix('chats')->group(function () {
     Route::get('/{chat}', [ChatController::class, 'show'])->whereNumber("chat");
     Route::post('/', [ChatController::class, 'store']);
     Route::delete('/', [ChatController::class, 'destroy']);
+});
+
+Route::middleware(['auth:sanctum'])->prefix('messages')->group(function () {
+    Route::get('/', [MessageController::class, 'index']);
+    Route::get('/{message}', [MessageController::class, 'show'])->whereNumber("message");
+    Route::post('/', [MessageController::class, 'store']);
+    Route::delete('/', [MessageController::class, 'destroy']);
 });
 
 

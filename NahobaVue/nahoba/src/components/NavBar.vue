@@ -28,7 +28,7 @@
               <ul class="dropdown-menu" id="drop">
                 <li><Router-link class="dropdown-item" to="/settings">Settings</Router-link></li>
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
-                <li><a class="dropdown-item" href="#">Messages</a></li>
+                <li><Router-link class="dropdown-item" to="/messages">Messages</Router-link></li>
                 <div class="dropdown-divider"></div>
                 <li><button class="dropdown-item" @click="useAuth().logout">Sign out</button></li>
               </ul>
@@ -98,7 +98,6 @@ nav {
   color: white;
   font-size: 20px;
 }
-
 .nav-title {
   color: white;
 }

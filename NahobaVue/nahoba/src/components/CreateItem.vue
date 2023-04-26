@@ -21,6 +21,14 @@
                     </option>
                 </Field>
 
+                <label for="car_typeId">Car type</label>
+                <Field name="car_typeId" id="car_typeId" class="form-control" as="select">
+                    <option value="" disabled selected hidden>Choose your products car type</option>
+                    <option  v-for="item in useCarType().cartypes" :value="item.id">
+                        {{ item.name }} {{ item.vintage }}
+                    </option>
+                </Field>
+
                 <label for="product_price" class="form-label">Product Price</label>
                 <Field type="number" name="product_price" id="product_price" placeholder="Enter product price" class="form-control"/>
                 <ErrorMessage name="product_price" as="div" class="alert alert-danger m-1" />
@@ -50,6 +58,7 @@ import { onMounted } from "vue";
 import * as yup from 'yup';
 import {useType} from '@/store/TypeStore.js'
 import {useProduct} from '@/store/ProductStore.js'
+import {useCarType} from '@/store/CarTypeStore.js'
 
 
 
@@ -65,6 +74,7 @@ const schema = yup.object(
 const emits = defineEmits(["onChange"]);
 
 onMounted(useType().allTypes);
+onMounted(useCarType().allCarTypes);
 
 </script>
 <style scoped>

@@ -7,7 +7,7 @@
             <Products @details="details" />
         </div>
         <div class="row mt-5" v-else>
-                <h3 class="loadingmsg">Just a moment, the mainpage is loading</h3>
+                <p class="loadingmsg">Just a moment, the mainpage is loading</p>
         </div>
     </div>
 </template>

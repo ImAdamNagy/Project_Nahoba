@@ -1,18 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProductsView from "../views/ProductsView.vue"
-import RegisterView from "../views/RegisterView.vue"
-import CreateProductView from "../views/CreateProductView.vue"
-import LoginView from "../views/LoginView.vue"
-import ShowProductView from '../views/ShowProductView.vue'
-import UserProfileView from '../views/UserProfileView.vue'
-import AdminMainView from '../views/AdminMainView.vue'
-import MainView from '../views/MainView.vue'
+import ProductsView from "@/views/ProductsView.vue"
+import RegisterView from "@/views/RegisterView.vue"
+import CreateProductView from "@/views/CreateProductView.vue"
+import LoginView from "@/views/LoginView.vue"
+import ShowProductView from '@/views/ShowProductView.vue'
+import UserProfileView from '@/views/UserProfileView.vue'
+import AdminMainView from '@/views/AdminMainView.vue'
+import MainView from '@/views/MainView.vue'
 import MechanicsView from '@/views/MechanicsView.vue'
-import ProfileSettingsView from '../views/ProfileSettingsView.vue'
-import OtherUserProductsView from '../views/OtherUserProductsView.vue'
-import MechanicFormView from '../views/MechanicFormView.vue'
-import AdminEnabledProducts from '../views/AdminEnabledProducts.vue'
-import AdminUsersView from '../views/AdminUsersView.vue'
+import ProfileSettingsView from '@/views/ProfileSettingsView.vue'
+import OtherUserProductsView from '@/views/OtherUserProductsView.vue'
+import MechanicFormView from '@/views/MechanicFormView.vue'
+import AdminEnabledProducts from '@/views/AdminEnabledProducts.vue'
+import AdminUsersView from '@/views/AdminUsersView.vue'
+import MessagesView from '@/views/MessagesView.vue'
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,6 +36,11 @@ export const router = createRouter({
       path: '/register',
       name: 'RegisterPage',
       component: RegisterView,
+    },
+    {
+      path: '/messages',
+      name: 'MessagesPage',
+      component: MessagesView,
     },
     {
       path: '/newproduct',
