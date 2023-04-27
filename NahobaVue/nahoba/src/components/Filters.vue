@@ -9,7 +9,7 @@
         <div class="cartype">
             <Field name="carTypesFilter" id="carTypesFilter"  class="form-select" :value="0" as="select">
                     <option :value="0">All cartype</option>
-                    <option  v-for="item in useCarType().cartypes" :key="item.id" :value="item.id"> {{ item.name }} {{ item.vintage }}</option>
+                    <option  v-for="item in useCarType().cartypes" :key="item.id" :value="item.id"> {{ item.name }} {{ item.year }}</option>
                 </Field>
         </div>
         <div class="type">

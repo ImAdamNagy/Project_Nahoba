@@ -1,4 +1,5 @@
 <template>
+
   <div class="row" v-if="useProduct().FilteredProducts.length > 0 && useProduct().enableProductsIsLoading == false">
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-3 " v-for="item in useProduct().FilteredProducts">
       <div class="product h-100">

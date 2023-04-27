@@ -20,6 +20,7 @@ export const useUser = defineStore('user-store',{
             const response = await http.get('/users/' + useAuth().userid);
             this.data = response.data.data;
             this.userDataIsLoading = false;
+            console.log(this.data)
         },
         async getUsers() {
             const response = await http.get('/users', {
