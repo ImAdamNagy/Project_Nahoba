@@ -116,7 +116,7 @@ async function deleteUserProduct(id){
             </div>
             <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
                 <div class="col-12">
-                    <p>You don't have any products yet</p>
+                    <div class="msgBoxTitle">You don't have any products yet</div>
                 </div>
             </div>
         </div>
@@ -140,36 +140,10 @@ async function deleteUserProduct(id){
         </div>
 </template>
 <style scoped>
-.title_lines {
-    position: relative;
-    font-size: 30px;
-    z-index: 1;
-    overflow: hidden;
-    text-align: center;
-    color: black;
-}
 
 #msg {
     text-align: center;
 }
-
-.title_lines:before,
-.title_lines:after {
-    position: absolute;
-    top: 51%;
-    overflow: hidden;
-    width: 48%;
-    height: 2px;
-    content: '\a0';
-    background-color: red;
-    margin-left: 2%;
-}
-
-.title_lines:before {
-    margin-left: -50%;
-    text-align: right;
-}
-
 img {
     max-width: 100%;
 }

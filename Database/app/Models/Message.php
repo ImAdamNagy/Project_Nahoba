@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     protected $table = "messages";
-    protected $fillable = ["from", "to"];
+    protected $fillable = ["message", "sender_id", "chat_id"];
 }
