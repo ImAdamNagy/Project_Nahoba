@@ -12,6 +12,7 @@ async function login(userData){
     try {
         await useAuth().login(userData);
         await useAuth().getCurrentUserDetails();
+        useAuth().userid = useAuth().currentUserDetails.userid;
         let name;
         switch(useAuth().currentUserDetails.role.role_name){
             case "admin": name = 'AdminMain';

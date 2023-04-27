@@ -1,6 +1,8 @@
 <template>
 <NavBar />
-<Header><h1 class="headertitle">{{ useProduct().Product.product_name }} </h1></Header>
+<Header>
+    <h1 class="headertitle">Product details</h1>
+</Header>
 <div class="container">
     <ShowItem  />
 </div>
