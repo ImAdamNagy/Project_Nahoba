@@ -1,12 +1,12 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
-import { router } from '@/router/index.js';
 
 export const useMsg = defineStore('msg-store',
 {
     state(){
         return{
-            messages: []
+            messages: [],
+            getMsgLoading: true
         }
     },
     actions:{
@@ -14,7 +14,9 @@ export const useMsg = defineStore('msg-store',
             const response = await http.get('/messages/' + chatId,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            console.log(response.data.data);
+            this.messages = response.data.data;
+            console.log(this.messages);
+            this.getMsgLoading = false;
         }
     }
 })

@@ -2,6 +2,7 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
 import { router } from '@/router/index.js';
 import { useAuth } from './AuthStore.js';
+import { useMsg } from './MessageStore.js';
 
 export const useChat = defineStore('chat-store',
 {
@@ -33,6 +34,7 @@ export const useChat = defineStore('chat-store',
             this.msgLoading = false;
             this.chats = response.data.data;
             console.log(this.chats);
-        }
+        },
+
     }
 })

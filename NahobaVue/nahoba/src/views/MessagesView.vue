@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <Chat />
+            <Messages />
         </div>
     </div>
 </template>
