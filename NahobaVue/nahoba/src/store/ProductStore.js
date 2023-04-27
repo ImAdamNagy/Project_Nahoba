@@ -22,6 +22,7 @@ export const useProduct = defineStore('product-store',{
             productIsLoading: true,
             UserProducts: [],
             userProductsIsLoading: true,
+            otherUserProductsIsLoading: true,
             disabledProductsIsLoading: true,
             enableProductsIsLoading: true
         }
@@ -129,6 +130,7 @@ export const useProduct = defineStore('product-store',{
             return product.product_name.toLowerCase().includes(this.filters.search.toLowerCase());
         },
         async getProduct(){
+            this.productIsLoading = true;
             const response = await http.get("/products/" + useRoute().params.id);
             this.Product = response.data.data;
             this.productIsLoading = false;
@@ -138,6 +140,7 @@ export const useProduct = defineStore('product-store',{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
             this.UserProducts = response.data.data;
+            this.otherUserProductsIsLoading = false
         },
     },
     getters:{

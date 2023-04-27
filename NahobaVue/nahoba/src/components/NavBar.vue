@@ -68,10 +68,15 @@
               <button class="dropdown-item" @click="useAuth().logout">Sign out</button>
             </li>
           </div>
-          <div class="nav-item" v-else>
+          <div v-else>
+            <ul class="navbar-nav">
+            <li class="nav-item">
+              <Router-link class="nav-link active text-light" to="/register">Register</Router-link>
+            </li>
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/login">Login</Router-link>
             </li>
+            </ul>
           </div>
         </div>
       </div>
