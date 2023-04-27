@@ -15,7 +15,7 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function findchat()
     {
         $chatsfrom = Chat::where("from","=",Auth::id())->get();
         $chatsto = Chat::where("to","=",Auth::id())->get();

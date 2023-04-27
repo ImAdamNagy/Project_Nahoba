@@ -91,7 +91,7 @@ Route::prefix("mechanics")->group(function (){
 });
 
 Route::middleware(['auth:sanctum'])->prefix('chats')->group(function () {
-    Route::get('/', [ChatController::class, 'index']);
+    Route::get('/', [ChatController::class, 'findchat']);
     Route::get('/{chat}', [ChatController::class, 'show'])->whereNumber("chat");
     Route::post('/', [ChatController::class, 'store']);
     Route::delete('/', [ChatController::class, 'destroy']);

@@ -25,7 +25,7 @@ class CarTypeRequest extends FormRequest
     {
         return [
             "name" => ['required'],
-            "vintage" => ['required','numeric','min:1886','max:2023']
+            "year" => ['required','numeric','min:1886','max:2023']
         ];
     }
 }

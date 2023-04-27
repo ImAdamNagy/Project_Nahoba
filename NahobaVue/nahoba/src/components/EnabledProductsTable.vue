@@ -17,7 +17,7 @@
                     <tr v-for="item in useProduct().enableProducts">
                         <td>{{ item.seller.firstname }} {{ item.seller.lastname }}</td>
                         <td>{{ item.product_name }}</td>
-                        <td>{{ item.car_type.name }} {{ item.car_type.vintage }}</td>
+                        <td>{{ item.car_type.name }} {{ item.car_type.year }}</td>
                         <td>{{ item.product_name }}</td>
                         <td>{{ item.product_price }}</td>
                         <td>{{ item.type.type }}</td>

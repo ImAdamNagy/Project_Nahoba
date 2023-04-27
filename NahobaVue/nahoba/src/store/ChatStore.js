@@ -10,7 +10,9 @@ export const useChat = defineStore('chat-store',
             chatData: {
                 from: '',
                 to: ''
-            }
+            },
+            chats: [],
+            msgLoading: true
         }
     },
     actions:{
@@ -23,6 +25,14 @@ export const useChat = defineStore('chat-store',
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
             router.push({name: "MessagesPage"});
+        },
+        async getChats(){
+            const response = await http.get('/chats/',{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+            });
+            this.msgLoading = false;
+            this.chats = response.data.data;
+            console.log(this.chats);
         }
     }
 })

@@ -25,7 +25,7 @@
                 <Field name="car_typeId" id="car_typeId" class="form-control" as="select">
                     <option value="" disabled selected hidden>Choose your products car type</option>
                     <option  v-for="item in useCarType().cartypes" :value="item.id">
-                        {{ item.name }} {{ item.vintage }}
+                        {{ item.name }} {{ item.year }}
                     </option>
                 </Field>
 

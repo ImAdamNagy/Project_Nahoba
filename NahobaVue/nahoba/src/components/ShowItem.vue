@@ -15,7 +15,7 @@ onMounted(useProduct().getProduct);
         </div>
         <div class="cartype">
             <p><b>Car type: </b>{{ useProduct().Product.car_type.name }}</p>
-            <p><b>Vintage: </b>{{ useProduct().Product.car_type.vintage }}</p>
+            <p><b>Year of introduction: </b>{{ useProduct().Product.car_type.year }}</p>
         </div>
         <div class="seller">
             <p><b>Seller name: </b>{{ useProduct().Product.seller?.firstname }} {{ useProduct().Product.seller?.lastname }}
