@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class MessageRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class MessageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user() !== null;
     }
 
     /**
@@ -24,7 +25,9 @@ class MessageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'message' => ['required'],
+            'sender_id' => ['required'],
+            'chat_id' => ["required"]
         ];
     }
 }
