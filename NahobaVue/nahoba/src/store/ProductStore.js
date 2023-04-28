@@ -29,6 +29,9 @@ export const useProduct = defineStore('product-store',{
         }
     },
     actions:{
+        getImage(image){
+            return `${import.meta.env.VITE_LARAVEL_HOST}/images/${image}`;
+        },
         async createProduct(newproduct){
             const formdata = new FormData();
             for(const item in newproduct)

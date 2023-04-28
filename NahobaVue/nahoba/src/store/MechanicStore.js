@@ -1,21 +1,21 @@
-import {defineStore} from 'pinia';
-import {http} from '../utils/http.mjs'
-import {useAuth} from '../store/AuthStore.js'   
+import { defineStore } from 'pinia';
+import { http } from '../utils/http.mjs'
 
-export const useMechanic = defineStore('mechanic-store',{
-    state(){
-        return{
+export const useMechanic = defineStore('mechanic-store', {
+    state() {
+        return {
             currentMechanic: null,
-            currentMechanicIsLoading: true
+            currentMechanicIsLoading: true,
+            mechanicsIsLoading: true,
+            mechanics: []
         }
     },
-    actions:{
-        async getCurrentMechanic(){
+    actions: {
+        async getCurrentMechanic() {
             const response = await http.get('/mechanics/current', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.currentMechanic = response.data.data;
-            console.log(response);
             this.currentMechanicIsLoading = false;
         },
         async update(updatedMec) {
@@ -26,6 +26,12 @@ export const useMechanic = defineStore('mechanic-store',{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.getCurrentMechanic();
+        },
+        async getMechanics() {
+            this.mechanicsIsLoading = true;
+            const response = await http.get('/mechanics/');
+            this.mechanics = response.data.data;
+            this.mechanicsIsLoading = false;
         }
     }
 })

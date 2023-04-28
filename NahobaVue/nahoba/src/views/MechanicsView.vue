@@ -1,24 +1,14 @@
 <template>
     <NavBar />
     <Header><h1 class="headertitle">Mechanics</h1></Header>
-    <div class="container-fluid">
-        <Filters @filter="values => filters = values" />
+    <div class="container">
         <MechanicsOnly  />
     </div>
 </template>
 
-<script >
-import Filters from '../components/Filters.vue'
-import MechanicsOnly from '@/components/MechanicsOnly.vue'
+<script setup>
+import MechanicsOnly from '../components/MechanicsOnly.vue'
 import Header from '../components/Header.vue'
 import NavBar from '../components/NavBar.vue'
 
-export default {
-    components: {
-        Filters,
-        MechanicsOnly,
-        Header,
-        NavBar
-    }
-}
 </script>

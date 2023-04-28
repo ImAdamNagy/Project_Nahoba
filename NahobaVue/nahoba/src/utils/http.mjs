@@ -1,2 +1,2 @@
 import axios from 'axios';
-export const http = axios.create({baseURL: 'http://localhost:8881/api'});
+export const http = axios.create({baseURL: `${import.meta.env.VITE_LARAVEL_HOST}/api`});

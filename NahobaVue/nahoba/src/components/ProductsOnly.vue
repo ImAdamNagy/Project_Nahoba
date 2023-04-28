@@ -2,7 +2,7 @@
   <div class="row" v-if="useProduct().FilteredProducts.length > 0 && useProduct().enableProductsIsLoading == false">
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useProduct().FilteredProducts">
       <div class="product h-100">
-        <img :src="`http://localhost:8881/images/${item.product_img}`" class="productsonlycardimg" alt="...">
+        <img :src="useProduct().getImage(item.product_img)" class="productsonlycardimg" alt="...">
         <h5 class="title">{{ item.product_name }}</h5>
         <p class="price">{{ item.product_price }} Ft</p>
         <p class="cartype">{{ item.car_type.name }} {{ item.car_type.vintage }}</p>
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script setup>
-import { useProduct } from '../store/ProductStore';
+import { useProduct } from '../store/ProductStore.js';
 import { onMounted } from 'vue';
 
 onMounted(useProduct().getEnabledProducts);

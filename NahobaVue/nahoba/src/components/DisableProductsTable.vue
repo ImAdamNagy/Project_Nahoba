@@ -41,7 +41,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <img :src="`http://localhost:8881/images/${item.product_img}`" alt=""
+                                        <img :src="useProduct().getImage(item.product_img)" alt=""
                                             class="img-fluid">
                                     </div>
                                     <div class="modal-footer">
@@ -92,10 +92,8 @@ async function deleteDisabledProduct(id, seller_id){
     await useProduct().deleteProduct(id);
     const index = useProduct().disabledProducts.findIndex(item=>item.id === id);
     useProduct().disabledProducts.splice(index,1);
-
     await useChat().CreateAdminNotificationChat(seller_id);
     useMsg().AdminNotificationMessage('Your product didnt meet our requirements!');
-
     useProduct().disabledProductsIsLoading = false;
 }
 

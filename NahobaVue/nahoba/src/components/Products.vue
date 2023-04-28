@@ -4,7 +4,7 @@
       <h2 class="grouptitle">Products</h2>
       <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mt-3" v-for="item in useProduct().enableProducts">
         <div class="product h-100">
-          <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="mainproductscardimg">
+          <img :src="useProduct().getImage(item.product_img)" alt="" class="mainproductscardimg">
           <h5 class="title">{{ item.product_name }}</h5>
           <p class="price">{{ item.product_price }} Ft</p>
           <p class="price">{{ item.car_type.name }} {{ item.car_type.year }}</p>
