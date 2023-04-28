@@ -91,7 +91,11 @@ async function deleteDisabledProduct(id){
     useProduct().disabledProductsIsLoading = false;
 }
 </script>
-<style scoped>thead {
+<style scoped>
+.loader{
+  height: 400px;
+}
+thead {
     border-bottom: 3px solid red;
 }</style>
   

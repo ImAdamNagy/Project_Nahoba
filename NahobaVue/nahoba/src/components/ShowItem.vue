@@ -52,6 +52,9 @@ onMounted(useProduct().getProduct);
         </div>
 </template>
 <style scoped>
+.loader{
+  height: 400px;
+}
 .msg {
     padding: 3px;
     text-align: center;

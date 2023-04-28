@@ -111,7 +111,9 @@ onMounted(useUser().getUserDetails)
     </div>
 </template>
 <style scoped>
-
+.loader{
+  height: 400px;
+}
 .settingtitle {
     position: relative;
     font-size: 30px;

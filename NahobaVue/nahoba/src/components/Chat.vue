@@ -40,6 +40,9 @@ onMounted(useChat().getChats);
 onMounted(useUser().getUserDetails);
 </script>
 <style scoped>
+.loader{
+  height: 400px;
+}
 button{
     border: 1px solid black;
     margin-top: 5px;

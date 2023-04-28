@@ -93,6 +93,9 @@ async function deleteEnableProduct(id) {
 }
 </script>
 <style scoped>
+.loader{
+  height: 400px;
+}
 thead {
     border-bottom: 3px solid red;
 }

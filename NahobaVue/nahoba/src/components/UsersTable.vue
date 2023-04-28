@@ -67,6 +67,9 @@ async function deleteUserData(userid) {
 
 </script>
 <style scoped>
+.loader{
+  height: 400px;
+}
 thead {
     border-bottom: 3px solid red;
 }

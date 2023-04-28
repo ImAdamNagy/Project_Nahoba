@@ -41,3 +41,8 @@ function details(id) {
 
 onMounted(useProduct().getEnabledProducts);
 </script>
+<style scoped>
+.loader{
+  height: 400px;
+}
+</style>

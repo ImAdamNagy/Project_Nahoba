@@ -1,6 +1,6 @@
 <template>
 
-  <div class="col-lg-4 col-md-3 col-sm-12 mechanics mt-3 ">
+  <div class="col-lg-4 col-md-6 col-sm-12 mechanics mt-3 ">
     <div class="row">
       
       <h2 class="grouptitle">Mechanics</h2>

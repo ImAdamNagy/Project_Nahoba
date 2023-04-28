@@ -45,13 +45,31 @@ class UserSeeder extends Seeder
                 "role_id" => 3,
             ],
             [
-                "firstname" => "adam",
-                "lastname" => "nagy",
+                "firstname" => "Adam",
+                "lastname" => "Nagy",
                 "email" => "adamattila@gmail.com",
                 "tel" => "06809871213",
                 "username" => "adamnagy",
                 "password" => Hash::make('Asdasd1'),
                 "role_id" => 2,
+            ],
+            [
+                "firstname" => "Pista",
+                "lastname" => "Kis",
+                "email" => "kispista@gmail.com",
+                "tel" => "06809871213",
+                "username" => "kispista",
+                "password" => Hash::make('KisPista02'),
+                "role_id" => 3,
+            ],
+            [
+                "firstname" => "Bela",
+                "lastname" => "Nagy",
+                "email" => "belanagy@gmail.com",
+                "tel" => "06809871213",
+                "username" => "belanagy",
+                "password" => Hash::make('BelaNagy02'),
+                "role_id" => 3,
             ],
         ]);
     }

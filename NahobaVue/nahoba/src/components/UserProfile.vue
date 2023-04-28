@@ -36,9 +36,9 @@ async function deleteUserProduct(id){
                 <p><b>Username:</b> {{ useUser().data.username }}</p>
             </div>
             <div class="title_lines">Your products</div>
-            <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" v-if="useProduct().OwnProducts.length > 0">
+            <div class="col-lg-4  col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" v-if="useProduct().OwnProducts.length > 0">
                 <div class="product h-100">
-                    <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
+                    <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="profilecardimg">
                     <div class="row data">
                         <div class="col-12 ">
                             <h5 class="title">{{ item.product_name }}</h5>
@@ -140,7 +140,9 @@ async function deleteUserProduct(id){
         </div>
 </template>
 <style scoped>
-
+.loader{
+  height: 400px;
+}
 #msg {
     text-align: center;
 }

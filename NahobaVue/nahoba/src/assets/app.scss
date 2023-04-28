@@ -1,6 +1,7 @@
 #app {
   height: 100%;
 }
+
 .loader {
 	height: 100vh;
 	display: flex;
@@ -263,6 +264,17 @@ body, html {
   row-gap: 5px;
   column-gap: 5px;
 }
+.productsonlycardimg,.mainproductscardimg, .profilecardimg {
+  border-radius: 20px 0px 20px 0px;
+  height: 200px;
+  object-position: center;
+  object-fit: cover;
+}
+@media screen and (max-width: 1400px){
+.mainproductscardimg{
+  height: 150px;
+}
+}
 @media screen and (max-width: 1200px){
   .settinggrid {
     display: grid;
@@ -274,6 +286,12 @@ body, html {
       "settingemail settingchange"
       "settingtel settingdelete";
       row-gap: 3px;
+  }
+  .productsonlycardimg{
+    height: 150px;
+  }
+  .profilecardimg{
+    height: 150px;
   }
 }
 @media screen and (max-width: 1000px){
@@ -320,8 +338,14 @@ body, html {
     column-gap: 20px;
     row-gap: 5px;
   }
+  .mainproductscardimg{
+    height: 200px;
+  }
   .button{
     width: 100%;
+  }
+  .profilecardimg{
+    height: 200px;
   }
   .space{
     margin-top: 5px;
@@ -368,6 +392,9 @@ body, html {
       row-gap: 3px;
       column-gap: 3px;
   }
+  .profilecardimg{
+    height: 150px;
+  }
   .gridadminaction{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -378,6 +405,14 @@ body, html {
     row-gap: 5px;
     column-gap: 5px;
   }
+}
+@media screen and (max-width: 575px) {
+.productsonlycardimg{
+  height: 300px;
+}
+.profilecardimg{
+  height: 250px;
+}
 }
 @media screen and (max-width: 480px) {
   .grid-container {
