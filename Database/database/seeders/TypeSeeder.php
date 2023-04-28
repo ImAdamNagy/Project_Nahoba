@@ -18,6 +18,18 @@ class TypeSeeder extends Seeder
         DB::table('types')->insert([
             ["type" => "Wheel"],
             ["type" => "Engine"],
+            ["type" => "Battery"],
+            ["type" => "Turbo"],
+            ["type" => "Brake Pads"],
+            ["type" => "Brake Disc"],
+            ["type" => "Bulb"],
+            ["type" => "Air Filter"],
+            ["type" => "Oil Filter"],
+            ["type" => "Switch"],
+            ["type" => "Exhaust"],
+            ["type" => "Spark Plug"],
+            ["type" => "Suspension"],
+            ["type" => "Lubricants & Fluids"],
             ["type" => "Other"],
         ]);
     }

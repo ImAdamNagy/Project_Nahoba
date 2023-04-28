@@ -9,7 +9,6 @@ onMounted(
     async function () {
         if (useAuth().loggedIn) {
             await useAuth().getCurrentUserDetails();
-            console.log(useAuth().currentUserDetails);
             if (useAuth().currentUserDetails.role.role_name == "admin") {
                 useAuth().isAdmin = true;
             }

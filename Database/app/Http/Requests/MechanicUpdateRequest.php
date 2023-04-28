@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Http\FormRequest;
 
-class ChatRequest extends FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+
+class MechanicUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,12 @@ class ChatRequest extends FormRequest
     public function rules()
     {
         return [
-            "from" => ['required', 'exists:users,id'],
-            "to" => ['required', 'exists:users,id']
+            'introduction'=> ["required","min:5"],
+            'country'=> ["required","min:3","max:100"],
+            'postal_code'=> ["required","numeric"],
+            'city'=> ["required","min:3","max:100"],
+            'address'=> ["required","min:3","max:150"],
+            'profession'=> ["required","min:3","max:30"]
         ];
     }
 }

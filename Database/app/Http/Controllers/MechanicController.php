@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Resources\MechanicResource;
 use App\Models\Mechanic;
 use App\Http\Requests\MechanicRequest;
+use App\Http\Requests\MechanicUpdateRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 class MechanicController extends Controller
 {
 
@@ -21,6 +23,17 @@ class MechanicController extends Controller
         return MechanicResource::collection($mechanics);
     }
 
+    public function currentMechanic()
+    {
+        $mechanic = Mechanic::where('user_id',Auth::id())->get();
+        return new MechanicResource($mechanic[0]);
+    }
+
+    public function currentUserHasMechanic()
+    {
+        $mechanics = Auth::user()->Mechanic;
+        return $mechanics;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -30,11 +43,12 @@ class MechanicController extends Controller
     public function store(MechanicRequest $request)
     {
         $file = $request->file('img');
-        $file_name = $file->getClientOriginalName();
+        $file_name = time() . "." . $file->getClientOriginalName();
         $file->move(public_path('images'), $file_name);
 
         $newmechanic = new Mechanic($request->validated());
         $newmechanic->user_id=Auth::id();
+        $newmechanic->profile_pic=$file_name;
         $newmechanic->save();
         return new MechanicResource($newmechanic);
     }
@@ -58,7 +72,7 @@ class MechanicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MechanicRequest $request, Mechanic $mechanic)
+    public function update(MechanicUpdateRequest $request, Mechanic $mechanic)
     {
         $mechanic->update($request->validated());
         $mechanic->save();
