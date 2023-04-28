@@ -33,8 +33,7 @@ export const useUser = defineStore('user-store',{
             const response = await http.delete("/users/" + userid,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
-        const index = this.Users.findIndex(item=>item.id === userid);
-        this.Users.splice(index,1);
+        
         },
         async getOtherUser() {
             const response = await http.get('/users/' + useRoute().params.id);

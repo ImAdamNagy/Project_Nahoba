@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\Chat;
 use App\Http\Resources\MessageResource;
+use App\Http\Resources\ChatResource;
 use App\Http\Requests\MessageRequest;
 
 class MessageController extends Controller
@@ -51,8 +52,20 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($userid)
     {
-        $message = Message::findorfail($id)->delete();
+        $data = Chat::all();
+
+        for($i = 0; $i < count($data); $i++)
+        {
+            if($data[$i]['from'] == $userid || $data[$i]['to'] == $userid)
+            {
+                $messages = Message::where("chat_id", $data[$i]['id'])->get();
+                for($j = 0; $j < count($messages); $j++)
+                {
+                    $messages[$j]->delete();
+                }
+            }
+        }
     }
 }

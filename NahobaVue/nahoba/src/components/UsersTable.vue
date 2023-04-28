@@ -33,7 +33,7 @@
         <p>There are no users!</p>
     </div>
     <div class="loader" v-else-if="useUser().usersIsLoading == true">
-            <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
+            <svg class="car" width="102" height="100" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(2 1)" stroke="white" fill="none" fill-rule="evenodd" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path class="car__body"
@@ -54,13 +54,21 @@
 import { useUser } from '@/store/UserStore.js'
 import { useProduct } from '@/store/ProductStore.js'
 import { onMounted } from 'vue';
+import {useMsg} from '@/store/MessageStore.js';
+import {useChat} from '@/store/ChatStore.js'
 
 onMounted(useUser().getUsers);
 
 async function deleteUserData(userid) {
     useUser().usersIsLoading = true;
     await useProduct().deleteUsersProducts(userid);
+    await useMsg().deleteUserMessages(userid);
+    await useChat().deleteChats(userid);
     await useUser().deleteUser(userid);
+
+    const index = useUser().Users.findIndex(item=>item.id === userid);
+    useUser().Users.splice(index,1);
+
     useUser().usersIsLoading = false;
     alert("The user has been successfully deleted");
 }
