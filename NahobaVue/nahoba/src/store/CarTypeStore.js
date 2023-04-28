@@ -12,7 +12,7 @@ export const useCarType = defineStore('carType-store',{
             const response = await http.get('cartypes');
             this.cartypes = response.data.data;
         },
-        async deleteCarType(carTypeData){
+        async addCarType(carTypeData){
             const response = await http.post("/cartypes/", carTypeData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });

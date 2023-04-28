@@ -31,6 +31,7 @@ export const useAuth = defineStore('auth-store',
                 localStorage.clear();
                 this.token = '';
                 this.userid = '';
+                this.isAdmin = false;
                 alert("Logout was succesfull");
                 router.push({ name: 'MainPage' });
             },

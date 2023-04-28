@@ -15,15 +15,6 @@ class ChatSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('chats')->insert([
-            [
-               "from" => 1,
-               "to" => 2
-            ],
-            [
-                "from" => 2,
-                "to" => 1
-            ],
-        ]);
+        
     }
 }

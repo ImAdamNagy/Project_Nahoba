@@ -17,7 +17,7 @@ class MessageController extends Controller
      */
     public function index(Chat $chat)
     {
-        $messages = Message::where("chat_id", $chat)->get();
+        $messages = Message::where("chat_id", $chat->id)->get();
         return MessageResource::collection($messages);
     }
 
@@ -31,7 +31,7 @@ class MessageController extends Controller
     {
         $newmessage = new Message($request->validated());
         $newmessage->save();
-        return new MessageResource::collection($newmessage);
+        return new MessageResource($newmessage);
     }
 
     /**

@@ -11,7 +11,7 @@ class CarType extends Model
 {
     public $timestamps = false;
     protected $table = "carTypes";
-    protected $fillable = ["name", "vintage"];
+    protected $fillable = ["name", "year"];
 
     public function CarTypesProducts()
     {

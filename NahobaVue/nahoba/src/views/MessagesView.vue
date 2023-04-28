@@ -3,8 +3,8 @@
     <Header><h1 class="headertitle">User Messages</h1></Header>
     <div class="container">
         <div class="row">
+            <Chat />
             <Messages />
-            <Chat />    
         </div>
     </div>
 </template>

@@ -92,14 +92,14 @@ Route::prefix("mechanics")->group(function (){
     });
 });
 Route::middleware(['auth:sanctum'])->prefix('chats')->group(function () {
-    Route::get('/', [ChatController::class, 'index']);
+    Route::get('/', [ChatController::class, 'findchat']);
     Route::get('/{chat}', [ChatController::class, 'show'])->whereNumber("chat");
     Route::post('/', [ChatController::class, 'store']);
     Route::delete('/', [ChatController::class, 'destroy']);
 });
 
 Route::middleware(['auth:sanctum'])->prefix('messages')->group(function () {
-    Route::get('/', [MessageController::class, 'index']);
+    Route::get('/{chat}', [MessageController::class, 'index'])->whereNumber("chat");    
     Route::get('/{message}', [MessageController::class, 'show'])->whereNumber("message");
     Route::post('/', [MessageController::class, 'store']);
     Route::delete('/', [MessageController::class, 'destroy']);

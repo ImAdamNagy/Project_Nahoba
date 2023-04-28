@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('car_typeId')->constrained("carTypes","id");
             $table->string('product_img');
             $table->string('product_description',150);
-            $table->string('product_location', 100);
+            $table->string('product_location', 120);
             $table->boolean('product_enable');
         });
     }

@@ -3,6 +3,7 @@ import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
 import { useAuth } from './AuthStore.js';
 import { router } from '@/router/index.js';
+import { useChat } from './ChatStore.js';
 
 export const useProduct = defineStore('product-store',{
     state(){
@@ -22,6 +23,7 @@ export const useProduct = defineStore('product-store',{
             productIsLoading: true,
             UserProducts: [],
             userProductsIsLoading: true,
+            otherUserProductsIsLoading: true,
             disabledProductsIsLoading: true,
             enableProductsIsLoading: true
         }
@@ -65,6 +67,7 @@ export const useProduct = defineStore('product-store',{
             this.disabledProducts = response.data.data;
             this.disabledProductsIsLoading = false;
         },
+
         async BeEnable(id){
             this.disabledProductsIsLoading = true;
             this.obj = {
@@ -77,6 +80,7 @@ export const useProduct = defineStore('product-store',{
             this.disabledProducts.splice(index,1);
             this.disabledProductsIsLoading = false;
         },
+
         async getEnabledProducts() {
             const response = await http.get('/products/enable');
             this.enableProducts = response.data.data;
@@ -129,6 +133,7 @@ export const useProduct = defineStore('product-store',{
             return product.product_name.toLowerCase().includes(this.filters.search.toLowerCase());
         },
         async getProduct(){
+            this.productIsLoading = true;
             const response = await http.get("/products/" + useRoute().params.id);
             this.Product = response.data.data;
             this.productIsLoading = false;
@@ -138,6 +143,7 @@ export const useProduct = defineStore('product-store',{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
             this.UserProducts = response.data.data;
+            this.otherUserProductsIsLoading = false
         },
     },
     getters:{

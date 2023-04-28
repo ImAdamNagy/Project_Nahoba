@@ -43,7 +43,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $file = $request->file('img');
-        $file_name = $file->getClientOriginalName();
+        $file_name = time() . '.' . $file->getClientOriginalName();
         $file->move(public_path('images'), $file_name);
 
         $newproduct = new Product($request->validated());
