@@ -7,7 +7,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "setup": "cp .env.example .env",
+    "setup:win": "copy .env.example .env"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",

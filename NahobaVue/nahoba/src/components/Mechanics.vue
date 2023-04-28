@@ -6,7 +6,7 @@
       <h2 class="grouptitle">Mechanics</h2>
         <div class="col-12 mt-3" v-for="item in useProduct().enableProducts">
           <div class="product h-100">
-            <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="img-fluid">
+            <img :src="useProduct().getImage(item.product_img)" alt="" class="img-fluid">
               <h5 class="title">{{item.product_name}}</h5>
               <p class="price">{{item.product_price}} Ft</p>
               <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>

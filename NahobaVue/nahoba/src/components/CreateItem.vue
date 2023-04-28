@@ -101,7 +101,7 @@ onMounted(useCarType().allCarTypes);
     }
     #first{
         box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
-        background-image: url(http://localhost:8881/images/porsche.jpg);
+        background-image: url(/img/bg.jpg);
         background-position: center;
         background-size: cover;
         padding-top: 15%;

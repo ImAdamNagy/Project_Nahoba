@@ -17,7 +17,7 @@ onMounted(useUser().getOtherUser);
         <div class="row mt-3 mx-auto mt-5 py-4 rounded rounded-5 px-3">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in useProduct().UserProducts">
             <div class="product h-100">
-                <img :src="`http://localhost:8881/images/${item.product_img}`" alt="" class="productsonlycardimg">
+                <img :src="useProduct().getImage(item.product_img)" alt="" class="productsonlycardimg">
                 <div class="row data">
                     <div class="col-12 ">
                         <h5 class="title">{{ item.product_name }}</h5>
