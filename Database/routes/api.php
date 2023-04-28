@@ -95,14 +95,14 @@ Route::middleware(['auth:sanctum'])->prefix('chats')->group(function () {
     Route::get('/', [ChatController::class, 'findchat']);
     Route::get('/{chat}', [ChatController::class, 'show'])->whereNumber("chat");
     Route::post('/', [ChatController::class, 'store']);
-    Route::delete('/', [ChatController::class, 'destroy']);
+    Route::delete('/{userid}', [ChatController::class, 'destroy'])->whereNumber("userid");
 });
 
 Route::middleware(['auth:sanctum'])->prefix('messages')->group(function () {
     Route::get('/{chat}', [MessageController::class, 'index'])->whereNumber("chat");    
     Route::get('/{message}', [MessageController::class, 'show'])->whereNumber("message");
     Route::post('/', [MessageController::class, 'store']);
-    Route::delete('/', [MessageController::class, 'destroy']);
+    Route::delete('/{userid}', [MessageController::class, 'destroy'])->whereNumber("userid");
 });
 
 

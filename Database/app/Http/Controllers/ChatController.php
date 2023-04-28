@@ -74,8 +74,16 @@ class ChatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($userid)
     {
-        $chat = Chat::findOrFail($id)->delete();
+        $data = Chat::all();
+
+        for($i = 0; $i < count($data); $i++)
+        {
+            if($data[$i]['from'] == $userid || $data[$i]['to'] == $userid)
+            {
+                $data[$i]->delete();
+            }
+        }
     }
 }

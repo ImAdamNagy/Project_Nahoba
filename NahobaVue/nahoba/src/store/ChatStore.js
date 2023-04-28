@@ -49,6 +49,11 @@ export const useChat = defineStore('chat-store',
             });
             this.msgLoading = false;
             this.chats = response.data.data;
+        },
+        async deleteChats(userid){
+            const response = await http.delete('/chats/' + userid,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+            });
         }
     }
 })
