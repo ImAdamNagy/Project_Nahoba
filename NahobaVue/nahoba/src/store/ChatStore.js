@@ -25,8 +25,6 @@ export const useChat = defineStore('chat-store',
         async createNewChat(to){
             this.chatData.from = useAuth().userid;
             this.chatData.to = to;
-            console.log(this.chatData.from)
-            console.log(this.chatData.to)
             const response = await http.post('/chats/', this.chatData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
@@ -40,7 +38,6 @@ export const useChat = defineStore('chat-store',
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
             this.newchat = response.data.data;
-            console.log(this.newchat.id);
             useMsg().adminNotification.chat_id = this.newchat.id;
         },
         async getChats(){

@@ -62,7 +62,7 @@ onMounted(useRole().getRoles)
 
                     <Field name="role_id" id="role" class="mt-2 form-control" as="select">
                         <option value="" disabled selected hidden>Select your role</option>
-                        <option v-for="item in useRole().roles" :value="item.id">
+                        <option v-for="item in useRole().roles" :value="item.id" :key="item.id">
                             {{ item.role_name }}
                         </option>
 

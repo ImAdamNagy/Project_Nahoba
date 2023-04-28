@@ -14,11 +14,10 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="item in useProduct().enableProducts">
+                    <tr v-for="item in useProduct().enableProducts" :key="item.id">
                         <td>{{ item.seller.firstname }} {{ item.seller.lastname }}</td>
                         <td>{{ item.product_name }}</td>
                         <td>{{ item.car_type.name }} {{ item.car_type.year }}</td>
-                        <td>{{ item.product_name }}</td>
                         <td>{{ item.product_price }}</td>
                         <td>{{ item.type.type }}</td>
                         <td>
@@ -92,7 +91,7 @@ async function deleteEnableProduct(id, seller_id) {
     const index = useProduct().enableProducts.findIndex(item => item.id === id);
     useProduct().enableProducts.splice(index, 1);
     await useChat().CreateAdminNotificationChat(seller_id);
-    useMsg().AdminNotificationMessage('Your product has been deleted!');
+    await useMsg().AdminNotificationMessage('Your product has been deleted!');
     useProduct().enableProductsIsLoading = false;
 }
 </script>

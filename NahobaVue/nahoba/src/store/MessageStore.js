@@ -32,13 +32,11 @@ export const useMsg = defineStore('msg-store',
             this.messages = response.data.data;
             this.getMsgLoading = false;
             this.currentChatId = currentChatId;
-            console.log(this.messages)
         },
         async sendMessage(message){
             this.newmessage.message = message.message;
             this.newmessage.sender_id = useUser().data.userid;
             this.newmessage.chat_id = this.currentChatId;
-            console.log(this.newmessage);
             const response = await http.post('/messages/', this.newmessage,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });

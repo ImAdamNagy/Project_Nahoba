@@ -1,5 +1,5 @@
 <template>
-    <div v-if="useUser().usersIsLoading == false && useUser().Users.length > 0">
+    <div v-if="useUser().usersIsLoading == false && useUser().users.length > 0">
         <div class="scrolltable p-3">
             <table class="table table-responsive table-striped">
                 <thead>
@@ -13,7 +13,7 @@
                     <th>Actions</th>
                 </thead>
                 <tbody>
-                    <tr v-for="item in useUser().Users">
+                    <tr v-for="item in useUser().users" :key="item.userid">
                         <td>{{ item.userid }}</td>
                         <td>{{ item.firstname }}</td>
                         <td>{{ item.lastname }}</td>
@@ -29,11 +29,11 @@
             </table>
         </div>
     </div>
-    <div class="loadingmsg mt-3" v-else-if="useUser().usersIsLoading == false && useUser().Users.length == 0">
+    <div class="loadingmsg mt-3" v-else-if="useUser().usersIsLoading == false && useUser().users.length == 0">
         <p>There are no users!</p>
     </div>
     <div class="loader" v-else-if="useUser().usersIsLoading == true">
-            <svg class="car" width="102" height="100" xmlns="http://www.w3.org/2000/svg">
+            <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(2 1)" stroke="white" fill="none" fill-rule="evenodd" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path class="car__body"
@@ -65,10 +65,8 @@ async function deleteUserData(userid) {
     await useMsg().deleteUserMessages(userid);
     await useChat().deleteChats(userid);
     await useUser().deleteUser(userid);
-
-    const index = useUser().Users.findIndex(item=>item.id === userid);
-    useUser().Users.splice(index,1);
-
+    const index = useUser().users.findIndex(item=>item.userid === userid);
+    useUser().users.splice(index,1);
     useUser().usersIsLoading = false;
     alert("The user has been successfully deleted");
 }

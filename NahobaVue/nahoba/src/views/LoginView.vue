@@ -15,7 +15,9 @@ async function login(userData){
         await useAuth().getCurrentUserDetails();
         useAuth().userid = useAuth().currentUserDetails.userid;
         await useAuth().currentUserHasMechanic();
-        console.log(useAuth().currentUserHasMec);
+        if (useAuth().currentUserDetails.role.role_name == "admin") {
+                useAuth().isAdmin = true;
+        }
         let name;
         switch(useAuth().currentUserDetails.role.role_name){
             case "admin": name = 'AdminMain';
@@ -34,7 +36,6 @@ async function login(userData){
         }
         router.push({name:name});
     } catch (e) {
-        console.log(e);
         if(e.response.status == 401)
         {
             error.value = "Wrong username or password!"

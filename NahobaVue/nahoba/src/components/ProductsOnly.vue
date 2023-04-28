@@ -1,9 +1,9 @@
 <template>
   <div class="row" v-if="useProduct().FilteredProducts.length > 0 && useProduct().enableProductsIsLoading == false">
-    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useProduct().FilteredProducts">
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useProduct().FilteredProducts.reverse()" :key="item.id">
       <div class="product h-100">
         <img :src="useProduct().getImage(item.product_img)" class="productsonlycardimg" alt="...">
-        <h5 class="title">{{ item.product_name }}</h5>
+        <h5 class="title mt-2">{{ item.product_name }}</h5>
         <p class="price">{{ item.product_price }} Ft</p>
         <p class="cartype">{{ item.car_type.name }} {{ item.car_type.vintage }}</p>
         <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>

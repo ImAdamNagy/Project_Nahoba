@@ -4,7 +4,7 @@
     <div class="row">
       
       <h2 class="grouptitle">Mechanics</h2>
-        <div class="col-12 mt-3" v-for="item in useProduct().enableProducts">
+        <div class="col-12 mt-3" v-for="item in useProduct().enableProducts" :key="item.id">
           <div class="product h-100">
             <img :src="useProduct().getImage(item.product_img)" alt="" class="img-fluid">
               <h5 class="title">{{item.product_name}}</h5>

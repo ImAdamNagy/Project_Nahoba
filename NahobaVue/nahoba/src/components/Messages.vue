@@ -4,7 +4,7 @@
             <div class="msgBoxTitle">
                 Messages with: {{ useMsg().partnerName }}
             </div>
-            <div class="" v-for="item in useMsg().messages">
+            <div class="" v-for="item in useMsg().messages" :key="item.id">
                 <div v-if="item.sender_id == useUser().data.userid">
                     <p class="right">
                         {{ item.message }}

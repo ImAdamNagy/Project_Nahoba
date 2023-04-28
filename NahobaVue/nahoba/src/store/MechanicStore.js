@@ -21,7 +21,6 @@ export const useMechanic = defineStore('mechanic-store', {
         async update(updatedMec) {
             updatedMec.id = this.currentMechanic.id;
             this.currentMechanicIsLoading = true;
-            console.log(updatedMec);
             const response = await http.patch('/mechanics/' + this.currentMechanic.id, updatedMec, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });

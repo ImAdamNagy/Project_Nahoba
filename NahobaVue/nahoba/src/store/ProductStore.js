@@ -64,6 +64,7 @@ export const useProduct = defineStore('product-store',{
             this.getOwnProducts();
         },
         async GetDisabledProducts() {
+            this.disabledProductsIsLoading = true;
             const response = await http.get("/products/disable", {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
@@ -72,7 +73,6 @@ export const useProduct = defineStore('product-store',{
         },
 
         async BeEnable(id){
-            this.disabledProductsIsLoading = true;
             this.obj = {
                 product_enable: true
             }
@@ -81,10 +81,10 @@ export const useProduct = defineStore('product-store',{
             });
             const index = this.disabledProducts.findIndex(item=>item.id === id);
             this.disabledProducts.splice(index,1);
-            this.disabledProductsIsLoading = false;
         },
 
         async getEnabledProducts() {
+            this.enableProductsIsLoading = true;
             const response = await http.get('/products/enable');
             this.enableProducts = response.data.data;
             this.enableProductsIsLoading = false;

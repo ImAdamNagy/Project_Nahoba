@@ -1,6 +1,6 @@
 <template>
 <div class="row" v-if="useMechanic().mechanics.length > 0 && useMechanic().mechanicsIsLoading == false">
-    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useMechanic().mechanics">
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useMechanic().mechanics" :key="item.id">
       <div class="mechanic h-100">
         <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
         <p class="profession">{{ item.profession }}</p>

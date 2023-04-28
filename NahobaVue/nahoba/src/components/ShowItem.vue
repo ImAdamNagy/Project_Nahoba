@@ -9,7 +9,8 @@ onMounted(useProduct().getProduct);
 </script>
 <template>
     <div class="grid-container" v-if="useProduct().productIsLoading == false">
-        <img :src="useProduct().getImage(useProduct().Product.product_img)" alt="" class="image img-fluid">
+        <img data-bs-toggle="modal" data-bs-target="#exampleModal" :src="useProduct().getImage(useProduct().Product.product_img)" :alt="`${useProduct().Product.product_img}`"
+            class="image img-fluid">
         <h1 class="grid-title">{{ useProduct().Product.product_name }}</h1>
         <div class="price">
             <p><b>Price: </b>{{ useProduct().Product.product_price }}</p>
@@ -20,7 +21,8 @@ onMounted(useProduct().getProduct);
         <div class="seller">
             <p><b>Seller name: </b>{{ useProduct().Product.seller?.firstname }} {{ useProduct().Product.seller?.lastname }}
             </p>
-            <Router-link :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>Seller's other products</b></Router-link>
+            <Router-link :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>Seller's other
+                    products</b></Router-link>
         </div>
         <div class="location">
             <p><b>Location: </b>{{ useProduct().Product.product_location }}</p>
@@ -32,9 +34,16 @@ onMounted(useProduct().getProduct);
             <div class="btn btn-warning" @click="useChat().createNewChat(useProduct().Product.seller?.userid)">Send message
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <img class="img-fluid" :src="useProduct().getImage(useProduct().Product.product_img)" :alt="`${useProduct().Product.product_img}`">
+                </div>
+            </div>
+        </div>
     </div>
     <div class="loader" v-else>
-            <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
+        <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(2 1)" stroke="white" fill="none" fill-rule="evenodd" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path class="car__body"
@@ -49,15 +58,17 @@ onMounted(useProduct().getProduct);
                 <path class="car__line car__line--bottom" d="M25.5 9.5h-19" stroke-width="3" />
             </g>
         </svg>
-        </div>
+    </div>
 </template>
 <style scoped>
-.loader{
-  height: 400px;
+.loader {
+    height: 400px;
 }
+
 .msg {
     padding: 3px;
     text-align: center;
     margin: auto;
     height: 50%;
-}</style>
+}
+</style>

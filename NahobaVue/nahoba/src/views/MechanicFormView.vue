@@ -2,7 +2,7 @@
 import MechanicRegister from '../components/MechanicRegister.vue';
 </script>
 <template>
-    <div class="container-fluid">
+    <div class="container">
         <MechanicRegister />
     </div>
 </template>

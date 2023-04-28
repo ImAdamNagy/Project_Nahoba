@@ -36,7 +36,7 @@ async function deleteUserProduct(id){
                 <p><b>Username:</b> {{ useUser().data.username }}</p>
             </div>
             <div class="title_lines">Your products</div>
-            <div class="col-lg-4  col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" v-if="useProduct().OwnProducts.length > 0">
+            <div class="col-lg-4  col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" :key="item.id" v-if="useProduct().OwnProducts.length > 0">
                 <div class="product h-100">
                     <img :src="useProduct().getImage(item.product_img)" alt="" class="profilecardimg">
                     <div class="row data">

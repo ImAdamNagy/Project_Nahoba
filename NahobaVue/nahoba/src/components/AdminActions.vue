@@ -29,14 +29,14 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new type</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new car type</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <VForm @submit="useCarType().addCarType">
-                  <Field type="text" name="name" id="name" placeholder="Enter the new car type" class="form-control" rules="required" />
+                  <Field type="text" name="name" id="name" placeholder="Enter the new car type" class="form-control mt-1" rules="required" />
                   <ErrorMessage name="name" as="div" class="alert alert-danger m-1" />
-                  <Field type="number" name="year" id="year" placeholder="Enter the car types year" class="form-control" rules="required|numeric|between:1886,2023" />
+                  <Field type="number" name="year" id="year" placeholder="Enter the car types year" class="form-control mt-1" rules="required|numeric|between:1886,2023" />
                   <ErrorMessage name="year" as="div" class="alert alert-danger m-1" />
                   <input class="btn-warning btn form-control mt-3" data-bs-dismiss="modal" type="submit" value="Add" />
                 </VForm>

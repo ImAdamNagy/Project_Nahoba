@@ -15,7 +15,7 @@ onMounted(useUser().getOtherUser);
     <Header><h1 class="headertitle">{{useUser().OtherUserDetails.username}}'s products</h1></Header>
     <div class="container">
         <div class="row mt-3 mx-auto mt-5 py-4 rounded rounded-5 px-3">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in useProduct().UserProducts">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in useProduct().UserProducts" :key="item.id">
             <div class="product h-100">
                 <img :src="useProduct().getImage(item.product_img)" alt="" class="productsonlycardimg">
                 <div class="row data">

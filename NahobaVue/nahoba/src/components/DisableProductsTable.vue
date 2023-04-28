@@ -15,7 +15,7 @@
                     <th>Delete</th>
                 </thead>
                 <tbody>
-                    <tr v-for="item in useProduct().disabledProducts">
+                    <tr v-for="item in useProduct().disabledProducts" :key="item.id">
                         <td>{{ item.seller.firstname }} {{ item.seller.lastname }}</td>
                         <td>{{ item.product_name }}</td>
                         <td>{{ item.car_type.name }} {{ item.car_type.year }}</td>
@@ -93,14 +93,16 @@ async function deleteDisabledProduct(id, seller_id){
     const index = useProduct().disabledProducts.findIndex(item=>item.id === id);
     useProduct().disabledProducts.splice(index,1);
     await useChat().CreateAdminNotificationChat(seller_id);
-    useMsg().AdminNotificationMessage('Your product didnt meet our requirements!');
+    await useMsg().AdminNotificationMessage('Your product didnt meet our requirements!');
     useProduct().disabledProductsIsLoading = false;
 }
 
 async function EnableproductAndNotifyItsUser(id, seller_id){
+    useProduct().disabledProductsIsLoading = true;
     useProduct().BeEnable(id);
     await useChat().CreateAdminNotificationChat(seller_id);
-    useMsg().AdminNotificationMessage('Your product has been enabled!');
+    await useMsg().AdminNotificationMessage('Your product has been enabled!');
+    useProduct().disabledProductsIsLoading = false;
 }
 </script>
 <style scoped>

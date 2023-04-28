@@ -11,7 +11,7 @@ export const useUser = defineStore('user-store',{
             data: [],
             userDataIsLoading: true,
             OtherUserDetails: [],
-            Users: [],
+            users: [],
             usersIsLoading: true
         }
     },
@@ -20,13 +20,13 @@ export const useUser = defineStore('user-store',{
             const response = await http.get('/users/' + useAuth().userid);
             this.data = response.data.data;
             this.userDataIsLoading = false;
-            console.log(this.data)
         },
         async getUsers() {
+            this.usersIsLoading = true;
             const response = await http.get('/users', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
-            this.Users = response.data.data;
+            this.users = response.data.data;
             this.usersIsLoading = false;
         },
         async deleteUser(userid){

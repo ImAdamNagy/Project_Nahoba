@@ -1,10 +1,10 @@
 <template>
 <div class="row mx-auto mt-5">
-        <div class="col-xl-5 text-center bg-warning" id="first">
+        <div class="col-xl-5 text-center" id="first">
             <h1>Create a new product</h1>
         </div> 
 </div>
-<div class="row mx-auto">
+<div class="row mx-auto mb-4">
         <div class="col-xl-5 text-center" id="second">
             <div id="formdiv">
         <VForm @submit="useProduct().createProduct" :validation-schema="schema">
@@ -16,7 +16,7 @@
                 
                 <Field name="types_id" id="type" class="form-control" as="select">
                     <option value="" disabled selected hidden>Choose your products type</option>
-                    <option  v-for="item in useType().types" :value="item.id">
+                    <option  v-for="item in useType().types" :value="item.id" :key="item.id">
                         {{ item.type }}
                     </option>
                 </Field>
@@ -24,7 +24,7 @@
                 <label for="car_typeId">Car type</label>
                 <Field name="car_typeId" id="car_typeId" class="form-control" as="select">
                     <option value="" disabled selected hidden>Choose your products car type</option>
-                    <option  v-for="item in useCarType().cartypes" :value="item.id">
+                    <option  v-for="item in useCarType().cartypes" :value="item.id" :key="item.id">
                         {{ item.name }} {{ item.year }}
                     </option>
                 </Field>
@@ -107,7 +107,6 @@ onMounted(useCarType().allCarTypes);
         padding-top: 15%;
         border-start-start-radius: 30px;
         margin: auto;
-
     }
     h1,p{
         color: white;
