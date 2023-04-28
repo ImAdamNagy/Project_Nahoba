@@ -84,12 +84,13 @@ Route::prefix("mechanics")->group(function (){
     Route::get('/', [MechanicController::class, 'index']);
     Route::get('/{id}', [MechanicController::class, 'show'])->whereNumber("id");
     Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/hasmec', [MechanicController::class, 'currentUserHasMechanic']);
+        Route::get('/current', [MechanicController::class, 'currentMechanic']);
         Route::post('/', [MechanicController::class, 'store']);
-        Route::put('/{mechanic}', [MechanicController::class, 'update'])->whereNumber("mechanic");
+        Route::patch('/{mechanic}', [MechanicController::class, 'update'])->whereNumber("mechanic");
         Route::delete('/{id}', [MechanicController::class, 'destroy'])->whereNumber("id");
     });
 });
-
 Route::middleware(['auth:sanctum'])->prefix('chats')->group(function () {
     Route::get('/', [ChatController::class, 'index']);
     Route::get('/{chat}', [ChatController::class, 'show'])->whereNumber("chat");

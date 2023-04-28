@@ -89,7 +89,7 @@ export const router = createRouter({
     },
     {
       path: '/mechanicregister',
-      name: 'MechanicFormPage',
+      name: 'MechanicFormView',
       component: MechanicFormView,
     }
   ]

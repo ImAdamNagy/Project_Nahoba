@@ -1,6 +1,7 @@
 <script setup>
 import {ref} from 'vue';
 import {useAuth} from '@/store/AuthStore.js'
+import { useMechanic } from '@/store/MechanicStore.js';
 import {useRouter} from "vue-router";
 import {Form as VForm, Field, ErrorMessage} from "vee-validate";
 
@@ -12,13 +13,23 @@ async function login(userData){
     try {
         await useAuth().login(userData);
         await useAuth().getCurrentUserDetails();
+        useAuth().userid = useAuth().currentUserDetails.userid;
+        await useAuth().currentUserHasMechanic();
+        console.log(useAuth().currentUserHasMec);
         let name;
         switch(useAuth().currentUserDetails.role.role_name){
             case "admin": name = 'AdminMain';
             break;
             case "seller": name = 'MainPage';
             break;
-            case "mechanic": name = 'MainPage';
+            case "mechanic":
+            if (useAuth().currentUserHasMec == '') {
+                    name = 'MechanicFormView'
+                 }
+                 else
+                 {
+                    name = 'MainPage';
+                 }    
             break;
         }
         router.push({name:name});

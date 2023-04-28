@@ -10,7 +10,8 @@ export const useAuth = defineStore('auth-store',
                 token: localStorage.getItem('token') ?? '',
                 userid: '',
                 isAdmin: false,
-                currentUserDetails: null
+                currentUserDetails: null,
+                currentUserHasMec: ''
             }
         },
         actions: {
@@ -38,6 +39,12 @@ export const useAuth = defineStore('auth-store',
                     headers: { Authorization: `Bearer ${this.token}` }
                 });
                 this.currentUserDetails = response.data.data;
+            },
+            async currentUserHasMechanic(){
+                const response = await http.get("/mechanics/hasmec", {
+                    headers: { Authorization: `Bearer ${this.token}` }
+                });
+                this.currentUserHasMec = response.data;
             }
         },
         getters: {
