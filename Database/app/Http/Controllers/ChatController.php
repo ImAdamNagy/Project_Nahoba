@@ -51,7 +51,8 @@ class ChatController extends Controller
             return new ChatResource($newchat);
         }
         else{
-            return null;
+            $asd = Chat::whereIn('from', [$request->from, $request->to])->whereIn('to', [$request->from, $request->to])->get();
+            return new ChatResource($asd[0]);
         }
         
     }

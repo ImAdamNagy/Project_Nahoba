@@ -30,15 +30,8 @@ export const useChat = defineStore('chat-store',
             const response = await http.post('/chats/', this.chatData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            if(response.data.data == null)
-            {
-                router.push({name: "MessagesPage"});
-                alert("You already have a chat with this person, check your messages!");
-            }
-            else{
-                alert("Chat created, check your messages!");
-                router.push({name: "MessagesPage"});
-            }
+            router.push({name: "MessagesPage"});
+            alert("You already have a chat with this person, check your messages!");
         },
         async CreateAdminNotificationChat(to){
             this.AdminchatData.from = useAuth().userid;
@@ -47,8 +40,8 @@ export const useChat = defineStore('chat-store',
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
             this.newchat = response.data.data;
+            console.log(this.newchat.id);
             useMsg().adminNotification.chat_id = this.newchat.id;
-            console.log(useMsg().adminNotification)
         },
         async getChats(){
             const response = await http.get('/chats/',{

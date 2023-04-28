@@ -30,7 +30,7 @@
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
                         <td>
-                            <div class="btn btn-danger" @click="deleteEnableProduct(item.id)">Delete product</div>
+                            <div class="btn btn-danger" @click="deleteEnableProduct(item.id, item.seller.userid)">Delete product</div>
                         </td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,14 +81,20 @@
 <script setup>
 import { useProduct } from '@/store/ProductStore.js'
 import { onMounted } from 'vue';
+import { useChat } from '../store/ChatStore';
+import { useMsg } from '../store/MessageStore';
 
 onMounted(useProduct().getEnabledProducts);
 
-async function deleteEnableProduct(id) {
+async function deleteEnableProduct(id, seller_id) {
     useProduct().enableProductsIsLoading = true;
     await useProduct().deleteProduct(id);
     const index = useProduct().enableProducts.findIndex(item => item.id === id);
     useProduct().enableProducts.splice(index, 1);
+
+    await useChat().CreateAdminNotificationChat(seller_id);
+    useMsg().AdminNotificationMessage('Your product has been deleted!');
+
     useProduct().enableProductsIsLoading = false;
 }
 </script>
