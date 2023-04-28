@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
-import { useUser } from './UserStore.js';
+import { useUser } from '@/store/UserStore.js';
+import { useAuth } from './AuthStore.js';
 
 export const useMsg = defineStore('msg-store',
 {
@@ -10,6 +11,11 @@ export const useMsg = defineStore('msg-store',
             getMsgLoading: true,
             partnerName: "",
             newmessage: {
+                message: "",
+                sender_id: null,
+                chat_id: null
+            },
+            adminNotification: {
                 message: "",
                 sender_id: null,
                 chat_id: null
@@ -37,6 +43,14 @@ export const useMsg = defineStore('msg-store',
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
             alert("Message sent, reload the chat!");
+        },
+        async AdminNotificationMessage(message){
+            this.adminNotification.message = message;
+            this.adminNotification.sender_id = useAuth().currentUserDetails.userid;
+            const response = await http.post('/messages/', this.adminNotification,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+            });
+            alert("Message sent!");
         }
     }
 })

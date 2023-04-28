@@ -29,7 +29,7 @@
                         </td>
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
-                        <td><button class="btn btn-success " @click="useProduct().BeEnable(item.id)">Enable</button></td>
+                        <td><button class="btn btn-success " @click="EnableproductAndNotifyItsUser(item.id, item.seller.userid)">Enable</button></td>
                         <td><button class="btn btn-danger " @click="deleteDisabledProduct(item.id)">Delete</button></td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -80,8 +80,12 @@
 <script setup>
 import { useProduct } from '@/store/ProductStore.js'
 import { onMounted } from 'vue';
+import { useChat } from '../store/ChatStore';
+import { useMsg } from '../store/MessageStore';
+import { useAuth } from '../store/AuthStore';
 
 onMounted(useProduct().GetDisabledProducts);
+onMounted(useAuth().getCurrentUserDetails);
 
 async function deleteDisabledProduct(id){
     useProduct().disabledProductsIsLoading = true;
@@ -89,6 +93,12 @@ async function deleteDisabledProduct(id){
     const index = useProduct().disabledProducts.findIndex(item=>item.id === id);
     useProduct().disabledProducts.splice(index,1);
     useProduct().disabledProductsIsLoading = false;
+}
+
+async function EnableproductAndNotifyItsUser(id, seller_id){
+    useProduct().BeEnable(id, seller_id);
+    useChat().CreateAdminNotificationChat(seller_id);
+    useMsg().AdminNotificationMessage('Your product has been enabled!');
 }
 </script>
 <style scoped>thead {

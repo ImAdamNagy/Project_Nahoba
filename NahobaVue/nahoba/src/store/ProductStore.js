@@ -3,6 +3,7 @@ import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
 import { useAuth } from './AuthStore.js';
 import { router } from '@/router/index.js';
+import { useChat } from './ChatStore.js';
 
 export const useProduct = defineStore('product-store',{
     state(){
@@ -66,6 +67,7 @@ export const useProduct = defineStore('product-store',{
             this.disabledProducts = response.data.data;
             this.disabledProductsIsLoading = false;
         },
+
         async BeEnable(id){
             this.disabledProductsIsLoading = true;
             this.obj = {
@@ -78,6 +80,7 @@ export const useProduct = defineStore('product-store',{
             this.disabledProducts.splice(index,1);
             this.disabledProductsIsLoading = false;
         },
+
         async getEnabledProducts() {
             const response = await http.get('/products/enable');
             this.enableProducts = response.data.data;

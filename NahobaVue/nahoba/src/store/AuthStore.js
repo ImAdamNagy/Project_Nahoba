@@ -39,6 +39,7 @@ export const useAuth = defineStore('auth-store',
                     headers: { Authorization: `Bearer ${this.token}` }
                 });
                 this.currentUserDetails = response.data.data;
+                console.log(this.currentUserDetails);
             }
         },
         getters: {

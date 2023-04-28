@@ -33,8 +33,27 @@ class ChatController extends Controller
     {
         $newchat = new Chat($request->validated());
         $newchat->from = Auth::id();
-        $newchat->save();
-        return new ChatResource($newchat);
+
+        $check = false;
+
+        $data = Chat::all();
+        for($i = 0; $i < count($data); $i++)
+        {
+            if($data[$i]['from'] == $request->from && $data[$i]['to'] == $request->to || $data[$i]['to'] == $request->from && $data[$i]['from'] == $request->to)
+            {
+                $check = true;
+            }
+        }
+
+        if($check == false)
+        {
+            $newchat->save();
+            return new ChatResource($newchat);
+        }
+        else{
+            return null;
+        }
+        
     }
 
     /**
