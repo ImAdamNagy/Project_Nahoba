@@ -4,6 +4,7 @@
       <div class="mechanic h-100">
         <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
         <p class="profession">{{ item.profession }}</p>
+        <a class="btn btn-warning" @click="$emit('mechDetails', item.id)">More</a>
       </div>
     </div>
   </div>

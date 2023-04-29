@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { http } from '../utils/http.mjs'
+import { useRoute } from 'vue-router'
 
 export const useMechanic = defineStore('mechanic-store', {
     state() {
@@ -7,7 +8,8 @@ export const useMechanic = defineStore('mechanic-store', {
             currentMechanic: null,
             currentMechanicIsLoading: true,
             mechanicsIsLoading: true,
-            mechanics: []
+            mechanics: [],
+            Mech: []
         }
     },
     actions: {
@@ -31,6 +33,16 @@ export const useMechanic = defineStore('mechanic-store', {
             const response = await http.get('/mechanics/');
             this.mechanics = response.data.data;
             this.mechanicsIsLoading = false;
-        }
+        },
+        async getMech(){
+            this.mechanicsIsLoading = true;
+            const response = await http.get("/mechanics/" + useRoute().params.id);
+            this.Mech = response.data.data;
+            this.mechanicsIsLoading = false;
+            console.log(this.Mech);
+        },
+        getImage(image){
+            return `${import.meta.env.VITE_LARAVEL_HOST}/images/${image}`;
+        },
     }
 })

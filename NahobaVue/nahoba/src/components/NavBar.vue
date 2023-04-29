@@ -62,6 +62,9 @@
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/mechanicsonly">Mechanics</Router-link>
             </li>
+            <li class="nav-item">
+              <Router-link class="nav-link active text-light" to="/adminmain">Admin Main</Router-link>
+            </li>
           </ul>
           <div class="nav-item" v-if="useAuth().loggedIn">
             <li class="nav-item">
