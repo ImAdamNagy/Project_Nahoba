@@ -1,10 +1,14 @@
 <template>
 <div class="row" v-if="useMechanic().mechanics.length > 0 && useMechanic().mechanicsIsLoading == false">
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useMechanic().mechanics" :key="item.id">
-      <div class="mechanic h-100">
-        <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
+      <div class="mechanic row m-2 h-100">
+        <div class="col-8">
+          <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
         <p class="profession">{{ item.profession }}</p>
-        <a class="btn btn-warning" @click="$emit('mechDetails', item.id)">More</a>
+        </div>
+        <div class="col-4 button">
+          <a class="btn btn-warning" @click="$emit('mechDetails', item.id)">More</a>
+        </div>
       </div>
     </div>
   </div>
@@ -34,6 +38,7 @@ import { onMounted } from 'vue';
 onMounted(useMechanic().getMechanics);
 </script>
 <style scoped>
+
 .loader{
   height: 400px;
 }

@@ -60,13 +60,11 @@ async function login(userData){
                     <Field type="password" name="password" id="password" placeholder="password" class="form-control" rules="required"/>
                     <ErrorMessage name="password" as="div" class="alert alert-danger m-1" />
                     <div class="d-flex flex-column flex-xl-row justify-content-center">
-                        <button class="btn btn-secondary w-50 my-md-3 my-2 rounded-pill" type="submit">Login</button>
+                        <button class="btn btn-secondary w-100 my-md-3 my-2 rounded-pill" type="submit">Login</button>
                     </div>
-                    <div class="d-flex flex-column flex-xl-row justify-content-between">
-                        <Router-link class="btn w-100 btn-secondary my-md-3 my-2 rounded-pill" to="/">Back</Router-link>
-                    </div>
-                    <div class="d-flex flex-column flex-xl-row justify-content-between">
-                        <Router-link class="btn w-100 btn-secondary my-md-3 my-2 rounded-pill" to="/register">Go to Register</Router-link>
+                    <div class="d-flex flex-column flex-sm-row justify-content-between">
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/">Back</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/register">Go to Register</Router-link>
                     </div>
                     <Alert v-if="error" alert-type="danger" >
                         {{error}}

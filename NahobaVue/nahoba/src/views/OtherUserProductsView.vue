@@ -50,7 +50,7 @@ onMounted(useUser().getOtherUser);
 </template>
 <style scoped>
 .loader{
-  height: 400px;
+  height: 600px;
 }
 img {
     width: 100%;

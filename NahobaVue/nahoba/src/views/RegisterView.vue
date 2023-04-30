@@ -65,17 +65,14 @@ onMounted(useRole().getRoles)
                         <option v-for="item in useRole().roles" :value="item.id" :key="item.id">
                             {{ item.role_name }}
                         </option>
-
                     </Field>
                     <ErrorMessage name="role_id" as="alert" class="alert alert-danger m-1" />
                     <div class="d-flex flex-column flex-xl-row justify-content-center">
-                        <button class="btn btn-secondary w-50 my-md-3 my-2 rounded-pill" type="submit">Register</button>
+                        <button class="btn btn-secondary w-100 my-md-3 my-2 rounded-pill" type="submit">Register</button>
                     </div>
-                    <div class="d-flex flex-column flex-xl-row justify-content-center">
-                        <Router-link class="btn w-100 btn-secondary my-md-3 my-2 rounded-pill" to="/login">Go to Login</Router-link>
-                    </div>
-                    <div class="d-flex flex-column flex-xl-row justify-content-center">
-                        <Router-link class="btn w-100 btn-secondary my-md-3 my-2 rounded-pill" to="/">Back</Router-link>
+                    <div class="d-flex flex-column flex-sm-row justify-content-between">
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/">Back</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/login">Go to Login</Router-link>
                     </div>
                 </VForm>
             </div>

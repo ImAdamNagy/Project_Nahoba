@@ -9,8 +9,9 @@ onMounted(useProduct().getProduct);
 </script>
 <template>
     <div class="grid-container" v-if="useProduct().productIsLoading == false">
-        <img data-bs-toggle="modal" data-bs-target="#exampleModal" :src="useProduct().getImage(useProduct().Product.product_img)" :alt="`${useProduct().Product.product_img}`"
-            class="image img-fluid">
+        <div class="gridimg">
+            <img data-bs-toggle="modal" data-bs-target="#exampleModal" :src="useProduct().getImage(useProduct().Product.product_img)" :alt="`${useProduct().Product.product_img}`" class="image">
+        </div>
         <h1 class="grid-title">{{ useProduct().Product.product_name }}</h1>
         <div class="price">
             <p><b>Price: </b>{{ useProduct().Product.product_price }}</p>
@@ -65,7 +66,7 @@ onMounted(useProduct().getProduct);
     height: 400px;
 }
 
-.msg {
+.msg{
     padding: 3px;
     text-align: center;
     margin: auto;

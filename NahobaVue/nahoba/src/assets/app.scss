@@ -1,6 +1,13 @@
 #app {
   height: 100%;
 }
+.image {
+  height: 400px;
+  width: 500px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px 0px 20px 0px;
+}
 .loader {
 	height: 100vh;
 	display: flex;
@@ -281,6 +288,37 @@ body, html {
     row-gap: 3px;
     column-gap: 3px;
 }
+.settingmectitle{
+  grid-area: settingmectitle;
+}
+.settingintroduction{
+  grid-area: settingintroduction;
+}
+.settingcountry{
+  grid-area: settingcountry;
+}
+.settingaddress{
+  grid-area: settingaddress;
+}
+.settingprofession{
+  grid-area: settingprofession;
+}
+.settingmecchange{
+  grid-area: settingmecchange;
+  text-align: center;
+}
+.settingmecgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  1fr repeat(4, 0.5fr);
+  grid-template-areas: "settingmectitle settingmectitle"
+    "settingintroduction settingintroduction"
+    "settingcountry settingcountry"
+    "settingaddress settingaddress"
+    "settingprofession settingmecchange";
+    row-gap: 3px;
+    column-gap: 3px;
+}
 .producttype{
   grid-area: producttype;
 }
@@ -317,6 +355,10 @@ body, html {
 }
 }
 @media screen and (max-width: 1200px){
+  .image {
+    height: 300px;
+    width: 400px;
+  }
   .settinggrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -346,6 +388,22 @@ body, html {
       "settingemail settingchange"
       "settingtel settingdelete";
       row-gap: 3px;
+  }
+  .settingmecgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:  1fr repeat(4, 0.5fr);
+    grid-template-areas: "settingmectitle settingmectitle"
+      "settingintroduction settingintroduction"
+      "settingcountry settingcountry"
+      "settingaddress settingaddress"
+      "settingprofession settingmecchange";
+      row-gap: 3px;
+      column-gap: 3px;
+  }
+  .image {
+    height: 400px;
+    width: 500px;
   }
   .grid-container {
     display: grid;
@@ -472,6 +530,19 @@ body, html {
       row-gap: 3px;
       column-gap: 3px;
   }
+  .settingmecgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:  1fr repeat(5, 0.5fr);
+    grid-template-areas: "settingmectitle settingmectitle"
+      "settingintroduction settingintroduction"
+      "settingcountry settingcountry"
+      "settingaddress settingaddress"
+      "settingprofession settingprofession"
+      "settingmecchange settingmecchange";
+      row-gap: 3px;
+      column-gap: 3px;
+  }
   .profilecardimg{
     height: 150px;
   }
@@ -495,6 +566,10 @@ body, html {
 }
 }
 @media screen and (max-width: 480px) {
+  .image {
+    height: 200px;
+    width: 300px;
+  }
   .grid-container {
     display: grid;
     grid-template-rows: 0.2fr 1fr repeat(5, 0.2fr);
@@ -595,6 +670,19 @@ body, html {
       column-gap: 5px;
       row-gap: 0px;
   }
+  .settingmecgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:  1fr repeat(5, 0.5fr);
+    grid-template-areas: "settingmectitle"
+      "settingintroduction"
+      "settingcountry"
+      "settingaddress"
+      "settingprofession"
+      "settingmecchange";
+      row-gap: 3px;
+      column-gap: 3px;
+  }
   .gridadminaction{
     display: grid;
     grid-template-columns: 1fr;
@@ -613,15 +701,12 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.image {
-  border-radius: 20px 0px 20px 0px;
-  height: 400px;
-  width: 600px;
-  object-position: center;
-  object-fit: cover;
+.gridimg{
   grid-area: img;
-  border-radius: 20px 0px 20px 0px;
+  align-self: center;
+  justify-self: center;
 }
+
 
 .grid-title {
   grid-area: title;

@@ -10,7 +10,7 @@ onMounted(useMechanic().getMech);
     <div class="grid-mech" v-if="useMechanic().mechanicsIsLoading == false">
         <img data-bs-toggle="modal" data-bs-target="#profilepic" :src="useMechanic().getImage(useMechanic().Mech.profile_pic)" :alt="`${useMechanic().Mech.profile_pic}`"
             class="mechimage img-fluid">
-        <h1 class="mechgrid-title">{{ useMechanic().Mech.user.lastname }} {{ useMechanic().Mech.user.firstname }}</h1>
+        <h1 class="mechgrid-title">{{ useMechanic().Mech.user?.lastname }} {{ useMechanic().Mech.user?.firstname }}</h1>
         <div class="profession">
             <p><b>Profession: </b>{{ useMechanic().Mech.profession }}</p>
         </div>
