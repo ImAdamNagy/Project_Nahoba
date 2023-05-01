@@ -25,8 +25,14 @@ const schema = yup.object(
     }
 )
 async function registerUser(newUser) {
-    const response = await http.post('register', newUser);
-    router.push({ name: 'LoginPage' });
+     try {
+        const response = await http.post('register', newUser);
+        router.push({ name: 'LoginPage' });
+    } catch (e) {
+        if (e.response.status == 422) {
+           error.value = `<ul>${Object.entries(e.response.data.errors).map(([key,value])=>`<li>${value}</li>`).reduce((a,b)=>a+b)}</ul>`
+        }
+    }
 }
 onMounted(useRole().getRoles)
 
@@ -67,6 +73,7 @@ onMounted(useRole().getRoles)
                         </option>
                     </Field>
                     <ErrorMessage name="role_id" as="alert" class="alert alert-danger m-1" />
+                    <Alert v-html="error" v-if="error" alert-type="danger" class="mt-2"></Alert>
                     <div class="d-flex flex-column flex-xl-row justify-content-center">
                         <button class="btn btn-secondary w-100 my-md-3 my-2 rounded-pill" type="submit">Register</button>
                     </div>

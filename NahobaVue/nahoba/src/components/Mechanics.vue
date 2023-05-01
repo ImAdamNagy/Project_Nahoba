@@ -1,40 +1,32 @@
 <template>
-
   <div class="col-lg-4 col-md-6 col-sm-12 mechanics mt-3 ">
     <div class="row">
-      
       <h2 class="grouptitle">Mechanics</h2>
-        <div class="col-12 mt-3" v-for="item in useProduct().enableProducts" :key="item.id">
-          <div class="product h-100">
-            <img :src="useProduct().getImage(item.product_img)" alt="" class="img-fluid">
-              <h5 class="title">{{item.product_name}}</h5>
-              <p class="price">{{item.product_price}} Ft</p>
-              <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>
-          </div>
+      <div class="col-12 mt-3 " v-for="item in useMechanic().mechanics" :key="item.id">
+        <div class="mechanic m-2 h-100">
+            <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
+            <p class="mecprofession">{{ item.profession }}</p>
+            <a class="btn btn-warning" @click="$emit('mechDetails', item.id)">More</a>
         </div>
-       </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
-import { useProduct } from '../store/ProductStore.js';
+import { useMechanic } from '../store/MechanicStore.js';
 import { onMounted } from 'vue';
 
-onMounted(useProduct().getEnabledProducts);
+onMounted(useMechanic().getMechanics);
 </script>
-  
 <style scoped>
-  .product{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: white;
-      padding: 10px;
-      font-weight: bold;
-      border-radius: 20px 0px 20px 0px;
-      box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
-  }
-  img{
-    width: 100%;
-    border-radius: 20px 0px 20px 0px;
-  }
-  </style>
+.mechanic {
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px 0px 20px 0px;
+  box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
+}
+
+.mecprofession {
+  color: gray;
+}
+</style>
