@@ -2,8 +2,16 @@
 import { onMounted } from 'vue'
 import {useMechanic} from '@/store/MechanicStore.js'
 import {useChat} from '@/store/ChatStore.js'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 onMounted(useMechanic().getMech);
+
+async function message(){
+    await useChat().createNewChat(useMechanic().Mech.user?.userid)
+    router.push({name: "MessagesPage"});
+}
 
 </script>
 <template>
@@ -24,7 +32,7 @@ onMounted(useMechanic().getMech);
             <p><b>Location: </b> {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.address }} {{ useMechanic().Mech.postal_code }}</p>
         </div>
         <div class="mechmsg">
-            <div class="btn btn-warning" @click="useChat().createNewChat(useMechanic().Mech.user?.userid)">Send message
+            <div class="btn btn-warning" @click="message">Send message
             </div>
         </div>
         <div class="modal fade" id="profilepic" tabindex="-1" aria-labelledby="profilepicLabel" aria-hidden="true">
