@@ -3,7 +3,6 @@ import { onMounted } from 'vue'
 import { useProduct } from '@/store/ProductStore.js'
 import { useChat } from '@/store/ChatStore.js'
 
-
 onMounted(useProduct().getProduct);
 
 </script>

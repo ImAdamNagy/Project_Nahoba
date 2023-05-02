@@ -41,7 +41,7 @@
                 <Field type="text" name="product_location" id="product_location" placeholder="Enter product location" class="form-control"/>
                 <ErrorMessage name="product_location" as="div" class="alert alert-danger m-1" />
                 
-                <label for="product_img" class="form-label">Upload image</label>
+                <label for="product_img" class="form-label">Upload image (Be carefull you won't be able to change your image later)</label>
                 <br>
                 <Field type="file" name="product_img" id="product_img" @change="$emit('onChange', $event)" />
 

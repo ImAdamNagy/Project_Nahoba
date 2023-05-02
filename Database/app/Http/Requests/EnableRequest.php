@@ -14,7 +14,7 @@ class EnableRequest extends FormRequest
      */
     public function authorize()
     {
-        return true /*Auth::user()->role()->role_name == "admin"*/ ;
+        return Auth::user()->role->role_name == "admin";
     }
 
     /**

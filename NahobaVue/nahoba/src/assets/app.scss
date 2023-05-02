@@ -22,11 +22,7 @@
   text-align: center;
   color: black;
 }
-.msgBoxTitle{
-  text-align: center;
-  margin: auto;
-  font-size: 30px;
-}
+
 
 .title_lines:before,
 .title_lines:after {
@@ -103,16 +99,55 @@
 		stroke-dashoffset: -22;
 	}
 }
+.msgBoxTitle{
+  grid-area: msgtitle;
+    text-align: center;
+    margin: auto;
+    font-size: 30px;
+}
+.messages{
+  grid-area: messages;
+  overflow-y: visible;
+  overflow-x: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.input{
+  grid-area: input;
+  padding: 10px;
+}
 
-.box{
+.msgbox{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 4fr 0.5fr;
+  grid-template-areas: "msgtitle"
+  "messages"
+  "input";
   background-color: white;
   border-radius: 20px;
-  padding: 10px;
-  height: 300px;
-  overflow-y: scroll;
+  height: 500px;
 }
-.scroll{
-  height: 30em;
+.chatboxtitle{
+  grid-area: chattitle;
+  padding: 10px;
+}
+.chats{
+  grid-area: chats;
+  padding: 10px;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+.chatbox{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 4fr 1fr;
+  grid-template-areas: "chattitle"
+  "chats"
+  ".";
+  background-color: white;
+  border-radius: 20px;
+  height: 500px;
 }
 .scrolltable {
   border-radius: 20px;
@@ -558,6 +593,9 @@ body, html {
   }
 }
 @media screen and (max-width: 575px) {
+.chatbox{
+  height: 300px;
+}
 .productsonlycardimg{
   height: 300px;
 }
