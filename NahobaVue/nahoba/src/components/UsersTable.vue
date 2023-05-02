@@ -56,6 +56,7 @@ import { useProduct } from '@/store/ProductStore.js'
 import { onMounted } from 'vue';
 import {useMsg} from '@/store/MessageStore.js';
 import {useChat} from '@/store/ChatStore.js'
+import { useMechanic } from '../store/MechanicStore';
 
 onMounted(useUser().getUsers);
 
@@ -64,6 +65,7 @@ async function deleteUserData(userid) {
     await useProduct().deleteUsersProducts(userid);
     await useMsg().deleteUserMessages(userid);
     await useChat().deleteChats(userid);
+    await useMechanic().deleteMechanic(userid);
     await useUser().deleteUser(userid);
     const index = useUser().users.findIndex(item=>item.userid === userid);
     useUser().users.splice(index,1);

@@ -1,8 +1,25 @@
 <script setup>
-import { onMounted } from 'vue';
 import * as yup from 'yup';
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import { useUser } from '@/store/UserStore.js'
+import { useProduct } from '@/store/ProductStore.js'
+import {useMsg} from '@/store/MessageStore.js';
+import {useChat} from '@/store/ChatStore.js'
+import { useMechanic } from '../store/MechanicStore.js';
+import {useAuth} from '@/store/AuthStore.js'
+
+async function deleteUserData(userid) {
+        if (confirm("Are you sure you want to delete your profile?") == true) {
+            useUser().usersIsLoading = true;
+            await useAuth().logout();
+            await useProduct().deleteUsersProducts(userid);
+            await useMsg().deleteUserMessages(userid);
+            await useChat().deleteChats(userid);
+            await useMechanic().deleteMechanic(userid);
+            await useUser().deleteUser(userid);
+            useUser().usersIsLoading = false;
+        }
+}
 
 const schema = yup.object(
     {
@@ -38,7 +55,7 @@ const schema = yup.object(
                     </button>
                 </div>
                 <div class="settingdelete">
-                    <button class="stgbutton btn btn-danger">Account delete </button>
+                    <button class="stgbutton btn btn-danger" @click="deleteUserData(useAuth().userid)">Account delete </button>
                 </div>
 
 

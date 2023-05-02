@@ -1,8 +1,6 @@
 <script setup>
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
-import { onMounted } from 'vue';
 import * as yup from 'yup';
-import { useUser } from '@/store/UserStore.js';
 import { useMechanic } from '@/store/MechanicStore.js';
 
 const schema = yup.object(

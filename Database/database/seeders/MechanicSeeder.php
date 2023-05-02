@@ -17,34 +17,34 @@ class MechanicSeeder extends Seeder
     {
         DB::table('mechanic')->insert([
             [
-                "introduction" => "Haliiiii bela vagyok",
+                "introduction" => "Ádám vagyok",
                 "country"=> "Magyarország",
-                "postal_code"=>1185,
+                "postal_code"=>1183,
                 "city"=>"Budapest",
                 "address"=>"Kis utca 54.",
-                "profile_pic"=>"asd.jpg",
-                "profession"=>"szerelő",
-                "user_id"=> 3
+                "profile_pic"=>"adam.jpg",
+                "profession"=>"car mechanic",
+                "user_id"=> 4
             ],
             [
-                "introduction" => "Haliiiii bela vagyok",
+                "introduction" => "Kiki vagyok",
                 "country"=> "Magyarország",
                 "postal_code"=>1185,
                 "city"=>"Budapest",
                 "address"=>"Kis utca 54.",
-                "profile_pic"=>"asd.jpg",
-                "profession"=>"szerelő",
-                "user_id"=> 5
+                "profile_pic"=>"kiki.jpg",
+                "profession"=>"car locksmith",
+                "user_id"=> 2
             ],
             [
-                "introduction" => "Haliiiii bela vagyok",
+                "introduction" => "Bandi vagyok",
                 "country"=> "Magyarország",
-                "postal_code"=>1185,
+                "postal_code"=>1186,
                 "city"=>"Budapest",
                 "address"=>"Kis utca 54.",
-                "profile_pic"=>"asd.jpg",
-                "profession"=>"szerelő",
-                "user_id"=> 6
+                "profile_pic"=>"bandi.jpg",
+                "profession"=>"engine professor",
+                "user_id"=> 7
             ],
         ]);
     }
