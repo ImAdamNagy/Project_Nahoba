@@ -7,7 +7,7 @@
 <div class="row mx-auto mb-4">
         <div class="col-xl-5 text-center" id="second">
             <div id="formdiv">
-        <VForm @submit="useProduct().createProduct" :validation-schema="schema">
+        <VForm @submit="createProduct" :validation-schema="schema">
                 <label for="product_name" class="form-label">Product Name</label>
                 <Field type="text" name="product_name" id="product_name" placeholder="Enter product name" class="form-control" rule="required"/>
                 <ErrorMessage name="product_name" as="div" class="alert alert-danger m-1" />
@@ -59,8 +59,14 @@ import * as yup from 'yup';
 import {useType} from '@/store/TypeStore.js'
 import {useProduct} from '@/store/ProductStore.js'
 import {useCarType} from '@/store/CarTypeStore.js'
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 
+async function createProduct(newproduct){
+    await useProduct().createProduct(newproduct);
+    router.push({name: "MainPage"});
+}
 
 const schema = yup.object(
     {

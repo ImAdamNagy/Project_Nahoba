@@ -13,8 +13,10 @@
 import Filters from '../components/Filters.vue'
 import ProductsOnly from '../components/ProductsOnly.vue'
 import Header from '../components/Header.vue'
-import { router } from '../router/index.js'
 import NavBar from '../components/NavBar.vue'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 function details(id) {
     router.push({ name: "ProductDetails", params: { id } });

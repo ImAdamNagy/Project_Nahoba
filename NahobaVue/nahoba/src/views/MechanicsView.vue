@@ -10,7 +10,9 @@
 import MechanicsOnly from '../components/MechanicsOnly.vue'
 import Header from '../components/Header.vue'
 import NavBar from '../components/NavBar.vue'
-import { router } from '@/router/index.js'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 function mechDetails(id) {
     router.push({ name: "MechDetails", params: { id } });
