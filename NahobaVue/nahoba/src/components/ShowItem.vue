@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import { useProduct } from '@/store/ProductStore.js'
 import { useChat } from '@/store/ChatStore.js'
+import {useAuth} from '@/store/AuthStore.js'
 
 onMounted(useProduct().getProduct);
 
@@ -30,9 +31,13 @@ onMounted(useProduct().getProduct);
         <div class="desc">
             <p><b>Description: </b>{{ useProduct().Product.product_description }}</p>
         </div>
-        <div class="msg">
+        <div class="msg" v-if="useAuth().loggedIn">
             <div class="btn btn-warning" @click="useChat().createNewChat(useProduct().Product.seller?.userid)">Send message
             </div>
+        </div>
+        <div class="msg" v-else>
+            <Router-link to="/login" class="btn btn-warning">Send message
+            </Router-link>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

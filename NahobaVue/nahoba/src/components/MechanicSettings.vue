@@ -1,18 +1,16 @@
 <script setup>
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
-import { onMounted } from 'vue';
 import * as yup from 'yup';
-import { useUser } from '@/store/UserStore.js';
 import { useMechanic } from '@/store/MechanicStore.js';
 
 const schema = yup.object(
     {
-        introduction: yup.string().required(),
-        country: yup.string().min(3).max(100).required(),
-        postal_code: yup.number().required(),
-        city: yup.string().min(3).max(100).required(),
-        address: yup.string().min(3).max(150).required(),
-        profession: yup.string().min(3).max(30).required(),
+        introduction: yup.string("The introduction should not be a number only!").required("Introduction is required!"),
+        country: yup.string("The country should not be a number only!").min(3).max(100).required("Country is required!"),
+        postal_code: yup.number("The postal code should be a number!").required("Postal code is required!"),
+        city: yup.string("The city should not be a number only!").min(3).max(100).required("City is required!"),
+        address: yup.string("The address should not be a number only!").min(3).max(150).required("Address is required!"),
+        profession: yup.string("Your profession should not contain numbers only!").min(3).max(30).required("Profession is required!"),
     });
 
 

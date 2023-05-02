@@ -85,8 +85,8 @@ class MechanicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($mechanic)
     {
-        $mechanic = Mechanic::findOrFail($id)->delete();
+        $mechanic = Mechanic::where('user_id', $mechanic)->delete();
     }
 }

@@ -46,6 +46,7 @@ export const useUser = defineStore('user-store',{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.getUserDetails();
+            alert("Your profile has been updated!");
         }
     }
 })

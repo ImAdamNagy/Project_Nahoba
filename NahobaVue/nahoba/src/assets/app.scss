@@ -297,6 +297,12 @@ body, html {
 .mechimage{
   grid-area: img;
   text-align: center;
+  height: 300px;
+  width: 400px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px 0px 20px 0px;
+  overflow: hidden;
 }
 .introduction{
   grid-area: intro;
@@ -486,6 +492,12 @@ body, html {
   .mechimage{
     grid-area: img;
     text-align: center;
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px 0px 20px 0px;
+    overflow: hidden;
   }
   .introduction{
     grid-area: intro;
@@ -658,6 +670,12 @@ body, html {
   .mechimage{
     grid-area: img;
     text-align: center;
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px 0px 20px 0px;
+    overflow: hidden;
   }
   .introduction{
     grid-area: intro;
@@ -744,8 +762,6 @@ body {
   align-self: center;
   justify-self: center;
 }
-
-
 .grid-title {
   grid-area: title;
   text-align: center;
