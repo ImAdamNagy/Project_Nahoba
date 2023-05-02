@@ -35,7 +35,7 @@
             </div>
           </div>
           <div v-else>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" id="reglog">
             <li class="nav-item">
               <Router-link class="nav-link active text-light" to="/register">Register</Router-link>
             </li>
