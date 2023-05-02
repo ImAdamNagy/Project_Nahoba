@@ -14,14 +14,14 @@ const roles = reactive({
 
 const schema = yup.object(
     {
-        email: yup.string().email().required(),
-        firstname: yup.string().min(1).required(),
-        lastname: yup.string().min(1).required(),
-        tel: yup.number().required().test("lenght", "not valid", value => value.toString().length >= 6 && value.toString().length <= 18),
-        username: yup.string().min(4).max(15).required(),
-        password: yup.string().min(5).matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/, "Password must contain at least 5 characters, one uppercase, one lowercase and one number!").required(),
-        password_confirmation: yup.string().oneOf([yup.ref("password")]).required(),
-        role_id: yup.number().required()
+        email: yup.string("Please enter a valid email!").email("Please enter a valid email!").required("Email is required!"),
+        firstname: yup.string("Firstname should not contain numbers!").min(1).required("Firstname is required!"),
+        lastname: yup.string("Lastname should not contain numbers!").min(1).required("Lastname is required!"),
+        tel: yup.number("Phone number should not contain letters!").required("Phone number is required!").test("lenght", "not valid", value => value.toString().length >= 6 && value.toString().length <= 18),
+        username: yup.string().min(4).max(15).required("Username is required!"),
+        password: yup.string().min(5).matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/, "Password must contain at least 5 characters, one uppercase, one lowercase and one number!").required("Password is required!"),
+        password_confirmation: yup.string().oneOf([yup.ref("password")]).required("Password confirmation is required!"),
+        role_id: yup.number().required("Select your role!")
     }
 )
 async function registerUser(newUser) {

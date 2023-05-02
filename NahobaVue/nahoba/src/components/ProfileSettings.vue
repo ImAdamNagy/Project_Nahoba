@@ -23,11 +23,11 @@ async function deleteUserData(userid) {
 
 const schema = yup.object(
     {
-        email: yup.string().email().required(),
-        firstname: yup.string().min(1).required(),
-        lastname: yup.string().min(1).required(),
-        tel: yup.number().required().test("length", "not valid", value => value.toString().length >= 6 && value.toString().length <= 18),
-        username: yup.string().min(4).max(15).required(),
+        email: yup.string("Please enter a valid email!").email("Please enter a valid email!").required("Email is required!"),
+        firstname: yup.string("Firstname should not contain numbers!").min(1).required("Firstname is required!"),
+        lastname: yup.string("Lastname should not contain numbers!").min(1).required("Lastname is required!"),
+        tel: yup.number("Phone number should not contain letters!").required("Phone number is required!").test("length", "not valid", value => value.toString().length >= 6 && value.toString().length <= 18),
+        username: yup.string().min(4).max(15).required("Username is required!"),
     });
 
 </script>
