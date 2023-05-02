@@ -30,7 +30,7 @@
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
                 <li><Router-link class="dropdown-item" to="/messages">Messages</Router-link></li>
                 <div class="dropdown-divider"></div>
-                <li><button class="dropdown-item" @click="useAuth().logout">Sign out</button></li>
+                <li><button class="dropdown-item" @click="logout">Sign out</button></li>
               </ul>
             </div>
           </div>
@@ -71,7 +71,7 @@
           </ul>
           <div class="nav-item" v-if="useAuth().loggedIn">
             <li class="nav-item">
-              <button class="dropdown-item" @click="useAuth().logout">Sign out</button>
+              <button class="dropdown-item" @click="logout">Sign out</button>
             </li>
           </div>
           <div v-else>
@@ -92,7 +92,14 @@
 
 <script setup>
 import { useAuth } from '@/store/AuthStore';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+async function logout(){
+  await useAuth().logout();
+  router.push({ name: 'MainPage' });
+};
 </script>
 
 <style scoped>

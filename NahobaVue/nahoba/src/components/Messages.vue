@@ -65,7 +65,9 @@ import { useUser } from "../store/UserStore.js";
 import { useChat } from "@/store/ChatStore.js"
 
 setInterval(function() {
-    useMsg().getMessages(useMsg().currentChatId,useMsg().partnerName);
+    if(useMsg().currentChatId != null && useMsg().partnerName != null){
+        useMsg().getMessages(useMsg().currentChatId,useMsg().partnerName);
+    }
 }, 5000);
 
 </script>
