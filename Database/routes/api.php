@@ -88,7 +88,7 @@ Route::prefix("mechanics")->group(function (){
         Route::get('/current', [MechanicController::class, 'currentMechanic']);
         Route::post('/', [MechanicController::class, 'store']);
         Route::patch('/{mechanic}', [MechanicController::class, 'update'])->whereNumber("mechanic");
-        Route::delete('/{id}', [MechanicController::class, 'destroy'])->whereNumber("id");
+        Route::delete('/{mechanic}', [MechanicController::class, 'destroy'])->whereNumber("mechanic");
     });
 });
 Route::middleware(['auth:sanctum'])->prefix('chats')->group(function () {

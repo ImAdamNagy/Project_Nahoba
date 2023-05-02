@@ -71,6 +71,15 @@ class UserSeeder extends Seeder
                 "password" => Hash::make('BelaNagy02'),
                 "role_id" => 3,
             ],
+            [
+                "firstname" => "Bátori",
+                "lastname" => "András",
+                "email" => "batori.andras@gmail.com",
+                "tel" => "06706422096",
+                "username" => "bandesz",
+                "password" => Hash::make('bani123'),
+                "role_id" => 2,
+            ],
         ]);
     }
 }

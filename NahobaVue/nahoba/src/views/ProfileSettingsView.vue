@@ -10,7 +10,9 @@ import { useMechanic } from '@/store/MechanicStore.js';
 
 onMounted(async function (){
     useUser().getUserDetails();
-    useMechanic().getCurrentMechanic();
+    if (useUser().data.role?.id == 3) {
+        useMechanic().getCurrentMechanic();
+    }
 });
 
 </script>

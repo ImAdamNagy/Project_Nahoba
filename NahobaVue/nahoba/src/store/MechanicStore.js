@@ -44,5 +44,10 @@ export const useMechanic = defineStore('mechanic-store', {
         getImage(image){
             return `${import.meta.env.VITE_LARAVEL_HOST}/images/${image}`;
         },
+        async deleteMechanic(id){
+            const response = await http.delete('/mechanics/' + id,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+            });
+        }
     }
 })

@@ -19,7 +19,7 @@
               <Router-link class="nav-link active text-light" to="/newproduct">Upload product</Router-link>
             </li>
             <li class="nav-item" v-else>
-              <Router-link class="nav-link active text-light" to="/register" >Upload product</Router-link>
+              <Router-link class="nav-link active text-light" to="/login" >Upload product</Router-link>
             </li>
           </ul>
           <div class="nav-item space" v-if="useAuth().loggedIn">
