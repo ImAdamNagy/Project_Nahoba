@@ -73,8 +73,10 @@ const schema = yup.object(
 
 const emits = defineEmits(["onChange"]);
 
-onMounted(useType().allTypes);
-onMounted(useCarType().allCarTypes);
+onMounted(async function (){
+    useType().allTypes();
+    useCarType().allCarTypes();
+});
 
 </script>
 <style scoped>

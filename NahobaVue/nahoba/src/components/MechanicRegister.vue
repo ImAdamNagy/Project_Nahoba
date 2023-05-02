@@ -21,22 +21,21 @@ const schema = yup.object(
         profession: yup.string().min(3).max(30).required(),
     });
 
-async function addMechanic(newMec){
+async function addMechanic(newMec) {
     const formdata = new FormData();
-    for(const item in newMec)
-    {
+    for (const item in newMec) {
         formdata.append(item, newMec[item]);
     }
     formdata.append('img', newMec.profile_pic);
-    const response = await http.post('/mechanics', formdata,{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-        });
+    const response = await http.post('/mechanics', formdata, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    });
     alert("Upload was successfull");
-    router.push({name: "MainPage"}); 
+    router.push({ name: "MainPage" });
 }
 
-async function onChange(item){
-            file.image = item.target.files[0];
+async function onChange(item) {
+    file.image = item.target.files[0];
 }
 
 </script>
@@ -73,7 +72,7 @@ async function onChange(item){
                         class="form-control my-1" />
                     <ErrorMessage name="profession" as="div" class="alert alert-danger m-1" />
 
-                    <label for="profile_pic" class="form-label">Upload image</label>
+                    <label for="profile_pic" class="form-label">Upload image (You can't change it later!)</label>
                     <br>
                     <Field type="file" name="profile_pic" id="profile_pic" @change="onChange($event)" />
                     <ErrorMessage name="profile_pic" as="div" class="alert alert-danger m-1" />
@@ -84,42 +83,49 @@ async function onChange(item){
     </div>
 </template>
 <style scoped>
-    .row{
-        position: relative;
-        top: 5%;
-    }
-    @media screen and (max-width: 1000px) {
-        .row{
+.row {
+    position: relative;
+    top: 5%;
+}
+
+@media screen and (max-width: 1000px) {
+    .row {
         top: 3%;
     }
 }
-    input{
-        margin-top: 7px;
-    }
-    #formdiv{
-        padding: 10px;
-    }
-    #second{
-        box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
-        background-color: #D9D9D9;
-        border-end-end-radius: 30px;
-        margin: auto;
-    }
-    #first{
-        box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
-        background-image: url(/img/bg.jpg);
-        background-position: center;
-        background-size: cover;
-        padding-top: 15%;
-        border-start-start-radius: 30px;
-        margin: auto;
 
-    }
-    h1,p{
-        color: white;
-        text-align: center;
-    }
-    #title{
-        color:black;
-    }
-</style>
+input {
+    margin-top: 7px;
+}
+
+#formdiv {
+    padding: 10px;
+}
+
+#second {
+    box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
+    background-color: #D9D9D9;
+    border-end-end-radius: 30px;
+    margin: auto;
+}
+
+#first {
+    box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
+    background-image: url(/img/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-top: 15%;
+    border-start-start-radius: 30px;
+    margin: auto;
+
+}
+
+h1,
+p {
+    color: white;
+    text-align: center;
+}
+
+#title {
+    color: black;
+}</style>

@@ -84,8 +84,10 @@ import { useChat } from '../store/ChatStore';
 import { useMsg } from '../store/MessageStore';
 import { useAuth } from '../store/AuthStore';
 
-onMounted(useProduct().GetDisabledProducts);
-onMounted(useAuth().getCurrentUserDetails);
+onMounted(async function (){
+    useProduct().GetDisabledProducts();
+    useAuth().getCurrentUserDetails();
+});
 
 async function deleteDisabledProduct(id, seller_id){
     useProduct().disabledProductsIsLoading = true;

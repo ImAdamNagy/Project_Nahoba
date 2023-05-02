@@ -15,8 +15,6 @@ const schema = yup.object(
         profession: yup.string().min(3).max(30).required(),
     });
 
-onMounted(useUser().getUserDetails)
-onMounted(useMechanic().getCurrentMechanic)
 
 </script>
 <template>

@@ -8,8 +8,10 @@ import { onMounted } from 'vue';
 import { useMechanic } from '@/store/MechanicStore.js';
 
 
-onMounted(useUser().getUserDetails)
-onMounted(useMechanic().getCurrentMechanic)
+onMounted(async function (){
+    useUser().getUserDetails();
+    useMechanic().getCurrentMechanic();
+});
 
 </script>
 

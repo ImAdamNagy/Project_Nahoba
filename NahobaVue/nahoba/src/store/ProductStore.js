@@ -3,7 +3,6 @@ import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
 import { useAuth } from './AuthStore.js';
 import { router } from '@/router/index.js';
-import { useChat } from './ChatStore.js';
 
 export const useProduct = defineStore('product-store',{
     state(){
@@ -152,9 +151,9 @@ export const useProduct = defineStore('product-store',{
     getters:{
         FilteredProducts() {
             if (this.filters.search === null && this.filters.typesFilter === null && this.filters.carTypesFilter === null && this.filters.priceMinFilter === null && this.filters.priceMaxFilter === null) {
-                return this.enableProducts;
+                return this.enableProducts.reverse();
             }
-            return this.enableProducts.filter(this.filterByType).filter(this.filterByMinPrice).filter(this.filterByMaxPrice).filter(this.filterByName).filter(this.filterByCarType);
+            return this.enableProducts.filter(this.filterByType).filter(this.filterByMinPrice).filter(this.filterByMaxPrice).filter(this.filterByName).filter(this.filterByCarType).reverse();
         }
     }
 })

@@ -1,13 +1,11 @@
 <template>
 <div class="row" v-if="useMechanic().mechanics.length > 0 && useMechanic().mechanicsIsLoading == false">
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useMechanic().mechanics" :key="item.id">
-      <div class="mechanic row m-2 h-100">
-        <div class="col-8">
+      <div class="mechanic m-2 h-100">
+        <div class="mx-2">
           <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
-        <p class="profession">{{ item.profession }}</p>
-        </div>
-        <div class="col-4 button">
-          <a class="btn btn-warning" @click="$emit('mechDetails', item.id)">More</a>
+          <button class="btn btn-warning float-end" @click="$emit('mechDetails', item.id)">More</button>
+          <p class="mecprofession">{{ item.profession }}</p>
         </div>
       </div>
     </div>
@@ -48,7 +46,8 @@ onMounted(useMechanic().getMechanics);
   border-radius: 20px 0px 20px 0px;
   box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
 }
-.profession{
+.mecprofession{
   color:gray;
 }
+
 </style>

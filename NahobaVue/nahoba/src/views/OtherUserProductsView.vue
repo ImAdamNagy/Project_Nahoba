@@ -5,8 +5,10 @@ import { onMounted } from 'vue';
 import { useProduct } from '../store/ProductStore.js';
 import { useUser } from '../store/UserStore.js';
 
-onMounted(useProduct().getUserProducts);
-onMounted(useUser().getOtherUser);
+onMounted(async function (){
+    useProduct().getUserProducts();
+    useUser().getOtherUser();
+});
 
 </script>
 <template>

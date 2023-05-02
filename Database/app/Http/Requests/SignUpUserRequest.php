@@ -24,12 +24,12 @@ class SignUpUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'min:4', 'max:15'],
+            'username' => ['required', 'min:4', 'max:15','unique:users,username'],
             'password' => ['required', 'min:5','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/','confirmed'],
             'firstname' =>['required','min:1','max:15'],
             'lastname' =>['required','min:1','max:15'],
             'tel' =>['required','min:6','max:18'],
-            'email' =>['required','email'],
+            'email' =>['required','email','unique:users,email'],
             'role_id' =>['required',"exists:roles,id"]
         ];
     }

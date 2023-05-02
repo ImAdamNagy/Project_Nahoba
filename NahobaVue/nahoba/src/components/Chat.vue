@@ -1,6 +1,7 @@
 <template>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-3">
-        <div class="box" v-if="useChat().msgLoading == false">
+        <div class="outer">
+            <div class="box inner" v-if="useChat().msgLoading == false">
             <div class="title_lines">Your Chats</div>
             <div class="" v-for="item in useChat().chats" :key="item.id">
                 <button class="btn btn-warning" @click="useMsg().getMessages(item.id, item.to.username, item.id)" v-if="item.from.username == useUser().data.username">
@@ -28,6 +29,7 @@
             </g>
         </svg>
         </div>
+        </div>
     </div>
 </template>
 <script setup>
@@ -36,10 +38,25 @@ import {useChat} from '@/store/ChatStore.js'
 import { onMounted } from 'vue';
 import {useMsg} from '@/store/MessageStore.js'
 
-onMounted(useChat().getChats);
-onMounted(useUser().getUserDetails);
+onMounted(async function (){
+    useChat().getChats();
+    useUser().getUserDetails();
+});
+
 </script>
 <style scoped>
+
+.outer {
+  width: 150pt;
+  border: 1px solid red;
+  border-radius: 15pt;
+  overflow: hidden;
+}
+
+.inner {
+  height: 200px;
+  overflow-y: auto;
+}
 .loader{
   height: 400px;
 }

@@ -2,7 +2,7 @@
   <div class="col-lg-8 col-md-6 col-sm-12 mt-3">
     <div class="row">
       <h2 class="grouptitle">Products</h2>
-      <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mt-3" v-for="item in useProduct().enableProducts.reverse()" :key="item.id">
+      <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mt-3" v-for="item in useProduct().enableProducts" :key="item.id">
         <div class="product h-100">
           <img :src="useProduct().getImage(item.product_img)" alt="" class="mainproductscardimg">
           <h5 class="title mt-2">{{ item.product_name }}</h5>
@@ -16,9 +16,7 @@
 </template>
 <script setup>
 import { useProduct } from '../store/ProductStore.js';
-import { onMounted } from 'vue';
 
-onMounted(useProduct().getEnabledProducts);
 </script>
     
 <style scoped>

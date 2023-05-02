@@ -2,8 +2,8 @@
     <NavBar />
     <Header><h1 class="headertitle">Welcome to Nahoba Parts</h1></Header>
     <div class="container">
-        <div class="row" v-if="useProduct().enableProducts.length > 0">
-            <Mechanics  @details="details" />
+        <div class="row" v-if="useProduct().enableProductsIsLoading == false && useMechanic().mechanicsIsLoading == false">
+            <Mechanics @mechDetails="mechDetails"/>
             <Products @details="details" />
         </div>
         <div class="loader" v-else>
@@ -34,12 +34,19 @@ import Mechanics from '@/components/Mechanics.vue'
 import { router } from '../router/index.js'
 import { useProduct } from '../store/ProductStore.js';
 import { onMounted } from 'vue';
+import { useMechanic } from '../store/MechanicStore'
 
 function details(id) {
     router.push({ name: "ProductDetails",params:{id}});
 }
+function mechDetails(id) {
+    router.push({ name: "MechDetails", params: { id } });
+}
+onMounted(async function (){
+    useProduct().getEnabledProducts();
+    useMechanic().getMechanics();
+});
 
-onMounted(useProduct().getEnabledProducts);
 </script>
 <style scoped>
 .loader{

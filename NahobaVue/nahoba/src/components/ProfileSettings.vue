@@ -13,7 +13,6 @@ const schema = yup.object(
         username: yup.string().min(4).max(15).required(),
     });
 
-onMounted(useUser().getUserDetails)
 </script>
 <template>
     <div class="row settingrow">

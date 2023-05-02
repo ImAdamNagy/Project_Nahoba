@@ -13,8 +13,10 @@ const schema = yup.object(
         product_location: yup.string('Your location format is not correct! Try this format: `city, district`').min(8,).max(120, 'Your location must not be greater than 120 characters!').required('You must give a location from where you are advertising your product!'),
         product_img: yup.string().min(4).required('You must select at least one image for your product!')
     });
-onMounted(useProduct().getOwnProducts);
-onMounted(useUser().getUserDetails);
+onMounted(async function (){
+    useProduct().getOwnProducts();
+    useUser().getUserDetails();
+});
 
 async function deleteUserProduct(id){
     useProduct().userProductsIsLoading = true;

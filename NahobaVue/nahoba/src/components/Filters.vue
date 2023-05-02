@@ -35,8 +35,10 @@ import { Form as VForm, Field } from "vee-validate";
 import { onMounted } from 'vue';
 import {useCarType} from '@/store/CarTypeStore.js'
 
-onMounted(useType().allTypes);
-onMounted(useCarType().allCarTypes);
+onMounted(async function (){
+    useCarType().allCarTypes();
+    useType().allTypes();
+});
 
 function Filter(filters) {
     useProduct().filters.search = filters.search ?? null;

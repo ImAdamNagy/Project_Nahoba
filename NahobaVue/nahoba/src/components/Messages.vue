@@ -1,10 +1,10 @@
 <template>
     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 p-3">
         <div class="box row" v-if="useMsg().getMsgLoading == false && useMsg().messages.length > 0">
-            <div class="msgBoxTitle">
+            <div class="row msgBoxTitle">
                 Messages with: {{ useMsg().partnerName }}
             </div>
-            <div class="" v-for="item in useMsg().messages" :key="item.id">
+                <div v-for="item in useMsg().messages" :key="item.id">
                 <div v-if="item.sender_id == useUser().data.userid">
                     <p class="right">
                         {{ item.message }}
@@ -16,7 +16,6 @@
                     </p>
                 </div>
             </div>
-            
                 <VForm @submit="useMsg().sendMessage">
                     <div class="row">
                         <div class="col-8">
@@ -27,7 +26,6 @@
                         </div>
                     </div>
                 </VForm>
-                    
         </div>
         <div class="box row" v-else-if="useMsg().messages.length == 0 && useMsg().getMsgLoading == false">
             <div class="msgBoxTitle">
@@ -59,22 +57,25 @@ import {useChat} from "@/store/ChatStore.js"
 
 </script>
 <style scoped>
+
 .info{
     text-align: center;
     margin: auto;
     font-size: 30px;
-}
 
+}
 .right{
-    text-align: right;
+    float: right;
     border: 1px solid red;
     border-radius: 20px;
     padding: 10px;
 }
 .left{
-    text-align: left;
+    float: left;
     border: 1px solid red;
     border-radius: 20px;
     padding: 10px;
+    background: red;
+    color: white;
 }
 </style>

@@ -32,7 +32,7 @@ export const useAuth = defineStore('auth-store',
                 this.token = '';
                 this.userid = '';
                 this.isAdmin = false;
-                alert("Logout was succesfull");
+                alert("Logout was successful");
                 router.push({ name: 'MainPage' });
             },
             async getCurrentUserDetails(){
