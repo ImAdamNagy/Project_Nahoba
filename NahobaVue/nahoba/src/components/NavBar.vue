@@ -24,7 +24,7 @@
           </ul>
           <div class="nav-item space" v-if="useAuth().loggedIn">
             <div class="nav-item dropdown space">
-              <a class="nav-link dropdown-toggle space" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> My profile </a>
+              <a class="nav-link dropdown-toggle space" id="dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> My profile </a>
               <ul class="dropdown-menu" id="drop">
                 <li><Router-link class="dropdown-item" to="/settings">Settings</Router-link></li>
                 <li><Router-link class="dropdown-item" to="/user">Profile</Router-link></li>
