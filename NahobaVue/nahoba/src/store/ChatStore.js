@@ -28,8 +28,7 @@ export const useChat = defineStore('chat-store',
             const response = await http.post('/chats/', this.chatData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            router.push({name: "MessagesPage"});
-            alert("You already have a chat with this person, check your messages!");
+            alert("Check your messages!");
         },
         async CreateAdminNotificationChat(to){
             this.AdminchatData.from = useAuth().userid;

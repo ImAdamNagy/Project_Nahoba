@@ -7,7 +7,7 @@
 <div class="row mx-auto mb-4">
         <div class="col-xl-5 text-center" id="second">
             <div id="formdiv">
-        <VForm @submit="useProduct().createProduct" :validation-schema="schema">
+        <VForm @submit="createProduct" :validation-schema="schema">
                 <label for="product_name" class="form-label">Product Name</label>
                 <Field type="text" name="product_name" id="product_name" placeholder="Enter product name" class="form-control" rule="required"/>
                 <ErrorMessage name="product_name" as="div" class="alert alert-danger m-1" />
@@ -41,7 +41,7 @@
                 <Field type="text" name="product_location" id="product_location" placeholder="Enter product location" class="form-control"/>
                 <ErrorMessage name="product_location" as="div" class="alert alert-danger m-1" />
                 
-                <label for="product_img" class="form-label">Upload image</label>
+                <label for="product_img" class="form-label">Upload image (Be carefull you won't be able to change your image later)</label>
                 <br>
                 <Field type="file" name="product_img" id="product_img" @change="$emit('onChange', $event)" />
 
@@ -59,8 +59,14 @@ import * as yup from 'yup';
 import {useType} from '@/store/TypeStore.js'
 import {useProduct} from '@/store/ProductStore.js'
 import {useCarType} from '@/store/CarTypeStore.js'
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 
+async function createProduct(newproduct){
+    await useProduct().createProduct(newproduct);
+    router.push({name: "MainPage"});
+}
 
 const schema = yup.object(
     {

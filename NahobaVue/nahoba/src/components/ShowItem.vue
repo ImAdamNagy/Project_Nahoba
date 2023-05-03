@@ -3,8 +3,16 @@ import { onMounted } from 'vue'
 import { useProduct } from '@/store/ProductStore.js'
 import { useChat } from '@/store/ChatStore.js'
 import {useAuth} from '@/store/AuthStore.js'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 onMounted(useProduct().getProduct);
+
+async function sendMessage(){
+    await useChat().createNewChat(useProduct().Product.seller?.userid);
+    router.push({name: "MessagesPage"});
+}
 
 </script>
 <template>
@@ -32,7 +40,7 @@ onMounted(useProduct().getProduct);
             <p><b>Description: </b>{{ useProduct().Product.product_description }}</p>
         </div>
         <div class="msg" v-if="useAuth().loggedIn">
-            <div class="btn btn-warning" @click="useChat().createNewChat(useProduct().Product.seller?.userid)">Send message
+            <div class="btn btn-warning" @click="sendMessage">Send message
             </div>
         </div>
         <div class="msg" v-else>

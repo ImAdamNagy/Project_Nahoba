@@ -24,14 +24,14 @@ export const useMsg = defineStore('msg-store',
         }
     },
     actions:{
-        async getMessages(chatId, partner, currentChatId){
+        async getMessages(chatId, partner){
             const response = await http.get('/messages/' + chatId,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
             this.partnerName = partner;
             this.messages = response.data.data;
             this.getMsgLoading = false;
-            this.currentChatId = currentChatId;
+            this.currentChatId = chatId;
         },
         async sendMessage(message){
             this.newmessage.message = message.message;
@@ -40,7 +40,7 @@ export const useMsg = defineStore('msg-store',
             const response = await http.post('/messages/', this.newmessage,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            alert("Message sent, reload the chat!");
+            this.getMessages(this.currentChatId, this.partnerName);
         },
         async AdminNotificationMessage(message){
             this.adminNotification.message = message;

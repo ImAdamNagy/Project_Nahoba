@@ -12,13 +12,13 @@ const file = reactive({
 
 const schema = yup.object(
     {
-        introduction: yup.string().required(),
-        country: yup.string().min(3).max(100).required(),
-        postal_code: yup.number().required(),
-        city: yup.string().min(3).max(100).required(),
-        address: yup.string().min(3).max(150).required(),
-        profile_pic: yup.string().max(1536).required(),
-        profession: yup.string().min(3).max(30).required(),
+        introduction: yup.string("The introduction should not be a number only!").required("Introduction is required!"),
+        country: yup.string("The country should not be a number only!").min(3).max(100).required("Country is required!"),
+        postal_code: yup.number("The postal code should be a number!").required("Postal code is required!"),
+        city: yup.string("The city should not be a number only!").min(3).max(100).required("City is required!"),
+        address: yup.string("The address should not be a number only!").min(3).max(150).required("Address is required!"),
+        profile_pic: yup.string().max(1536).required("Profile picture is required!"),
+        profession: yup.string("Your profession should not contain numbers only!").min(3).max(30).required("Profession is required!"),
     });
 
 async function addMechanic(newMec) {
@@ -42,7 +42,7 @@ async function onChange(item) {
 <template>
     <div class="row mx-auto mt-5">
         <div class="col-xl-5 text-center bg-warning" id="first">
-            <h1>Register as a mechanic to continue</h1>
+            <h1>please fill your mechanic data sheet</h1>
         </div>
     </div>
     <div class="row mx-auto">
@@ -72,11 +72,11 @@ async function onChange(item) {
                         class="form-control my-1" />
                     <ErrorMessage name="profession" as="div" class="alert alert-danger m-1" />
 
-                    <label for="profile_pic" class="form-label">Upload image (You can't change it later!)</label>
+                    <label for="profile_pic" class="form-label">Upload image (Be carefull you won't be able to change your image later)</label>
                     <br>
                     <Field type="file" name="profile_pic" id="profile_pic" @change="onChange($event)" />
                     <ErrorMessage name="profile_pic" as="div" class="alert alert-danger m-1" />
-                    <input class="btn-warning btn form-control mt-3" type="submit" value="Register" />
+                    <input class="btn-warning btn form-control mt-3" type="submit" value="Submit" />
                 </VForm>
             </div>
         </div>

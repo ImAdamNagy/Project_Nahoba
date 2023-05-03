@@ -17,6 +17,8 @@
 <script setup>
 import { useProduct } from '../store/ProductStore.js';
 
+const emit = defineEmits(["details"]);
+
 </script>
     
 <style scoped>

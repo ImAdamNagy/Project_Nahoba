@@ -31,10 +31,12 @@ import Header from '../components/Header.vue'
 import NavBar from '../components/NavBar.vue'
 import Products from '@/components/Products.vue'
 import Mechanics from '@/components/Mechanics.vue'
-import { router } from '../router/index.js'
 import { useProduct } from '../store/ProductStore.js';
 import { onMounted } from 'vue';
 import { useMechanic } from '../store/MechanicStore'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 function details(id) {
     router.push({ name: "ProductDetails",params:{id}});

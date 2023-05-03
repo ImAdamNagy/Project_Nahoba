@@ -1,7 +1,6 @@
 <script setup>
 import {ref} from 'vue';
 import {useAuth} from '@/store/AuthStore.js'
-import { useMechanic } from '@/store/MechanicStore.js';
 import {useRouter} from "vue-router";
 import {Form as VForm, Field, ErrorMessage} from "vee-validate";
 
