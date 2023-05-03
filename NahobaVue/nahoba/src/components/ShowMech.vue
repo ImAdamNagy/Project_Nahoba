@@ -33,11 +33,11 @@ async function message(){
             <p><b>Location: </b> {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.address }} {{ useMechanic().Mech.postal_code }}</p>
         </div>
         <div class="mechmsg" v-if="useAuth().loggedIn">
-            <div class="btn btn-warning" @click="message">Send message
+            <div class="btn btn-warning sendmsgMechLog" @click="message">Send message
             </div>
         </div>
         <div class="msg" v-else>
-            <Router-link to="/login" class="btn btn-warning">Send message
+            <Router-link to="/login" class="btn btn-warning sendmsgMech">Send message
             </Router-link>
         </div>
         <div class="modal fade" id="profilepic" tabindex="-1" aria-labelledby="profilepicLabel" aria-hidden="true">

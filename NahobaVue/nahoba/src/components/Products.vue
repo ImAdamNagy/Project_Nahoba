@@ -8,7 +8,7 @@
           <h5 class="title mt-2">{{ item.product_name }}</h5>
           <p class="price">{{ item.product_price }} Ft</p>
           <p class="price">{{ item.car_type.name }} {{ item.car_type.year }}</p>
-          <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>
+          <a class="btn btn-warning productMore" @click="$emit('details', item.id)">More</a>
         </div>
       </div>
     </div>
