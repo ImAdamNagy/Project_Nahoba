@@ -95,7 +95,7 @@ export const router = createRouter({
       }
     },
     {
-      path: '/enabledproducts',
+      path: '/enableproducts',
       name: 'EnableProductsView',
       component: () => import('@/views/AdminEnabledProductsView.vue'),
       meta:{
@@ -137,6 +137,22 @@ export const router = createRouter({
         requiredRole: ['mechanic'],
         requiresAuth: true
       }
+    },
+    {
+      path: '/forbidden',
+      name: 'ForbiddenView',
+      component: () => import('@/views/ForbiddenView.vue'),
+      meta:{
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'Notfound',
+      component: () => import('@/views/NotFoundView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     }
   ]
 });
@@ -144,4 +160,4 @@ export const router = createRouter({
 
 
 router.beforeEach(AuthGuard);
-//router.beforeEach(RoleGuard);
+router.beforeEach(RoleGuard);
