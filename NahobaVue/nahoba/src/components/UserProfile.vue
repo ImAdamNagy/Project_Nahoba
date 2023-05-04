@@ -19,11 +19,13 @@ onMounted(async function (){
 });
 
 async function deleteUserProduct(id){
+    if (confirm("Are you sure you want to delete your product?") == true) {
     useProduct().userProductsIsLoading = true;
     await useProduct().deleteProduct(id);
     const index = useProduct().OwnProducts.findIndex(item=>item.id === id);
     useProduct().OwnProducts.splice(index,1);
     useProduct().userProductsIsLoading = false;
+    }
 }
 </script>
 <template>

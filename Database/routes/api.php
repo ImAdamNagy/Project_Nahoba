@@ -26,7 +26,7 @@ use App\Http\Controllers\FileController;
 
 
 Route::prefix("users")->group(function (){
-    Route::get('/{user}', [UserController::class, 'show'])->whereNumber("user");
+    Route::get('/{user}', [UserController::class, 'show'])->whereNumber("user")->name('user.show');
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/current', [UserController::class, 'getCurrentUserDetails']);
         Route::get('/', [UserController::class, 'index']);

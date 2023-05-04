@@ -61,6 +61,7 @@ import { useMechanic } from '../store/MechanicStore';
 onMounted(useUser().getUsers);
 
 async function deleteUserData(userid) {
+    if (confirm("Are you sure you want to delete this user?") == true) {
     useUser().usersIsLoading = true;
     await useProduct().deleteUsersProducts(userid);
     await useMsg().deleteUserMessages(userid);
@@ -71,6 +72,7 @@ async function deleteUserData(userid) {
     useUser().users.splice(index,1);
     useUser().usersIsLoading = false;
     alert("The user has been successfully deleted");
+    }
 }
 
 </script>

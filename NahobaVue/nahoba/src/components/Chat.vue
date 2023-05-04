@@ -6,11 +6,11 @@
             </div>
             <div class="chats">
                 <div v-for="item in useChat().chats" :key="item.id">
-                <button class="btn btn-warning" @click="useMsg().getMessages(item.id, item.to.username)"
+                <button class="btn btn-warning" @click="swap(item.id, item.to.username)"
                     v-if="item.from.username == useUser().data.username">
                     <b>{{ item.to.username }}</b>
                 </button>
-                <button class="btn btn-warning" @click="useMsg().getMessages(item.id, item.from.username)" v-else>
+                <button class="btn btn-warning" @click="swap(item.id, item.from.username)" v-else>
                     <b>{{ item.from.username }}</b>
                 </button>
             </div>
@@ -23,6 +23,18 @@ import { useUser } from '@/store/UserStore.js'
 import { useChat } from '@/store/ChatStore.js'
 import { useMsg } from '@/store/MessageStore.js'
 
+async function swap(id, from){
+    useMsg().partnerName = from;
+    useMsg().currentChatId = id;
+    useMsg().getMsgLoading = true;
+    useMsg().messages = [];
+    console.log(useMsg().messages);
+    if(useMsg().reload !== '')
+    {
+        await clearInterval(useMsg().reload);
+    }
+    useMsg().interval();
+}
 
 </script>
 <style scoped>

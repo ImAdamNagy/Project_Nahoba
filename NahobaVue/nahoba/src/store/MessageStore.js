@@ -2,6 +2,7 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
 import { useUser } from '@/store/UserStore.js';
 import { useAuth } from './AuthStore.js';
+import {useChat} from '@/store/ChatStore.js'
 
 export const useMsg = defineStore('msg-store',
 {
@@ -20,18 +21,23 @@ export const useMsg = defineStore('msg-store',
                 sender_id: null,
                 chat_id: null
             },
-            currentChatId: null
+            currentChatId: null,
+            reload: ''
         }
     },
     actions:{
-        async getMessages(chatId, partner){
+        async getMessages(chatId){
             const response = await http.get('/messages/' + chatId,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            this.partnerName = partner;
             this.messages = response.data.data;
             this.getMsgLoading = false;
-            this.currentChatId = chatId;
+            console.log(this.messages)
+        },
+        async interval(){
+            this.reload = setInterval(async function() {
+                await useMsg().getMessages(useMsg().currentChatId);
+            }, 5000)
         },
         async sendMessage(message){
             this.newmessage.message = message.message;

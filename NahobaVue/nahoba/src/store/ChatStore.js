@@ -43,8 +43,8 @@ export const useChat = defineStore('chat-store',
             const response = await http.get('/chats/',{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            this.msgLoading = false;
             this.chats = response.data.data;
+            this.msgLoading = false;
         },
         async deleteChats(userid){
             const response = await http.delete('/chats/' + userid,{
