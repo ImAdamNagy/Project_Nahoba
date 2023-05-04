@@ -86,6 +86,7 @@ import { useMsg } from '../store/MessageStore';
 onMounted(useProduct().getEnabledProducts);
 
 async function deleteEnableProduct(id, seller_id) {
+    if (confirm("Are you sure you want to delete this product?") == true) {
     useProduct().enableProductsIsLoading = true;
     await useProduct().deleteProduct(id);
     const index = useProduct().enableProducts.findIndex(item => item.id === id);
@@ -93,6 +94,7 @@ async function deleteEnableProduct(id, seller_id) {
     await useChat().CreateAdminNotificationChat(seller_id);
     await useMsg().AdminNotificationMessage('Your product has been deleted!');
     useProduct().enableProductsIsLoading = false;
+    }
 }
 </script>
 <style scoped>
