@@ -79,7 +79,7 @@ onMounted(useRole().getRoles)
                     </div>
                     <div class="d-flex flex-column flex-sm-row justify-content-between">
                         <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/">Back</Router-link>
-                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/login">Go to Login</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="login" to="/login">Go to Login</Router-link>
                     </div>
                 </VForm>
             </div>

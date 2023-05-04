@@ -61,6 +61,39 @@ namespace SeleniumTest
 
             webDriver.FindElement(By.CssSelector(".nav-item:nth-child(3)>a")).Click();
             Assert.AreEqual("http://localhost:5174/newproduct", webDriver.Url);
+
+            webDriver.FindElement(By.Id("dropdown")).Click();
+            Assert.AreEqual("http://localhost:5174/newproduct", webDriver.Url);
+
+            webDriver.FindElement(By.Id("dropdown")).Click();
+            webDriver.FindElement(By.CssSelector("#drop>li:nth-child(1)>a")).Click();
+            Assert.AreEqual("http://localhost:5174/settings", webDriver.Url);
+
+            webDriver.FindElement(By.Id("dropdown")).Click();
+            webDriver.FindElement(By.CssSelector("#drop>li:nth-child(2)>a")).Click();
+            Assert.AreEqual("http://localhost:5174/user", webDriver.Url);
+
+            webDriver.FindElement(By.Id("dropdown")).Click();
+            webDriver.FindElement(By.CssSelector("#drop>li:nth-child(3)>a")).Click();
+            Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
+
+            webDriver.FindElement(By.Id("mainpage")).Click();
+            Assert.AreEqual("http://localhost:5174/", webDriver.Url);
         }
+
+        [Test]
+        public void SellerLogoutTest()
+        {
+            webDriver.FindElement(By.Id("dropdown")).Click();
+            Thread.Sleep(3000);
+            var signout = webDriver.FindElement(By.CssSelector("#drop>li:nth-child(4)>button"));
+            signout.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+            webDriver.SwitchTo().Alert().Accept();
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("reglog")));
+            Assert.AreEqual("http://localhost:5174/", webDriver.Url);
+        }
+
     }
 }

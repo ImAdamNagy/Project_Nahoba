@@ -63,7 +63,7 @@ async function login(userData){
                     </div>
                     <div class="d-flex flex-column flex-sm-row justify-content-between">
                         <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/">Back</Router-link>
-                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/register">Go to Register</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="register" to="/register">Go to Register</Router-link>
                     </div>
                     <Alert v-if="error" alert-type="danger" >
                         {{error}}

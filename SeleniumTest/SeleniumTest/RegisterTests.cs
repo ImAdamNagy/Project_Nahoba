@@ -16,7 +16,6 @@ namespace SeleniumTest
         private string BaseUrl { get; set; } = "http://localhost:5174/register";
         private IWebDriver webDriver { get; set; }
         private WebDriverWait wait { get; set; }
-        IWebDriver email;
 
         [SetUp]
         public void Setup()
@@ -41,6 +40,14 @@ namespace SeleniumTest
         public void Cleanup()
         {
             webDriver.Quit();
+        }
+
+        [Test]
+        public void GoToLoginPage()
+        {
+            webDriver.FindElement(By.Id("login")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("register")));
+            Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
         }
 
         //[Test]
