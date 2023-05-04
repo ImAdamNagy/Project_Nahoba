@@ -2,7 +2,6 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
 import { useAuth } from './AuthStore.js';
-import { router } from '@/router/index.js';
 
 export const useProduct = defineStore('product-store',{
     state(){

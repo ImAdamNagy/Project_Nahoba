@@ -1,102 +1,147 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProductsView from "@/views/ProductsView.vue"
-import RegisterView from "@/views/RegisterView.vue"
-import CreateProductView from "@/views/CreateProductView.vue"
-import LoginView from "@/views/LoginView.vue"
-import ShowProductView from '@/views/ShowProductView.vue'
-import ShowMechView from '@/views/ShowMechView.vue'
-import UserProfileView from '@/views/UserProfileView.vue'
-import AdminMainView from '@/views/AdminMainView.vue'
-import MainView from '@/views/MainView.vue'
-import MechanicsView from '@/views/MechanicsView.vue'
-import ProfileSettingsView from '@/views/ProfileSettingsView.vue'
-import OtherUserProductsView from '@/views/OtherUserProductsView.vue'
-import MechanicFormView from '@/views/MechanicFormView.vue'
-import AdminEnabledProductsView from '@/views/AdminEnabledProductsView.vue'
-import AdminUsersView from '@/views/AdminUsersView.vue'
-import MessagesView from '@/views/MessagesView.vue'
+import { AuthGuard } from './guards/AuthGuard.mjs';
+import { RoleGuard } from './guards/RoleGuard.mjs';
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'MainPage',
-      component: MainView,
+      component: () => import('@/views/MainView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/productsonly',
       name: 'ProductsPage',
-      component: ProductsView,
+      component: () => import('@/views/ProductsView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/mechanicsonly',
       name: 'MechanicsPage',
-      component: MechanicsView,
+      component: () => import('@/views/MechanicsView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/register',
       name: 'RegisterPage',
-      component: RegisterView,
+      component: () => import('@/views/RegisterView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/messages',
       name: 'MessagesPage',
-      component: MessagesView,
+      component: () => import('@/views/MessagesView.vue'),
+      meta:{
+        requiresAuth: true
+      }
     },
     {
       path: '/newproduct',
       name: 'CreateProduct',
-      component: CreateProductView,
+      component: () => import('@/views/CreateProductView.vue'),
+      meta:{
+        requiredRole: ['mechanic','seller'],
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
       name: 'LoginPage',
-      component: LoginView,
+      component: () => import('@/views/LoginView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/details/:id',
       name: 'ProductDetails',
-      component: ShowProductView
+      component: () => import('@/views/ShowProductView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/mech/details/:id',
       name: 'MechDetails',
-      component: ShowMechView
+      component: () => import('@/views/ShowMechView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/user',
       name: 'UserProfile',
-      component: UserProfileView,
+      component: () => import('@/views/UserProfileView.vue'),
+      meta:{
+        requiresAuth: true
+      }
     },
     {
       path: '/adminmain',
       name: 'AdminMain',
-      component: AdminMainView,
+      component: () => import('@/views/AdminMainView.vue'),
+      meta:{
+        requiredRole: ['admin'],
+        requiresAuth: true
+      }
     },
     {
       path: '/enabledproducts',
       name: 'EnableProductsView',
-      component: AdminEnabledProductsView,
+      component: () => import('@/views/AdminEnabledProductsView.vue'),
+      meta:{
+        requiredRole: ['admin'],
+        requiresAuth: true
+      }
     },
     {
       path: '/users',
       name: 'Users',
-      component: AdminUsersView,
+      component: () => import('@/views/AdminUsersView.vue'),
+      meta:{
+        requiredRole: ['admin'],
+        requiresAuth: true
+      }
     },
     {
       path: '/settings',
       name: 'ProfileSettingsPage',
-      component: ProfileSettingsView,
+      component: () => import('@/views/ProfileSettingsView.vue'),
+      meta:{
+        requiredRole: ['mechanic','seller'],
+        requiresAuth: true
+      }
     },
     {
       path: '/otherUserProducts/:id',
       name: 'OtherUserProducts',
-      component: OtherUserProductsView,
+      component: () => import('@/views/OtherUserProductsView.vue'),
+      meta:{
+        requiresAuth: false
+      }
     },
     {
       path: '/mechanicregister',
       name: 'MechanicFormView',
-      component: MechanicFormView,
+      component: () => import('@/views/MechanicFormView.vue'),
+      meta:{
+        requiredRole: ['mechanic'],
+        requiresAuth: true
+      }
     }
   ]
 });
+
+
+
+router.beforeEach(AuthGuard);
+//router.beforeEach(RoleGuard);
