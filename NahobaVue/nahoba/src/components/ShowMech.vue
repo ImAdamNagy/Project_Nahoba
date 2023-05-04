@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import {useMechanic} from '@/store/MechanicStore.js'
 import {useChat} from '@/store/ChatStore.js'
 import { useRouter } from 'vue-router';
+import { useAuth } from '@/store/AuthStore';
 
 const router = useRouter();
 
@@ -31,9 +32,13 @@ async function message(){
         <div class="mechlocation">
             <p><b>Location: </b> {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.address }} {{ useMechanic().Mech.postal_code }}</p>
         </div>
-        <div class="mechmsg">
-            <div class="btn btn-warning" @click="message">Send message
+        <div class="mechmsg" v-if="useAuth().loggedIn">
+            <div class="btn btn-warning sendmsgMechLog" @click="message">Send message
             </div>
+        </div>
+        <div class="msg" v-else>
+            <Router-link to="/login" class="btn btn-warning sendmsgMech">Send message
+            </Router-link>
         </div>
         <div class="modal fade" id="profilepic" tabindex="-1" aria-labelledby="profilepicLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

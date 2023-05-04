@@ -40,11 +40,11 @@ async function sendMessage(){
             <p><b>Description: </b>{{ useProduct().Product.product_description }}</p>
         </div>
         <div class="msg" v-if="useAuth().loggedIn">
-            <div class="btn btn-warning" @click="sendMessage">Send message
+            <div class="btn btn-warning sendmsglog" @click="sendMessage">Send message
             </div>
         </div>
         <div class="msg" v-else>
-            <Router-link to="/login" class="btn btn-warning">Send message
+            <Router-link to="/login" class="btn btn-warning sendmsg">Send message
             </Router-link>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

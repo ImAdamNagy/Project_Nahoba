@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { http } from '../utils/http.mjs'
-
+import {useMsg} from '@/store/MessageStore.js'
 
 export const useAuth = defineStore('auth-store',
     {
@@ -31,6 +31,8 @@ export const useAuth = defineStore('auth-store',
                 this.token = '';
                 this.userid = '';
                 this.isAdmin = false;
+                useMsg().currentChatId = null;
+                useMsg().partnerName = null;
                 alert("Logout was successful");
             },
             async getCurrentUserDetails(){

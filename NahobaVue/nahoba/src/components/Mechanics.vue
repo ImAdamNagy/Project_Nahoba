@@ -6,7 +6,7 @@
         <div class="mechanic m-2 h-100">
           <div class="mx-2">
           <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
-          <button class="btn btn-warning float-end" @click="$emit('mechDetails', item.id)">More</button>
+          <button class="btn btn-warning float-end mechanicMore" @click="$emit('mechDetails', item.id)">More</button>
           <p class="mecprofession">{{ item.profession }}</p>
           </div>
         </div>

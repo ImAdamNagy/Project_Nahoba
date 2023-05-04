@@ -35,7 +35,7 @@
             <div class="msgBoxTitle">
                 Messages with: {{ useMsg().partnerName }}
             </div>
-            <div class="messages">
+            <div class="messages info">
                 <p>You have no messages with {{ useMsg().partnerName }} yet.</p>
             </div>
             <VForm @submit="useMsg().sendMessage">
