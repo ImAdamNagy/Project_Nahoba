@@ -63,6 +63,11 @@ import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import { useMsg } from '@/store/MessageStore.js'
 import { useUser } from "../store/UserStore.js";
 import { useChat } from "@/store/ChatStore.js"
+import { onBeforeRouteLeave } from "vue-router";
+
+onBeforeRouteLeave((to, from) => {
+    useMsg().abortController.abort()
+    })
 
 </script>
 <style scoped>

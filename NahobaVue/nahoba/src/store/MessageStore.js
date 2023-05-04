@@ -2,7 +2,6 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
 import { useUser } from '@/store/UserStore.js';
 import { useAuth } from './AuthStore.js';
-import {useChat} from '@/store/ChatStore.js'
 
 export const useMsg = defineStore('msg-store',
 {
@@ -22,23 +21,32 @@ export const useMsg = defineStore('msg-store',
                 chat_id: null
             },
             currentChatId: null,
-            reload: ''
+            reload: '',
+            abortController: new AbortController()
         }
     },
     actions:{
         async getMessages(chatId){
-            const response = await http.get('/messages/' + chatId,{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-            });
-            this.messages = response.data.data;
-            this.getMsgLoading = false;
-            console.log(this.messages)
+            try {
+                const response = await http.get('/messages/' + chatId,{
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
+                    signal: this.abortController.signal
+                });
+                this.messages = response.data.data;
+                this.getMsgLoading = false;
+                console.log(this.messages)
+            } catch (error) {
+                
+            }
         },
-        async interval(){
-            this.reload = setInterval(async function() {
-                await useMsg().getMessages(useMsg().currentChatId);
-            }, 5000)
+        async interval(id){
+            this.reload = setInterval(async function(id) {
+                await useMsg().getMessages(id);
+            }, 5000, id)
         },
+
+
+
         async sendMessage(message){
             this.newmessage.message = message.message;
             this.newmessage.sender_id = useUser().data.userid;

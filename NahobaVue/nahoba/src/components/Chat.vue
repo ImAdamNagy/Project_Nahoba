@@ -29,11 +29,12 @@ async function swap(id, from){
     useMsg().getMsgLoading = true;
     useMsg().messages = [];
     console.log(useMsg().messages);
-    if(useMsg().reload !== '')
-    {
-        await clearInterval(useMsg().reload);
-    }
-    useMsg().interval();
+    clearInterval(useMsg().reload);
+
+    useMsg().abortController.abort();
+    useMsg().abortController = new AbortController();
+    
+    useMsg().interval(id);
 }
 
 </script>
