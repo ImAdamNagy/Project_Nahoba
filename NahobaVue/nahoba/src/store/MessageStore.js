@@ -65,9 +65,13 @@ export const useMsg = defineStore('msg-store',
             alert("Message sent!");
         },
         async deleteUserMessages(userid){
-            const response = await http.delete('/messages/' + userid,{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-            });
+            try {
+                const response = await http.delete('/messages/' + userid,{
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                });
+            } catch (error) {
+                
+            }
         }
     }
 })
