@@ -4,7 +4,7 @@
             <Field class="form-control" id="search" placeholder="Search:" name="search" type="text" />
         </div>
         <div class="button">
-            <button class="btn btn-light form-control">Search</button>
+            <button class="btn btn-light form-control" id="searchbtn">Search</button>
         </div>
         <div class="cartype">
             <Field name="carTypesFilter" id="carTypesFilter"  class="form-select" :value="0" as="select">

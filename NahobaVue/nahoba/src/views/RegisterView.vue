@@ -78,8 +78,8 @@ onMounted(useRole().getRoles)
                         <button class="btn btn-secondary w-100 my-md-3 my-2 rounded-pill" type="submit">Register</button>
                     </div>
                     <div class="d-flex flex-column flex-sm-row justify-content-between">
-                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/">Back</Router-link>
-                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" to="/login">Go to Login</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="back" to="/">Back</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="login" to="/login">Go to Login</Router-link>
                     </div>
                 </VForm>
             </div>

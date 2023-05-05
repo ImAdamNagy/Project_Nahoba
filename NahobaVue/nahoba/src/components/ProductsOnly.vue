@@ -2,10 +2,14 @@
   <div class="row" v-if="useProduct().FilteredProducts.length > 0 && useProduct().enableProductsIsLoading == false">
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useProduct().FilteredProducts" :key="item.id">
       <div class="product h-100">
-        <img :src="useProduct().getImage(item.product_img)" class="productsonlycardimg" :alt="useProduct().getImage(item.product_img)">
+        <img :src="useProduct().getImage(item.product_img)" class="productsonlycardimg"
+          :alt="useProduct().getImage(item.product_img)">
         <h5 class="title mt-2">{{ item.product_name }}</h5>
-        <p class="price">{{ item.product_price }} Ft</p>
-        <p class="cartype">{{ item.car_type.name }} {{ item.car_type.vintage }}</p>
+        <p class="price"><span class="itemprice">{{ item.product_price }}</span> Ft</p>
+        <div id="name" class="d-flex flex-sm-row flex-column justify-content-between">
+          <p class="cartype" id="cartype">{{ item.car_type.name }} {{ item.car_type.vintage }}</p>
+          <p class="type" id="type">{{ item.type.type }}</p>
+        </div>
         <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>
       </div>
     </div>
@@ -37,9 +41,10 @@ onMounted(useProduct().getEnabledProducts);
 </script>
 
 <style scoped>
-.loader{
+.loader {
   height: 400px;
 }
+
 .product {
   display: flex;
   flex-direction: column;
@@ -50,5 +55,4 @@ onMounted(useProduct().getEnabledProducts);
   border-radius: 20px 0px 20px 0px;
   box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
 }
-
 </style>

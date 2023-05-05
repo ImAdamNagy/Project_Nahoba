@@ -16,19 +16,6 @@ namespace SeleniumTest
         private IWebDriver webDriver { get; set; }
         private WebDriverWait wait { get; set; }
 
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                webDriver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
         [SetUp]
         public void Setup()
         {
@@ -44,21 +31,26 @@ namespace SeleniumTest
         {
             Assert.AreEqual(BaseUrl, webDriver.Url);
 
-            webDriver.FindElement(By.CssSelector(".nav-item:nth-child(1)>a")).Click();
+            webDriver.FindElement(By.ClassName("products")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/productsonly", webDriver.Url);
 
-            webDriver.FindElement(By.CssSelector(".nav-item:nth-child(2)>a")).Click();
+            webDriver.FindElement(By.ClassName("mechanics")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/mechanicsonly", webDriver.Url);
 
-            webDriver.FindElement(By.CssSelector(".nav-item:nth-child(3)>a")).Click();
+            webDriver.FindElement(By.ClassName("newproduct")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
 
             webDriver.Navigate().GoToUrl(BaseUrl);
             webDriver.FindElement(By.CssSelector("#reglog>.nav-item:nth-child(1)>a")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/register", webDriver.Url);
 
             webDriver.Navigate().GoToUrl(BaseUrl);
             webDriver.FindElement(By.CssSelector("#reglog>.nav-item:nth-child(2)>a")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
         }
 
@@ -66,6 +58,7 @@ namespace SeleniumTest
         public void ViewProduct()
         {
             webDriver.FindElements(By.ClassName("productMore"))[0].Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/details/1", webDriver.Url);
             Assert.AreEqual("Product details", webDriver.FindElement(By.ClassName("headertitle")).Text);
         }
@@ -75,6 +68,7 @@ namespace SeleniumTest
         {
             webDriver.FindElements(By.ClassName("productMore"))[0].Click();
             webDriver.FindElement(By.ClassName("sendmsg")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
         }
 
@@ -82,6 +76,7 @@ namespace SeleniumTest
         public void ViewMechanic()
         {
             webDriver.FindElements(By.ClassName("mechanicMore"))[0].Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/mech/details/1", webDriver.Url);
             Assert.AreEqual("Mechanic details", webDriver.FindElement(By.ClassName("headertitle")).Text);
         }
@@ -91,6 +86,21 @@ namespace SeleniumTest
         {
             webDriver.FindElements(By.ClassName("mechanicMore"))[0].Click();
             webDriver.FindElement(By.ClassName("sendmsgMech")).Click();
+            Thread.Sleep(1000);
+            Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
+        }
+
+        [Test]
+        public void MechanicsOnlyPage()
+        {
+            webDriver.FindElement(By.ClassName("mechanics")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName("mechanicMore2")));
+            Assert.AreEqual("http://localhost:5174/mechanicsonly", webDriver.Url);
+
+            webDriver.FindElements(By.ClassName("mechanicMore2"))[0].Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName("sendmsgMech")));
+            webDriver.FindElement(By.ClassName("sendmsgMech")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("register")));
             Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
         }
 

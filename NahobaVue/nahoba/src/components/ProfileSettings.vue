@@ -49,7 +49,7 @@ const schema = yup.object(
                     <p><b>Phone number: </b>{{ useUser().data.tel }}</p>
                 </div>
                 <div class="settingchange">
-                    <button type="button" class="stgbutton btn btn-primary" data-bs-toggle="modal"
+                    <button type="button" id="changedata" class="stgbutton btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
                         Change data
                     </button>

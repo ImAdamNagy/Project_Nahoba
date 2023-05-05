@@ -33,6 +33,22 @@ namespace SeleniumTest
         }
 
         [Test]
+        public void GoToRegisterPage()
+        {
+            webDriver.FindElement(By.Id("register")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("login")));
+            Assert.AreEqual("http://localhost:5174/register", webDriver.Url);
+        }
+
+        [Test]
+        public void GoToMainPage()
+        {
+            webDriver.FindElement(By.Id("back")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("reglog")));
+            Assert.AreEqual("http://localhost:5174/", webDriver.Url);
+        }
+
+        [Test]
         public void LoginWithValidUser()
         {
             webDriver.FindElement(By.Id("username")).SendKeys("SellerMisi4");

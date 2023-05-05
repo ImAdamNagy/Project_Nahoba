@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg" v-if="useAuth().isAdmin == false">
       <div class="container-fluid">
-        <Router-link class="navbar-brand nav-title navbar-light" to="/"><strong>Nahoba Parts</strong></Router-link>
+        <Router-link class="navbar-brand nav-title navbar-light" id="mainpage" to="/"><strong>Nahoba Parts</strong></Router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -10,16 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/productsonly">Products</Router-link>
+              <Router-link class="nav-link active text-light products" to="/productsonly">Products</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/mechanicsonly">Mechanics</Router-link>
+              <Router-link class="nav-link active text-light mechanics" to="/mechanicsonly">Mechanics</Router-link>
             </li>
             <li class="nav-item" v-if="useAuth().loggedIn">
-              <Router-link class="nav-link active text-light" to="/newproduct">Upload product</Router-link>
+              <Router-link class="nav-link active text-light newproduct" to="/newproduct">Upload product</Router-link>
             </li>
             <li class="nav-item" v-else>
-              <Router-link class="nav-link active text-light" to="/login" >Upload product</Router-link>
+              <Router-link class="nav-link active text-light newproduct" to="/login" >Upload product</Router-link>
             </li>
           </ul>
           <div class="nav-item space" v-if="useAuth().loggedIn">
@@ -49,7 +49,7 @@
     </nav>
     <nav class="navbar navbar-expand-lg" v-else>
       <div class="container-fluid">
-        <Router-link class="navbar-brand nav-title navbar-light" to="/"><strong>Nahoba Parts</strong></Router-link>
+        <Router-link class="navbar-brand nav-title navbar-light" id="mainpage" to="/"><strong>Nahoba Parts</strong></Router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -57,21 +57,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/productsonly">Products</Router-link>
+              <Router-link class="nav-link active text-light products" to="/productsonly">Products</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/mechanicsonly">Mechanics</Router-link>
+              <Router-link class="nav-link active text-light mechanics" to="/mechanicsonly">Mechanics</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/messages">Messages</Router-link>
+              <Router-link class="nav-link active text-light messages" to="/messages">Messages</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light" to="/adminmain">Admin actions</Router-link>
+              <Router-link class="nav-link active text-light adminmain" to="/adminmain">Admin actions</Router-link>
             </li>
           </ul>
           <div class="nav-item" v-if="useAuth().loggedIn">
             <li class="nav-item">
-              <button class="dropdown-item" @click="logout">Sign out</button>
+              <button class="dropdown-item" id="logout" @click="logout">Sign out</button>
             </li>
           </div>
           <div v-else>
