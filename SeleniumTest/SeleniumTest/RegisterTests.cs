@@ -50,6 +50,14 @@ namespace SeleniumTest
             Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
         }
 
+        [Test]
+        public void GoToMainPage()
+        {
+            webDriver.FindElement(By.Id("back")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("reglog")));
+            Assert.AreEqual("http://localhost:5174/", webDriver.Url);
+        }
+
         //[Test]
         //public void RegisterValidSellerUser()
         //{

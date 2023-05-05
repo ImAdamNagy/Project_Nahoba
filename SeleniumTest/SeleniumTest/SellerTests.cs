@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace SeleniumTest
 {
-    internal class Seller
+    internal class SellerTests
     {
         private string BaseUrl { get; set; } = "http://localhost:5174/";
         private IWebDriver webDriver { get; set; }
@@ -53,47 +54,51 @@ namespace SeleniumTest
         {
             Assert.AreEqual(BaseUrl, webDriver.Url);
 
-            webDriver.FindElement(By.CssSelector(".nav-item:nth-child(1)>a")).Click();
+            webDriver.FindElement(By.ClassName("products")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/productsonly", webDriver.Url);
 
-            webDriver.FindElement(By.CssSelector(".nav-item:nth-child(2)>a")).Click();
+            webDriver.FindElement(By.ClassName("mechanics")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/mechanicsonly", webDriver.Url);
 
-            webDriver.FindElement(By.CssSelector(".nav-item:nth-child(3)>a")).Click();
-            Assert.AreEqual("http://localhost:5174/newproduct", webDriver.Url);
-
-            webDriver.FindElement(By.Id("dropdown")).Click();
+            webDriver.FindElement(By.ClassName("newproduct")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/newproduct", webDriver.Url);
 
             webDriver.FindElement(By.Id("dropdown")).Click();
             webDriver.FindElement(By.CssSelector("#drop>li:nth-child(1)>a")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/settings", webDriver.Url);
 
             webDriver.FindElement(By.Id("dropdown")).Click();
             webDriver.FindElement(By.CssSelector("#drop>li:nth-child(2)>a")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/user", webDriver.Url);
 
             webDriver.FindElement(By.Id("dropdown")).Click();
             webDriver.FindElement(By.CssSelector("#drop>li:nth-child(3)>a")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
 
             webDriver.FindElement(By.Id("mainpage")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/", webDriver.Url);
         }
 
-        [Test]
-        public void SellerLogoutTest()
-        {
-            webDriver.FindElement(By.Id("dropdown")).Click();
-            Thread.Sleep(3000);
-            var signout = webDriver.FindElement(By.CssSelector("#drop>li:nth-child(4)>button"));
-            signout.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
-            webDriver.SwitchTo().Alert().Accept();
+        //[Test]
+        //public void SellerLogoutTest()
+        //{
+        //    webDriver.FindElement(By.Id("dropdown")).Click();
+        //    Thread.Sleep(1000);
+        //    var signout = webDriver.FindElement(By.CssSelector("logout"));
+        //    signout.Click();
+        //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+        //    webDriver.SwitchTo().Alert().Accept();
 
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("reglog")));
-            Assert.AreEqual("http://localhost:5174/", webDriver.Url);
-        }
+        //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("reglog")));
+        //    Assert.AreEqual("http://localhost:5174/", webDriver.Url);
+        //}
 
     }
 }

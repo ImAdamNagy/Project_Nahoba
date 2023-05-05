@@ -61,13 +61,13 @@ namespace SeleniumTest
             webDriver.FindElement(By.Id("changedata")).Click();
             var email = webDriver.FindElement(By.Id("email"));
             email.Clear();
-            email.SendKeys("sellermisikeee@gmail.com");
+            email.SendKeys("sellermisikee@gmail.com");
 
             webDriver.FindElement(By.XPath("//button[@type='submit']")).Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
             webDriver.SwitchTo().Alert().Accept();
 
-            Assert.AreEqual(webDriver.FindElement(By.CssSelector(".settingemail>p")).Text, "Email: sellermisikeee@gmail.com");
+            Assert.AreEqual(webDriver.FindElement(By.CssSelector(".settingemail>p")).Text, "Email: sellermisikee@gmail.com");
         }
     }
 }

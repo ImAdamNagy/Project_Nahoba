@@ -1,19 +1,19 @@
 <template>
   <div class="gridadminaction mt-3  ">
     <div class="producttype">
-      <div class="btn action-button" data-bs-toggle="modal" data-bs-target="#typeAdd">Add product type</div>
+      <div class="btn action-button" id="addProductType" data-bs-toggle="modal" data-bs-target="#typeAdd">Add product type</div>
         <div class="modal fade" id="typeAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new type</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel modaltitle">Add a new type</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <VForm @submit="useType().createType">
                   <Field type="text" name="type" id="type" placeholder="Enter the new type" class="form-control" rules="required" />
                   <ErrorMessage name="type" as="div" class="alert alert-danger m-1" />
-                  <input class="btn-warning btn form-control mt-3" data-bs-dismiss="modal" type="submit" value="Add" />
+                  <input class="btn-warning btn form-control mt-3" id="typeSubmit" data-bs-dismiss="modal" type="submit" value="Add" />
                 </VForm>
               </div>
               <div class="modal-footer">
@@ -24,7 +24,7 @@
         </div>
       </div>
     <div class="cartype">
-      <div class="btn action-button" data-bs-toggle="modal" data-bs-target="#carTypeAdd">Add car type</div>
+      <div class="btn action-button" id="addProductCarType" data-bs-toggle="modal" data-bs-target="#carTypeAdd">Add car type</div>
         <div class="modal fade" id="carTypeAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -38,7 +38,7 @@
                   <ErrorMessage name="name" as="div" class="alert alert-danger m-1" />
                   <Field type="number" name="year" id="year" placeholder="Enter the car types year" class="form-control mt-1" rules="required|numeric|between:1886,2023" />
                   <ErrorMessage name="year" as="div" class="alert alert-danger m-1" />
-                  <input class="btn-warning btn form-control mt-3" data-bs-dismiss="modal" type="submit" value="Add" />
+                  <input class="btn-warning btn form-control mt-3" id="cartypeSubmit" data-bs-dismiss="modal" type="submit" value="Add" />
                 </VForm>
               </div>
               <div class="modal-footer">
