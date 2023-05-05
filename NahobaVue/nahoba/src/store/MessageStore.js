@@ -20,19 +20,33 @@ export const useMsg = defineStore('msg-store',
                 sender_id: null,
                 chat_id: null
             },
-            currentChatId: null
+            currentChatId: null,
+            reload: '',
+            abortController: new AbortController()
         }
     },
     actions:{
-        async getMessages(chatId, partner){
-            const response = await http.get('/messages/' + chatId,{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-            });
-            this.partnerName = partner;
-            this.messages = response.data.data;
-            this.getMsgLoading = false;
-            this.currentChatId = chatId;
+        async getMessages(chatId){
+            try {
+                const response = await http.get('/messages/' + chatId,{
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
+                    signal: this.abortController.signal
+                });
+                this.messages = response.data.data;
+                this.getMsgLoading = false;
+                console.log(this.messages)
+            } catch (error) {
+                
+            }
         },
+        async interval(id){
+            this.reload = setInterval(async function(id) {
+                await useMsg().getMessages(id);
+            }, 5000, id)
+        },
+
+
+
         async sendMessage(message){
             this.newmessage.message = message.message;
             this.newmessage.sender_id = useUser().data.userid;
