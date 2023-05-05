@@ -9,7 +9,7 @@ export const useCarType = defineStore('carType-store',{
     },
     actions:{
         async allCarTypes(){
-            const response = await http.get('cartypes');
+            const response = await http.get('/cartypes');
             this.cartypes = response.data.data;
         },
         async addCarType(carTypeData){
