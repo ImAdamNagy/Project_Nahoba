@@ -41,6 +41,11 @@ export const useAuth = defineStore('auth-store',
                 });
                 this.currentUserDetails = response.data.data;
             },
+            async userDetails(){
+                return await http.get('/users/current', {
+                    headers: { Authorization: `Bearer ${this.token}` }
+                });
+            },
             async currentUserHasMechanic(){
                 const response = await http.get("/mechanics/hasmec", {
                     headers: { Authorization: `Bearer ${this.token}` }

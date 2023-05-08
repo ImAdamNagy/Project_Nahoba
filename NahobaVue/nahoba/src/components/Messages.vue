@@ -73,7 +73,7 @@ import { onBeforeRouteLeave } from "vue-router";
 
 onBeforeRouteLeave((to, from) => {
     useMsg().abortController.abort()
-    })
+})
 
 
 async function Delete(userid) {
@@ -82,7 +82,7 @@ async function Delete(userid) {
     const index = useChat().chats.findIndex(item => item.to.userid === userid || item.from.userid === userid);
     useChat().chats.splice(index, 1);
     alert("Chat deleted")
-    useMsg().getMsgLoading == false
+    useMsg().getMsgLoading == false;
 }
 </script>
 <style scoped>
