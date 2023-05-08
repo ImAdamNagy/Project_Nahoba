@@ -81,8 +81,13 @@ async function Delete(userid) {
     await useChat().deleteChats(userid)
     const index = useChat().chats.findIndex(item => item.to.userid === userid || item.from.userid === userid);
     useChat().chats.splice(index, 1);
+
+    clearInterval(useMsg().reload);
+    useMsg().abortController.abort();
+    useMsg().abortController = new AbortController();
+    
     alert("Chat deleted")
-    useMsg().getMsgLoading == false
+    useMsg().getMsgLoading = true
 }
 </script>
 <style scoped>

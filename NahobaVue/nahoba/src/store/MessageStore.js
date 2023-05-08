@@ -8,6 +8,7 @@ export const useMsg = defineStore('msg-store',
     state(){
         return{
             messages: [],
+            username: "",
             getMsgLoading: true,
             partnerName: "",
             newmessage: {
@@ -54,7 +55,7 @@ export const useMsg = defineStore('msg-store',
             const response = await http.post('/messages/', this.newmessage,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            this.getMessages(this.currentChatId, this.partnerName);
+            this.getMessages(this.currentChatId, this.username);
         },
         async AdminNotificationMessage(message){
             this.adminNotification.message = message;
@@ -67,7 +68,8 @@ export const useMsg = defineStore('msg-store',
         async deleteUserMessages(userid){
             try {
                 const response = await http.delete('/messages/' + userid,{
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
+                    signal: this.abortController.signal
                 });
             } catch (error) {
                 

@@ -59,6 +59,4 @@ button:hover {
     padding: 10px;
     border: 1px solid black;
 }
-
-.closeImg {}
 </style>
