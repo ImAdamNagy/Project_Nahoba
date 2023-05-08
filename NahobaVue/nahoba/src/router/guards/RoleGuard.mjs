@@ -6,7 +6,7 @@ export async function RoleGuard(to,from,next){
         next();
     }
     else{
-        if(to.meta.requiredRole?.includes(useAuth().currentUserDetails?.role?.role_name)){
+        if(to.meta.requiredRole.includes((await useAuth().userDetails()).data.data.role?.role_name)){
             next();
         }
         else{

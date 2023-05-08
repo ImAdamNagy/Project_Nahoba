@@ -1,8 +1,14 @@
 <template>
     <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 p-3">
-        <div class="msgbox" v-if="useMsg().getMsgLoading == false && useMsg().messages.length > 0">
+        <div class="msgbox" v-if="useMsg().currentChatId == null">
+            <div class="msgBoxTitle">
+                Select your chat partner
+            </div>
+        </div>
+        <div class="msgbox" v-else-if="useMsg().getMsgLoading == false && useMsg().messages.length > 0">
             <div class="msgBoxTitle">
                 <p>Messages with: {{ useMsg().partnerName }}</p>
+                <button @click="Delete(useMsg().currentChatId)" class="btn btn-danger">Delete chat</button>
             </div>
             <div class="messages">
                 <div class="row" v-for="item in useMsg().messages" :key="item.id">
@@ -67,8 +73,17 @@ import { onBeforeRouteLeave } from "vue-router";
 
 onBeforeRouteLeave((to, from) => {
     useMsg().abortController.abort()
-    })
+})
 
+
+async function Delete(userid) {
+    await useMsg().deleteUserMessages(userid)
+    await useChat().deleteChats(userid)
+    const index = useChat().chats.findIndex(item => item.to.userid === userid || item.from.userid === userid);
+    useChat().chats.splice(index, 1);
+    alert("Chat deleted")
+    useMsg().getMsgLoading == false;
+}
 </script>
 <style scoped>
 .info {

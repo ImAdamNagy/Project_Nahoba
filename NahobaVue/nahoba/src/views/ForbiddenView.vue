@@ -1,12 +1,9 @@
 <template>
-    <div class="container">
+    <div class="container errorcontainer">
         <p class="errornumber">403</p>
         <p class="errormessage">Forbidden</p>
-        <button class="btn btn-light">Go back to mainpage</button>
+        <Router-link to="/" class="btn btn-light" ><b>Go back to mainpage</b></Router-link>
     </div>
 </template>
 <script>
 </script>
-<style scoped>
-
-</style>
