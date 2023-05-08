@@ -73,7 +73,7 @@ import { onBeforeRouteLeave } from "vue-router";
 
 onBeforeRouteLeave((to, from) => {
     useMsg().abortController.abort()
-    })
+})
 
 
 async function Delete(userid) {

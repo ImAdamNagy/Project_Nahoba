@@ -1,6 +1,20 @@
 #app {
   height: 100%;
 }
+.errorcontainer{
+  margin-top: 10%;
+  text-align: center;
+  }
+.errornumber{
+  color:white;
+  font-weight: bold;
+  font-size: 800%;
+}
+.errormessage{
+  color:white;
+  font-weight: bold;
+  font-size: 400%;
+}
 .image {
   height: 400px;
   width: 500px;
@@ -397,6 +411,9 @@ body, html {
 }
 }
 @media screen and (max-width: 1200px){
+  .errorcontainer{
+    margin-top: 20%;
+  }
   .image {
     height: 300px;
     width: 400px;
@@ -548,6 +565,17 @@ body, html {
   }
 }
 @media screen and (max-width: 768px) {
+  .errorcontainer{
+    margin-top: 40%;
+  }
+  .errornumber{
+    font-weight: bold;
+    font-size: 600%;
+  }
+  .errormessage{
+    font-weight: bold;
+    font-size: 300%;
+  }
   #header {
     height: 200px;
   }
