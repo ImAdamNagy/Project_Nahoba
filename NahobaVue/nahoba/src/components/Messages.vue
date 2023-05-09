@@ -1,6 +1,11 @@
 <template>
     <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 p-3">
-        <div class="msgbox" v-if="useMsg().currentChatId == null">
+        <div class="selectbox" v-if="useChat().chats.length == 0">
+            <div class="info">
+                <p>You don't have any messages yet!</p>
+            </div>
+        </div>
+        <div class="msgbox" v-else-if="useMsg().currentChatId == undefined && useChat().chats.length > 0">
             <div class="msgBoxTitle">
                 Select your chat partner
             </div>
@@ -8,7 +13,7 @@
         <div class="msgbox" v-else-if="useMsg().getMsgLoading == false && useMsg().messages.length > 0">
             <div class="msgBoxTitle">
                 <p>Messages with: {{ useMsg().partnerName }}</p>
-                <button @click="Delete(useMsg().currentChatId)" class="btn btn-danger">Delete chat</button>
+                <button @click="Delete(useMsg().partnerid)" class="btn btn-danger">Delete chat</button>
             </div>
             <div class="messages">
                 <div class="row" v-for="item in useMsg().messages" :key="item.id">
@@ -40,6 +45,7 @@
         <div class="msgbox" v-else-if="useMsg().messages.length == 0 && useMsg().getMsgLoading == false">
             <div class="msgBoxTitle">
                 Messages with: {{ useMsg().partnerName }}
+                <button @click="Delete(useMsg().partnerid)" class="btn btn-danger">Delete chat</button>
             </div>
             <div class="messages info">
                 <p>You have no messages with {{ useMsg().partnerName }} yet.</p>
@@ -70,6 +76,7 @@ import { useMsg } from '@/store/MessageStore.js'
 import { useUser } from "../store/UserStore.js";
 import { useChat } from "@/store/ChatStore.js"
 import { onBeforeRouteLeave } from "vue-router";
+console.log(useChat().currentChatId)
 
 onBeforeRouteLeave((to, from) => {
     useMsg().abortController.abort()
@@ -77,6 +84,8 @@ onBeforeRouteLeave((to, from) => {
 
 
 async function Delete(userid) {
+    if(confirm("Are sure you want to delete this chat?")  == true)
+    {
     await useMsg().deleteUserMessages(userid)
     await useChat().deleteChats(userid)
     const index = useChat().chats.findIndex(item => item.to.userid === userid || item.from.userid === userid);
@@ -88,6 +97,7 @@ async function Delete(userid) {
     
     alert("Chat deleted")
     useMsg().getMsgLoading = true
+    }
 }
 </script>
 <style scoped>
