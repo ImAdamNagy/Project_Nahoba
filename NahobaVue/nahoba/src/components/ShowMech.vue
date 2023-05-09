@@ -18,8 +18,7 @@ async function message(){
 <template>
     <div class="grid-mech" v-if="useMechanic().mechanicsIsLoading == false">
         <div class="mechgridimg">
-            <img data-bs-toggle="modal" data-bs-target="#profilepic" :src="useMechanic().getImage(useMechanic().Mech.profile_pic)" :alt="`${useMechanic().Mech.profile_pic}`"
-            class="mechimage img-fluid">
+            <img data-bs-toggle="modal" data-bs-target="#profilepic" :src="useMechanic().getImage(useMechanic().Mech.profile_pic)" :alt="`${useMechanic().Mech.profile_pic}`" class="mechimage">
         </div>
         <h1 class="mechgrid-title">{{ useMechanic().Mech.user?.lastname }} {{ useMechanic().Mech.user?.firstname }}</h1>
         <div class="profession">
@@ -36,9 +35,8 @@ async function message(){
             <div class="btn btn-warning sendmsgMechLog" @click="message">Send message
             </div>
         </div>
-        <div class="msg" v-else>
-            <Router-link to="/login" class="btn btn-warning sendmsgMech">Send message
-            </Router-link>
+        <div class="mechmsg" v-else>
+            <Router-link to="/login" class="btn btn-warning sendmsgMech">Send message</Router-link>
         </div>
         <div class="modal fade" id="profilepic" tabindex="-1" aria-labelledby="profilepicLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -70,7 +68,6 @@ async function message(){
 .loader {
     height: 400px;
 }
-
 .msg {
     padding: 3px;
     text-align: center;
