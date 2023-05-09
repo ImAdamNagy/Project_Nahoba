@@ -29,7 +29,7 @@ async function message(){
             </p>
         </div>
         <div class="mechlocation">
-            <p><b>Location: </b> {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.address }} {{ useMechanic().Mech.postal_code }}</p>
+            <p><b>Location: </b> {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.postal_code }}, {{ useMechanic().Mech.address }}</p>
         </div>
         <div class="mechmsg" v-if="useAuth().loggedIn">
             <div class="btn btn-warning sendmsgMechLog" @click="message">Send message
