@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue';
 import { useRole } from '../store/RoleStore.js';
+import {useProduct} from '@/store/ProductStore.js'
 
 const router = useRouter();
 const roles = reactive({
@@ -72,6 +73,26 @@ onMounted(useRole().getRoles)
                             {{ item.role_name }}
                         </option>
                     </Field>
+                    <a id="modal" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+                        About the roles...
+                    </a>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: red;">Role information</h1>
+                        </div>
+                        <div class="modal-body">
+                            <b>Seller:</b>
+                            If you choose the role "seller" you will be able to sell and advertise your own products and contact other people on the page.
+                            <br>
+                            <b>Mechanic:</b>
+                            As a "mechanic" you will be able to do everything that a "seller" role can do, 
+                            but on top of that you will be able to make yourself a mechanic profile and advertise yourself as an entrepreneur in your profession. 
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                     <ErrorMessage name="role_id" as="alert" class="alert alert-danger m-1" />
                     <Alert v-html="error" v-if="error" alert-type="danger" class="mt-2"></Alert>
                     <div class="d-flex flex-column flex-xl-row justify-content-center">
@@ -87,14 +108,21 @@ onMounted(useRole().getRoles)
     </div>
 </template>
 <style scoped>
+#roleInfo{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
 input {
     margin-top: 7px;
 }
 
-#formdiv {
+#formdiv, #modal {
     padding: 10px;
 }
-
+#modal{
+    text-decoration: underline;
+}
 #formcol {
     box-shadow: 10px 1px 20px -2px rgb(22, 22, 22);
     background-color: #D9D9D9;

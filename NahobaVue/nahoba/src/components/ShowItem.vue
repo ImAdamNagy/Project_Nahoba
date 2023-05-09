@@ -39,9 +39,11 @@ async function sendMessage(){
         <div class="desc">
             <p><b>Description: </b>{{ useProduct().Product.product_description }}</p>
         </div>
-        <div class="msg" v-if="useAuth().loggedIn">
+        <div class="msg" v-if="useAuth().loggedIn && useAuth().userid != useProduct().Product.seller?.userid">
             <div class="btn btn-warning sendmsglog" @click="sendMessage">Send message
             </div>
+        </div>
+        <div class="msg" v-else-if="useAuth().userid == useProduct().Product.seller?.userid">
         </div>
         <div class="msg" v-else>
             <Router-link to="/login" class="btn btn-warning sendmsg">Send message

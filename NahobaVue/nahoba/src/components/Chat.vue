@@ -35,6 +35,7 @@ import { useMsg } from '@/store/MessageStore.js'
 async function swap(id, from) {
     useMsg().partnerName = from.firstname + " " + from.lastname;
     useMsg().currentChatId = id;
+    useMsg().partnerid = from.userid;
     useMsg().getMsgLoading = true;
     useMsg().messages = [];
     console.log(useMsg().messages);

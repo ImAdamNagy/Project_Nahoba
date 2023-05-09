@@ -50,7 +50,7 @@ export const useChat = defineStore('chat-store',
             try {
                 const response = await http.delete('/chats/' + userid,{
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
-                    signal: this.abortController.signal
+                    signal: useMsg().abortController.signal
                 });
             } catch (error) {
                 

@@ -22,6 +22,7 @@ export const useMsg = defineStore('msg-store',
                 chat_id: null
             },
             currentChatId: null,
+            partnerid: '',
             reload: '',
             abortController: new AbortController()
         }
