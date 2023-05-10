@@ -4,7 +4,9 @@ import {useMechanic} from '@/store/MechanicStore.js'
 import {useChat} from '@/store/ChatStore.js'
 import { useRouter } from 'vue-router';
 import { useAuth } from '@/store/AuthStore';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 const router = useRouter();
 
 onMounted(useMechanic().getMech);
@@ -22,21 +24,21 @@ async function message(){
         </div>
         <h1 class="mechgrid-title">{{ useMechanic().Mech.user?.lastname }} {{ useMechanic().Mech.user?.firstname }}</h1>
         <div class="profession">
-            <p><b>Profession: </b>{{ useMechanic().Mech.profession }}</p>
+            <p><b>{{t('MechInfo.MechProfession')}} </b>{{ useMechanic().Mech.profession }}</p>
         </div>
         <div class="introduction">
-            <p><b>Introduction: </b>{{ useMechanic().Mech.introduction }}
+            <p><b>{{t('MechInfo.MechIntro')}} </b>{{ useMechanic().Mech.introduction }}
             </p>
         </div>
         <div class="mechlocation">
-            <p><b>Location: </b> {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.postal_code }}, {{ useMechanic().Mech.address }}</p>
+            <p><b>{{t('MechInfo.MechLocation')}} </b> {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.postal_code }}, {{ useMechanic().Mech.address }}</p>
         </div>
         <div class="mechmsg" v-if="useAuth().loggedIn">
-            <div class="btn btn-warning sendmsgMechLog" @click="message">Send message
+            <div class="btn btn-warning sendmsgMechLog" @click="message">{{t('CardActions.SendMsg')}}
             </div>
         </div>
         <div class="mechmsg" v-else>
-            <Router-link to="/login" class="btn btn-warning sendmsgMech">Send message</Router-link>
+            <Router-link to="/login" class="btn btn-warning sendmsgMech">{{t('CardActions.SendMsg')}}</Router-link>
         </div>
         <div class="modal fade" id="profilepic" tabindex="-1" aria-labelledby="profilepicLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

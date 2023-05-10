@@ -4,13 +4,13 @@
             <table class="table table-responsive table-striped">
                 <thead>
                     <th>Id</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Actions</th>
+                    <th>{{t("Auth.Firstname")}}</th>
+                    <th>{{t("Auth.Lastname")}}</th>
+                    <th>{{t("UserData.Email")}}</th>
+                    <th>{{t("UserData.Phone")}}</th>
+                    <th>{{t("Auth.Username")}}</th>
+                    <th>{{t("Admin.Role")}}</th>
+                    <th>{{t("Admin.Actions")}}</th>
                 </thead>
                 <tbody>
                     <tr v-for="item in useUser().users" :key="item.userid">
@@ -22,7 +22,7 @@
                         <td>{{ item.username }}</td>
                         <td>{{ item.role.role_name }}</td>
                         <td>
-                            <div class="btn btn-danger" @click="deleteUserData(item.userid)">Delete user</div>
+                            <div class="btn btn-danger" @click="deleteUserData(item.userid)">{{t("Admin.DeleteUser")}}</div>
                         </td>
                     </tr>
                 </tbody>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="loadingmsg mt-3" v-else-if="useUser().usersIsLoading == false && useUser().users.length == 0">
-        <p>There are no users!</p>
+        <p>{{t("Admin.NoUsers")}}</p>
     </div>
     <div class="loader" v-else-if="useUser().usersIsLoading == true">
             <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +57,9 @@ import { onMounted } from 'vue';
 import {useMsg} from '@/store/MessageStore.js';
 import {useChat} from '@/store/ChatStore.js'
 import { useMechanic } from '../store/MechanicStore';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(useUser().getUsers);
 
 async function deleteUserData(userid) {

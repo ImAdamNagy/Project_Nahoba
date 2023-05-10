@@ -5,6 +5,9 @@ import { useProduct } from '@/store/ProductStore.js'
 import { useUser } from '@/store/UserStore.js'
 import { onMounted } from "vue";
 import * as yup from 'yup';
+import {useI18n} from 'vue-i18n'
+
+const { t } = useI18n()
 const schema = yup.object(
     {
         product_name: yup.string('The given name is not a text!').min(5, 'The given name must be at elast 5 characters long!').required('The products name is required!'),
@@ -35,27 +38,27 @@ async function deleteUserProduct(id){
                 <h1>
                     {{ useUser().data.firstname }} {{ useUser().data.lastname }}
                 </h1>
-                <p><b>Email address:</b> {{ useUser().data.email }}</p>
-                <p><b>Phone number:</b> {{ useUser().data.tel }}</p>
-                <p><b>Username:</b> {{ useUser().data.username }}</p>
+                <p><b>{{t('UserData.Email')}}</b> {{ useUser().data.email }}</p>
+                <p><b>{{t('UserData.Phone')}}</b> {{ useUser().data.tel }}</p>
+                <p><b>{{t('Auth.Username')}}</b> {{ useUser().data.username }}</p>
             </div>
-            <div class="title_lines">Your products</div>
+            <div class="title_lines">{{t('Profile.YourProducts')}}</div>
             <div class="col-lg-4  col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" :key="item.id" v-if="useProduct().OwnProducts.length > 0">
                 <div class="product h-100">
                     <img :src="useProduct().getImage(item.product_img)" alt="" class="profilecardimg">
                     <div class="row data">
                         <div class="col-12 ">
                             <h5 class="title">{{ item.product_name }}</h5>
-                            <p class="price">{{ item.product_price }} Ft</p>
+                            <p class="price">{{ item.product_price }} {{ t('ProductInfo.Huf') }}</p>
                         </div>
                         <div class="col-12 ">
-                            <a class="btn btn-warning" data-bs-toggle="modal" :data-bs-target="'#updateModal' + item.id">Update</a>
-                            <button class="btn btn-danger " @click="deleteUserProduct(item.id)">Delete</button>
+                            <a class="btn btn-warning" data-bs-toggle="modal" :data-bs-target="'#updateModal' + item.id">{{t('Profile.Update')}}</a>
+                            <button class="btn btn-danger " @click="deleteUserProduct(item.id)">{{t('Profile.Delete')}}</button>
                             <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Update your product</h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{t('Profile.UpdateProduct')}}</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -63,7 +66,7 @@ async function deleteUserProduct(id){
                                             <div class="modal-body">
                                                 <Field type="hidden" id="id" name="id" :value="`${item.id}`" />
                                                 <div class="mb-3">
-                                                    <label for="product_name" class="form-label">Product name</label>
+                                                    <label for="product_name" class="form-label">{{t('ProductInfo.ProductName')}}</label>
                                                     <Field type="text" name="product_name" id="product_name"
                                                         class="form-control" :value="`${item.product_name}`" />
                                                     <ErrorMessage name="product_name" as="div"
@@ -71,15 +74,14 @@ async function deleteUserProduct(id){
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label for="product_price" class="form-label">Product price</label>
+                                                    <label for="product_price" class="form-label">{{t('ProductInfo.ProductPrice')}}</label>
                                                     <Field type="number" name="product_price" id="product_price"
                                                         class="form-control" :value="`${item.product_price}`" />
                                                     <ErrorMessage name="product_price" as="div"
                                                         class="alert alert-danger m-1" />
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="product_description" class="form-label">Product
-                                                        descripton</label>
+                                                    <label for="product_description" class="form-label">{{t('ProductInfo.Desc')}}</label>
                                                     <Field type="text" as="textarea" name="product_description"
                                                         id="product_description" class="form-control"
                                                         :value="`${item.product_description}`" />
@@ -87,8 +89,7 @@ async function deleteUserProduct(id){
                                                         class="alert alert-danger m-1" />
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="product_location" class="form-label">Product
-                                                        location</label>
+                                                    <label for="product_location" class="form-label">{{t('ProductInfo.Location')}}</label>
                                                     <Field type="text" as="textarea" name="product_location"
                                                         id="product_location" class="form-control"
                                                         :value="`${item.product_location}`" />
@@ -96,19 +97,19 @@ async function deleteUserProduct(id){
                                                         class="alert alert-danger m-1" />
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="product_img" class="form-label">Upload image</label>
+                                                    <label for="product_img" class="form-label">{{t('MechSheet.UploadImage')}}</label>
                                                     <br>
                                                     <Field type="text" id="product_img" name="product_img" ref="file"
                                                         :value="`${item.product_img}`" />
                                                     <ErrorMessage name="product_img" as="div"
                                                         class="alert alert-danger m-1" />
                                                 </div>
-                                                <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Update</button>
+                                                <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">{{t('Profile.Update')}}</button>
 
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
+                                                    data-bs-dismiss="modal">{{t('TypeForm.Close')}}</button>
                                             </div>
                                         </VForm>
                                     </div>
@@ -120,7 +121,7 @@ async function deleteUserProduct(id){
             </div>
             <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3" v-else>
                 <div class="col-12">
-                    <div class="msgBoxTitle">You don't have any products yet</div>
+                    <div class="msgBoxTitle">{{t('ProductInfo.NoProductsYet')}}</div>
                 </div>
             </div>
         </div>

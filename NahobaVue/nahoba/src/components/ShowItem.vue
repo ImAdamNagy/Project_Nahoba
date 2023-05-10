@@ -4,7 +4,9 @@ import { useProduct } from '@/store/ProductStore.js'
 import { useChat } from '@/store/ChatStore.js'
 import {useAuth} from '@/store/AuthStore.js'
 import { useRouter } from 'vue-router';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 const router = useRouter();
 
 onMounted(useProduct().getProduct);
@@ -22,31 +24,30 @@ async function sendMessage(){
         </div>
         <h1 class="grid-title">{{ useProduct().Product.product_name }}</h1>
         <div class="price">
-            <p><b>Price: </b>{{ useProduct().Product.product_price }}</p>
+            <p><b>{{t("ProductInfo.ProductPrice")}} </b>{{ useProduct().Product.product_price }}</p>
         </div>
         <div class="cartype">
-            <p><b>Car type: </b>{{ useProduct().Product.car_type.name }} {{ useProduct().Product.car_type.vintage }}</p>
+            <p><b>{{t("ProductInfo.ProductCartype")}} </b>{{ useProduct().Product.car_type.name }} {{ useProduct().Product.car_type.vintage }}</p>
         </div>
         <div class="seller">
-            <p><b>Seller name: </b>{{ useProduct().Product.seller?.firstname }} {{ useProduct().Product.seller?.lastname }}
+            <p><b>{{t("ProductInfo.ProductSellerName")}} </b>{{ useProduct().Product.seller?.firstname }} {{ useProduct().Product.seller?.lastname }}
             </p>
-            <Router-link :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>Seller's other
-                    products</b></Router-link>
+            <Router-link :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>{{t("ProductInfo.SellersOtherProduct")}}</b></Router-link>
         </div>
         <div class="location">
-            <p><b>Location: </b>{{ useProduct().Product.product_location }}</p>
+            <p><b>{{t("ProductInfo.ProductLoc")}} </b>{{ useProduct().Product.product_location }}</p>
         </div>
         <div class="desc">
-            <p><b>Description: </b>{{ useProduct().Product.product_description }}</p>
+            <p><b>{{t("ProductInfo.ProductDesc")}} </b>{{ useProduct().Product.product_description }}</p>
         </div>
         <div class="msg" v-if="useAuth().loggedIn && useAuth().userid != useProduct().Product.seller?.userid">
-            <div class="btn btn-warning sendmsglog" @click="sendMessage">Send message
+            <div class="btn btn-warning sendmsglog" @click="sendMessage">{{t("CardActions.SendMsg")}}
             </div>
         </div>
         <div class="msg" v-else-if="useAuth().userid == useProduct().Product.seller?.userid">
         </div>
         <div class="msg" v-else>
-            <Router-link to="/login" class="btn btn-warning sendmsg">Send message
+            <Router-link to="/login" class="btn btn-warning sendmsg">{{t("CardActions.SendMsg")}}
             </Router-link>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

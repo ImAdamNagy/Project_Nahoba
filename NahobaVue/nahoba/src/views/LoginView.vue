@@ -3,7 +3,9 @@ import {ref} from 'vue';
 import {useAuth} from '@/store/AuthStore.js'
 import {useRouter} from "vue-router";
 import {Form as VForm, Field, ErrorMessage} from "vee-validate";
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 const router = useRouter();
 
 const error = ref(null);
@@ -46,24 +48,24 @@ async function login(userData){
     <div class="container-fluid">
         <div class="row py-5 mx-auto">
         <div class="col-xl-4 ms-md-auto bg-warning" id="left">
-            <h1>Welcome Back!</h1>
+            <h1>{{t('Auth.WelcomeBack')}}</h1>
         </div> 
         <div class="col-xl-3 me-md-auto mx-xs-auto text-center" id="right">
             <div id="formdiv">
-                <h1 id="title">Login</h1>
+                <h1 id="title">{{t('NavBar.NavLogin')}}</h1>
                 <VForm @submit="login">
-                    <label for="username" class="form-label text-center">Username:</label>
-                    <Field type="text" name="username" id="username" placeholder="username" class="form-control" rules="required|min:4"/>
+                    <label for="username" class="form-label text-center">{{t('Auth.Username')}}</label>
+                    <Field type="text" name="username" id="username" :placeholder="t('Auth.Username')" class="form-control" rules="required|min:4"/>
                     <ErrorMessage name="username" as="div" class="alert alert-danger m-1" />
-                    <label for="password" class="form-label text-center">Password:</label>
-                    <Field type="password" name="password" id="password" placeholder="password" class="form-control" rules="required"/>
+                    <label for="password" class="form-label text-center">{{t('Auth.Password')}}</label>
+                    <Field type="password" name="password" id="password" :placeholder="t('Auth.Password')" class="form-control" rules="required"/>
                     <ErrorMessage name="password" as="div" class="alert alert-danger m-1" />
                     <div class="d-flex flex-column flex-xl-row justify-content-center">
-                        <button class="btn btn-secondary w-100 my-md-3 my-2 rounded-pill" type="submit">Login</button>
+                        <button class="btn btn-secondary w-100 my-md-3 my-2 rounded-pill" type="submit">{{t('NavBar.NavLogin')}}</button>
                     </div>
                     <div class="d-flex flex-column flex-sm-row justify-content-between">
-                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="back" to="/">Back</Router-link>
-                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="register" to="/register">Go to Register</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="back" to="/">{{t('Auth.Back')}}</Router-link>
+                        <Router-link class="btn w-40 btn-secondary my-md-3 my-2 rounded-pill" id="register" to="/register">{{t('Auth.GoToRegister')}}</Router-link>
                     </div>
                     <Alert v-if="error" alert-type="danger" >
                         {{error}}

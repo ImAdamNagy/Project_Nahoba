@@ -2,7 +2,7 @@
     <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 p-3">
         <div class="chatbox">
             <div class="chatboxtitle">
-                <div class="title_lines mt-1">Your Chats</div>
+                <div class="title_lines mt-1">{{t("Chats.YourChats")}}</div>
             </div>
             <div class="chats">
                 <div v-for="item in useChat().chats" :key="item.id">
@@ -28,6 +28,9 @@
 import { useUser } from '@/store/UserStore.js'
 import { useChat } from '@/store/ChatStore.js'
 import { useMsg } from '@/store/MessageStore.js'
+import {useI18n} from 'vue-i18n'
+
+const { t } = useI18n()
 
 async function swap(id, from) {
     useMsg().partnerName = from.firstname + " " + from.lastname;

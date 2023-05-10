@@ -3,16 +3,16 @@
         <div class="scrolltable p-3">
             <table class="table table-responsive table-striped">
                 <thead>
-                    <th>seller</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Car type</th>
-                    <th>Type</th>
-                    <th>Image</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Be enable</th>
-                    <th>Delete</th>
+                    <th>{{t("DisabledProducts.Seller")}}</th>
+                    <th>{{t("DisabledProducts.Name")}}</th>
+                    <th>{{t("DisabledProducts.Price")}}</th>
+                    <th>{{t("DisabledProducts.CarType")}}</th>
+                    <th>{{t("DisabledProducts.Type")}}</th>
+                    <th>{{t("DisabledProducts.Image")}}</th>
+                    <th>{{t("DisabledProducts.Desc")}}</th>
+                    <th>{{t("DisabledProducts.Location")}}</th>
+                    <th>{{t("DisabledProducts.BeEnable")}}</th>
+                    <th>{{t("Profile.Delete")}}</th>
                 </thead>
                 <tbody>
                     <tr v-for="item in useProduct().disabledProducts" :key="item.id">
@@ -29,8 +29,8 @@
                         </td>
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
-                        <td><button class="btn btn-success " @click="EnableproductAndNotifyItsUser(item.id, item.seller.userid)">Enable</button></td>
-                        <td><button class="btn btn-danger " @click="deleteDisabledProduct(item.id, item.seller.userid)">Delete</button></td>
+                        <td><button class="btn btn-success " @click="EnableproductAndNotifyItsUser(item.id, item.seller.userid)">{{t("DisabledProducts.BeEnable")}}</button></td>
+                        <td><button class="btn btn-danger " @click="deleteDisabledProduct(item.id, item.seller.userid)">{{t("Profile.Delete")}}</button></td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -45,7 +45,7 @@
                                             class="img-fluid">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{t("CarTypeForm.Close")}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
     </div>
     <div class="loadingmsg mt-3"
         v-else-if="useProduct().disabledProductsIsLoading == false && useProduct().disabledProducts.length == 0">
-        <p>There are no products waiting for validation right now!</p>
+        <p>{{t("Admin.NoProductsResp")}}</p>
     </div>
     <div class="loader" v-else-if="useProduct().disabledProductsIsLoading == true">
         <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
@@ -83,6 +83,9 @@ import { onMounted } from 'vue';
 import { useChat } from '../store/ChatStore';
 import { useMsg } from '../store/MessageStore';
 import { useAuth } from '../store/AuthStore';
+import {useI18n} from 'vue-i18n'
+
+const { t } = useI18n()
 
 onMounted(async function (){
     useProduct().GetDisabledProducts();

@@ -3,15 +3,15 @@
         <div class="scrolltable p-3">
             <table class="table table-responsive table-striped">
                 <thead>
-                    <th>seller</th>
-                    <th>Name</th>
-                    <th>Car type</th>
-                    <th>Price</th>
-                    <th>Type</th>
-                    <th>Image</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Action</th>
+                    <th>{{t("DisabledProducts.Seller")}}</th>
+                    <th>{{t("DisabledProducts.Name")}}</th>
+                    <th>{{t("DisabledProducts.CarType")}}</th>
+                    <th>{{t("DisabledProducts.Price")}}</th>
+                    <th>{{t("DisabledProducts.Type")}}</th>
+                    <th>{{t("DisabledProducts.Image")}}</th>
+                    <th>{{t("DisabledProducts.Desc")}}</th>
+                    <th>{{t("DisabledProducts.Location")}}</th>
+                    <th>{{t("Admin.Actions")}}</th>
                 </thead>
                 <tbody>
                     <tr v-for="item in useProduct().enableProducts" :key="item.id">
@@ -29,7 +29,7 @@
                         <td>{{ item.product_description }}</td>
                         <td>{{ item.product_location }}</td>
                         <td>
-                            <div class="btn btn-danger" @click="deleteEnableProduct(item.id, item.seller.userid)">Delete product</div>
+                            <div class="btn btn-danger" @click="deleteEnableProduct(item.id, item.seller.userid)">{{t("CardActions.Delete")}} {{t("ProductInfo.product")}}</div>
                         </td>
                         <div class="modal fade" :id="'exampleModal' + item.id" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                                            data-bs-dismiss="modal">{{t("TypeForm.Close")}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="loadingmsg mt-3" v-else-if="useProduct().enableProductsIsLoading == false && useProduct().enableProducts.length == 0">
-        <p>There are no available products on the website</p>
+        <p>{{t("Loadings.NoProducts")}}</p>
     </div>
     <div class="loader" v-else-if="useProduct().enableProductsIsLoading == true">
         <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +82,9 @@ import { useProduct } from '@/store/ProductStore.js'
 import { onMounted } from 'vue';
 import { useChat } from '../store/ChatStore';
 import { useMsg } from '../store/MessageStore';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(useProduct().getEnabledProducts);
 
 async function deleteEnableProduct(id, seller_id) {

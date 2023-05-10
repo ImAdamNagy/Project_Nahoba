@@ -7,7 +7,9 @@ import {useMsg} from '@/store/MessageStore.js';
 import {useChat} from '@/store/ChatStore.js'
 import { useMechanic } from '../store/MechanicStore.js';
 import {useAuth} from '@/store/AuthStore.js'
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 async function deleteUserData(userid) {
         if (confirm("Are you sure you want to delete your profile?") == true) {
             useUser().usersIsLoading = true;
@@ -35,27 +37,27 @@ const schema = yup.object(
     <div class="row settingrow">
         <div class="col">
             <div class="settinggrid bg-white mt-3 px-3 py-4 rounded rounded-3">
-                <h2 class="settingtitle">User information</h2>
+                <h2 class="settingtitle">{{t('Settings.UserInfo')}}</h2>
                 <div class="settingusername">
-                    <p><b>Username: </b>{{ useUser().data.username }}</p>
+                    <p><b>{{t('Auth.Username')}} </b>{{ useUser().data.username }}</p>
                 </div>
                 <div class="settingname">
-                    <p><b>Name: </b>{{ useUser().data.firstname }} {{ useUser().data.lastname }}</p>
+                    <p><b>{{t('UserData.Name')}} </b>{{ useUser().data.firstname }} {{ useUser().data.lastname }}</p>
                 </div>
                 <div class="settingemail">
-                    <p><b>Email: </b>{{ useUser().data.email }}</p>
+                    <p><b>{{t('UserData.Email')}} </b>{{ useUser().data.email }}</p>
                 </div>
                 <div class="settingtel">
-                    <p><b>Phone number: </b>{{ useUser().data.tel }}</p>
+                    <p><b>{{t('UserData.Phone')}} </b>{{ useUser().data.tel }}</p>
                 </div>
                 <div class="settingchange">
                     <button type="button" id="changedata" class="stgbutton btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
-                        Change data
+                        {{t('Settings.ChangeUserData')}}
                     </button>
                 </div>
                 <div class="settingdelete">
-                    <button class="stgbutton btn btn-danger" @click="deleteUserData(useAuth().userid)">Account delete </button>
+                    <button class="stgbutton btn btn-danger" @click="deleteUserData(useAuth().userid)">{{t('Settings.AccountDelete')}} </button>
                 </div>
 
 
@@ -64,37 +66,36 @@ const schema = yup.object(
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">Edit your profile</h1>
+                                <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">{{t('Settings.ChangeDataModalTitle')}}</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
                             <VForm class="form-group" @submit="useUser().update" :validation-schema="schema">
                                 <div class="modal-body">
                                     <Field type="email" name="email" id="email" :value="`${useUser().data.email}`"
-                                        placeholder="Email:" class="form-control my-1" />
+                                        :placeholder="t('UserData.Email')" class="form-control my-1" />
                                     <ErrorMessage name="email" as="div" class="alert alert-danger m-1" />
                                     <div id="name" class="d-flex flex-sm-row flex-column my-1">
                                         <Field type="text" name="firstname" id="firstname"
                                             :value="`${useUser().data.firstname}`" class="form-control me-2"
-                                            placeholder="Fistname:" />
+                                            :placeholder="t('Auth.Firstname')" />
                                         <ErrorMessage name="firstname" as="div" class="alert alert-danger m-1" />
                                         <Field type="text" name="lastname" id="lastname"
                                             :value="`${useUser().data.lastname}`" class="form-control"
-                                            placeholder="Lastname:" />
+                                            :placeholder="t('Auth.Lastname')" />
                                         <ErrorMessage name="lastname" as="div" class="alert alert-danger m-1" />
                                     </div>
 
                                     <Field type="tel" name="tel" id="tel" :value="`${useUser().data.tel}`"
-                                        class="form-control my-1" placeholder="Tel:" />
+                                        class="form-control my-1" :placeholder="t('UserData.Phone')" />
                                     <ErrorMessage name="tel" as="div" class="alert alert-danger m-1" />
 
                                     <Field type="text" name="username" id="username" :value="`${useUser().data.username}`"
-                                        class="form-control my-1" placeholder="Username:" />
+                                        class="form-control my-1" :placeholder="t('Auth.Username')" />
                                     <ErrorMessage name="username" as="div" class="alert alert-danger m-1" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Save
-                                        changes</button>
+                                    <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">{{ t('Settings.Save') }}</button>
                                 </div>
                             </VForm>
                         </div>

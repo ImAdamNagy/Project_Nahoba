@@ -2,7 +2,9 @@
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import * as yup from 'yup';
 import { useMechanic } from '@/store/MechanicStore.js';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 const schema = yup.object(
     {
         introduction: yup.string("The introduction should not be a number only!").required("Introduction is required!"),
@@ -19,23 +21,23 @@ const schema = yup.object(
     <div class="row settingrow" >
         <div class="col">
             <div class="settingmecgrid bg-white mt-3 px-3 py-4 rounded rounded-3">
-                <h2 class="settingmectitle">Mechanic information</h2>
+                <h2 class="settingmectitle">{{t("MechSheet.MechInfo")}}</h2>
                 <div class="settingintroduction">
-                    <p><b>Introduction: </b>{{ useMechanic().currentMechanic.introduction }}</p>
+                    <p><b>{{t("MechSheet.Intro")}} </b>{{ useMechanic().currentMechanic.introduction }}</p>
                 </div>
                 <div class="settingcountry">
-                    <p><b>Country: </b>{{ useMechanic().currentMechanic.country }}</p>
+                    <p><b>{{t("MechSheet.Country")}} </b>{{ useMechanic().currentMechanic.country }}</p>
                 </div>
                 <div class="settingaddress">
-                    <p><b>Address: </b>{{ useMechanic().currentMechanic.city }}, {{ useMechanic().currentMechanic.postal_code }} {{ useMechanic().currentMechanic.address }}</p>
+                    <p><b>{{t("MechSheet.City")}} </b>{{ useMechanic().currentMechanic.city }}, {{ useMechanic().currentMechanic.postal_code }} {{ useMechanic().currentMechanic.address }}</p>
                 </div>
                 <div class="settingprofession">
-                    <p><b>Profession: </b>{{ useMechanic().currentMechanic.profession }}</p>
+                    <p><b>{{t("MechSheet.Profession")}} </b>{{ useMechanic().currentMechanic.profession }}</p>
                 </div>
                 <div class="settingmecchange">
                     <button type="button" class="stgbutton btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#mechanicModal">
-                        Change data
+                        {{t("Settings.ChangeUserData")}}
                     </button>
                 </div>
                 <div class="modal fade" id="mechanicModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -43,7 +45,7 @@ const schema = yup.object(
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">Edit your profile</h1>
+                                <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">{{t("Settings.ChangeDataModalTitle")}}</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
@@ -83,8 +85,7 @@ const schema = yup.object(
                                     <ErrorMessage name="profile_pic" as="div" class="alert alert-danger m-1" /> -->
                                 </div>
                                 <div class="modal-footer">
-                                    <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Save
-                                        changes</button>
+                                    <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">{{t("Settings.Save")}}</button>
                                 </div>
                             </VForm>
                         </div>

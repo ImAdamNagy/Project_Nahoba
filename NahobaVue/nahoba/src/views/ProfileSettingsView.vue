@@ -6,7 +6,9 @@ import ProfileSettings from '../components/ProfileSettings.vue';
 import { useUser } from '@/store/UserStore.js';
 import { onMounted } from 'vue';
 import { useMechanic } from '@/store/MechanicStore.js';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 
 onMounted(async function (){
     useUser().getUserDetails();
@@ -20,7 +22,7 @@ onMounted(async function (){
 <template>
     <NavBar />
     <Header>
-        <h1 class="headertitle">Settings</h1>
+        <h1 class="headertitle">{{t('Settings.Settings')}}</h1>
     </Header>
     <div class="container" v-if="useUser().userDataIsLoading == false && useUser().data.role?.id == 3 && useMechanic().currentMechanicIsLoading == false">
         <ProfileSettings />

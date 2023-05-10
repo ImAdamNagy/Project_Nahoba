@@ -2,18 +2,18 @@
     <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 p-3">
         <div class="selectbox" v-if="useChat().chats.length == 0">
             <div class="info">
-                <p>You don't have any messages yet!</p>
+                <p>{{t("Chats.NoMessages")}}</p>
             </div>
         </div>
         <div class="msgbox" v-else-if="useMsg().currentChatId == undefined && useChat().chats.length > 0">
             <div class="msgBoxTitle">
-                Select your chat partner
+                {{t("Chats.SelectPartner")}}
             </div>
         </div>
         <div class="msgbox" v-else-if="useMsg().getMsgLoading == false && useMsg().messages.length > 0">
             <div class="msgBoxTitle">
-                <p>Messages with: {{ useMsg().partnerName }}</p>
-                <button @click="Delete(useMsg().partnerid)" class="btn btn-danger">Delete chat</button>
+                <p>{{t("Chats.MsgWith")}} {{ useMsg().partnerName }}</p>
+                <button @click="Delete(useMsg().partnerid)" class="btn btn-danger">{{t("Chats.DeleteChat")}}</button>
             </div>
             <div class="messages">
                 <div class="row" v-for="item in useMsg().messages" :key="item.id">
@@ -44,20 +44,20 @@
         </div>
         <div class="msgbox" v-else-if="useMsg().messages.length == 0 && useMsg().getMsgLoading == false">
             <div class="msgBoxTitle">
-                Messages with: {{ useMsg().partnerName }}
-                <button @click="Delete(useMsg().partnerid)" class="btn btn-danger">Delete chat</button>
+                {{t("Chats.MsgWith")}} {{ useMsg().partnerName }}
+                <button @click="Delete(useMsg().partnerid)" class="btn btn-danger">{{t("Chats.DeleteChat")}}</button>
             </div>
             <div class="messages info">
-                <p>You have no messages with {{ useMsg().partnerName }} yet.</p>
+                <p>{{t("Chats.NoMsgWithPartner")}} {{ useMsg().partnerName }}.</p>
             </div>
             <VForm @submit="useMsg().sendMessage">
                 <div class="input">
                     <div class="row">
                     <div class="col-8">
-                        <Field class="form-control" type="text" name="message" id="message" placeholder="Send message" />
+                        <Field class="form-control" type="text" name="message" id="message" :placeholder="t('CardActions.SendMsg')" />
                     </div>
                     <div class="col-4">
-                        <input class="btn-warning btn form-control" type="submit" value="Send" />
+                        <input class="btn-warning btn form-control" type="submit" :value="t('CardActions.Send')" />
                     </div>
                 </div>
                 </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="selectbox" v-else-if="useChat().msgLoading == false">
             <div class="info">
-                <p>Messages loading!</p>
+                <p>{{t("Chats.MsgLoading")}}</p>
             </div>
         </div>
     </div>
@@ -76,7 +76,9 @@ import { useMsg } from '@/store/MessageStore.js'
 import { useUser } from "../store/UserStore.js";
 import { useChat } from "@/store/ChatStore.js"
 import { onBeforeRouteLeave } from "vue-router";
-console.log(useChat().currentChatId)
+import {useI18n} from 'vue-i18n'
+
+const { t } = useI18n()
 
 onBeforeRouteLeave((to, from) => {
     useMsg().abortController.abort()

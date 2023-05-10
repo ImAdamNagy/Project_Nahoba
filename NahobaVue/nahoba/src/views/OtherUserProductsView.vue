@@ -4,7 +4,9 @@ import Header from '../components/Header.vue';
 import { onMounted } from 'vue';
 import { useProduct } from '../store/ProductStore.js';
 import { useUser } from '../store/UserStore.js';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(async function (){
     useProduct().getUserProducts();
     useUser().getOtherUser();
@@ -14,7 +16,7 @@ onMounted(async function (){
 <template>
     <NavBar />
     <div v-if="useProduct().otherUserProductsIsLoading == false">
-    <Header><h1 class="headertitle">{{useUser().OtherUserDetails.username}}'s products</h1></Header>
+    <Header><h1 class="headertitle">{{useUser().OtherUserDetails.username}}{{t('ProductInfo.SomeonesProduct')}}</h1></Header>
     <div class="container">
         <div class="row mt-3 mx-auto mt-5 py-4 rounded rounded-5 px-3">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-3" v-for="item in useProduct().UserProducts" :key="item.id">
@@ -24,7 +26,7 @@ onMounted(async function (){
                     <div class="col-12 ">
                         <h5 class="title">{{ item.product_name }}</h5>
                         <p class="price">{{ item.product_price }} Ft</p>
-                        <Router-link :to="`/details/` +  item.id" class="btn btn-warning">More</Router-link>
+                        <Router-link :to="`/details/` +  item.id" class="btn btn-warning">{{t('CardActions.ItemsMore')}}</Router-link>
                     </div>
                 </div>
             </div>

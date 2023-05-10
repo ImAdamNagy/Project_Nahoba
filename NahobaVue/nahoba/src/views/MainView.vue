@@ -1,6 +1,6 @@
 <template>
     <NavBar />
-    <Header><h1 class="headertitle">Welcome to Nahoba Parts</h1></Header>
+    <Header><h1 class="headertitle">{{ t("HeaderTitle.MainPageTitle") }}</h1></Header>
     <div class="container">
         <div class="row" v-if="useProduct().enableProductsIsLoading == false && useMechanic().mechanicsIsLoading == false">
             <Mechanics @mechDetails="mechDetails"/>
@@ -35,6 +35,10 @@ import { useProduct } from '../store/ProductStore.js';
 import { onMounted } from 'vue';
 import { useMechanic } from '../store/MechanicStore'
 import { useRouter } from 'vue-router';
+import {useI18n} from 'vue-i18n'
+
+
+const { t } = useI18n()
 
 const router = useRouter();
 

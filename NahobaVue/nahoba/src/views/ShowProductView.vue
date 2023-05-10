@@ -1,7 +1,7 @@
 <template>
 <NavBar />
 <Header>
-    <h1 class="headertitle">Product details</h1>
+    <h1 class="headertitle">{{t('HeaderTitle.ProductsShowTitle')}}</h1>
 </Header>
 <div class="container">
     <ShowItem  />
@@ -15,7 +15,9 @@ import Header from '../components/Header.vue'
 import { onMounted } from 'vue'
 
 import {useProduct} from '@/store/ProductStore.js'
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(useProduct().getProduct);
 
 </script>

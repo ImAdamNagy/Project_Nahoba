@@ -1,6 +1,6 @@
 <template>
     <NavBar />
-    <Header><h1 class="headertitle">User Messages</h1></Header>
+    <Header><h1 class="headertitle">{{ t('HeaderTitle.MessagesTitle') }}</h1></Header>
     <div class="container">
         <div class="row" v-if="useChat().msgLoading == false">
             <Chat />
@@ -34,7 +34,9 @@ import Chat from '@/components/Chat.vue'
 import { useUser } from '@/store/UserStore.js'
 import { useChat } from '@/store/ChatStore.js'
 import { onMounted } from 'vue';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(async function () {
     useChat().getChats();
     useUser().getUserDetails();

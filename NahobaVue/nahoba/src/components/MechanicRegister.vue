@@ -4,7 +4,9 @@ import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import * as yup from 'yup';
 import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 const router = useRouter();
 const file = reactive({
     image: null
@@ -42,7 +44,7 @@ async function onChange(item) {
 <template>
     <div class="row mx-auto mt-5">
         <div class="col-xl-5 text-center bg-warning" id="first">
-            <h1>please fill your mechanic data sheet</h1>
+            <h1>{{ t("MechInfo.MechSheet") }}</h1>
         </div>
     </div>
     <div class="row mx-auto">
@@ -72,7 +74,7 @@ async function onChange(item) {
                         class="form-control my-1" />
                     <ErrorMessage name="profession" as="div" class="alert alert-danger m-1" />
 
-                    <label for="profile_pic" class="form-label">Upload image (Be carefull you won't be able to change your image later)</label>
+                    <label for="profile_pic" class="form-label">{{ t("MechSheet.Image") }}</label>
                     <br>
                     <Field type="file" name="profile_pic" id="profile_pic" @change="onChange($event)" />
                     <ErrorMessage name="profile_pic" as="div" class="alert alert-danger m-1" />

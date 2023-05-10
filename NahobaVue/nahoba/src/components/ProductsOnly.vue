@@ -10,12 +10,12 @@
           <p class="cartype" id="cartype">{{ item.car_type.name }} {{ item.car_type.vintage }}</p>
           <p class="type" id="type">{{ item.type.type }}</p>
         </div>
-        <a class="btn btn-warning" @click="$emit('details', item.id)">More</a>
+        <a class="btn btn-warning" @click="$emit('details', item.id)">{{t('CardActions.ItemsMore')}}</a>
       </div>
     </div>
   </div>
   <div class="row" v-else-if="useProduct().FilteredProducts.length == 0 && useProduct().enableProductsIsLoading == false">
-    <p class="loadingmsg">No available products!</p>
+    <p class="loadingmsg">{{t('Loadings.NoProducts')}}</p>
   </div>
   <div class="loader" v-else-if="useProduct().enableProductsIsLoading == true">
     <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,9 @@
 <script setup>
 import { useProduct } from '../store/ProductStore.js';
 import { onMounted } from 'vue';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(useProduct().getEnabledProducts);
 </script>
 

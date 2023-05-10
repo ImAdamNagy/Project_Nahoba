@@ -1,7 +1,7 @@
 <template>
     <NavBar />
     <Header>
-        <h1 class="headertitle">Mechanic details</h1>
+        <h1 class="headertitle">{{t('MechInfo.MechanicShowTitle')}}</h1>
     </Header>
     <div class="container">
         <ShowMech  />
@@ -13,9 +13,10 @@
     import NavBar from '../components/NavBar.vue'
     import Header from '../components/Header.vue'
     import { onMounted } from 'vue'
-    
     import {useMechanic} from '@/store/MechanicStore.js'
-    
+    import {useI18n} from 'vue-i18n'
+
+const { t } = useI18n()
     onMounted(useMechanic().getMech);
     
     </script>

@@ -1,7 +1,7 @@
 <template>
         <NavBar />
         <Header>
-            <h1 class="headertitle">All Products</h1>
+            <h1 class="headertitle">{{t('HeaderTitle.ProductsPageTitle')}}</h1>
         </Header>
         <div class="container">
             <Filters />
@@ -15,7 +15,9 @@ import ProductsOnly from '../components/ProductsOnly.vue'
 import Header from '../components/Header.vue'
 import NavBar from '../components/NavBar.vue'
 import { useRouter } from 'vue-router';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 const router = useRouter();
 
 function details(id) {

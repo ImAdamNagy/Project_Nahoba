@@ -4,14 +4,14 @@
       <div class="mechanic m-2 h-100">
         <div class="mx-2">
           <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
-          <button class="btn btn-warning float-end mechanicMore2" @click="$emit('mechDetails', item.id)">More</button>
+          <button class="btn btn-warning float-end mechanicMore2" @click="$emit('mechDetails', item.id)">{{t("CardActions.ItemsMore")}}</button>
           <p class="mecprofession">{{ item.profession }}</p>
         </div>
       </div>
     </div>
   </div>
   <div class="row" v-else-if="useMechanic().mechanics.length == 0 && useMechanic().mechanicsIsLoading == false">
-    <p class="loadingmsg">No available mechanics!</p>
+    <p class="loadingmsg">{{t("MechInfo.NoMech")}}</p>
   </div>
   <div class="loader" v-else-if="useMechanic().mechanicsIsLoading == true">
     <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,9 @@
 <script setup>
 import { useMechanic } from '../store/MechanicStore.js';
 import { onMounted } from 'vue';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(useMechanic().getMechanics);
 </script>
 <style scoped>
