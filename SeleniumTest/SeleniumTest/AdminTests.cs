@@ -8,32 +8,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using OpenQA.Selenium.Remote;
 
 namespace SeleniumTest
 {
     internal class AdminTests
     {
-        private string BaseUrl { get; set; } = "http://localhost:5174/login";
+        private string BaseUrl { get; set; } = "http://nahoba-app:5173/";
         private IWebDriver webDriver { get; set; }
         private WebDriverWait wait { get; set; }
 
         [SetUp]
         public void Setup()
         {
-            webDriver = new ChromeDriver();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            webDriver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), chromeOptions);
             wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(20));
-            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
 
             //login as admin
-            webDriver.Navigate().GoToUrl(BaseUrl);
+            webDriver.Navigate().GoToUrl(BaseUrl + "login");
             webDriver.Manage().Window.Maximize();
-            Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "login", webDriver.Url);
 
             webDriver.FindElement(By.Id("username")).SendKeys("admin");
             webDriver.FindElement(By.Id("password")).SendKeys("admin123");
             webDriver.FindElement(By.XPath("//button[@type='submit']")).Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("logout")));
-            Assert.AreEqual("http://localhost:5174/adminmain", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "adminmain", webDriver.Url);
         }
 
         [TearDown]
@@ -47,27 +49,27 @@ namespace SeleniumTest
         {
             webDriver.FindElement(By.ClassName("products")).Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/productsonly", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "productsonly", webDriver.Url);
 
             webDriver.FindElement(By.ClassName("mechanics")).Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/mechanicsonly", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "mechanicsonly", webDriver.Url);
 
             webDriver.FindElement(By.ClassName("messages")).Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "messages", webDriver.Url);
 
             webDriver.FindElement(By.ClassName("messages")).Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "messages", webDriver.Url);
 
             webDriver.FindElement(By.ClassName("adminmain")).Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/adminmain", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "adminmain", webDriver.Url);
 
             webDriver.FindElement(By.Id("mainpage")).Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/", webDriver.Url);
+            Assert.AreEqual(BaseUrl, webDriver.Url);
         }
 
         public bool isAlertPresent()

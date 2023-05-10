@@ -1,0 +1,5 @@
+version: '3'
+services:
+  nahoba-app:
+    volumes:
+      - "./docker/php/config/php.ini-production:${PHP_INI_DIR}/php.ini:ro"
