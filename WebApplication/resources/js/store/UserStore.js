@@ -3,7 +3,6 @@ import {http} from '../utils/http.mjs'
 import { useRoute } from 'vue-router'
 import { useAuth } from './AuthStore.js';
 
-
 export const useUser = defineStore('user-store',{
     state(){
         return{

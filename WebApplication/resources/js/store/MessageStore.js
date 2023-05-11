@@ -2,7 +2,6 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
 import { useUser } from '@/store/UserStore.js';
 import { useAuth } from './AuthStore.js';
-
 export const useMsg = defineStore('msg-store',
 {
     state(){
