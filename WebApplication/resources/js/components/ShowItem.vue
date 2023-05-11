@@ -26,9 +26,6 @@ async function sendMessage(){
         <div class="price">
             <p><b>{{t("ProductInfo.ProductPrice")}} </b>{{ useProduct().Product.product_price }}</p>
         </div>
-        <div class="cartype">
-            <p><b>{{t("ProductInfo.ProductCartype")}} </b>{{ useProduct().Product.car_type.name }} {{ useProduct().Product.car_type.vintage }}</p>
-        </div>
         <div class="seller">
             <p><b>{{t("ProductInfo.ProductSellerName")}} </b>{{ useProduct().Product.seller?.firstname }} {{ useProduct().Product.seller?.lastname }}
             </p>
@@ -36,6 +33,12 @@ async function sendMessage(){
         </div>
         <div class="location">
             <p><b>{{t("ProductInfo.ProductLoc")}} </b>{{ useProduct().Product.product_location }}</p>
+        </div>
+        <div class="cartype">
+            <p><b>{{t("ProductInfo.ProductCartype")}} </b>{{ useProduct().Product.car_type.name }} {{ useProduct().Product.car_type.vintage }}</p>
+        </div>
+        <div class="producttype">
+            <p><b>Product type:</b> {{ useProduct().Product.type.type }}</p>
         </div>
         <div class="desc">
             <p><b>{{t("ProductInfo.ProductDesc")}} </b>{{ useProduct().Product.product_description }}</p>

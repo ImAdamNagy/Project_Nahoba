@@ -16,7 +16,7 @@ export const useCarType = defineStore('carType-store',{
             const response = await http.post("/cartypes/", carTypeData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
-        this(t("Alerts.CarTypeAddSuccess"));
+        this("Alerts.CarTypeAddSuccess");
         }
     }
 })

@@ -3,19 +3,3 @@ services:
   nahoba-app:
     volumes:
       - "./docker/php/config/php.ini-development:${PHP_INI_DIR}/php.ini:ro"
-  chrome:
-    image: selenium/node-chrome:latest
-    environment:
-     - SE_EVENT_BUS_HOST=selenium-hub
-     - SE_EVENT_BUS_PUBLISH_PORT=4442
-     - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    networks:
-     - webapp
-  selenium-hub:
-    image: selenium/hub:latest
-    ports:
-     - 4442:4442
-     - 4443:4443
-     - 4444:4444
-    networks:
-     - webapp

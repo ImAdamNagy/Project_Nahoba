@@ -20,6 +20,7 @@ services:
       - nahoba-app
     networks:
       - webapp
+    hostname: nahoba-web
 
 
   nahoba-app:
@@ -35,6 +36,7 @@ services:
       # - ./docker/php/home:/home/phpdocker:rw
     networks:
       - webapp
+    hostname: nahoba-app
 
 
   db:

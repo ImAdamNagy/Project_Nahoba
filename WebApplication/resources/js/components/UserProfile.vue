@@ -51,9 +51,9 @@ async function deleteUserProduct(id){
                             <h5 class="title">{{ item.product_name }}</h5>
                             <p class="price">{{ item.product_price }} {{ t('ProductInfo.Huf') }}</p>
                         </div>
-                        <div class="col-12 ">
+                        <div class="col-12">
+                            <button class="btn btn-danger deletebtn" @click="deleteUserProduct(item.id)">{{t('Profile.Delete')}}</button>
                             <a class="btn btn-warning" data-bs-toggle="modal" :data-bs-target="'#updateModal' + item.id">{{t('Profile.Update')}}</a>
-                            <button class="btn btn-danger " @click="deleteUserProduct(item.id)">{{t('Profile.Delete')}}</button>
                             <div class="modal fade" :id="'updateModal' + item.id" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -145,6 +145,9 @@ async function deleteUserProduct(id){
         </div>
 </template>
 <style scoped>
+.deletebtn{
+    float: right;
+}
 .loader{
   height: 400px;
 }
@@ -159,11 +162,7 @@ img {
     background-color: #ffffff;
 }
 
-@media screen and (min-width: 992px) {
-    .row {
-        max-width: 75%;
-    }
-}
+
 
 .data {
     background-color: white;

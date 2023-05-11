@@ -14,17 +14,17 @@ namespace SeleniumTest
 {
     internal class AdminTests
     {
-        private string BaseUrl { get; set; } = "http://nahoba-app:5173/";
+        private string BaseUrl { get; set; } = "http://localhost:8881/#/";
         private IWebDriver webDriver { get; set; }
         private WebDriverWait wait { get; set; }
 
         [SetUp]
         public void Setup()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            webDriver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), chromeOptions);
+            
+            webDriver = new ChromeDriver();
             wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(20));
-            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
             //login as admin
             webDriver.Navigate().GoToUrl(BaseUrl + "login");

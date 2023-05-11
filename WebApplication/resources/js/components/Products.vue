@@ -7,7 +7,10 @@
           <img :src="useProduct().getImage(item.product_img)" alt="" class="mainproductscardimg">
           <h5 class="title mt-2">{{ item.product_name }}</h5>
           <p class="price">{{ item.product_price }} {{t("ProductInfo.Huf")}}</p>
-          <p class="price">{{ item.car_type.name }} {{ item.car_type.year }}</p>
+          <div id="name" class="d-flex flex-sm-row flex-column justify-content-between">
+          <p class="cartype" id="cartype">{{ item.car_type.name }} {{ item.car_type.vintage }}</p>
+          <p class="type" id="type">{{ item.type.type }}</p>
+        </div>
           <a class="btn btn-warning productMore" @click="$emit('details', item.id)">{{t("CardActions.ItemsMore")}}</a>
         </div>
       </div>
