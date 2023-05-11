@@ -174,6 +174,30 @@ export default{
         RoleInfo: "Role information",
         SellerRoleInfo: 'If you choose the role "seller" you will be able to sell and advertise your own products and contact other people on the page.',
         MechRoleInfo: 'As a "mechanic" you will be able to do everything that a "seller" role can do, but on top of that you will be able to make yourself a mechanic profile and advertise yourself as an entrepreneur in your profession. ',
-
+    },
+    Alerts: {
+        UploadSuccess: "Upload was successfull",
+        ChatDelete: "Chat deleted",
+        UserDelete: "The user has been successfully deleted",
+        Logout: "Logout was successful",
+        CarTypeAddSuccess: "Cartype added successfully!",
+        TypeAddSuccess: "Type added successfully!",
+        MsgCheck: "Check your messages",
+        MsgSent: "Message sent!",
+        ValidationSent: "Your product has been sent to the admin for validation!",
+        ProfileUpdate: "Your profile has been updated!"
+    },
+    Confirm:{
+        DeleteConfirm: "Are you sure you want to delete this product?",
+        EnableConfirm: "Are you sure you want to enable this product?",
+        ChatDelConfirm: "Are sure you want to delete this chat?",
+        DeleteProfileConfirm: "Are you sure you want to delete your profile?",
+        OwnProductDelConfirm: "Are you sure you want to delete your product?",
+        UserDeleteConfirm: "Are you sure you want to delete this user?"
+    },
+    Notification:{
+        DeleteNotify: 'Your product didnt meet our requirements!',
+        EnableNotify: 'Your product has been enabled!',
+        DeleteNotify: "Your product has been deleted!"
     }
 }

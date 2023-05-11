@@ -3,7 +3,9 @@ import {http} from '../utils/http.mjs'
 import { router } from '@/router/index.js';
 import { useAuth } from './AuthStore.js';
 import { useMsg } from './MessageStore.js';
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 export const useChat = defineStore('chat-store',
 {
     state(){
@@ -28,7 +30,7 @@ export const useChat = defineStore('chat-store',
             const response = await http.post('/chats/', this.chatData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            alert("Check your messages!");
+            alert(t("Alerts.MsgCheck"));
         },
         async CreateAdminNotificationChat(to){
             this.AdminchatData.from = useAuth().userid;

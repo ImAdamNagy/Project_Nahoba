@@ -86,7 +86,7 @@ onBeforeRouteLeave((to, from) => {
 
 
 async function Delete(userid) {
-    if(confirm("Are sure you want to delete this chat?")  == true)
+    if(confirm(t("Confirm.ChatDelConfirm"))  == true)
     {
     await useMsg().deleteUserMessages(userid)
     await useChat().deleteChats(userid)
@@ -97,7 +97,7 @@ async function Delete(userid) {
     useMsg().abortController.abort();
     useMsg().abortController = new AbortController();
     
-    alert("Chat deleted")
+    alert(t("Alerts.ChatDelete"))
     useMsg().getMsgLoading = true
     }
 }

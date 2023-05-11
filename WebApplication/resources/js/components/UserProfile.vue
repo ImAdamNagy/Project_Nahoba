@@ -22,7 +22,7 @@ onMounted(async function (){
 });
 
 async function deleteUserProduct(id){
-    if (confirm("Are you sure you want to delete your product?") == true) {
+    if (confirm(t("Confirm.OwnProductDelConfirm")) == true) {
     useProduct().userProductsIsLoading = true;
     await useProduct().deleteProduct(id);
     const index = useProduct().OwnProducts.findIndex(item=>item.id === id);

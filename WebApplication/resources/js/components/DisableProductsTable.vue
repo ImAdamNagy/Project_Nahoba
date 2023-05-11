@@ -93,23 +93,23 @@ onMounted(async function (){
 });
 
 async function deleteDisabledProduct(id, seller_id){
-    if (confirm("Are you sure you want to delete this product?") == true) {
+    if (confirm(t("Confirm.DeleteConfirm")) == true) {
     useProduct().disabledProductsIsLoading = true;
     await useProduct().deleteProduct(id);
     const index = useProduct().disabledProducts.findIndex(item=>item.id === id);
     useProduct().disabledProducts.splice(index,1);
     await useChat().CreateAdminNotificationChat(seller_id);
-    await useMsg().AdminNotificationMessage('Your product didnt meet our requirements!');
+    await useMsg().AdminNotificationMessage(t("Notification.DeleteNotify"));
     useProduct().disabledProductsIsLoading = false;
     }
 }
 
 async function EnableproductAndNotifyItsUser(id, seller_id){
-    if (confirm("Are you sure you want to enable this product?") == true) {
+    if (confirm(t("Confirm.EnableConfirm")) == true) {
     useProduct().disabledProductsIsLoading = true;
     useProduct().BeEnable(id);
     await useChat().CreateAdminNotificationChat(seller_id);
-    await useMsg().AdminNotificationMessage('Your product has been enabled!');
+    await useMsg().AdminNotificationMessage(t("Notification.EnableNotify"));
     useProduct().disabledProductsIsLoading = false;
     }
 }
@@ -121,4 +121,3 @@ async function EnableproductAndNotifyItsUser(id, seller_id){
 thead {
     border-bottom: 3px solid red;
 }</style>
-  

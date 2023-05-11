@@ -11,7 +11,7 @@ import {useI18n} from 'vue-i18n'
 
 const { t } = useI18n()
 async function deleteUserData(userid) {
-        if (confirm("Are you sure you want to delete your profile?") == true) {
+        if (confirm(t("Confirm.DeleteProfileConfirm")) == true) {
             useUser().usersIsLoading = true;
             await useAuth().logout();
             await useProduct().deleteUsersProducts(userid);

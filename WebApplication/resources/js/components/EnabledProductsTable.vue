@@ -88,13 +88,13 @@ const { t } = useI18n()
 onMounted(useProduct().getEnabledProducts);
 
 async function deleteEnableProduct(id, seller_id) {
-    if (confirm("Are you sure you want to delete this product?") == true) {
+    if (confirm(t("Confirm.DeleteConfirm")) == true) {
     useProduct().enableProductsIsLoading = true;
     await useProduct().deleteProduct(id);
     const index = useProduct().enableProducts.findIndex(item => item.id === id);
     useProduct().enableProducts.splice(index, 1);
     await useChat().CreateAdminNotificationChat(seller_id);
-    await useMsg().AdminNotificationMessage('Your product has been deleted!');
+    await useMsg().AdminNotificationMessage(t('Notofication.DeleteNotify'));
     useProduct().enableProductsIsLoading = false;
     }
 }

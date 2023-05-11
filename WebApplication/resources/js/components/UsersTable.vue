@@ -63,7 +63,7 @@ const { t } = useI18n()
 onMounted(useUser().getUsers);
 
 async function deleteUserData(userid) {
-    if (confirm("Are you sure you want to delete this user?") == true) {
+    if (confirm(t('Confirm.UserDeleteConfirm')) == true) {
     useUser().usersIsLoading = true;
     await useProduct().deleteUsersProducts(userid);
     await useMsg().deleteUserMessages(userid);
@@ -73,7 +73,7 @@ async function deleteUserData(userid) {
     const index = useUser().users.findIndex(item=>item.userid === userid);
     useUser().users.splice(index,1);
     useUser().usersIsLoading = false;
-    alert("The user has been successfully deleted");
+    alert(t("Alerts.UserDelete"));
     }
 }
 

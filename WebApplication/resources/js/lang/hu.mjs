@@ -174,6 +174,30 @@ export default{
         RoleInfo: "Rang információ",
         SellerRoleInfo: 'Ha az eladó rangot választod, akkor képes leszel hirdetést feladni, saját termékeidet eladni. Üzeneteket küldhetsz más eladóknak.',
         MechRoleInfo: 'Szerelőként mindenre lehetőséged lesz amire egy eladó rang képes, ezen felül lehetőséged lesz hirdetni magadat szerelőként és a szakmád alapján szolgaáltatásokat nyújthatsz majd másoknak.',
-
+    },
+    Alerts: {
+        UploadSuccess: "Sikeres feltöltés",
+        ChatDelete: "Beszélgetés törölve",
+        UserDelete: "A felhasználód sikeresen törölve lett",
+        Logout: "Siekres kijelentkezés",
+        CarTypeAddSuccess: "Autótípus hozzáadva",
+        TypeAddSuccess: "Típus hozzáadva",
+        MsgCheck: "Nézd meg az üzeneteidet",
+        MsgSent: "Üzenet elküldve!",
+        ValidationSent: "Elküldtük a termékedet az adminnak, elfogadásra vár!",
+        ProfileUpdate: "A profilod frissült!"
+    },
+    Confirm:{
+        DeleteConfirm: "Biztos törlöd ezt a terméket?",
+        EnableConfirm: "Biztos elfogadod ezt a terméket?",
+        ChatDelConfirm: "Biztos ki törlöd a beszélgetést?",
+        DeleteProfileConfirm: "Biztos törlöd a fiókodat? Nem fogod tudni visszavonni ezt a műveletet.",
+        OwnProductDelConfirm: "Biztos törlöd a termékedet?",
+        UserDeleteConfirm: "Biztos törlöd ezt a felhasználót?"
+    },
+    Notification:{
+        DeleteNotify: 'Sajnos a terméked nem felelt meg az oldal elvárásainak.',
+        EnableNotify: 'A termékedet elfogadtuk, tekintsd meg a főoldalon.',
+        DeleteNotify: "Egy terméked törlésre került. További infomációért itt kérhetsz üzenetben."
     }
 }

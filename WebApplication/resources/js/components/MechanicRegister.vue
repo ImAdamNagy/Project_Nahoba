@@ -32,7 +32,7 @@ async function addMechanic(newMec) {
     const response = await http.post('/mechanics', formdata, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
-    alert("Upload was successfull");
+    alert(t("Alerts.UploadSuccess"));
     router.push({ name: "MainPage" });
 }
 
