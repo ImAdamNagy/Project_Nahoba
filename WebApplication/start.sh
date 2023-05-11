@@ -23,5 +23,4 @@ fi
 $COMPOSE -f docker-compose.yml -f docker-compose.$MODE.yml  up -d
 $COMPOSE exec nahoba-app composer install
 $COMPOSE exec nahoba-app php artisan key:generate
-$COMPOSE exec nahoba-app npm install
 $COMPOSE exec nahoba-app php artisan migrate:fresh --seed
