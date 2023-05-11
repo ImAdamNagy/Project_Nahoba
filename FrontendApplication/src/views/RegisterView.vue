@@ -43,7 +43,7 @@ onMounted(useRole().getRoles)
 
 <template>
     <div class="row py-5 mx-auto">
-        <div class="col-lg-5 ms-sm-auto bg-warning" id="piccol">
+        <div class="col-lg-5 ms-sm-auto " id="piccol">
             <h1>{{t('Auth.RegisterNow')}}</h1>
             <p>{{t('Auth.StartJourney')}}</p>
         </div>
