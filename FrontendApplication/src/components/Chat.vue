@@ -38,7 +38,6 @@ async function swap(id, from) {
     useMsg().partnerid = from.userid;
     useMsg().getMsgLoading = true;
     useMsg().messages = [];
-    console.log(useMsg().messages);
     clearInterval(useMsg().reload);
 
     useMsg().abortController.abort();

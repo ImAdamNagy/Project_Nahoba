@@ -35,7 +35,6 @@ export const useMsg = defineStore('msg-store',
                 });
                 this.messages = response.data.data;
                 this.getMsgLoading = false;
-                console.log(this.messages)
             } catch (error) {
                 
             }

@@ -39,7 +39,6 @@ export const useMechanic = defineStore('mechanic-store', {
             const response = await http.get("/mechanics/" + useRoute().params.id);
             this.Mech = response.data.data;
             this.mechanicsIsLoading = false;
-            console.log(this.Mech);
         },
         getImage(image){
             return `${import.meta.env.VITE_LARAVEL_HOST}/images/${image}`;
