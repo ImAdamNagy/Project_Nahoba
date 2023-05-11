@@ -33,7 +33,8 @@ export const router = createRouter({
       name: 'RegisterPage',
       component: () => import('@/views/RegisterView.vue'),
       meta:{
-        requiresAuth: false
+        requiresAuth: false,
+        requiresGuest: true
       }
     },
     {
@@ -58,7 +59,8 @@ export const router = createRouter({
       name: 'LoginPage',
       component: () => import('@/views/LoginView.vue'),
       meta:{
-        requiresAuth: false
+        requiresAuth: false,
+        requiresGuest: true
       }
     },
     {
@@ -95,8 +97,8 @@ export const router = createRouter({
       }
     },
     {
-      path: '/enableproducts',
-      name: 'EnableProductsView',
+      path: '/enabledproducts',
+      name: 'EnabledProductsView',
       component: () => import('@/views/AdminEnabledProductsView.vue'),
       meta:{
         requiredRole: ['admin'],
@@ -157,7 +159,6 @@ export const router = createRouter({
   ]
 });
 
-
-
 router.beforeEach(AuthGuard);
 router.beforeEach(RoleGuard);
+

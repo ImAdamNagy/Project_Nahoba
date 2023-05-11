@@ -47,7 +47,7 @@ async function login(userData){
 <template>
     <div class="container-fluid">
         <div class="row py-5 mx-auto">
-        <div class="col-xl-4 ms-md-auto bg-warning" id="left">
+        <div class="col-xl-4 ms-md-auto " id="left">
             <h1>{{t('Auth.WelcomeBack')}}</h1>
         </div> 
         <div class="col-xl-3 me-md-auto mx-xs-auto text-center" id="right">

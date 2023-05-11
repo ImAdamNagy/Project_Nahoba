@@ -43,7 +43,7 @@ async function onChange(item) {
 </script>
 <template>
     <div class="row mx-auto mt-5">
-        <div class="col-xl-5 text-center bg-warning" id="first">
+        <div class="col-xl-5 text-center " id="first">
             <h1>{{ t("MechInfo.MechSheet") }}</h1>
         </div>
     </div>
