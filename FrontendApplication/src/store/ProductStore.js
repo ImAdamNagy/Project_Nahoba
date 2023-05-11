@@ -39,7 +39,7 @@ export const useProduct = defineStore('product-store',{
             const response = await http.post('/products', formdata,{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
-            alert("Alerts.ValidationSent");
+            alert("Your post had been sent to the admin for validation.");
         },
         async deleteProduct(sellerId){
             const response = await http.delete("/products/" + sellerId,{

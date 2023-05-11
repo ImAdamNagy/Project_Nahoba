@@ -11,11 +11,9 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/assets/app.scss'
 
-import hu from '@/lang/hu.mjs'
 import en from '@/lang/en.mjs'
 
 const messages = {
-    hu,
     en
 }
 const i18n = createI18n({

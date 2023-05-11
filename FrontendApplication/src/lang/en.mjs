@@ -26,7 +26,7 @@ export default{
         GoToRegister: 'Go to register',
         GoBackToMainPage: "Go back to mainpage",
         WelcomeBack: 'Welcome back',
-        Username: 'Username:'
+        Username: 'Username'
     },
     HeaderTitle: {
         MainPageTitle: 'Welcome to Nahoba Parts',
@@ -40,20 +40,20 @@ export default{
         Search: 'Search',
         AllTypeFilter: 'All type',
         AllCartypeFilter: 'All cartype',
-        MinimumPricePlaceholder: 'Minimum price:',
-        MaximumPricePlaceholder: 'Maximum price:',
+        MinimumPricePlaceholder: 'Minimum price',
+        MaximumPricePlaceholder: 'Maximum price',
         AllCarType: 'All cartype'
     },
     DisabledProducts: {
-        Seller: "Seller: ",
-        Name: 'Name: ',
-        Price: 'Price: ',
-        CarType: 'Car tpye: ',
-        Type: 'Type: ',
-        Image: 'Image: ',
-        Desc: 'Description: ',
-        Location: "Location: ",
-        BeEnable: "Enable: ",
+        Seller: "Seller",
+        Name: 'Name',
+        Price: 'Price',
+        CarType: 'Car type',
+        Type: 'Type',
+        Image: 'Image',
+        Desc: 'Description',
+        Location: "Location",
+        BeEnable: "Enable",
     },
     CreateForm:{
         title: 'Create a new product',
@@ -62,13 +62,13 @@ export default{
         Create: "Create"
     },
     ProductInfo: {
-        ProductPrice: 'Price:',
+        ProductPrice: 'Price',
         Huf: "Huf",
-        ProductSellerName: 'Seller name:',
-        ProductLoc: 'Location:',
+        ProductSellerName: 'Seller name',
+        ProductLoc: 'Location',
         SellersOtherProduct: "Seller's other products",
-        ProductCartype: 'Cartype:',
-        ProductDesc: 'Description:',
+        ProductCartype: 'Cartype',
+        ProductDesc: 'Description',
         Product: 'Product',
         product: "product",
         SomeonesProduct: "'s products",
@@ -82,20 +82,20 @@ export default{
     MechInfo: {
         MechanicPageTitle: 'Mechanics',
         MechanicShowTitle: 'Mechanic details',
-        MechProfession: 'Profession:',
-        MechLocation: 'Location:',
-        MechIntro: 'Introduction:',
+        MechProfession: 'Profession',
+        MechLocation: 'Location',
+        MechIntro: 'Introduction',
         MechSheet: 'Please fill your mechanic data sheet',
         NoMech: "No available mechanics!",
-        Mechanic: 'Mechanic:'
+        Mechanic: 'Mechanic'
     },
     MechSheet:{
-        Intro: "Introduction:",
-        Country: "Country:",
-        Postal: "Postal code:",
-        City: "City:",
-        Address: "Address:",
-        Profession: "Profession:",
+        Intro: "Introduction",
+        Country: "Country",
+        Postal: "Postal code",
+        City: "City",
+        Address: "Address",
+        Profession: "Profession",
         UploadImage: 'Upload image',
         Image: "Upload image (Be carefull you won't be able to change your image later)",
         MechInfo: "Mechanic information"
@@ -108,8 +108,8 @@ export default{
     },
     UserData: {
         Name: 'Name:',
-        Email: 'Email address:',
-        Phone: 'Phone number:',
+        Email: 'Email address',
+        Phone: 'Phone number',
     },
     Profile: {
         Update: 'Update',
@@ -131,14 +131,14 @@ export default{
         NoMessages: "You don't have any messages yet",
         SelectPartner: 'Select your chat partner',
         MsgLoading: 'Loading messages!',
-        MsgWith: "Messages with:",
+        MsgWith: "Messages with",
         NoMsgWithPartner: "You have no messages with",
         DeleteChat: "Delete chat",
         Chat: "Chat",
         Messages: "Messages"
     },
     Admin: {
-        Header: 'Admin Mainpage',
+        Header: 'Admin Actions',
         Actions: 'Admin actions',
         AddType: 'Add product type',
         AddCartype: 'Add car type',
@@ -161,7 +161,6 @@ export default{
         NewCarType: 'Add a new car tpye',
         CarTypePlaceholder: 'Enter the new car type',
         Year: 'Enter the car types year',
-        Add: 'Add',
         Close: 'Close'
     },
     Loadings: {

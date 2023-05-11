@@ -26,7 +26,7 @@ export const useChat = defineStore('chat-store',
             const response = await http.post('/chats/', this.chatData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            alert("Alerts.MsgCheck");
+            alert("Check your messages!");
         },
         async CreateAdminNotificationChat(to){
             this.AdminchatData.from = useAuth().userid;

@@ -38,7 +38,7 @@
                   <ErrorMessage name="name" as="div" class="alert alert-danger m-1" />
                   <Field type="number" name="year" id="year" placeholder="Enter the car types year" class="form-control mt-1" rules="required|numeric|between:1886,2023" />
                   <ErrorMessage name="year" as="div" class="alert alert-danger m-1" />
-                  <input class="btn-warning btn form-control mt-3" id="cartypeSubmit" data-bs-dismiss="modal" type="submit" value="Add" />
+                  <input class="btn-warning btn form-control mt-3" id="cartypeSubmit" data-bs-dismiss="modal" type="submit" :value="t('TypeForm.Add')" />
                 </VForm>
               </div>
               <div class="modal-footer">
@@ -64,7 +64,9 @@ import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import { useType } from '@/store/TypeStore.js';
 import { useCarType } from '@/store/CarTypeStore.js';
 import { onMounted } from "vue";
+import {useI18n} from 'vue-i18n'
 
+const { t } = useI18n()
 onMounted(useType().allTypes);
 
 </script>

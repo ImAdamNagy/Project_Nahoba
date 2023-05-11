@@ -32,7 +32,7 @@ export const useAuth = defineStore('auth-store',
                 this.isAdmin = false;
                 useMsg().currentChatId = null;
                 useMsg().partnerName = null;
-                alert("Alerts.Logout");
+                alert("Logout was successfull!");
             },
             async getCurrentUserDetails(){
                 const response = await http.get('/users/current', {

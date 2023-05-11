@@ -63,7 +63,7 @@ export const useMsg = defineStore('msg-store',
             const response = await http.post('/messages/', this.adminNotification,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            alert("Alerts.MsgSent");
+            alert("Message sent!");
         },
         async deleteUserMessages(userid){
             try {

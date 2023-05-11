@@ -21,12 +21,6 @@
             <li class="nav-item" v-else>
               <Router-link class="nav-link active text-light newproduct" to="/login" >{{t("NavBar.NavUpload")}}</Router-link>
             </li>
-            <li class="nav-item" v-if="useI18n().locale.value == 'en'">
-              <div class="btn nav-link active text-light" @click="$i18n.locale = 'hu'">Magyar</div>
-            </li>
-            <li class="nav-item" v-else>
-              <div class="btn nav-link active text-light" @click="$i18n.locale = 'en'">English</div>
-            </li>
           </ul>
           <div class="nav-item space" v-if="useAuth().loggedIn">
             <div class="nav-item dropdown space">
@@ -75,12 +69,6 @@
               <Router-link class="nav-link active text-light adminmain" to="/adminmain">{{t("Admin.Actions")}}</Router-link>
             </li>
           </ul>
-          <li class="nav-item" v-if="useI18n().locale.value == 'en'">
-              <div class="btn nav-link active text-light" @click="$i18n.locale = 'hu'">Magyar</div>
-            </li>
-            <li class="nav-item" v-else>
-              <div class="btn nav-link active text-light" @click="$i18n.locale = 'en'">English</div>
-            </li>
           <div class="nav-item" v-if="useAuth().loggedIn">
             <li class="nav-item">
               <button class="dropdown-item" id="logout" @click="logout">{{t("NavBar.NavDropdownSignOut")}}</button>

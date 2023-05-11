@@ -5,8 +5,8 @@
                 <thead>
                     <th>{{t("DisabledProducts.Seller")}}</th>
                     <th>{{t("DisabledProducts.Name")}}</th>
-                    <th>{{t("DisabledProducts.Price")}}</th>
                     <th>{{t("DisabledProducts.CarType")}}</th>
+                    <th>{{t("DisabledProducts.Price")}}</th>
                     <th>{{t("DisabledProducts.Type")}}</th>
                     <th>{{t("DisabledProducts.Image")}}</th>
                     <th>{{t("DisabledProducts.Desc")}}</th>

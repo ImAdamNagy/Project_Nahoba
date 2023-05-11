@@ -5,7 +5,7 @@
         <Router-link to="/" class="btn btn-light" ><b>{{t('Auth.GoBackToMainPage')}}</b></Router-link>
     </div>
 </template>
-<script>
+<script setup>
 import {useI18n} from 'vue-i18n'
 
 const { t } = useI18n()

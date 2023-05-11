@@ -38,7 +38,7 @@ async function sendMessage(){
             <p><b>{{t("ProductInfo.ProductCartype")}}:</b> {{ useProduct().Product.car_type.name }} {{ useProduct().Product.car_type.vintage }}</p>
         </div>
         <div class="producttype">
-            <p><b>Product type:</b> {{ useProduct().Product.type.type }}</p>
+            <p><b>{{ t('ProductInfo.ProductType') }}: </b> {{ useProduct().Product.type.type }}</p>
         </div>
         <div class="desc">
             <p><b>{{t("ProductInfo.ProductDesc")}}:</b> {{ useProduct().Product.product_description }}</p>
