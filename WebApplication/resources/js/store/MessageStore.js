@@ -2,9 +2,6 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
 import { useUser } from '@/store/UserStore.js';
 import { useAuth } from './AuthStore.js';
-import {useI18n} from 'vue-i18n'
-
-const { t } = useI18n()
 export const useMsg = defineStore('msg-store',
 {
     state(){
@@ -66,7 +63,7 @@ export const useMsg = defineStore('msg-store',
             const response = await http.post('/messages/', this.adminNotification,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
             });
-            alert(t("Alerts.MsgSent"));
+            alert("Alerts.MsgSent");
         },
         async deleteUserMessages(userid){
             try {

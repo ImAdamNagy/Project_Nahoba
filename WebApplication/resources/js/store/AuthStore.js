@@ -1,9 +1,6 @@
 import { defineStore } from 'pinia';
 import { http } from '../utils/http.mjs'
 import {useMsg} from '@/store/MessageStore.js'
-import {useI18n} from 'vue-i18n'
-
-const { t } = useI18n()
 export const useAuth = defineStore('auth-store',
     {
         state() {
@@ -35,7 +32,7 @@ export const useAuth = defineStore('auth-store',
                 this.isAdmin = false;
                 useMsg().currentChatId = null;
                 useMsg().partnerName = null;
-                alert(t("Alerts.Logout"));
+                alert("sdgrtg");
             },
             async getCurrentUserDetails(){
                 const response = await http.get('/users/current', {

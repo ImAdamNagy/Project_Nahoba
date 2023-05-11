@@ -2,9 +2,6 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
 import { useRoute } from 'vue-router'
 import { useAuth } from './AuthStore.js';
-import {useI18n} from 'vue-i18n'
-
-const { t } = useI18n()
 
 export const useUser = defineStore('user-store',{
     state(){
@@ -47,7 +44,7 @@ export const useUser = defineStore('user-store',{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             this.getUserDetails();
-            alert(t("Alerts.ProfileUpdate"));
+            alert("Alerts.ProfileUpdate");
         }
     }
 })

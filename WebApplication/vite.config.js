@@ -26,7 +26,8 @@ export default ({ mode }) => {
             host:  process.env.VITE_HOST,
             hmr:{
                 host:  process.env.VITE_HOST
-            }
+            },
+            watch:{usePolling: true}
         }
     });
 }

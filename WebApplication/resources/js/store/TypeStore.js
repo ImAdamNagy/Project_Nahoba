@@ -16,7 +16,7 @@ export const useType = defineStore('type-store',{
             const response = await http.post("/types/", typeData,{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
         });
-        typeData(t("Alerts.TypeAddSuccess"));
+        typeData("Alerts.TypeAddSuccess");
         }
     }
 })

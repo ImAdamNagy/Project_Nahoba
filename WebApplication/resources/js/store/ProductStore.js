@@ -2,9 +2,6 @@ import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs';
 import { useRoute } from 'vue-router'
 import { useAuth } from './AuthStore.js';
-import {useI18n} from 'vue-i18n'
-
-const { t } = useI18n()
 export const useProduct = defineStore('product-store',{
     state(){
         return{
@@ -42,7 +39,7 @@ export const useProduct = defineStore('product-store',{
             const response = await http.post('/products', formdata,{
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                 });
-            alert(t("Alerts.ValidationSent"));
+            alert("Alerts.ValidationSent");
         },
         async deleteProduct(sellerId){
             const response = await http.delete("/products/" + sellerId,{
