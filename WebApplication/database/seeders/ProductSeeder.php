@@ -84,17 +84,6 @@ class ProductSeeder extends Seeder
             ],
             [
                 "seller_id" => 3,
-                "product_name" => "Two reflector front light",
-                "product_price" => 7000,
-                "types_id" => 3,
-                "car_typeId" => 2,
-                "product_img" => "cata.jpg",
-                "product_description" => "Brand new frontlight with stronger capability of lighting.",
-                "product_location" => "Budapest 13.",
-                "product_enable" => true
-            ],
-            [
-                "seller_id" => 3,
                 "product_name" => "Steer switches",
                 "product_price" => 16000,
                 "types_id" => 2,
@@ -121,7 +110,7 @@ class ProductSeeder extends Seeder
                 "product_price" => 9000,
                 "types_id" => 16,
                 "car_typeId" => 10,
-                "product_img" => "leftmirro.jpg",
+                "product_img" => "leftmirror.jpg",
                 "product_description" => "Factory new left mirror",
                 "product_location" => "Budapest 13.",
                 "product_enable" => false
