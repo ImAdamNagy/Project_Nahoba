@@ -25,7 +25,6 @@ namespace SeleniumTest
             wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(20));
             webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
-            //login as seller
             webDriver.Navigate().GoToUrl(BaseUrl);
             webDriver.Manage().Window.Maximize();
             
@@ -128,6 +127,36 @@ namespace SeleniumTest
             webDriver.SwitchTo().Alert().Accept();
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
+        }
+
+        [Test]
+        public void SellerForbiddenPage()
+        {
+            webDriver.Navigate().GoToUrl("http://localhost:5174/forbidden");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("backtomainF")));
+            Assert.AreEqual(BaseUrl + "forbidden", webDriver.Url);
+        }
+
+        [Test]
+        public void SellerNotFoundPage()
+        {
+            string nonexistent = "thidoesn'texists";
+            webDriver.Navigate().GoToUrl("http://localhost:5174/" + nonexistent);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("backtomainN")));
+            Assert.AreEqual(BaseUrl + nonexistent, webDriver.Url);
+        }
+
+        [Test]
+        public void SellersOtherProducts()
+        {
+            webDriver.FindElements(By.ClassName("productMore"))[0].Click();
+            Thread.Sleep(1000);
+            string curl = webDriver.Url.ToString();
+            Assert.IsTrue(curl.Contains(BaseUrl + "details/"));
+            webDriver.FindElement(By.Id("otherproducts")).Click();
+
+            curl = webDriver.Url.ToString();
+            Assert.IsTrue(curl.Contains(BaseUrl + "OtherUserProducts/"));
         }
     }
 }
