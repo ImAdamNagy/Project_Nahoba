@@ -2,7 +2,7 @@
 <script setup>
 import { Form as VForm, Field, ErrorMessage } from "vee-validate";
 import { useProduct } from '@/store/ProductStore.js'
-import { useUser } from '@/store/UserStore.js'
+import { useAuth } from '@/store/AuthStore.js'
 import { onMounted } from "vue";
 import * as yup from 'yup';
 import { useI18n } from 'vue-i18n'
@@ -18,7 +18,6 @@ const schema = yup.object(
     });
 onMounted(async function () {
     useProduct().getOwnProducts();
-    useUser().getUserDetails();
 });
 
 async function deleteUserProduct(id) {
@@ -32,15 +31,15 @@ async function deleteUserProduct(id) {
 }
 </script>
 <template>
-    <div v-if="useProduct().userProductsIsLoading == false && useUser().userDataIsLoading == false">
+    <div v-if="useProduct().userProductsIsLoading == false">
         <div class="row mx-auto mt-5 py-4 rounded rounded-5 px-3">
             <div class="col-12">
                 <h1>
-                    {{ useUser().data.firstname }} {{ useUser().data.lastname }}
+                    {{ useAuth().currentUserDetails.firstname }} {{ useAuth().currentUserDetails.lastname }}
                 </h1>
-                <p><b>{{ t('UserData.Email') }}</b> {{ useUser().data.email }}</p>
-                <p><b>{{ t('UserData.Phone') }}</b> {{ useUser().data.tel }}</p>
-                <p><b>{{ t('Auth.Username') }}</b> {{ useUser().data.username }}</p>
+                <p><b>{{ t('UserData.Email') }}: </b>{{ useAuth().currentUserDetails.email }}</p>
+                <p><b>{{ t('UserData.Phone') }}: </b>{{ useAuth().currentUserDetails.tel }}</p>
+                <p><b>{{ t('Auth.Username') }}: </b>{{ useAuth().currentUserDetails.username }}</p>
             </div>
             <div class="title_lines">{{ t('Profile.YourProducts') }}</div>
             <div class="col-lg-4  col-sm-6 col-xs-12" v-for="item in useProduct().OwnProducts" :key="item.id"

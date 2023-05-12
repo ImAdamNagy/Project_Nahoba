@@ -1,6 +1,10 @@
 <template>
     <NavBar />
-    <Header><h1 class="headertitle">{{ t('HeaderTitle.MessagesTitle') }}</h1></Header>
+    <Header>
+        <div class="headerdiv">
+        <h1 class="headertitle">{{ t('HeaderTitle.MessagesTitle') }}</h1>
+        </div>
+    </Header>
     <div class="container">
         <div class="row" v-if="useChat().msgLoading == false">
             <Chat />
@@ -31,7 +35,6 @@ import Header from '@/components/Header.vue'
 import NavBar from '@/components/NavBar.vue'
 import Messages from '@/components/Messages.vue'
 import Chat from '@/components/Chat.vue'
-import { useUser } from '@/store/UserStore.js'
 import { useChat } from '@/store/ChatStore.js'
 import { onMounted } from 'vue';
 import {useI18n} from 'vue-i18n'
@@ -39,7 +42,6 @@ import {useI18n} from 'vue-i18n'
 const { t } = useI18n()
 onMounted(async function () {
     useChat().getChats();
-    useUser().getUserDetails();
 });
 </script>
 <style scoped>

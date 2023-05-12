@@ -39,16 +39,16 @@ const schema = yup.object(
             <div class="settinggrid bg-white mt-3 px-3 py-4 rounded rounded-3">
                 <h2 class="settingtitle">{{t('Settings.UserInfo')}}</h2>
                 <div class="settingusername">
-                    <p><b>{{t('Auth.Username')}} </b>{{ useUser().data.username }}</p>
+                    <p><b>{{t('Auth.Username')}}: </b>{{ useAuth().currentUserDetails.username }}</p>
                 </div>
                 <div class="settingname">
-                    <p><b>{{t('UserData.Name')}} </b>{{ useUser().data.firstname }} {{ useUser().data.lastname }}</p>
+                    <p><b>{{t('UserData.Name')}}: </b>{{ useAuth().currentUserDetails.firstname }} {{ useAuth().currentUserDetails.lastname }}</p>
                 </div>
                 <div class="settingemail">
-                    <p><b>{{t('UserData.Email')}} </b>{{ useUser().data.email }}</p>
+                    <p><b>{{t('UserData.Email')}}: </b>{{ useAuth().currentUserDetails.email }}</p>
                 </div>
                 <div class="settingtel">
-                    <p><b>{{t('UserData.Phone')}} </b>{{ useUser().data.tel }}</p>
+                    <p><b>{{t('UserData.Phone')}}: </b>{{ useAuth().currentUserDetails.tel }}</p>
                 </div>
                 <div class="settingchange">
                     <button type="button" id="changedata" class="stgbutton btn btn-primary" data-bs-toggle="modal"
@@ -72,25 +72,25 @@ const schema = yup.object(
 
                             <VForm class="form-group" @submit="useUser().update" :validation-schema="schema">
                                 <div class="modal-body">
-                                    <Field type="email" name="email" id="email" :value="`${useUser().data.email}`"
+                                    <Field type="email" name="email" id="email" :value="`${useAuth().currentUserDetails.email}`"
                                         :placeholder="t('UserData.Email')" class="form-control my-1" />
                                     <ErrorMessage name="email" as="div" class="alert alert-danger m-1" />
                                     <div id="name" class="d-flex flex-sm-row flex-column my-1">
                                         <Field type="text" name="firstname" id="firstname"
-                                            :value="`${useUser().data.firstname}`" class="form-control me-2"
+                                            :value="`${useAuth().currentUserDetails.firstname}`" class="form-control me-2"
                                             :placeholder="t('Auth.Firstname')" />
                                         <ErrorMessage name="firstname" as="div" class="alert alert-danger m-1" />
                                         <Field type="text" name="lastname" id="lastname"
-                                            :value="`${useUser().data.lastname}`" class="form-control"
+                                            :value="`${useAuth().currentUserDetails.lastname}`" class="form-control"
                                             :placeholder="t('Auth.Lastname')" />
                                         <ErrorMessage name="lastname" as="div" class="alert alert-danger m-1" />
                                     </div>
 
-                                    <Field type="tel" name="tel" id="tel" :value="`${useUser().data.tel}`"
+                                    <Field type="tel" name="tel" id="tel" :value="`${useAuth().currentUserDetails.tel}`"
                                         class="form-control my-1" :placeholder="t('UserData.Phone')" />
                                     <ErrorMessage name="tel" as="div" class="alert alert-danger m-1" />
 
-                                    <Field type="text" name="username" id="username" :value="`${useUser().data.username}`"
+                                    <Field type="text" name="username" id="username" :value="`${useAuth().currentUserDetails.username}`"
                                         class="form-control my-1" :placeholder="t('Auth.Username')" />
                                     <ErrorMessage name="username" as="div" class="alert alert-danger m-1" />
                                 </div>

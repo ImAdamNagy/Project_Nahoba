@@ -1,6 +1,11 @@
 <template>
     <NavBar />
-        <Header><h1 class="headertitle">{{t('Admin.Header')}}</h1></Header>
+        <Header>
+            <div class="headerdiv">
+            <h1 class="headertitle">{{t('Admin.Header')}}</h1>
+            <h2 class="headersubtitle">{{t('Admin.Users')}}</h2>
+            </div>
+        </Header>
     <div class="container">
         <AdminActionsVue />
         <UsersTable />

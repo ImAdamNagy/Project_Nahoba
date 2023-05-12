@@ -9,7 +9,11 @@ const { t } = useI18n()
 
 <template>
     <NavBar />
-    <Header><h1 class="headertitle">{{t('Settings.YourProfile')}}</h1></Header>
+    <Header>
+        <div class="headerdiv">
+        <h1 class="headertitle">{{t('Settings.YourProfile')}}</h1>
+        </div>
+    </Header>
     <div class="container">
             <UserProfile  />
     </div>

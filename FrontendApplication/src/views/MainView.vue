@@ -1,6 +1,10 @@
 <template>
     <NavBar />
-    <Header><h1 class="headertitle">{{ t("HeaderTitle.MainPageTitle") }}</h1></Header>
+    <Header>
+        <div class="headerdiv">
+        <h1 class="headertitle">{{ t("HeaderTitle.MainPageTitle") }}</h1>
+        </div>
+    </Header>
     <div class="container">
         <div class="row" v-if="useProduct().enableProductsIsLoading == false && useMechanic().mechanicsIsLoading == false">
             <Mechanics @mechDetails="mechDetails"/>

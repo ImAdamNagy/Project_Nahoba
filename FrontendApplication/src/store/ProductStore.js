@@ -83,6 +83,7 @@ export const useProduct = defineStore('product-store',{
             this.enableProductsIsLoading = true;
             const response = await http.get('/products/enable');
             this.enableProducts = response.data.data;
+            this.enableProducts.reverse();
             this.enableProductsIsLoading = false;
         },
         async getOwnProducts(){
@@ -148,9 +149,9 @@ export const useProduct = defineStore('product-store',{
     getters:{
         FilteredProducts() {
             if (this.filters.search === null && this.filters.typesFilter === null && this.filters.carTypesFilter === null && this.filters.priceMinFilter === null && this.filters.priceMaxFilter === null) {
-                return this.enableProducts.reverse();
+                return this.enableProducts;
             }
-            return this.enableProducts.filter(this.filterByType).filter(this.filterByMinPrice).filter(this.filterByMaxPrice).filter(this.filterByName).filter(this.filterByCarType).reverse();
+            return this.enableProducts.filter(this.filterByType).filter(this.filterByMinPrice).filter(this.filterByMaxPrice).filter(this.filterByName).filter(this.filterByCarType);
         }
     }
 })

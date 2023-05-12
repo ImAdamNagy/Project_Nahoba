@@ -17,7 +17,9 @@ onMounted(async function () {
     <NavBar />
     <div v-if="useProduct().otherUserProductsIsLoading == false">
         <Header>
+            <div class="headerdiv">
             <h1 class="headertitle">{{ useUser().OtherUserDetails.username }}{{ t('ProductInfo.SomeonesProduct') }}</h1>
+            </div>
         </Header>
         <div class="container">
             <div class="row mt-3 mx-auto mt-5 py-4 rounded rounded-5 px-3">

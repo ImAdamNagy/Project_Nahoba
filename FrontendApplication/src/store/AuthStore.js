@@ -9,7 +9,8 @@ export const useAuth = defineStore('auth-store',
                 userid: '',
                 isAdmin: false,
                 currentUserDetails: null,
-                currentUserHasMec: ''
+                currentUserHasMec: '',
+                currentUserDetailsIsLoading: true
             }
         },
         actions: {
@@ -35,10 +36,12 @@ export const useAuth = defineStore('auth-store',
                 alert("Logout was successfull!");
             },
             async getCurrentUserDetails(){
+                this.currentUserDetailsIsLoading = true;
                 const response = await http.get('/users/current', {
                     headers: { Authorization: `Bearer ${this.token}` }
                 });
                 this.currentUserDetails = response.data.data;
+                this.currentUserDetailsIsLoading = false;
             },
             async userDetails(){
                 return await http.get('/users/current', {

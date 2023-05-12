@@ -34,7 +34,7 @@ export default{
         ProductsShowTitle: 'Product details',
         SettingsPageTitle: 'Settings',
         ProfilePageTitle: 'Your profile',
-        MessagesTitle: 'User Messages'
+        MessagesTitle: 'Messages'
     },
     Filters: {
         Search: 'Search',

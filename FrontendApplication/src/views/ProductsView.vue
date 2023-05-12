@@ -1,7 +1,9 @@
 <template>
         <NavBar />
         <Header>
+            <div class="headerdiv">
             <h1 class="headertitle">{{t('HeaderTitle.ProductsPageTitle')}}</h1>
+            </div>
         </Header>
         <div class="container">
             <Filters />

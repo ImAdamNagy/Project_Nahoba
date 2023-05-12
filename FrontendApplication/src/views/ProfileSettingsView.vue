@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar.vue';
 import Header from '../components/Header.vue';
 import MechanicSettings from '../components/MechanicSettings.vue';
 import ProfileSettings from '../components/ProfileSettings.vue';
-import { useUser } from '@/store/UserStore.js';
+import { useAuth } from '../store/AuthStore.js';
 import { onMounted } from 'vue';
 import { useMechanic } from '@/store/MechanicStore.js';
 import {useI18n} from 'vue-i18n'
@@ -11,8 +11,7 @@ import {useI18n} from 'vue-i18n'
 const { t } = useI18n()
 
 onMounted(async function (){
-    useUser().getUserDetails();
-    if (useUser().data.role?.id == 3) {
+    if (useAuth().currentUserDetails.role?.id == 3) {
         useMechanic().getCurrentMechanic();
     }
 });
@@ -22,13 +21,15 @@ onMounted(async function (){
 <template>
     <NavBar />
     <Header>
+        <div class="headerdiv">
         <h1 class="headertitle">{{t('Settings.Settings')}}</h1>
+        </div>
     </Header>
-    <div class="container" v-if="useUser().userDataIsLoading == false && useUser().data.role?.id == 3 && useMechanic().currentMechanicIsLoading == false">
+    <div class="container" v-if="useAuth().currentUserDetails.role?.id == 3 && useMechanic().currentMechanicIsLoading == false && useAuth().currentUserDetailsIsLoading == false">
         <ProfileSettings />
         <MechanicSettings />
     </div>
-    <div class="container" v-else-if="useUser().userDataIsLoading == false && useUser().data.role?.id != 3">
+    <div class="container" v-else-if="useAuth().currentUserDetails.role?.id != 3 && useAuth().currentUserDetailsIsLoading == false">
         <ProfileSettings />
     </div>
     <div class="loader" v-else>

@@ -1,6 +1,10 @@
 <template>
     <NavBar />
-    <Header><h1 class="headertitle">{{ t('MechInfo.MechanicPageTitle') }}</h1></Header>
+    <Header>
+        <div class="headerdiv">
+        <h1 class="headertitle">{{ t('MechInfo.MechanicPageTitle') }}</h1>
+        </div>
+    </Header>
     <div class="container">
         <MechanicsOnly @mechDetails="mechDetails" />
     </div>

@@ -23,16 +23,16 @@ const schema = yup.object(
             <div class="settingmecgrid bg-white mt-3 px-3 py-4 rounded rounded-3">
                 <h2 class="settingmectitle">{{t("MechSheet.MechInfo")}}</h2>
                 <div class="settingintroduction">
-                    <p><b>{{t("MechSheet.Intro")}} </b>{{ useMechanic().currentMechanic.introduction }}</p>
+                    <p><b>{{t("MechSheet.Intro")}}: </b>{{ useMechanic().currentMechanic.introduction }}</p>
                 </div>
                 <div class="settingcountry">
-                    <p><b>{{t("MechSheet.Country")}} </b>{{ useMechanic().currentMechanic.country }}</p>
+                    <p><b>{{t("MechSheet.Country")}}: </b>{{ useMechanic().currentMechanic.country }}</p>
                 </div>
                 <div class="settingaddress">
-                    <p><b>{{t("MechSheet.City")}} </b>{{ useMechanic().currentMechanic.city }}, {{ useMechanic().currentMechanic.postal_code }} {{ useMechanic().currentMechanic.address }}</p>
+                    <p><b>{{t("MechSheet.City")}}: </b>{{ useMechanic().currentMechanic.city }}, {{ useMechanic().currentMechanic.postal_code }} {{ useMechanic().currentMechanic.address }}</p>
                 </div>
                 <div class="settingprofession">
-                    <p><b>{{t("MechSheet.Profession")}} </b>{{ useMechanic().currentMechanic.profession }}</p>
+                    <p><b>{{t("MechSheet.Profession")}}: </b>{{ useMechanic().currentMechanic.profession }}</p>
                 </div>
                 <div class="settingmecchange">
                     <button type="button" class="stgbutton btn btn-primary" data-bs-toggle="modal"
@@ -51,7 +51,7 @@ const schema = yup.object(
 
                             <VForm class="form-group" @submit="useMechanic().update" :validation-schema="schema">
                                 <div class="modal-body">
-                                    <Field type="textarea" name="introduction" id="introduction"
+                                    <Field type="text" as="textarea" name="introduction" id="introduction"
                                         :value="`${useMechanic().currentMechanic.introduction}`"
                                         class="form-control my-1" />
                                     <ErrorMessage name="introduction" as="div" class="alert alert-danger m-1" />
@@ -78,11 +78,6 @@ const schema = yup.object(
                                         :value="`${useMechanic().currentMechanic.profession}`" class="form-control my-1" />
                                     <ErrorMessage name="profession" as="div" class="alert alert-danger m-1" />
 
-                                    <!--<label for="profile_pic" class="form-label">Upload image</label>
-                                    <br>
-                                    <Field type="file" name="profile_pic" id="profile_pic" @change="onChange($event)" />
-
-                                    <ErrorMessage name="profile_pic" as="div" class="alert alert-danger m-1" /> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">{{t("Settings.Save")}}</button>

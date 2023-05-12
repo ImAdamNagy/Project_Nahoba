@@ -24,14 +24,14 @@ async function message(){
         </div>
         <h1 class="mechgrid-title">{{ useMechanic().Mech.user?.lastname }} {{ useMechanic().Mech.user?.firstname }}</h1>
         <div class="profession">
-            <p><b>{{t('MechInfo.MechProfession')}}</b> {{ useMechanic().Mech.profession }}</p>
+            <p><b>{{t('MechInfo.MechProfession')}}:</b> {{ useMechanic().Mech.profession }}</p>
         </div>
         <div class="introduction">
-            <p><b>{{t('MechInfo.MechIntro')}}</b> {{ useMechanic().Mech.introduction }}
+            <p><b>{{t('MechInfo.MechIntro')}}:</b> {{ useMechanic().Mech.introduction }}
             </p>
         </div>
         <div class="mechlocation">
-            <p><b>{{t('MechInfo.MechLocation')}}</b> {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.postal_code }}, {{ useMechanic().Mech.address }}</p>
+            <p><b>{{t('MechInfo.MechLocation')}}:</b> {{ useMechanic().Mech.country }}, {{ useMechanic().Mech.city }}, {{ useMechanic().Mech.postal_code }}, {{ useMechanic().Mech.address }}</p>
         </div>
         <div class="mechmsg" v-if="useAuth().loggedIn">
             <div class="btn btn-warning sendmsgMechLog" @click="message">{{t('CardActions.SendMsg')}}

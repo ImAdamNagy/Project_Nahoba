@@ -14,6 +14,7 @@ export const useMechanic = defineStore('mechanic-store', {
     },
     actions: {
         async getCurrentMechanic() {
+            this.currentMechanicIsLoading = true;
             const response = await http.get('/mechanics/current', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });

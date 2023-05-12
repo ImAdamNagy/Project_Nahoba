@@ -43,16 +43,16 @@ async function onChange(item) {
 </script>
 <template>
     <div class="row mx-auto mt-5">
-        <div class="col-xl-5 text-center " id="first">
-            <h1>{{ t("MechInfo.MechSheet") }}</h1>
+        <div class="col-12 text-center" id="first">
+            <h1 class="mectitle">{{ t("MechInfo.MechSheet") }}</h1>
         </div>
     </div>
     <div class="row mx-auto">
-        <div class="col-xl-5 text-center" id="second">
+        <div class="col-12 text-center" id="second">
             <div id="formdiv">
                 <VForm class="form-group" @submit="addMechanic" :validation-schema="schema">
 
-                    <Field type="textarea" name="introduction" id="introduction" placeholder="Introduction"
+                    <Field type="text" as="" name="introduction" id="introduction" placeholder="Introduction"
                         class="form-control my-1" />
                     <ErrorMessage name="introduction" as="div" class="alert alert-danger m-1" />
 
@@ -85,21 +85,16 @@ async function onChange(item) {
     </div>
 </template>
 <style scoped>
-.row {
-    position: relative;
-    top: 5%;
-}
 
-@media screen and (max-width: 1000px) {
-    .row {
-        top: 3%;
-    }
-}
 
 input {
     margin-top: 7px;
 }
-
+.mectitle{
+    font-size: 200%;
+    padding-bottom: 20px;
+    color: white;
+}
 #formdiv {
     padding: 10px;
 }
@@ -123,13 +118,4 @@ input {
     margin: auto;
 
 }
-
-h1,
-p {
-    color: white;
-    text-align: center;
-}
-
-#title {
-    color: black;
-}</style>
+</style>

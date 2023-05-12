@@ -2,13 +2,13 @@
 import MechanicRegister from '../components/MechanicRegister.vue';
 </script>
 <template>
-    <div class="container">
+    <div class="container mecregister">
         <MechanicRegister />
     </div>
 </template>
 <style scoped>
-.container{
-    width: 700px;
+.mecregister{
+    width: auto;
 }
 form{
     text-align: center;

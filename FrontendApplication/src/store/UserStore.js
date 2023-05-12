@@ -6,19 +6,12 @@ import { useAuth } from './AuthStore.js';
 export const useUser = defineStore('user-store',{
     state(){
         return{
-            data: [],
-            userDataIsLoading: true,
             OtherUserDetails: [],
             users: [],
             usersIsLoading: true
         }
     },
     actions:{
-        async getUserDetails() {
-            const response = await http.get('/users/' + useAuth().userid);
-            this.data = response.data.data;
-            this.userDataIsLoading = false;
-        },
         async getUsers() {
             this.usersIsLoading = true;
             const response = await http.get('/users', {
@@ -39,11 +32,10 @@ export const useUser = defineStore('user-store',{
         },
         async update(updatedUser) {
             updatedUser.id = useAuth().userid;
-            this.userDataIsLoading = true;
             const response = await http.patch('/users/' + useAuth().userid, updatedUser, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
-            this.getUserDetails();
+            useAuth().getCurrentUserDetails();
             alert("Your profile had been updated.");
         }
     }
