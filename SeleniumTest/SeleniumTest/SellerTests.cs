@@ -104,6 +104,8 @@ namespace SeleniumTest
         {
             webDriver.FindElements(By.ClassName("productMore"))[0].Click();
             webDriver.FindElement(By.ClassName("sendmsglog")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+            webDriver.SwitchTo().Alert().Accept();
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
         }
@@ -121,23 +123,11 @@ namespace SeleniumTest
         public void MechanicSendMessgeAsSeller()
         {
             webDriver.FindElements(By.ClassName("mechanicMore"))[0].Click();
-            webDriver.FindElement(By.ClassName("sendmsgMech")).Click();
+            webDriver.FindElement(By.ClassName("sendmsgMechLog")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+            webDriver.SwitchTo().Alert().Accept();
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
         }
-        //[Test]
-        //public void SellerLogoutTest()
-        //{
-        //    webDriver.FindElement(By.Id("dropdown")).Click();
-        //    Thread.Sleep(1000);
-        //    var signout = webDriver.FindElement(By.CssSelector("logout"));
-        //    signout.Click();
-        //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
-        //    webDriver.SwitchTo().Alert().Accept();
-
-        //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("reglog")));
-        //    Assert.AreEqual("http://localhost:5174/", webDriver.Url);
-        //}
-
     }
 }
