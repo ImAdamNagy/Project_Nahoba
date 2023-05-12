@@ -10,16 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <Router-link class="nav-link active text-light products" to="/productsonly">{{t("NavBar.NavProducts")}}</Router-link>
+              <Router-link class="nav-link active text-light productsNav" to="/productsonly">{{t("NavBar.NavProducts")}}</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light mechanics" to="/mechanicsonly">{{t("NavBar.NavMechs")}}</Router-link>
+              <Router-link class="nav-link active text-light mechanicNav" to="/mechanicsonly">{{t("NavBar.NavMechs")}}</Router-link>
             </li>
             <li class="nav-item" v-if="useAuth().loggedIn">
-              <Router-link class="nav-link active text-light newproduct" to="/newproduct">{{t("NavBar.NavUpload")}}</Router-link>
+              <Router-link class="nav-link active text-light newproductNav" to="/newproduct">{{t("NavBar.NavUpload")}}</Router-link>
             </li>
             <li class="nav-item" v-else>
-              <Router-link class="nav-link active text-light newproduct" to="/login" >{{t("NavBar.NavUpload")}}</Router-link>
+              <Router-link class="nav-link active text-light newproductNav" to="/login" >{{t("NavBar.NavUpload")}}</Router-link>
             </li>
           </ul>
           <div class="nav-item space" v-if="useAuth().loggedIn">
@@ -57,16 +57,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <Router-link class="nav-link active text-light products" to="/productsonly">{{t("NavBar.NavProducts")}}</Router-link>
+              <Router-link class="nav-link active text-light productsNav" to="/productsonly">{{t("NavBar.NavProducts")}}</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light mechanics" to="/mechanicsonly">{{t("NavBar.NavMechs")}}</Router-link>
+              <Router-link class="nav-link active text-light mechanicNav" to="/mechanicsonly">{{t("NavBar.NavMechs")}}</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light messages" to="/messages">{{t("NavBar.NavDropdownMessages")}}</Router-link>
+              <Router-link class="nav-link active text-light messagesNav" to="/messages">{{t("NavBar.NavDropdownMessages")}}</Router-link>
             </li>
             <li class="nav-item">
-              <Router-link class="nav-link active text-light adminmain" to="/adminmain">{{t("Admin.Actions")}}</Router-link>
+              <Router-link class="nav-link active text-light adminmainNav" to="/adminmain">{{t("Admin.Actions")}}</Router-link>
             </li>
           </ul>
           <div class="nav-item" v-if="useAuth().loggedIn">

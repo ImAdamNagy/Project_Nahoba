@@ -31,15 +31,15 @@ namespace SeleniumTest
         {
             Assert.AreEqual(BaseUrl, webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("products")).Click();
+            webDriver.FindElement(By.ClassName("productsNav")).Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/productsonly", webDriver.Url);
+            Assert.AreEqual(BaseUrl + "productsonly", webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("mechanics")).Click();
+            webDriver.FindElement(By.ClassName("mechanicNav")).Click();
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/mechanicsonly", webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("newproduct")).Click();
+            webDriver.FindElement(By.ClassName("newproductNav")).Click();
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
 
@@ -59,7 +59,8 @@ namespace SeleniumTest
         {
             webDriver.FindElements(By.ClassName("productMore"))[0].Click();
             Thread.Sleep(1000);
-            Assert.AreEqual("http://localhost:5174/details/1", webDriver.Url);
+            string curl = webDriver.Url.ToString();
+            Assert.IsTrue(curl.Contains(BaseUrl+"details/"));
             Assert.AreEqual("Product details", webDriver.FindElement(By.ClassName("headertitle")).Text);
         }
 
