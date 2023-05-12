@@ -52,7 +52,7 @@ class MechanicSeeder extends Seeder
                 "postal_code"=>1187,
                 "city"=>"Budapest",
                 "address"=>"Nagy street 63.",
-                "profile_pic"=>"kellkép",
+                "profile_pic"=>"mechanic2.jpg",
                 "profession"=>"mechanic",
                 "user_id"=> 3
             ],
@@ -62,7 +62,7 @@ class MechanicSeeder extends Seeder
                 "postal_code"=>1187,
                 "city"=>"Budapest",
                 "address"=>"Nagy street 63.",
-                "profile_pic"=>"kellkép",
+                "profile_pic"=>"mechanic1.jpg",
                 "profession"=>"race engineer",
                 "user_id"=> 5
             ],
