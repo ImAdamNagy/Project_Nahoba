@@ -94,7 +94,7 @@ namespace SeleniumTest
         [Test]
         public void MechanicsOnlyPage()
         {
-            webDriver.FindElement(By.ClassName("mechanics")).Click();
+            webDriver.FindElement(By.ClassName("mechanicNav")).Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName("mechanicMore2")));
             Assert.AreEqual("http://localhost:5174/mechanicsonly", webDriver.Url);
 

@@ -29,7 +29,7 @@ async function sendMessage(){
         <div class="seller">
             <p><b>{{t("ProductInfo.ProductSellerName")}}:</b> {{ useProduct().Product.seller?.firstname }} {{ useProduct().Product.seller?.lastname }}
             </p>
-            <Router-link :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>{{t("ProductInfo.SellersOtherProduct")}}</b></Router-link>
+            <Router-link id="otherproducts" :to="`/OtherUserProducts/` + useProduct().Product.seller?.userid"><b>{{t("ProductInfo.SellersOtherProduct")}}</b></Router-link>
         </div>
         <div class="location">
             <p><b>{{t("ProductInfo.ProductLoc")}}:</b> {{ useProduct().Product.product_location }}</p>
