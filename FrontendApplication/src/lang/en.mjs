@@ -107,7 +107,7 @@ export default{
         Send: "Send"
     },
     UserData: {
-        Name: 'Name:',
+        Name: 'Name',
         Email: 'Email address',
         Phone: 'Phone number',
     },
