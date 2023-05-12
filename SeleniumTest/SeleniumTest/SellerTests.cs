@@ -125,6 +125,24 @@ namespace SeleniumTest
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
         }
+
+        [Test]
+        public void SellerForbiddenPage()
+        {
+            webDriver.Navigate().GoToUrl("http://localhost:5174/forbidden");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("backtomainF")));
+            Assert.AreEqual(BaseUrl + "forbidden", webDriver.Url);
+        }
+
+        [Test]
+        public void SellerNotFoundPage()
+        {
+            string nonexistent = "thidoesn'texists";
+            webDriver.Navigate().GoToUrl("http://localhost:5174/" + nonexistent);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("backtomainN")));
+            Assert.AreEqual(BaseUrl + nonexistent, webDriver.Url);
+        }
+
         //[Test]
         //public void SellerLogoutTest()
         //{
