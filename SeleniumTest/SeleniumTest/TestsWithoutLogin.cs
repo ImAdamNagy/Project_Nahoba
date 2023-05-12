@@ -65,7 +65,7 @@ namespace SeleniumTest
         }
 
         [Test]
-        public void ProductSendMessgeWithoutLogin()
+        public void ProductSendMessageWithoutLogin()
         {
             webDriver.FindElements(By.ClassName("productMore"))[0].Click();
             webDriver.FindElement(By.ClassName("sendmsg")).Click();
@@ -83,7 +83,7 @@ namespace SeleniumTest
         }
 
         [Test]
-        public void MechanicSendMessgeWithoutLogin()
+        public void MechanicSendMessageWithoutLogin()
         {
             webDriver.FindElements(By.ClassName("mechanicMore"))[0].Click();
             webDriver.FindElement(By.ClassName("sendmsgMech")).Click();
