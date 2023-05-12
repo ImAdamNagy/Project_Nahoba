@@ -14,7 +14,7 @@ namespace SeleniumTest
 {
     internal class AdminTests
     {
-        private string BaseUrl { get; set; } = "http://localhost:8881/#/";
+        private string BaseUrl { get; set; } = "http://localhost:5174/";
         private IWebDriver webDriver { get; set; }
         private WebDriverWait wait { get; set; }
 
@@ -47,24 +47,20 @@ namespace SeleniumTest
         [Test]
         public void AdminNavBarTest()
         {
-            webDriver.FindElement(By.ClassName("products")).Click();
+            webDriver.FindElement(By.ClassName("productsNav")).Click();
             Thread.Sleep(1000);
             Assert.AreEqual(BaseUrl + "productsonly", webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("mechanics")).Click();
+            webDriver.FindElement(By.ClassName("mechanicNav")).Click();
             Thread.Sleep(1000);
             Assert.AreEqual(BaseUrl + "mechanicsonly", webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("messages")).Click();
+            webDriver.FindElement(By.ClassName("messagesNav")).Click();
             Thread.Sleep(1000);
             Assert.AreEqual(BaseUrl + "messages", webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("messages")).Click();
-            Thread.Sleep(1000);
-            Assert.AreEqual(BaseUrl + "messages", webDriver.Url);
-
-            webDriver.FindElement(By.ClassName("adminmain")).Click();
-            Thread.Sleep(1000);
+            webDriver.FindElement(By.ClassName("adminmainNav")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("addProductType")));
             Assert.AreEqual(BaseUrl + "adminmain", webDriver.Url);
 
             webDriver.FindElement(By.Id("mainpage")).Click();

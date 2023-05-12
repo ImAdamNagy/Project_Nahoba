@@ -54,20 +54,21 @@ namespace SeleniumTest
         {
             Assert.AreEqual(BaseUrl, webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("products")).Click();
+            webDriver.FindElement(By.ClassName("productsNav")).Click();
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/productsonly", webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("mechanics")).Click();
+            webDriver.FindElement(By.ClassName("mechanicNav")).Click();
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/mechanicsonly", webDriver.Url);
 
-            webDriver.FindElement(By.ClassName("newproduct")).Click();
-            Thread.Sleep(1000);
+            webDriver.FindElement(By.ClassName("newproductNav")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[text()='Create a new product']")));
             Assert.AreEqual("http://localhost:5174/newproduct", webDriver.Url);
 
             webDriver.FindElement(By.Id("dropdown")).Click();
             webDriver.FindElement(By.CssSelector("#drop>li:nth-child(1)>a")).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("changedata")));
             Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/settings", webDriver.Url);
 

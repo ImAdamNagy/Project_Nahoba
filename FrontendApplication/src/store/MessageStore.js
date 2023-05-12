@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia';
 import {http} from '../utils/http.mjs'
-import { useUser } from '@/store/UserStore.js';
 import { useAuth } from './AuthStore.js';
 export const useMsg = defineStore('msg-store',
 {
@@ -44,8 +43,6 @@ export const useMsg = defineStore('msg-store',
                 await useMsg().getMessages(id);
             }, 5000, id)
         },
-
-
 
         async sendMessage(message){
             this.newmessage.message = message.message;

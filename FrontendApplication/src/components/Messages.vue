@@ -29,12 +29,11 @@
                     </div>
                 </div>
             </div>
-            <VForm @submit="useMsg().sendMessage">
+            <VForm @submit="send">
                 <div class="input">
                     <div class="row">
                         <div class="col-8">
-                            <Field class="form-control" type="text" name="message" id="message"
-                                placeholder="Send message" />
+                            <Field class="form-control" type="text" name="message" id="message" placeholder="Send message" v-model="msginput"/>
                         </div>
                         <div class="col-4">
                             <input class="btn-warning btn form-control" type="submit" value="Send" />
@@ -79,6 +78,9 @@ import {useAuth} from '@/store/AuthStore.js';
 import { useChat } from "@/store/ChatStore.js";
 import { onBeforeRouteLeave } from "vue-router";
 import { useI18n } from 'vue-i18n'
+import { ref } from "vue";
+
+let msginput = ref("")
 
 const { t } = useI18n()
 
@@ -86,9 +88,10 @@ onBeforeRouteLeave((to, from) => {
     useMsg().abortController.abort()
 })
 
-
-
-
+async function send(message){
+    useMsg().sendMessage(message);
+    msginput = "";
+}
 
 async function Delete(userid) {
     if (confirm(t("Confirm.ChatDelConfirm")) == true) {

@@ -67,7 +67,7 @@ namespace SeleniumTest
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
             webDriver.SwitchTo().Alert().Accept();
 
-            Assert.AreEqual(webDriver.FindElement(By.CssSelector(".settingemail>p")).Text, "Email: sellermisikee@gmail.com");
+            Assert.AreEqual(webDriver.FindElement(By.CssSelector(".settingemail>p")).Text, "Email address: sellermisikee@gmail.com");
         }
     }
 }
