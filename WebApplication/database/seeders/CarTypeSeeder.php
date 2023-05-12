@@ -17,24 +17,15 @@ class CarTypeSeeder extends Seeder
     {
         DB::table('carTypes')->insert([
 
-            ["name" => "Audi
-            100", "year" => "1994"],
-            ["name" => "Audi
-            100", "year" => "1993"],
-            ["name" => "Audi
-            100", "year" => "1992"],
-            ["name" => "Audi
-            80", "year" => "1992"],
-            ["name" => "Audi
-            90", "year" => "1994"],
-            ["name" => "Audi
-            90", "year" => "1993"],
-            ["name" => "Audi
-            A3", "year" => "2018"],
-            ["name" => "Audi
-            A3", "year" => "2017"],
-            ["name" => "Audi
-            A3", "year" => "2016"],
+            ["name" => "Audi 100", "year" => "1994"],
+            ["name" => "Audi 100", "year" => "1993"],
+            ["name" => "Audi 100", "year" => "1992"],
+            ["name" => "Audi 80", "year" => "1992"],
+            ["name" => "Audi 90", "year" => "1994"],
+            ["name" => "Audi 90", "year" => "1993"],
+            ["name" => "Audi A3", "year" => "2018"],
+            ["name" => "Audi A3", "year" => "2017"],
+            ["name" => "Audi A3", "year" => "2016"],
 
             ["name" => "Daewoo Kalos", "year" => "2003"],
             ["name" => "Daewoo Lanos", "year" => "2000"],
