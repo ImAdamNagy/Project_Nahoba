@@ -154,7 +154,7 @@ namespace SeleniumTest
             string curl = webDriver.Url.ToString();
             Assert.IsTrue(curl.Contains(BaseUrl + "details/"));
             webDriver.FindElement(By.Id("otherproducts")).Click();
-
+            Thread.Sleep(1000);
             curl = webDriver.Url.ToString();
             Assert.IsTrue(curl.Contains(BaseUrl + "OtherUserProducts/"));
         }

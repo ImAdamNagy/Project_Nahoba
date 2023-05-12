@@ -58,9 +58,9 @@ namespace SeleniumTest
         public void TypeFilter()
         {
             var select = new SelectElement(webDriver.FindElement(By.Id("typesFilter")));
-            select.SelectByText("Wheel");
+            select.SelectByText("Engine");
             webDriver.FindElement(By.Id("searchbtn")).Click();
-            Assert.AreEqual("Wheel", webDriver.FindElements(By.Id("type"))[0].Text);
+            Assert.AreEqual("Engine", webDriver.FindElements(By.Id("type"))[0].Text);
         }
     }
 }
