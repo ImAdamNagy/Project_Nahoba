@@ -17,6 +17,7 @@ class TypeSeeder extends Seeder
     {
         DB::table('types')->insert([
             ["type" => "Wheel"],
+            ["type" => "Steer"],
             ["type" => "Engine"],
             ["type" => "Battery"],
             ["type" => "Turbo"],

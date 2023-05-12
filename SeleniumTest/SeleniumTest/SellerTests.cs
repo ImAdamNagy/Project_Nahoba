@@ -28,7 +28,9 @@ namespace SeleniumTest
             //login as seller
             webDriver.Navigate().GoToUrl(BaseUrl);
             webDriver.Manage().Window.Maximize();
+            
             webDriver.FindElement(By.CssSelector("#reglog>.nav-item:nth-child(2)>a")).Click();
+            Thread.Sleep(1000);
             Assert.AreEqual("http://localhost:5174/login", webDriver.Url);
 
             webDriver.FindElement(By.Id("username")).SendKeys("SellerMisi4");
@@ -87,6 +89,42 @@ namespace SeleniumTest
             Assert.AreEqual("http://localhost:5174/", webDriver.Url);
         }
 
+        [Test]
+        public void SellerViewProduct()
+        {
+            webDriver.FindElements(By.ClassName("productMore"))[0].Click();
+            Thread.Sleep(1000);
+            string curl = webDriver.Url.ToString();
+            Assert.IsTrue(curl.Contains(BaseUrl + "details/"));
+            Assert.AreEqual("Product details", webDriver.FindElement(By.ClassName("headertitle")).Text);
+        }
+
+        [Test]
+        public void ProductSendMessageAsSeller()
+        {
+            webDriver.FindElements(By.ClassName("productMore"))[0].Click();
+            webDriver.FindElement(By.ClassName("sendmsglog")).Click();
+            Thread.Sleep(1000);
+            Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
+        }
+
+        [Test]
+        public void SellerViewMechanic()
+        {
+            webDriver.FindElements(By.ClassName("mechanicMore"))[0].Click();
+            Thread.Sleep(1000);string curl = webDriver.Url.ToString();
+            Assert.IsTrue(curl.Contains(BaseUrl + "mech/details/"));
+            Assert.AreEqual("Mechanic details", webDriver.FindElement(By.ClassName("headertitle")).Text);
+        }
+
+        [Test]
+        public void MechanicSendMessgeAsSeller()
+        {
+            webDriver.FindElements(By.ClassName("mechanicMore"))[0].Click();
+            webDriver.FindElement(By.ClassName("sendmsgMech")).Click();
+            Thread.Sleep(1000);
+            Assert.AreEqual("http://localhost:5174/messages", webDriver.Url);
+        }
         //[Test]
         //public void SellerLogoutTest()
         //{

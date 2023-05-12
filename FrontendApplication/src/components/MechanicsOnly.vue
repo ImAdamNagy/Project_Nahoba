@@ -3,7 +3,7 @@
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="item in useMechanic().mechanics" :key="item.id">
       <div class="mechanic m-2 h-100">
         <div class="mx-2">
-          <h2>{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
+          <h2 id="mecname">{{ item.user?.firstname }} {{ item.user?.lastname }}</h2>
           <button class="btn btn-warning float-end mechanicMore2" @click="$emit('mechDetails', item.id)">{{t("CardActions.ItemsMore")}}</button>
           <p class="mecprofession">{{ item.profession }}</p>
         </div>
@@ -41,6 +41,10 @@ onMounted(useMechanic().getMechanics);
 
 .loader{
   height: 400px;
+}
+#mecname{
+  word-break: break-word;
+  width: 100%;
 }
 .mechanic {
   background-color: white;
