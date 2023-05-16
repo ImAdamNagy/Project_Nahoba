@@ -69,15 +69,6 @@ class CarTypeSeeder extends Seeder
             ["name" => "Honda Accord", "year" => "2015"],
             ["name" => "Honda CR-V", "year" => "2018"],
             ["name" => "Honda CR-V", "year" => "2014"],
-
-
-
-
-
-
-
-
-            
             ["name" => "Other", "year" => null],
         ]);
     }
